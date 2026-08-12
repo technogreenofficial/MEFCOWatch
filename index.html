@@ -1870,10 +1870,9 @@ const NOTIFICATION_API =
 const STORAGE_KEY =
 "mefco_watch_matches_v2";
 
-let matches = loadMatches();
+let matches = [];
 
-let selectedMatchId =
-matches[0]?.id || null;
+let selectedMatchId = null;
 
 let scoreFilter = "all";
 
@@ -1881,6 +1880,22 @@ let adminLog = [];
 
 let timer = null;
 
+async function loadMatchesFromDatabase() {
+  try {
+    const response = await fetch("/api/matches");
+    const data = await response.json();
+
+    matches = data;
+
+    selectedMatchId = matches[0]?.id || null;
+
+    renderMatches();
+  } catch (error) {
+    console.error("Failed to load matches:", error);
+  }
+}
+
+loadMatchesFromDatabase();
 
 /* =========================
    NOTIFICATIONS
