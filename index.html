@@ -44,7 +44,13 @@ z-index:100
 .logo{
 font-size:25px;
 font-weight:800;
-letter-spacing:1px
+letter-spacing:1px;
+border:0;
+background:transparent;
+color:#fff;
+cursor:pointer;
+font-family:inherit;
+padding:0
 }
 
 .logo span{
@@ -680,9 +686,9 @@ justify-content:center
 
 <header>
 
-<div class="logo">
-MEFCO <span>WATCH</span>
-</div>
+<button class="logo" onclick="refreshApp()" aria-label="Refresh MEFCO Watch">
+  MEFCO <span>WATCH</span>
+</button>
 
 <div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center">
 
@@ -1336,7 +1342,8 @@ Register the MEFCO Watch service worker.
 */
 
 const registration =
-await navigator.serviceWorker.register("./sw.js");
+await navigator.serviceWorker.register("./sw.js")
+);
 
 
 /*
@@ -1929,7 +1936,9 @@ JSON.stringify(matches)
 );
 
 }
-
+function refreshApp(){
+    location.reload();
+}
 
 /* =========================================================
    PAGE NAVIGATION
