@@ -3,192 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#070a0f">
 <title>MEFCO Watch</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#06090e;
---panel:#0d131b;
+--bg:#05080d;
+--panel:#0c121a;
 --panel2:#111a24;
---panel3:#16212d;
+--border:#1d2a38;
 --text:#f8fafc;
---muted:#8fa0b3;
---border:#202c39;
+--muted:#8fa0b5;
 --green:#22c55e;
 --green2:#4ade80;
 --red:#ef4444;
 --blue:#3b82f6;
---gold:#eab308;
+--gold:#eab308
 }
 body{
-font-family:Inter,Arial,Helvetica,sans-serif;
-background:
-radial-gradient(circle at 50% -20%,#17352255,transparent 35%),
-var(--bg);
+font-family:Arial,Helvetica,sans-serif;
+background:radial-gradient(circle at top,#101b29 0,#05080d 40%);
 color:var(--text);
-min-height:100vh;
-line-height:1.45
+min-height:100vh
 }
 button,input,select,textarea{font:inherit}
-button{cursor:pointer;touch-action:manipulation}
+button{cursor:pointer}
 header{
-height:72px;
-padding:0 28px;
-display:flex;
-align-items:center;
-justify-content:space-between;
 position:sticky;
 top:0;
 z-index:100;
-background:#06090eee;
-backdrop-filter:blur(18px);
+min-height:70px;
+padding:12px 4%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+background:#05080deF;
+backdrop-filter:blur(16px);
 border-bottom:1px solid var(--border)
 }
 .logo{
-border:0;background:none;color:white;
-font-size:25px;font-weight:950;
+border:0;
+background:none;
+color:white;
+font-size:25px;
+font-weight:900;
 letter-spacing:1px
 }
 .logo span{color:var(--green2)}
 nav{display:flex;gap:5px;flex-wrap:wrap}
-nav button,.top-btn,.filter,.back{
+nav button,.btn{
 border:1px solid transparent;
-background:transparent;
-color:#aebdcd;
-padding:9px 13px;
+background:#101923;
+color:#cbd5e1;
+padding:10px 14px;
 border-radius:9px;
-font-weight:750
+font-weight:800
 }
-nav button:hover,.top-btn:hover,.filter:hover,.back:hover{
-background:var(--panel3);color:white
-}
-nav button.active,.filter.active{
-background:#f1f5f9;color:#070a0f
-}
-.top-btn{
-margin-left:8px;
-background:#111923
-}
-.top-btn.enabled{
-background:#14532d;
-color:#86efac;
-border-color:#22c55e
-}
-main{
-width:min(1240px,94%);
-margin:30px auto 60px
-}
+nav button:hover,.btn:hover{background:#1a2734;color:white}
+nav button.active{background:white;color:#05080d}
+main{width:min(1200px,94%);margin:30px auto 50px}
 .page{display:none}
 .page.active{display:block}
 .hero{
-min-height:410px;
-padding:42px;
+min-height:390px;
+padding:40px;
+border:1px solid #263545;
 border-radius:24px;
 display:flex;
 flex-direction:column;
 justify-content:flex-end;
-margin-bottom:24px;
-overflow:hidden;
-border:1px solid #263544;
 background:
-radial-gradient(circle at 82% 20%,#22c55e38,transparent 25%),
-radial-gradient(circle at 15% 100%,#3b82f620,transparent 35%),
-linear-gradient(135deg,#172231,#080c12)
+radial-gradient(circle at 80% 15%,#22c55e30,transparent 28%),
+linear-gradient(135deg,#142333,#070b11);
+margin-bottom:25px
 }
 .badge{
+display:inline-block;
 width:max-content;
-padding:7px 12px;
-border-radius:99px;
 background:#22c55e20;
 border:1px solid #22c55e45;
 color:#86efac;
+padding:7px 11px;
+border-radius:20px;
 font-size:12px;
 font-weight:900
 }
-.hero h1{
-font-size:clamp(36px,6vw,58px);
-line-height:1.02;
-max-width:780px;
-margin-top:15px
-}
-.hero p{
-max-width:680px;
-color:#bdc9d6;
-margin-top:15px;
-font-size:17px
-}
+.hero h1{font-size:46px;max-width:750px;margin-top:15px}
+.hero p{max-width:650px;color:#cbd5e1;margin-top:12px;font-size:17px}
 .section{
 background:linear-gradient(145deg,var(--panel),var(--panel2));
 border:1px solid var(--border);
 border-radius:16px;
 padding:22px;
-margin-bottom:22px
+margin-bottom:20px
 }
 .section-head{
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
 gap:15px;
-margin-bottom:17px
+margin-bottom:18px
 }
-.section-head h2{font-size:21px}
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:15px
 }
-.card{
-padding:21px;
-border:1px solid var(--border);
-border-radius:15px;
+.card,.match-card,.news-card{
 background:linear-gradient(145deg,var(--panel),var(--panel2));
-transition:.2s
-}
-.card.clickable{cursor:pointer}
-.card.clickable:hover,.match:hover,.news-card:hover{
-transform:translateY(-2px);
-border-color:#405267
-}
-.card p,.muted{color:var(--muted);margin-top:6px}
-.match{
 border:1px solid var(--border);
-border-radius:14px;
+border-radius:15px
+}
+.card{padding:20px}
+.card.clickable,.match-card,.news-card{transition:.2s}
+.card.clickable:hover,.match-card:hover,.news-card:hover{
+transform:translateY(-2px);
+border-color:#405165
+}
+.card p,.news-card p{color:var(--muted);margin-top:7px}
+.match-card{
 padding:18px;
 margin-bottom:11px;
-background:linear-gradient(145deg,var(--panel),var(--panel2));
-cursor:pointer;
-transition:.18s
+cursor:pointer
 }
 .match-top{
 display:flex;
 justify-content:space-between;
-gap:10px;
-font-size:12px;
 color:var(--muted);
-margin-bottom:16px
+font-size:12px;
+margin-bottom:15px
 }
-.live{color:#fb7185;font-weight:900}
-.match-teams{
+.live{color:#f87171;font-weight:900}
+.teams{
 display:grid;
-grid-template-columns:1fr 120px 1fr;
+grid-template-columns:1fr 100px 1fr;
 align-items:center;
 gap:15px
 }
-.team{
-font-size:17px;
-font-weight:800
-}
+.team{font-weight:800}
 .team.right{text-align:right}
 .score{
-font-size:28px;
-font-weight:950;
+font-size:25px;
+font-weight:900;
 text-align:center
 }
-.scheduled-score{
-font-size:19px;
-color:#cbd5e1
+.date{color:var(--muted);font-size:12px;margin-bottom:7px}
+.empty{
+padding:35px 20px;
+text-align:center;
+color:var(--muted);
+border:1px dashed #334155;
+border-radius:12px
 }
 .filters{
 display:flex;
@@ -196,147 +162,39 @@ gap:8px;
 flex-wrap:wrap;
 margin-bottom:18px
 }
-.empty{
-padding:35px 20px;
-text-align:center;
-color:var(--muted);
-border:1px dashed #334155;
-border-radius:12px;
-background:#0b1118
-}
-.search{
-width:100%;
-border:1px solid var(--border2);
-background:#0b1118;
-color:white;
-border-radius:10px;
-padding:13px 14px;
-outline:none;
-margin-bottom:15px
-}
-.search:focus{border-color:#4b647e}
-.match-header{
-padding:35px;
-text-align:center;
+.filter.active{background:white;color:#05080d}
+.page-title{margin-bottom:22px}
+.page-title h1{font-size:35px}
+.page-title p{color:var(--muted);margin-top:5px}
+
+/* NEWS */
+.feature-news{
+padding:30px;
 border-radius:20px;
-border:1px solid var(--border);
+border:1px solid #293849;
 background:
-radial-gradient(circle at center,#22c55e18,transparent 45%),
-linear-gradient(145deg,#101923,#06090e);
-margin:16px 0 20px
-}
-.competition{
-color:var(--muted);
-font-size:12px;
-font-weight:900;
-text-transform:uppercase;
-letter-spacing:.5px;
+radial-gradient(circle at 80% 20%,#ef444420,transparent 30%),
+linear-gradient(135deg,#151d29,#080d14);
 margin-bottom:20px
 }
-.match-header-teams{
-display:grid;
-grid-template-columns:1fr 180px 1fr;
-align-items:center;
-gap:20px
-}
-.big-team{
-font-size:23px;
-font-weight:900
-}
-.big-score{
-font-size:50px;
-font-weight:950;
-line-height:1
-}
-.status{
-margin-top:10px;
-font-weight:900;
-color:var(--green2)
-}
-.match-grid{
-display:grid;
-grid-template-columns:1.5fr 1fr;
-gap:20px
-}
-.event{
-display:grid;
-grid-template-columns:60px 1fr;
-gap:12px;
-padding:14px 0;
-border-bottom:1px solid var(--border)
-}
-.event-minute{
-font-weight:900;
-color:var(--green2)
-}
-.event-type{
-font-size:12px;
-color:var(--muted);
-margin-top:3px
-}
-.stat-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-.stat{
-padding:14px;
-border-radius:10px;
-background:#111923
-}
-.stat small{
-display:block;
-color:var(--muted);
-margin-bottom:5px
-}
-.stat strong{font-size:19px}
-.timeline{
-display:flex;
-flex-direction:column;
-gap:9px
-}
-.timeline div{
-padding:12px;
-border-left:4px solid #475569;
-background:#111923;
-border-radius:8px
-}
-.timeline .goal{border-color:var(--green)}
-.timeline .card-event{border-color:var(--gold)}
-.news-feature{
-padding:32px;
-border-radius:18px;
-margin-bottom:20px;
-border:1px solid #293848;
-background:
-radial-gradient(circle at 90% 10%,#3b82f625,transparent 30%),
-linear-gradient(135deg,#131e2c,#080d13)
-}
-.news-tag{
+.breaking{
 display:inline-block;
 background:#dc2626;
-padding:6px 9px;
+padding:6px 10px;
 border-radius:5px;
 font-size:11px;
 font-weight:900
 }
-.news-feature h2{
-font-size:32px;
-margin:12px 0
-}
-.news-feature p{color:#c6d0db}
+.feature-news h2{font-size:30px;margin:13px 0 8px}
+.feature-news p{color:#cbd5e1}
 .news-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:15px
 }
 .news-card{
-padding:21px;
-border:1px solid var(--border);
-border-radius:14px;
-background:linear-gradient(145deg,var(--panel),var(--panel2));
-cursor:pointer;
-transition:.18s
+padding:20px;
+cursor:pointer
 }
 .news-category{
 color:var(--green2);
@@ -344,36 +202,81 @@ font-size:11px;
 font-weight:900;
 margin-bottom:8px
 }
-.news-card h3{font-size:18px}
-.news-meta{
-font-size:12px;
+.news-card h3{font-size:19px}
+.news-meta{color:var(--muted);font-size:12px;margin-top:13px}
+
+/* MATCH CENTRE */
+.match-header{
+text-align:center;
+padding:32px;
+border:1px solid var(--border);
+border-radius:20px;
+background:linear-gradient(145deg,#0e1823,#05080d);
+margin:20px 0
+}
+.comp{
 color:var(--muted);
-margin-top:12px
+font-size:13px;
+font-weight:800;
+margin-bottom:22px
 }
-table{
-width:100%;
-border-collapse:collapse
+.big-teams{
+display:grid;
+grid-template-columns:1fr 180px 1fr;
+align-items:center
 }
-th,td{
-padding:12px;
-text-align:left;
+.big-team{font-size:24px;font-weight:900}
+.big-score{font-size:48px;font-weight:900}
+.status{color:var(--green2);font-weight:900;margin-top:4px}
+.match-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr;
+gap:20px
+}
+.commentary{max-height:520px;overflow:auto}
+.event{
+display:grid;
+grid-template-columns:55px 1fr;
+gap:10px;
+padding:14px 0;
 border-bottom:1px solid var(--border)
 }
-th{
-background:#151e28;
-color:#cbd5e1
+.minute{font-weight:900;color:var(--green2)}
+.event-type{color:var(--muted);font-size:12px;margin-top:3px}
+.timeline{display:flex;flex-direction:column;gap:9px}
+.timeline div{
+background:#111923;
+border-left:4px solid #475569;
+padding:12px;
+border-radius:7px
 }
+.timeline .goal{border-left-color:var(--green)}
+.timeline .card-event{border-left-color:var(--gold)}
+.stat-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+.stat{
+display:flex;
+justify-content:space-between;
+padding:12px;
+background:#111923;
+border-radius:8px
+}
+
+/* ADMIN */
 .admin-warning{
-padding:13px;
-background:#2a1b0c;
+background:#291b0b;
 border:1px solid #713f12;
 color:#fdba74;
+padding:14px;
 border-radius:10px;
 margin-bottom:18px
 }
-.admin-grid{
+.inputs{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
 gap:10px
 }
 .field{
@@ -384,83 +287,73 @@ gap:6px
 .field label{
 font-size:11px;
 color:var(--muted);
-font-weight:850;
+font-weight:900;
 text-transform:uppercase
 }
-.field input,.field select,.field textarea{
+.field input,.field select,.field textarea,.search{
 width:100%;
-border:1px solid var(--border2);
-border-radius:9px;
+background:#080e15;
+border:1px solid #293747;
+border-radius:8px;
 padding:11px;
-background:#0a1017;
 color:white;
 outline:none
 }
-.field textarea{
-min-height:80px;
-resize:vertical
-}
-.admin-buttons{
+.field textarea{min-height:90px;resize:vertical}
+.controls{
 display:flex;
-gap:9px;
-flex-wrap:wrap
+flex-wrap:wrap;
+gap:9px
 }
-.admin-btn{
-border:0;
-border-radius:9px;
-padding:10px 13px;
-background:#18222d;
-color:white;
-font-weight:800
+.btn.green{background:#15803d;color:white}
+.btn.blue{background:#2563eb;color:white}
+.btn.red{background:#dc2626;color:white}
+.btn.gold{background:#a16207;color:white}
+.btn.gray{background:#18222d;color:white}
+.admin-status{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
 }
-.admin-btn.green{background:#16a34a}
-.admin-btn.blue{background:#2563eb}
-.admin-btn.red{background:#dc2626}
-.admin-btn.gold{background:#a16207}
-.notification-status{
-margin-top:12px;
-padding:12px;
-border-radius:8px;
-background:#151d27;
+.admin-value{font-size:27px;font-weight:900}
+.admin-label{
+font-size:10px;
+color:#64748b;
+font-weight:900;
+text-transform:uppercase
+}
+.log{
+max-height:300px;
+overflow:auto
+}
+.log div{
+padding:10px;
+border-bottom:1px solid var(--border);
 color:#cbd5e1
 }
-.notification-status.success{background:#0d2a1a;color:#86efac}
-.notification-status.error{background:#2a1111;color:#fca5a5}
-.notification-status.warning{background:#2a210c;color:#fde68a}
 footer{
 text-align:center;
-padding:35px;
+padding:40px;
 color:#64748b;
 border-top:1px solid var(--border)
 }
-.toast{
-position:fixed;
-bottom:22px;
-right:22px;
-z-index:999;
-background:#17212d;
-border:1px solid #34485c;
-padding:14px 17px;
-border-radius:10px;
-box-shadow:0 15px 50px #0008;
-display:none
-}
-@media(max-width:800px){
-header{
-height:auto;
-min-height:72px;
-padding:12px;
-flex-direction:column;
-gap:8px
-}
-nav{justify-content:center}
-nav button{padding:8px 10px}
-.hero{padding:27px;min-height:350px}
+
+@media(max-width:850px){
+header{flex-direction:column}
 .match-grid{grid-template-columns:1fr}
-.match-header-teams{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+.hero{padding:25px;min-height:340px}
+.hero h1{font-size:34px}
 .news-grid{grid-template-columns:1fr}
-.match-teams{grid-template-columns:1fr;text-align:center}
+.big-teams{grid-template-columns:1fr;gap:18px}
+.big-score{font-size:40px}
+.teams{grid-template-columns:1fr;text-align:center}
 .team.right{text-align:center}
+.admin-status{grid-template-columns:1fr 1fr}
+}
+@media(max-width:430px){
+.admin-status{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -468,9 +361,11 @@ nav button{padding:8px 10px}
 <body>
 
 <header>
-<button class="logo" onclick="goHome()">MEFCO <span>WATCH</span></button>
 
-<div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center">
+<button class="logo" onclick="showPage('home')">
+MEFCO <span>WATCH</span>
+</button>
+
 <nav>
 <button class="active" onclick="showPage('home',this)">Home</button>
 <button onclick="showPage('scores',this)">Scores</button>
@@ -478,8 +373,7 @@ nav button{padding:8px 10px}
 <button onclick="showPage('stats',this)">Stats</button>
 <button onclick="showPage('admin',this)">Admin</button>
 </nav>
-<button id="notificationButton" class="top-btn" onclick="enableNotifications()">Enable Notifications</button>
-</div>
+
 </header>
 
 <main>
@@ -488,151 +382,159 @@ nav button{padding:8px 10px}
 <section id="home" class="page active">
 
 <div class="hero">
-<div class="badge">MEFCO FOOTBALL</div>
-<h1>Everything happening in the MEFCO world.</h1>
-<p>Live scores, match centres, breaking news, statistics and competition coverage.</p>
+<span class="badge">MEFCO WATCH</span>
+<h1>The home of the MEFCO football world.</h1>
+<p>
+Live scores, match centres, events, statistics and breaking news.
+</p>
 </div>
 
 <div class="section">
 <div class="section-head">
 <h2>Today's Matches</h2>
-<button class="filter" onclick="loadMatches()">↻ Refresh</button>
+<button class="btn gray" onclick="loadEverything()">↻ Refresh</button>
 </div>
 <div id="homeMatches"></div>
 </div>
 
 <div class="cards">
+
 <div class="card clickable" onclick="showPage('scores')">
 <h3>⚽ Scores</h3>
-<p>Live, upcoming and completed matches.</p>
+<p>Follow today's matches and live games.</p>
 </div>
 
 <div class="card clickable" onclick="showPage('news')">
 <h3>📰 News</h3>
-<p>Breaking stories and competition updates.</p>
+<p>Breaking stories and MEFCO updates.</p>
 </div>
 
 <div class="card clickable" onclick="showPage('stats')">
 <h3>📊 Statistics</h3>
 <p>Match statistics and MEFCO records.</p>
 </div>
+
 </div>
 
 </section>
 
+
 <!-- SCORES -->
 <section id="scores" class="page">
 
-<div class="section-head">
-<div>
+<div class="page-title">
 <h1>Scores</h1>
-<p class="muted" id="scoresDate"></p>
-</div>
+<p id="scoreDate"></p>
 </div>
 
 <div class="filters">
-<button class="filter active" onclick="setFilter('all',this)">All</button>
-<button class="filter" onclick="setFilter('live',this)">🔴 Live</button>
-<button class="filter" onclick="setFilter('upcoming',this)">Upcoming</button>
-<button class="filter" onclick="setFilter('finished',this)">Finished</button>
-<button class="filter" onclick="setFilter('favorites',this)">★ Favorites</button>
+<button class="btn filter active" onclick="setFilter('all',this)">All</button>
+<button class="btn filter" onclick="setFilter('live',this)">Live</button>
+<button class="btn filter" onclick="setFilter('favorites',this)">Favorites</button>
 </div>
 
 <div id="scoreList"></div>
 
 </section>
 
+
 <!-- NEWS -->
 <section id="news" class="page">
 
-<div class="section-head">
-<div>
+<div class="page-title">
 <h1>MEFCO News</h1>
-<p class="muted">The latest from across the MEFCO football world.</p>
-</div>
+<p>Breaking stories, match reports and competition updates.</p>
 </div>
 
+<div class="feature-news">
+<span class="breaking">BREAKING</span>
+<h2 id="featureTitle">MEFCO Watch</h2>
+<p id="featureText">
+The latest news from the MEFCO football world.
+</p>
+<div class="news-meta" id="featureMeta">MEFCO Watch</div>
+</div>
+
+<div class="section">
+
+<div class="section-head">
+<h2>Latest News</h2>
 <input
-class="search"
 id="newsSearch"
-placeholder="Search MEFCO News..."
-oninput="renderNews()"
->
+class="search"
+style="max-width:280px"
+placeholder="Search news..."
+oninput="renderNews()">
+</div>
 
-<div class="filters" id="newsFilters"></div>
+<div id="newsGrid" class="news-grid"></div>
 
-<div id="newsFeature"></div>
-<div id="newsList"></div>
+</div>
 
 </section>
+
 
 <!-- STATS -->
 <section id="stats" class="page">
 
-<div class="section-head">
-<div>
+<div class="page-title">
 <h1>Statistics</h1>
-<p class="muted">MEFCO match data and records.</p>
-</div>
+<p>MEFCO match statistics.</p>
 </div>
 
 <div class="cards">
+
 <div class="card">
-<div style="font-size:30px;font-weight:950" id="statMatches">0</div>
-<div class="muted">Matches in database</div>
+<div class="admin-value" id="totalMatches">0</div>
+<div class="admin-label">Matches</div>
 </div>
 
 <div class="card">
-<div style="font-size:30px;font-weight:950" id="statGoals">0</div>
-<div class="muted">Goals recorded</div>
+<div class="admin-value" id="liveMatches">0</div>
+<div class="admin-label">Live Matches</div>
 </div>
 
 <div class="card">
-<div style="font-size:30px;font-weight:950" id="statLive">0</div>
-<div class="muted">Live matches</div>
+<div class="admin-value" id="finishedMatches">0</div>
+<div class="admin-label">Finished Matches</div>
 </div>
+
 </div>
+
+<br>
 
 <div class="section">
-<h2>Match Database</h2><br>
-
-<table>
-<thead>
-<tr>
-<th>Competition</th>
-<th>Match</th>
-<th>Status</th>
-<th>Score</th>
-</tr>
-</thead>
-<tbody id="statsTable"></tbody>
-</table>
+<h2>Match Database</h2>
+<br>
+<div id="statsTable"></div>
 </div>
 
 </section>
 
+
 <!-- MATCH CENTRE -->
 <section id="match-page" class="page">
 
-<button class="back" onclick="backToScores()">← Back to Scores</button>
+<button class="btn gray" onclick="showPage('scores')">
+← Back to Scores
+</button>
 
 <div id="matchCentre"></div>
 
 </section>
 
+
 <!-- ADMIN -->
 <section id="admin" class="page">
 
-<div class="section-head">
-<div>
+<div class="page-title">
 <h1>Admin Control</h1>
-<p class="muted">Manage MEFCO Watch database content.</p>
-</div>
+<p>Manage MEFCO matches directly through Supabase.</p>
 </div>
 
 <div class="admin-warning">
-<strong>Database Admin</strong><br>
-Changes are written directly to the Supabase database.
+<strong>Admin Mode</strong><br>
+Changes made here are written directly to the Supabase database.
 </div>
 
 <div class="section">
@@ -641,16 +543,15 @@ Changes are written directly to the Supabase database.
 <h2>Match Selection</h2>
 </div>
 
-<div class="admin-grid">
 <div class="field">
 <label>Match</label>
-<select id="adminMatchSelect" onchange="selectAdminMatch()"></select>
-</div>
+<select id="adminMatch" onchange="selectAdminMatch()"></select>
 </div>
 
 </div>
 
 <div id="adminPanel"></div>
+
 
 <div class="section">
 
@@ -658,21 +559,21 @@ Changes are written directly to the Supabase database.
 <h2>Create Match</h2>
 </div>
 
-<div class="admin-grid">
+<div class="inputs">
 
 <div class="field">
 <label>Competition</label>
-<input id="newCompetition" placeholder="MEFCO League">
+<input id="newCompetition" placeholder="MEFCO Continental Cup">
 </div>
 
 <div class="field">
 <label>Home Team</label>
-<input id="newHome" placeholder="Argentina">
+<input id="newHome" placeholder="Spain">
 </div>
 
 <div class="field">
 <label>Away Team</label>
-<input id="newAway" placeholder="Ghana">
+<input id="newAway" placeholder="France">
 </div>
 
 <div class="field">
@@ -689,58 +590,21 @@ Changes are written directly to the Supabase database.
 
 <br>
 
-<button class="admin-btn green" onclick="createMatch()">+ Create Match</button>
+<button class="btn green" onclick="createMatch()">
++ Create Match
+</button>
 
 </div>
+
 
 <div class="section">
 
 <div class="section-head">
 <h2>Admin Log</h2>
-<button class="admin-btn" onclick="adminLog=[];renderAdminLog()">Clear</button>
+<button class="btn gray" onclick="adminLog=[];renderLog()">Clear</button>
 </div>
 
-<div id="adminLog"></div>
-
-</div>
-
-<!-- NOTIFICATIONS -->
-
-<div class="section">
-
-<div class="section-head">
-<h2>🔔 Notifications</h2>
-</div>
-
-<div class="admin-grid">
-
-<div class="field">
-<label>Title</label>
-<input id="notificationTitle" value="MEFCO Watch">
-</div>
-
-<div class="field">
-<label>Message</label>
-<input id="notificationBody" placeholder="New MEFCO update">
-</div>
-
-<div class="field">
-<label>URL</label>
-<input id="notificationUrl" value="/">
-</div>
-
-</div>
-
-<br>
-
-<div class="admin-buttons">
-<button class="admin-btn blue" onclick="sendAdminNotification()">Send Notification</button>
-<button class="admin-btn" onclick="checkNotificationStatus()">Check Status</button>
-</div>
-
-<div id="notificationStatus" class="notification-status">
-Notification system ready.
-</div>
+<div id="adminLog" class="log"></div>
 
 </div>
 
@@ -753,107 +617,176 @@ MEFCO Watch<br>
 <small>Follow the MEFCO world.</small>
 </footer>
 
-<div id="toast" class="toast"></div>
 
 <script>
 
-/* =========================================================
+/* =====================================================
    SUPABASE
-========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://qpokxolcdjxtmxrrqlgw.supabase.co";
 
-/*
-   This is the PUBLIC Supabase publishable key.
-   Replace it with the current publishable key from:
-   Supabase → Project Settings → API
-*/
-
 const SUPABASE_KEY =
 "sb_publishable_7hKSyu9jxd65IA7zfyZy2w_O0maaXdC";
 
-const MATCH_API =
-SUPABASE_URL+"/rest/v1/matches";
+/*
+   IMPORTANT:
+   Supabase REST endpoints are:
 
-const NEWS_API =
-SUPABASE_URL+"/rest/v1/news";
+   /rest/v1/matches
+   /rest/v1/match_events
+   /rest/v1/news
+
+   NOT /api/matches
+*/
+
+const REST = SUPABASE_URL + "/rest/v1";
+
+const headers = {
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json"
+};
 
 
-/* =========================================================
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
 let matches=[];
 let news=[];
+let events=[];
 let selectedMatchId=null;
 let scoreFilter="all";
-let newsCategory="ALL";
 let adminLog=[];
-let timer=null;
+let clock=null;
 
 
-/* =========================================================
+/* =====================================================
    SUPABASE REQUEST
-========================================================= */
+===================================================== */
 
-async function supabaseRequest(url,options={}){
+async function db(path,options={}){
 
-const response=await fetch(url,{
+const response=await fetch(
+REST+path,
+{
 ...options,
 headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json",
-"Prefer":"return=representation",
+...headers,
 ...(options.headers||{})
 }
-});
-
-const text=await response.text();
-
-let data=null;
-
-try{
-data=text?JSON.parse(text):null;
-}catch{}
+}
+);
 
 if(!response.ok){
 
-const message=
-data?.message||
-data?.error_description||
-data?.hint||
-data?.error||
-`HTTP ${response.status}`;
+let text="Supabase request failed.";
 
-throw new Error(message);
+try{
+const data=await response.json();
+text=data.message||data.error_description||data.hint||data.error||text;
+}catch{}
+
+throw new Error(text);
 }
 
-return data;
+if(response.status===204)return null;
+
+return response.json();
+
 }
 
 
-/* =========================================================
-   LOAD MATCHES
-========================================================= */
+/* =====================================================
+   LOAD DATA
+===================================================== */
 
 async function loadMatches(){
 
-try{
-
-const data=await supabaseRequest(
-MATCH_API+"?select=*&order=match_date.asc,match_time.asc"
+const data=await db(
+"/matches?select=*&order=match_date.asc,match_time.asc"
 );
 
-matches=Array.isArray(data)?data:[];
-
-if(selectedMatchId &&
-!matches.some(m=>String(m.id)===String(selectedMatchId)))
-selectedMatchId=null;
+matches=(data||[]).map(normalizeMatch);
 
 if(!selectedMatchId && matches.length)
 selectedMatchId=matches[0].id;
+
+}
+
+async function loadEvents(){
+
+const data=await db(
+"/match_events?select=*&order=minute.desc"
+);
+
+events=data||[];
+
+}
+
+async function loadNews(){
+
+const data=await db(
+"/news?select=*"
+);
+
+news=data||[];
+
+}
+
+
+/* =====================================================
+   NORMALIZE MATCH
+===================================================== */
+
+function normalizeMatch(m){
+
+return {
+
+...m,
+
+homeFlag:m.home_flag||"⚽",
+awayFlag:m.away_flag||"⚽",
+
+date:m.match_date,
+
+time:m.match_time
+?String(m.match_time).slice(0,5)
+:"",
+
+scoreHome:Number(m.score_home||0),
+scoreAway:Number(m.score_away||0),
+
+minute:Number(m.minute||0),
+
+stoppage:Number(m.stoppage||0),
+
+favorite:Boolean(m.favorite),
+
+stats:m.stats||{},
+
+status:m.status||"scheduled"
+
+};
+
+}
+
+
+/* =====================================================
+   LOAD EVERYTHING
+===================================================== */
+
+async function loadEverything(){
+
+try{
+
+await Promise.all([
+loadMatches(),
+loadEvents(),
+loadNews()
+]);
 
 renderAll();
 
@@ -861,193 +794,48 @@ renderAll();
 
 console.error(error);
 
-matches=[];
-
-renderAll();
-
 document.getElementById("homeMatches").innerHTML=
-`<div class="empty">
-<strong>Could not load matches from Supabase.</strong><br>
-<span>${escapeHTML(error.message)}</span>
-</div>`;
+`
+<div class="empty">
+<strong>Could not load matches from Supabase.</strong>
+<br><br>
+${escapeHTML(error.message)}
+</div>
+`;
 
 }
 
 }
 
 
-/* =========================================================
-   LOAD NEWS
-========================================================= */
-
-async function loadNews(){
-
-try{
-
-const data=await supabaseRequest(
-NEWS_API+"?select=*&order=created_at.desc"
-);
-
-news=Array.isArray(data)?data:[];
-
-renderNews();
-
-}catch(error){
-
-console.error("News:",error);
-
-news=[];
-
-renderNews();
-
-}
-
-}
-
-
-/* =========================================================
-   DATABASE MATCH FUNCTIONS
-========================================================= */
-
-async function createDatabaseMatch(match){
-
-return supabaseRequest(
-MATCH_API,
-{
-method:"POST",
-body:JSON.stringify({
-id:match.id,
-competition:match.competition,
-home:match.home,
-away:match.away,
-home_flag:match.homeFlag,
-away_flag:match.awayFlag,
-match_date:match.date,
-match_time:match.time,
-status:match.status,
-minute:match.minute,
-score_home:match.scoreHome,
-score_away:match.scoreAway,
-stoppage:match.stoppage,
-favorite:match.favorite,
-stats:match.stats
-})
-}
-);
-
-}
-
-
-async function updateDatabaseMatch(m){
-
-return supabaseRequest(
-MATCH_API+
-"?id=eq."+
-encodeURIComponent(m.id),
-{
-method:"PATCH",
-body:JSON.stringify({
-competition:m.competition,
-home:m.home,
-away:m.away,
-home_flag:m.homeFlag,
-away_flag:m.awayFlag,
-match_date:m.date,
-match_time:m.time,
-status:m.status,
-minute:m.minute,
-score_home:m.scoreHome,
-score_away:m.scoreAway,
-stoppage:m.stoppage,
-favorite:m.favorite,
-stats:m.stats
-})
-}
-);
-
-}
-
-
-/* =========================================================
-   EVENT DATABASE
-========================================================= */
-
-async function createDatabaseEvent(match,event){
-
-try{
-
-return await supabaseRequest(
-SUPABASE_URL+"/rest/v1/match_events",
-{
-method:"POST",
-body:JSON.stringify({
-match_id:match.id,
-minute:event.minute,
-added_time:event.added||0,
-event_type:event.type,
-team:event.team,
-player:event.player,
-assist:event.assist,
-description:event.description
-})
-}
-);
-
-}catch(error){
-
-console.error("match_events:",error);
-
-throw error;
-
-}
-
-}
-
-
-async function loadMatchEvents(match){
-
-try{
-
-const data=await supabaseRequest(
-SUPABASE_URL+
-"/rest/v1/match_events?select=*&match_id=eq."+
-encodeURIComponent(match.id)+
-"&order=minute.desc"
-);
-
-match.events=Array.isArray(data)?data:[];
-
-}catch(error){
-
-console.warn("Could not load match events:",error);
-
-match.events=[];
-
-}
-
-}
-
-
-/* =========================================================
+/* =====================================================
    HELPERS
-========================================================= */
-
-function uid(){
-return "m_"+Date.now()+"_"+Math.random().toString(36).slice(2,8);
-}
-
-function todayISO(){
-return new Date().toISOString().slice(0,10);
-}
+===================================================== */
 
 function escapeHTML(value){
 
 return String(value??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+function uid(){
+
+return "m_"+Date.now()+"_"+Math.random()
+.toString(36).slice(2,8);
+
+}
+
+function today(){
+
+return new Date().toLocaleDateString(
+"en-CA",
+{timeZone:"Asia/Kuwait"}
+);
 
 }
 
@@ -1057,13 +845,7 @@ if(!date)return "";
 
 const d=new Date(date+"T00:00:00");
 
-if(date===todayISO())return "Today";
-
-const yesterday=new Date();
-yesterday.setDate(yesterday.getDate()-1);
-
-if(date===yesterday.toISOString().slice(0,10))
-return "Yesterday";
+if(date===today())return "Today";
 
 return d.toLocaleDateString(undefined,{
 weekday:"short",
@@ -1073,45 +855,27 @@ month:"short"
 
 }
 
-function statusText(m){
+function statusLabel(m){
 
 if(m.status==="live")
-return `${m.minute||0}'${m.stoppage?"+":""} LIVE`;
+return `<span class="live">● ${m.minute}'${m.stoppage?"+":""}</span>`;
 
 if(m.status==="halftime")
-return "HALF-TIME";
+return `<span class="live">● HT</span>`;
 
 if(m.status==="finished")
-return "FULL TIME";
+return "FT";
 
-return `${formatDate(m.date)} · ${m.match_time||m.time||""}`;
-
-}
-
-function normalizedMatch(m){
-
-return {
-...m,
-date:m.match_date||m.date,
-time:m.match_time||m.time,
-homeFlag:m.home_flag||m.homeFlag||"⚽",
-awayFlag:m.away_flag||m.awayFlag||"⚽",
-scoreHome:Number(m.score_home??m.scoreHome??0),
-scoreAway:Number(m.score_away??m.scoreAway??0),
-minute:Number(m.minute??0),
-stoppage:Number(m.stoppage??0),
-favorite:Boolean(m.favorite),
-stats:m.stats||{}
-};
+return m.time||"Scheduled";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    NAVIGATION
-========================================================= */
+===================================================== */
 
-function showPage(id,button=null){
+function showPage(id,button){
 
 document.querySelectorAll(".page")
 .forEach(x=>x.classList.remove("active"));
@@ -1125,61 +889,47 @@ document.querySelectorAll("nav button")
 
 if(button)button.classList.add("active");
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
 if(id==="home")renderHome();
 if(id==="scores")renderScores();
 if(id==="news")renderNews();
 if(id==="stats")renderStats();
 if(id==="admin")renderAdmin();
 
-}
+window.scrollTo({top:0,behavior:"smooth"});
 
-function goHome(){
-showPage("home",document.querySelector("nav button"));
-}
-
-function backToScores(){
-showPage("scores",document.querySelectorAll("nav button")[1]);
 }
 
 
-/* =========================================================
-   MATCH CARD
-========================================================= */
+/* =====================================================
+   MATCH CARDS
+===================================================== */
 
-function matchCard(raw){
+function matchCard(m){
 
-const m=normalizedMatch(raw);
-
-let score;
-
-if(m.status==="scheduled")
-score=`<span class="scheduled-score">${escapeHTML(m.time||"")}</span>`;
-else
-score=`${m.scoreHome} - ${m.scoreAway}`;
+const score=m.status==="scheduled"
+?m.time||"—"
+:`${m.scoreHome} - ${m.scoreAway}`;
 
 return `
-<div class="match" onclick="openMatch('${escapeHTML(m.id)}')">
 
-<div class="match-top">
-<span>
-${escapeHTML(formatDate(m.date))} ·
-${escapeHTML(m.competition||"MEFCO")}
-</span>
+<div class="match-card"
+onclick="openMatch('${escapeHTML(m.id)}')">
 
-<span class="${m.status==="live"||m.status==="halftime"?"live":""}">
-${m.status==="live"?"● LIVE":
-m.status==="halftime"?"● HT":
-m.status==="finished"?"FT":
-escapeHTML(m.time||"")}
-</span>
+<div class="date">
+${formatDate(m.date)} · ${escapeHTML(m.competition||"MEFCO")}
 </div>
 
-<div class="match-teams">
+<div class="match-top">
+
+<span>
+${escapeHTML(m.home)} vs ${escapeHTML(m.away)}
+</span>
+
+${statusLabel(m)}
+
+</div>
+
+<div class="teams">
 
 <div class="team">
 ${escapeHTML(m.homeFlag)} ${escapeHTML(m.home)}
@@ -1196,20 +946,20 @@ ${escapeHTML(m.away)} ${escapeHTML(m.awayFlag)}
 </div>
 
 </div>
+
 `;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    HOME
-========================================================= */
+===================================================== */
 
 function renderHome(){
 
 const list=matches
-.map(normalizedMatch)
-.filter(m=>m.date===todayISO())
+.filter(m=>m.date===today())
 .sort((a,b)=>(a.time||"").localeCompare(b.time||""));
 
 document.getElementById("homeMatches").innerHTML=
@@ -1220,15 +970,15 @@ list.length
 }
 
 
-/* =========================================================
+/* =====================================================
    SCORES
-========================================================= */
+===================================================== */
 
 function setFilter(filter,button){
 
 scoreFilter=filter;
 
-document.querySelectorAll("#scores .filter")
+document.querySelectorAll(".filter")
 .forEach(x=>x.classList.remove("active"));
 
 button.classList.add("active");
@@ -1237,35 +987,24 @@ renderScores();
 
 }
 
-
 function renderScores(){
 
-document.getElementById("scoresDate").textContent=
-formatDate(todayISO());
+document.getElementById("scoreDate").textContent=
+formatDate(today());
 
-let list=matches.map(normalizedMatch);
+let list=matches.filter(m=>m.date===today());
 
 if(scoreFilter==="live")
-list=list.filter(m=>m.status==="live"||m.status==="halftime");
-
-if(scoreFilter==="upcoming")
-list=list.filter(m=>m.status==="scheduled");
-
-if(scoreFilter==="finished")
-list=list.filter(m=>m.status==="finished");
+list=list.filter(m=>
+m.status==="live"||m.status==="halftime"
+);
 
 if(scoreFilter==="favorites")
 list=list.filter(m=>m.favorite);
 
-list.sort((a,b)=>{
-
-const da=a.date||"";
-const db=b.date||"";
-
-return da.localeCompare(db)||
-(a.time||"").localeCompare(b.time||"");
-
-});
+list.sort((a,b)=>
+(a.time||"").localeCompare(b.time||"")
+);
 
 document.getElementById("scoreList").innerHTML=
 list.length
@@ -1275,50 +1014,47 @@ list.length
 }
 
 
-/* =========================================================
+/* =====================================================
    MATCH CENTRE
-========================================================= */
+===================================================== */
 
-async function openMatch(id){
+function openMatch(id){
 
 selectedMatchId=id;
 
+renderMatch();
+
 showPage("match-page");
-
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(id));
-
-if(!m)return;
-
-await loadMatchEvents(m);
-
-renderMatch(m);
 
 }
 
+function matchEvents(){
 
-function renderMatch(raw){
+return events
+.filter(e=>String(e.match_id)===String(selectedMatchId))
+.sort((a,b)=>Number(b.minute||0)-Number(a.minute||0));
 
-const m=normalizedMatch(raw);
+}
 
-const events=m.events||[];
+function renderMatch(){
 
-const key=events.filter(e=>
-["Goal","Yellow Card","Red Card","Penalty"].includes(
-e.event_type||e.type
-)
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
 );
+
+if(!m)return;
+
+const ev=matchEvents();
 
 document.getElementById("matchCentre").innerHTML=`
 
 <div class="match-header">
 
-<div class="competition">
+<div class="comp">
 ${escapeHTML(m.competition||"MEFCO")}
 </div>
 
-<div class="match-header-teams">
+<div class="big-teams">
 
 <div class="big-team">
 ${escapeHTML(m.homeFlag)}<br>
@@ -1329,12 +1065,12 @@ ${escapeHTML(m.home)}
 
 <div class="big-score">
 ${m.status==="scheduled"
-?escapeHTML(m.time||"")
+?(m.time||"—")
 :`${m.scoreHome} - ${m.scoreAway}`}
 </div>
 
 <div class="status">
-${escapeHTML(statusText(m))}
+${statusLabel(m)}
 </div>
 
 </div>
@@ -1348,34 +1084,34 @@ ${escapeHTML(m.away)}
 
 </div>
 
+
 <div class="match-grid">
 
 <div class="section">
 
 <div class="section-head">
 <h2>Commentary</h2>
-<span class="${m.status==="live"||m.status==="halftime"?"live":""}">
-${m.status==="live"?"● LIVE":
-m.status==="halftime"?"● HALF-TIME":
-m.status==="finished"?"FULL TIME":"NOT STARTED"}
-</span>
 </div>
 
+<div class="commentary">
+
 ${
-events.length
-?events.map(eventHTML).join("")
-:`<div class="empty">No events published yet.</div>`
+ev.length
+?ev.map(eventHTML).join("")
+:`<div class="empty">No match events yet.</div>`
 }
 
 </div>
+
+</div>
+
 
 <div>
 
 <div class="section">
 
-<div class="section-head">
 <h2>Match Stats</h2>
-</div>
+<br>
 
 ${statsHTML(m)}
 
@@ -1383,15 +1119,20 @@ ${statsHTML(m)}
 
 <div class="section">
 
-<div class="section-head">
 <h2>Key Events</h2>
-</div>
+<br>
 
 <div class="timeline">
 
 ${
-key.length
-?key.map(keyEventHTML).join("")
+ev.filter(e=>
+["Goal","Yellow Card","Red Card","Penalty"]
+.includes(e.type)
+).length
+?ev.filter(e=>
+["Goal","Yellow Card","Red Card","Penalty"]
+.includes(e.type)
+).map(keyEventHTML).join("")
 :`<div>No key events yet.</div>`
 }
 
@@ -1402,6 +1143,7 @@ key.length
 </div>
 
 </div>
+
 `;
 
 }
@@ -1409,32 +1151,43 @@ key.length
 
 function eventHTML(e){
 
-const type=e.event_type||e.type;
-const minute=e.minute??0;
-const added=e.added_time??e.added??0;
-
 return `
+
 <div class="event">
 
-<div class="event-minute">
-${minute}'${added?"+":""}
+<div class="minute">
+${e.minute||0}'${e.added_time?"+":""}
 </div>
 
 <div>
+
 <strong>
-${type==="Goal"?"⚽ ":""}
-${escapeHTML(e.description||type)}
+${escapeHTML(
+e.description||
+e.event_type||
+e.type||
+"Match event"
+)}
 </strong>
 
 <div class="event-type">
-${escapeHTML(type)}
-${e.player?" · "+escapeHTML(e.player):""}
-${e.assist?" · Assist: "+escapeHTML(e.assist):""}
-</div>
+
+${escapeHTML(e.event_type||e.type||"Event")}
+
+${e.player
+?" · "+escapeHTML(e.player)
+:""}
+
+${e.assist
+?" · "+escapeHTML(e.assist)
+:""}
 
 </div>
 
 </div>
+
+</div>
+
 `;
 
 }
@@ -1442,18 +1195,23 @@ ${e.assist?" · Assist: "+escapeHTML(e.assist):""}
 
 function keyEventHTML(e){
 
-const type=e.event_type||e.type;
+const type=e.event_type||e.type||"Event";
 
 return `
+
 <div class="${
-type==="Goal"?"goal":
-["Yellow Card","Red Card"].includes(type)
+type==="Goal"
+?"goal"
+:["Yellow Card","Red Card"].includes(type)
 ?"card-event":""
 }">
-${e.minute||0}' —
-${type==="Goal"?"⚽ ":""}
-${escapeHTML(e.player||e.description||type)}
+
+${e.minute||0}' — ${escapeHTML(
+e.description||type
+)}
+
 </div>
+
 `;
 
 }
@@ -1468,84 +1226,78 @@ return `
 <div class="stat-grid">
 
 <div class="stat">
-<small>Possession</small>
-<strong>${s.possessionHome??50}% — ${s.possessionAway??50}%</strong>
+<span>Possession</span>
+<strong>
+${s.possessionHome??50}%
+-
+${s.possessionAway??50}%
+</strong>
 </div>
 
 <div class="stat">
-<small>Shots</small>
-<strong>${s.shotsHome??0} — ${s.shotsAway??0}</strong>
+<span>Shots</span>
+<strong>
+${s.shotsHome??0}
+-
+${s.shotsAway??0}
+</strong>
 </div>
 
 <div class="stat">
-<small>Shots on target</small>
-<strong>${s.targetHome??0} — ${s.targetAway??0}</strong>
+<span>Shots on target</span>
+<strong>
+${s.targetHome??0}
+-
+${s.targetAway??0}
+</strong>
 </div>
 
 <div class="stat">
-<small>Corners</small>
-<strong>${s.cornersHome??0} — ${s.cornersAway??0}</strong>
+<span>Corners</span>
+<strong>
+${s.cornersHome??0}
+-
+${s.cornersAway??0}
+</strong>
 </div>
 
 </div>
+
 `;
 
 }
 
 
-/* =========================================================
-   STATS
-========================================================= */
-
-function renderStats(){
-
-const normalized=matches.map(normalizedMatch);
-
-document.getElementById("statMatches").textContent=
-normalized.length;
-
-document.getElementById("statLive").textContent=
-normalized.filter(m=>m.status==="live").length;
-
-document.getElementById("statGoals").textContent=
-normalized.reduce(
-(total,m)=>total+m.scoreHome+m.scoreAway,0
-);
-
-document.getElementById("statsTable").innerHTML=
-normalized.length
-?normalized.map(m=>`
-<tr>
-<td>${escapeHTML(m.competition||"MEFCO")}</td>
-<td>${escapeHTML(m.home)} vs ${escapeHTML(m.away)}</td>
-<td>${escapeHTML(m.status)}</td>
-<td>${m.status==="scheduled"
-?escapeHTML(m.time||"")
-:`${m.scoreHome} - ${m.scoreAway}`}</td>
-</tr>
-`).join("")
-:`<tr><td colspan="4">No matches in database.</td></tr>`;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    NEWS
-========================================================= */
+===================================================== */
 
-function newsValue(n,...keys){
+function newsTitle(n){
 
-for(const key of keys){
-
-if(n[key]!==undefined&&n[key]!==null)
-return n[key];
-
-}
-
-return "";
+return n.title||
+n.headline||
+n.name||
+"MEFCO News";
 
 }
 
+function newsBody(n){
+
+return n.content||
+n.body||
+n.description||
+n.summary||
+"";
+
+}
+
+function newsCategory(n){
+
+return n.category||
+n.type||
+"MEFCO";
+
+}
 
 function renderNews(){
 
@@ -1553,94 +1305,58 @@ const search=
 (document.getElementById("newsSearch")?.value||"")
 .toLowerCase();
 
-const categories=[
-"ALL",
-...new Set(
-news
-.map(n=>newsValue(n,"category","type","section"))
-.filter(Boolean)
-.map(x=>String(x).toUpperCase())
-)
-];
-
-document.getElementById("newsFilters").innerHTML=
-categories.map(cat=>`
-<button
-class="filter ${newsCategory===cat?"active":""}"
-onclick="setNewsCategory('${escapeHTML(cat)}')">
-${escapeHTML(cat)}
-</button>
-`).join("");
-
 let list=news.filter(n=>{
 
-const category=
-String(newsValue(n,"category","type","section"))
-.toUpperCase();
+const text=
+newsTitle(n)+" "+
+newsBody(n)+" "+
+newsCategory(n);
 
-const title=
-String(newsValue(n,"title","headline","name"));
-
-const body=
-String(newsValue(n,"content","body","description","summary"));
-
-const matchesSearch=
-!search||
-(title+" "+body).toLowerCase().includes(search);
-
-const matchesCategory=
-newsCategory==="ALL"||category===newsCategory;
-
-return matchesSearch&&matchesCategory;
+return text.toLowerCase().includes(search);
 
 });
 
-const feature=list[0];
+list.sort((a,b)=>{
 
-document.getElementById("newsFeature").innerHTML=
-feature
-?`
-<div class="news-feature">
+const da=a.created_at||a.published_at||"";
+const db=b.created_at||b.published_at||"";
 
-<div class="news-tag">
-${escapeHTML(newsValue(feature,"category","type","section")||"NEWS")}
-</div>
+return db.localeCompare(da);
 
-<h2>
-${escapeHTML(newsValue(feature,"title","headline","name")||"MEFCO News")}
-</h2>
-
-<p>
-${escapeHTML(
-newsValue(
-feature,
-"summary",
-"description",
-"content",
-"body"
-)
-)}
-</p>
-
-<div class="news-meta">
-${escapeHTML(
-newsValue(feature,"created_at","published_at","date")||"MEFCO Watch"
-)}
-</div>
-
-</div>
-`
-:"";
+});
 
 
-const rest=list.slice(1);
+if(list.length){
 
-document.getElementById("newsList").innerHTML=
-rest.length
-?`<div class="news-grid">
-${rest.map(newsCard).join("")}
-</div>`
-:`<div class="empty">No news stories found.</div>`;
+const first=list[0];
+
+document.getElementById("featureTitle").textContent=
+newsTitle(first);
+
+document.getElementById("featureText").textContent=
+newsBody(first);
+
+document.getElementById("featureMeta").textContent=
+newsCategory(first);
+
+}else{
+
+document.getElementById("featureTitle").textContent=
+"MEFCO Watch";
+
+document.getElementById("featureText").textContent=
+"No news articles have been published yet.";
+
+document.getElementById("featureMeta").textContent=
+"MEFCO Watch";
+
+}
+
+
+document.getElementById("newsGrid").innerHTML=
+list.length
+?list.map(newsCard).join("")
+:`<div class="empty">No news found.</div>`;
 
 }
 
@@ -1648,81 +1364,117 @@ ${rest.map(newsCard).join("")}
 function newsCard(n){
 
 return `
+
 <article class="news-card">
 
 <div class="news-category">
-${escapeHTML(
-newsValue(n,"category","type","section")||"MEFCO NEWS"
-)}
+${escapeHTML(newsCategory(n))}
 </div>
 
 <h3>
-${escapeHTML(
-newsValue(n,"title","headline","name")||"Untitled story"
-)}
+${escapeHTML(newsTitle(n))}
 </h3>
 
-<p class="muted">
-${escapeHTML(
-newsValue(
-n,
-"summary",
-"description",
-"content",
-"body"
-)
-)}
+<p>
+${escapeHTML(newsBody(n))}
 </p>
 
 <div class="news-meta">
 ${escapeHTML(
-newsValue(n,"created_at","published_at","date")||""
+n.published_at||
+n.created_at||
+"MEFCO Watch"
 )}
 </div>
 
 </article>
+
 `;
 
 }
 
 
-function setNewsCategory(category){
+/* =====================================================
+   STATS
+===================================================== */
 
-newsCategory=category;
+function renderStats(){
 
-renderNews();
+document.getElementById("totalMatches").textContent=
+matches.length;
+
+document.getElementById("liveMatches").textContent=
+matches.filter(m=>
+m.status==="live"||m.status==="halftime"
+).length;
+
+document.getElementById("finishedMatches").textContent=
+matches.filter(m=>m.status==="finished").length;
+
+document.getElementById("statsTable").innerHTML=`
+
+<table style="width:100%;border-collapse:collapse">
+
+<tr>
+<th style="padding:10px;text-align:left">Match</th>
+<th style="padding:10px;text-align:left">Competition</th>
+<th style="padding:10px;text-align:left">Status</th>
+</tr>
+
+${
+matches.slice(0,30).map(m=>`
+
+<tr>
+<td style="padding:10px;border-top:1px solid var(--border)">
+${escapeHTML(m.home)} -
+${escapeHTML(m.away)}
+</td>
+
+<td style="padding:10px;border-top:1px solid var(--border)">
+${escapeHTML(m.competition||"MEFCO")}
+</td>
+
+<td style="padding:10px;border-top:1px solid var(--border)">
+${statusLabel(m)}
+</td>
+</tr>
+
+`).join("")
+}
+
+</table>
+
+`;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    ADMIN
-========================================================= */
+===================================================== */
 
 function renderAdmin(){
 
-const select=
-document.getElementById("adminMatchSelect");
+const select=document.getElementById("adminMatch");
 
-select.innerHTML=
-matches.length
-?matches.map(raw=>{
+select.innerHTML=matches.length
+?matches.map(m=>`
 
-const m=normalizedMatch(raw);
-
-return `
 <option value="${escapeHTML(m.id)}"
 ${String(m.id)===String(selectedMatchId)?"selected":""}>
-${escapeHTML(m.home)} vs ${escapeHTML(m.away)}
- · ${escapeHTML(formatDate(m.date))}
-</option>
-`;
 
-}).join("")
+${escapeHTML(m.home)}
+ vs
+${escapeHTML(m.away)}
+ · ${formatDate(m.date)}
+
+</option>
+
+`).join("")
 :`<option value="">No matches</option>`;
 
 renderAdminPanel();
-renderAdminLog();
+renderLog();
 
 }
 
@@ -1730,7 +1482,7 @@ renderAdminLog();
 function selectAdminMatch(){
 
 selectedMatchId=
-document.getElementById("adminMatchSelect").value;
+document.getElementById("adminMatch").value;
 
 renderAdminPanel();
 
@@ -1739,9 +1491,9 @@ renderAdminPanel();
 
 function renderAdminPanel(){
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
 
 if(!m){
 
@@ -1758,55 +1510,71 @@ document.getElementById("adminPanel").innerHTML=`
 
 <div class="section">
 
+<div class="admin-status">
+
+<div>
+<div class="admin-label">Match</div>
+<strong>${escapeHTML(m.home)} vs ${escapeHTML(m.away)}</strong>
+</div>
+
+<div>
+<div class="admin-label">Status</div>
+<strong>${statusLabel(m)}</strong>
+</div>
+
+<div>
+<div class="admin-label">Minute</div>
+<div class="admin-value">${m.minute||0}'</div>
+</div>
+
+<div>
+<div class="admin-label">Score</div>
+<div class="admin-value">
+${m.scoreHome} - ${m.scoreAway}
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
 <div class="section-head">
-<h2>${escapeHTML(m.home)} vs ${escapeHTML(m.away)}</h2>
+<h2>Match Controls</h2>
 </div>
 
-<div class="admin-buttons">
+<div class="controls">
 
-<button class="admin-btn green" onclick="startSelected()">▶ Start</button>
-
-<button class="admin-btn" onclick="pauseSelected()">⏸ Pause</button>
-
-<button class="admin-btn" onclick="advanceSelected(1)">+1'</button>
-
-<button class="admin-btn" onclick="advanceSelected(5)">+5'</button>
-
-<button class="admin-btn blue" onclick="setSelectedMinute()">Set Minute</button>
-
-<button class="admin-btn gold" onclick="generateStoppage()">+ Stoppage</button>
-
-<button class="admin-btn red" onclick="finishSelected()">Finish</button>
+<button class="btn green" onclick="startMatch()">▶ Start</button>
+<button class="btn gray" onclick="pauseMatch()">⏸ Pause</button>
+<button class="btn gray" onclick="advanceMinute(1)">+1'</button>
+<button class="btn gray" onclick="advanceMinute(5)">+5'</button>
+<button class="btn blue" onclick="finishMatch()">Finish</button>
 
 </div>
 
 <br>
 
-<div class="admin-grid">
-
 <div class="field">
-<label>Minute</label>
-<input id="minuteInput" type="number" min="0" max="120"
-value="${m.minute}">
-</div>
 
-<div class="field">
-<label>Home Score</label>
-<input id="scoreHome" type="number" min="0"
-value="${m.scoreHome}">
-</div>
+<label>Set Minute</label>
 
-<div class="field">
-<label>Away Score</label>
-<input id="scoreAway" type="number" min="0"
-value="${m.scoreAway}">
-</div>
+<input
+id="setMinute"
+type="number"
+min="0"
+max="120"
+value="${m.minute||0}">
 
 </div>
 
 <br>
 
-<button class="admin-btn blue" onclick="saveScore()">Save Score</button>
+<button class="btn blue" onclick="setMinute()">
+Save Minute
+</button>
 
 </div>
 
@@ -1817,53 +1585,53 @@ value="${m.scoreAway}">
 <h2>Match Statistics</h2>
 </div>
 
-<div class="admin-grid">
+<div class="inputs">
 
 <div class="field">
 <label>Home Possession</label>
-<input id="posH" type="number" min="0" max="100"
+<input id="posH" type="number"
 value="${s.possessionHome??50}">
 </div>
 
 <div class="field">
 <label>Away Possession</label>
-<input id="posA" type="number" min="0" max="100"
+<input id="posA" type="number"
 value="${s.possessionAway??50}">
 </div>
 
 <div class="field">
 <label>Home Shots</label>
-<input id="shotsH" type="number" min="0"
+<input id="shotsH" type="number"
 value="${s.shotsHome??0}">
 </div>
 
 <div class="field">
 <label>Away Shots</label>
-<input id="shotsA" type="number" min="0"
+<input id="shotsA" type="number"
 value="${s.shotsAway??0}">
 </div>
 
 <div class="field">
-<label>Home Target</label>
-<input id="targetH" type="number" min="0"
+<label>Home Shots On Target</label>
+<input id="targetH" type="number"
 value="${s.targetHome??0}">
 </div>
 
 <div class="field">
-<label>Away Target</label>
-<input id="targetA" type="number" min="0"
+<label>Away Shots On Target</label>
+<input id="targetA" type="number"
 value="${s.targetAway??0}">
 </div>
 
 <div class="field">
 <label>Home Corners</label>
-<input id="cornersH" type="number" min="0"
+<input id="cornersH" type="number"
 value="${s.cornersHome??0}">
 </div>
 
 <div class="field">
 <label>Away Corners</label>
-<input id="cornersA" type="number" min="0"
+<input id="cornersA" type="number"
 value="${s.cornersAway??0}">
 </div>
 
@@ -1871,7 +1639,9 @@ value="${s.cornersAway??0}">
 
 <br>
 
-<button class="admin-btn blue" onclick="saveStats()">Save Stats</button>
+<button class="btn blue" onclick="saveStats()">
+Save Statistics
+</button>
 
 </div>
 
@@ -1879,26 +1649,22 @@ value="${s.cornersAway??0}">
 <div class="section">
 
 <div class="section-head">
-<h2>Publish Event</h2>
+<h2>Publish Match Event</h2>
 </div>
 
-<div class="admin-grid">
+<div class="inputs">
 
 <div class="field">
 <label>Minute</label>
-<input id="eventMinute" type="number" min="0" max="120"
-value="${m.minute}">
+<input id="eventMinute" type="number"
+value="${m.minute||0}">
 </div>
 
 <div class="field">
-<label>Added Time</label>
-<input id="eventAdded" type="number" min="0" max="20">
-</div>
-
-<div class="field">
-<label>Type</label>
+<label>Event Type</label>
 
 <select id="eventType">
+
 <option>Goal</option>
 <option>Yellow Card</option>
 <option>Red Card</option>
@@ -1907,6 +1673,7 @@ value="${m.minute}">
 <option>VAR</option>
 <option>Chance</option>
 <option>Injury</option>
+
 </select>
 
 </div>
@@ -1915,8 +1682,10 @@ value="${m.minute}">
 <label>Team</label>
 
 <select id="eventTeam">
+
 <option>${escapeHTML(m.home)}</option>
 <option>${escapeHTML(m.away)}</option>
+
 </select>
 
 </div>
@@ -1943,14 +1712,14 @@ placeholder="Optional commentary"></textarea>
 
 <br>
 
-<div class="admin-buttons">
+<div class="controls">
 
-<button class="admin-btn green" onclick="addEvent()">
+<button class="btn green" onclick="addEvent()">
 Publish Event
 </button>
 
-<button class="admin-btn green" onclick="quickGoal()">
-⚽ Goal
+<button class="btn green" onclick="quickGoal()">
+⚽ Quick Goal
 </button>
 
 </div>
@@ -1962,65 +1731,160 @@ Publish Event
 }
 
 
-function log(message){
+/* =====================================================
+   DATABASE MATCH UPDATE
+===================================================== */
 
-adminLog.unshift(
-new Date().toLocaleTimeString()+" — "+message
-);
+function dbMatchObject(m){
 
-renderAdminLog();
+return {
+
+competition:m.competition,
+home:m.home,
+away:m.away,
+home_flag:m.homeFlag||"⚽",
+away_flag:m.awayFlag||"⚽",
+match_date:m.date,
+match_time:m.time||null,
+status:m.status,
+minute:m.minute||0,
+score_home:m.scoreHome||0,
+score_away:m.scoreAway||0,
+stoppage:m.stoppage||0,
+favorite:Boolean(m.favorite),
+stats:m.stats||{}
+
+};
 
 }
 
-
-function renderAdminLog(){
-
-document.getElementById("adminLog").innerHTML=
-adminLog.length
-?adminLog.map(x=>`
-<div style="padding:10px;border-bottom:1px solid var(--border)">
-${escapeHTML(x)}
-</div>
-`).join("")
-:`<div class="muted">No admin actions yet.</div>`;
-
-}
-
-
-/* =========================================================
-   ADMIN MATCH CONTROLS
-========================================================= */
 
 async function updateMatch(m,message){
 
-try{
+await db(
+"/matches?id=eq."+encodeURIComponent(m.id),
+{
+method:"PATCH",
+headers:{
+...headers,
+"Prefer":"return=minimal"
+},
+body:JSON.stringify(dbMatchObject(m))
+}
+);
 
-await updateDatabaseMatch(m);
-
-await loadMatches();
+await loadEverything();
 
 if(message)log(message);
 
+}
+
+
+/* =====================================================
+   CREATE MATCH
+===================================================== */
+
+async function createMatch(){
+
+const competition=
+document.getElementById("newCompetition").value.trim()||
+"MEFCO Match";
+
+const home=
+document.getElementById("newHome").value.trim();
+
+const away=
+document.getElementById("newAway").value.trim();
+
+const date=
+document.getElementById("newDate").value;
+
+const time=
+document.getElementById("newTime").value;
+
+if(!home||!away||!date||!time){
+
+alert("Enter both teams, the date and kickoff time.");
+
+return;
+
+}
+
+const id=uid();
+
+const match={
+
+id,
+competition,
+home,
+away,
+home_flag:"⚽",
+away_flag:"⚽",
+match_date:date,
+match_time:time,
+status:"scheduled",
+minute:0,
+score_home:0,
+score_away:0,
+stoppage:0,
+favorite:false,
+stats:{
+possessionHome:50,
+possessionAway:50,
+shotsHome:0,
+shotsAway:0,
+targetHome:0,
+targetAway:0,
+cornersHome:0,
+cornersAway:0
+}
+
+};
+
+try{
+
+const created=await db(
+"/matches",
+{
+method:"POST",
+headers:{
+...headers,
+"Prefer":"return=representation"
+},
+body:JSON.stringify(match)
+}
+);
+
+selectedMatchId=
+created?.[0]?.id||id;
+
+await loadEverything();
+
+log(`Created ${home} vs ${away}`);
+
+document.getElementById("newHome").value="";
+document.getElementById("newAway").value="";
+
 }catch(error){
 
-console.error(error);
-
-toast("Database update failed: "+error.message);
+alert("Could not create match: "+error.message);
 
 }
 
 }
 
 
-async function startSelected(){
+/* =====================================================
+   CLOCK
+===================================================== */
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+async function startMatch(){
 
-if(!m)return;
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
 
-if(m.status==="finished")return;
+if(!m||m.status==="finished")return;
 
 m.status="live";
 
@@ -2029,108 +1893,95 @@ m,
 `Started ${m.home} vs ${m.away}`
 );
 
-if(timer)clearInterval(timer);
+if(clock)clearInterval(clock);
 
-timer=setInterval(realMinute,60000);
+clock=setInterval(async()=>{
+
+const current=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
+
+if(!current||current.status!=="live")return;
+
+current.minute=(current.minute||0)+1;
+
+if(current.minute>=90){
+
+current.minute=90;
+current.status="finished";
+
+clearInterval(clock);
+clock=null;
+
+}
+
+await updateMatch(current);
+
+},60000);
 
 }
 
 
-async function realMinute(){
+async function pauseMatch(){
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
-
-if(!m||m.status!=="live")return;
-
-m.minute++;
-
-if(m.minute===45){
-
-m.status="halftime";
-
-clearInterval(timer);
-timer=null;
-
-await updateMatch(m,"Half-time");
-
-return;
-
+if(clock){
+clearInterval(clock);
+clock=null;
 }
 
-if(m.minute>=90){
-
-await finishSelected();
-
-return;
-
-}
-
-await updateDatabaseMatch(m);
-
-await loadMatches();
-
-renderAdmin();
-
-}
-
-
-async function pauseSelected(){
-
-if(timer){
-clearInterval(timer);
-timer=null;
-}
-
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
 
 if(!m)return;
 
 m.status="scheduled";
 
-await updateMatch(m,"Paused match clock");
+await updateMatch(m,"Paused match");
 
 }
 
 
-async function advanceSelected(amount){
+async function advanceMinute(amount){
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
 
 if(!m)return;
 
-m.minute=Math.min(90,m.minute+amount);
+m.minute=Math.min(
+120,
+Number(m.minute||0)+amount
+);
 
-if(m.minute>0)m.status="live";
+if(m.minute>0&&m.status==="scheduled")
+m.status="live";
 
 await updateMatch(
 m,
-`Advanced to ${m.minute}'`
+`Advanced match to ${m.minute}'`
 );
 
 }
 
 
-async function setSelectedMinute(){
+async function setMinute(){
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
 
 const value=Number(
-document.getElementById("minuteInput").value
+document.getElementById("setMinute").value
 );
 
 if(!m||!Number.isFinite(value))return;
 
-m.minute=Math.max(0,Math.min(90,value));
+m.minute=Math.max(0,Math.min(120,value));
 
-if(m.minute>0)m.status="live";
+if(m.minute>0&&m.status==="scheduled")
+m.status="live";
 
 await updateMatch(
 m,
@@ -2140,36 +1991,18 @@ m,
 }
 
 
-async function generateStoppage(){
+async function finishMatch(){
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+if(clock){
+clearInterval(clock);
+clock=null;
+}
 
-if(!m)return;
-
-m.stoppage=Math.floor(Math.random()*5)+3;
-
-await updateMatch(
-m,
-`Added +${m.stoppage} stoppage time`
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
 );
 
-}
-
-
-async function finishSelected(){
-
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
-
 if(!m)return;
-
-if(timer){
-clearInterval(timer);
-timer=null;
-}
 
 m.minute=90;
 m.status="finished";
@@ -2182,42 +2015,20 @@ m,
 }
 
 
-/* =========================================================
-   SCORE
-========================================================= */
-
-async function saveScore(){
-
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
-
-if(!m)return;
-
-m.scoreHome=
-Number(document.getElementById("scoreHome").value)||0;
-
-m.scoreAway=
-Number(document.getElementById("scoreAway").value)||0;
-
-await updateMatch(m,"Updated match score");
-
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
+/* =====================================================
+   SAVE STATS
+===================================================== */
 
 async function saveStats(){
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
 
 if(!m)return;
 
 m.stats={
+
 possessionHome:Number(
 document.getElementById("posH").value
 )||0,
@@ -2249,19 +2060,17 @@ document.getElementById("cornersH").value
 cornersAway:Number(
 document.getElementById("cornersA").value
 )||0
+
 };
 
-await updateMatch(
-m,
-"Updated match statistics"
-);
+await updateMatch(m,"Updated match statistics");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    EVENTS
-========================================================= */
+===================================================== */
 
 function quickGoal(){
 
@@ -2274,16 +2083,15 @@ addEvent();
 
 async function addEvent(){
 
-const m=matches
-.map(normalizedMatch)
-.find(x=>String(x.id)===String(selectedMatchId));
+const m=matches.find(
+x=>String(x.id)===String(selectedMatchId)
+);
 
 if(!m)return;
 
-const minute=
-Number(document.getElementById("eventMinute").value);
-
-if(!Number.isFinite(minute))return;
+const minute=Number(
+document.getElementById("eventMinute").value
+);
 
 const type=
 document.getElementById("eventType").value;
@@ -2300,484 +2108,154 @@ document.getElementById("eventAssist").value.trim();
 const description=
 document.getElementById("eventDescription").value.trim();
 
-const added=
-Number(document.getElementById("eventAdded").value)||0;
+if(!Number.isFinite(minute))return;
 
 const event={
+
+id:uid(),
+
+match_id:m.id,
+
 minute,
-added,
-type,
+
+event_type:type,
+
 team,
-player,
-assist,
+
+player:player||null,
+
+assist:assist||null,
+
 description:
 description||
-defaultDescription(type,team,player,assist)
-};
-
-try{
-
-await createDatabaseEvent(m,event);
-
-if(type==="Goal"){
-
-if(team===m.home)m.scoreHome++;
-else m.scoreAway++;
-
-}
-
-if(m.status==="scheduled"&&minute>0)
-m.status="live";
-
-await updateDatabaseMatch(m);
-
-await loadMatches();
-
-log(
-`${minute}${added?"+":""}' ${type} — ${team}`
-);
-
-if(type==="Goal")
-await notifyGoal(m,team,player);
-
-toast("Event published.");
-
-}catch(error){
-
-console.error(error);
-
-toast("Could not publish event: "+error.message);
-
-}
-
-}
-
-
-function defaultDescription(
+defaultEventDescription(
 type,
 team,
 player,
 assist
-){
+)
 
-if(type==="Goal")
-return `GOAL! ${team}${player?" — "+player:""}${assist?" ("+assist+")":""}`;
-
-return `${type} — ${team}${player?" — "+player:""}`;
-
-}
-
-
-/* =========================================================
-   CREATE MATCH
-========================================================= */
-
-async function createMatch(){
-
-const competition=
-document.getElementById("newCompetition")
-.value.trim()||"MEFCO Match";
-
-const home=
-document.getElementById("newHome")
-.value.trim();
-
-const away=
-document.getElementById("newAway")
-.value.trim();
-
-const date=
-document.getElementById("newDate").value;
-
-const time=
-document.getElementById("newTime").value;
-
-if(!home||!away||!date||!time){
-
-toast("Enter teams, date and kickoff time.");
-
-return;
-
-}
-
-const match={
-id:uid(),
-competition,
-home,
-away,
-homeFlag:"⚽",
-awayFlag:"⚽",
-date,
-time,
-status:"scheduled",
-minute:0,
-scoreHome:0,
-scoreAway:0,
-stoppage:0,
-favorite:false,
-stats:{
-possessionHome:50,
-possessionAway:50,
-shotsHome:0,
-shotsAway:0,
-targetHome:0,
-targetAway:0,
-cornersHome:0,
-cornersAway:0
-}
 };
 
 try{
 
-await createDatabaseMatch(match);
-
-selectedMatchId=match.id;
-
-await loadMatches();
-
-log(`Created ${home} vs ${away}`);
-
-document.getElementById("newHome").value="";
-document.getElementById("newAway").value="";
-document.getElementById("newCompetition").value="";
-
-toast("Match created.");
-
-}catch(error){
-
-console.error(error);
-
-toast(
-"Could not create match: "+
-error.message
-);
-
-}
-
-}
-
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
-
-const NOTIFICATION_API=
-"https://mefco-notifications.drtwelveyt.workers.dev";
-
-
-function urlBase64ToUint8Array(base64String){
-
-const padding=
-"=".repeat((4-base64String.length%4)%4);
-
-const base64=
-(base64String+padding)
-.replace(/-/g,"+")
-.replace(/_/g,"/");
-
-const rawData=atob(base64);
-
-return Uint8Array.from(
-[...rawData].map(c=>c.charCodeAt(0))
-);
-
-}
-
-
-async function enableNotifications(){
-
-if(!("Notification" in window)){
-setNotificationStatus(
-"Notifications are not supported.",
-"error"
-);
-return;
-}
-
-if(!("serviceWorker" in navigator)){
-setNotificationStatus(
-"Service workers are not supported.",
-"error"
-);
-return;
-}
-
-try{
-
-const permission=
-await Notification.requestPermission();
-
-if(permission!=="granted"){
-
-setNotificationStatus(
-"Notification permission was not granted.",
-"warning"
-);
-
-return;
-
-}
-
-const registration=
-await navigator.serviceWorker.register("./sw.js");
-
-const response=
-await fetch(
-NOTIFICATION_API+
-"/api/vapid-public-key"
-);
-
-if(!response.ok)
-throw new Error("Could not retrieve VAPID key.");
-
-const keyData=await response.json();
-
-let subscription=
-await registration.pushManager.getSubscription();
-
-if(!subscription){
-
-subscription=
-await registration.pushManager.subscribe({
-userVisibleOnly:true,
-applicationServerKey:
-urlBase64ToUint8Array(
-keyData.publicKey
-)
-});
-
-}
-
-const save=
-await fetch(
-NOTIFICATION_API+"/api/subscribe",
+await db(
+"/match_events",
 {
 method:"POST",
 headers:{
-"Content-Type":"application/json"
+...headers,
+"Prefer":"return=minimal"
 },
-body:JSON.stringify(subscription)
+body:JSON.stringify(event)
 }
 );
 
-if(!save.ok)
-throw new Error("Could not save subscription.");
+if(type==="Goal"){
 
-const button=
-document.getElementById("notificationButton");
+if(team===m.home)
+m.scoreHome++;
+else
+m.scoreAway++;
 
-button.textContent="✓ Notifications Enabled";
-button.classList.add("enabled");
+m.minute=Math.max(m.minute,minute);
 
-setNotificationStatus(
-"Notifications are enabled.",
-"success"
+if(m.status==="scheduled")
+m.status="live";
+
+await db(
+"/matches?id=eq."+encodeURIComponent(m.id),
+{
+method:"PATCH",
+headers:{
+...headers,
+"Prefer":"return=minimal"
+},
+body:JSON.stringify(
+dbMatchObject(m)
+)
+}
+);
+
+}
+
+await loadEverything();
+
+log(
+`${minute}' ${type} — ${team}${player?" — "+player:""}`
 );
 
 }catch(error){
 
-console.error(error);
+alert("Could not publish event: "+error.message);
 
-setNotificationStatus(
-"Notification setup failed: "+
-error.message,
-"error"
+}
+
+}
+
+
+function defaultEventDescription(
+type,team,player,assist
+){
+
+if(type==="Goal"){
+
+return `GOAL! ${team}${
+player?" — "+player:""
+}${
+assist?" ("+assist+")":""
+}.`;
+
+}
+
+return `${type} — ${team}${
+player?" — "+player:""
+}.`;
+
+}
+
+
+/* =====================================================
+   ADMIN LOG
+===================================================== */
+
+function log(message){
+
+adminLog.unshift(
+new Date().toLocaleTimeString()+" — "+message
 );
 
-}
+renderLog();
 
 }
 
+function renderLog(){
 
-function setNotificationStatus(message,type=""){
-
-const el=
-document.getElementById("notificationStatus");
+const el=document.getElementById("adminLog");
 
 if(!el)return;
 
-el.textContent=message;
-el.className="notification-status "+type;
+el.innerHTML=
+adminLog.length
+?adminLog.map(x=>`<div>${escapeHTML(x)}</div>`).join("")
+:`<div>No admin actions yet.</div>`;
 
 }
 
 
-function checkNotificationStatus(){
-
-if(!("Notification" in window)){
-
-setNotificationStatus(
-"Notifications are not supported.",
-"error"
-);
-
-return;
-
-}
-
-if(Notification.permission==="granted")
-setNotificationStatus(
-"Notifications are allowed.",
-"success"
-);
-
-else if(Notification.permission==="denied")
-setNotificationStatus(
-"Notifications are blocked.",
-"error"
-);
-
-else
-setNotificationStatus(
-"Notifications have not been enabled.",
-"warning"
-);
-
-}
-
-
-async function sendNotification(
-title,
-body,
-url="/",
-tag="mefco-watch"
-){
-
-const response=
-await fetch(
-NOTIFICATION_API+"/api/notify",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-title,
-body,
-url,
-tag
-})
-}
-);
-
-const data=await response.json();
-
-if(!response.ok||!data.ok)
-throw new Error(
-data.error||
-"Notification request failed."
-);
-
-return data;
-
-}
-
-
-async function sendAdminNotification(){
-
-const title=
-document.getElementById("notificationTitle")
-.value.trim()||
-"MEFCO Watch";
-
-const body=
-document.getElementById("notificationBody")
-.value.trim();
-
-const url=
-document.getElementById("notificationUrl")
-.value.trim()||"/";
-
-if(!body){
-
-setNotificationStatus(
-"Enter a message first.",
-"warning"
-);
-
-return;
-
-}
-
-try{
-
-setNotificationStatus("Sending...");
-
-const result=
-await sendNotification(
-title,
-body,
-url
-);
-
-setNotificationStatus(
-`Sent to ${result.sent||0} subscription(s).`,
-"success"
-);
-
-log("Sent notification: "+title);
-
-}catch(error){
-
-setNotificationStatus(
-"Failed: "+error.message,
-"error"
-);
-
-}
-
-}
-
-
-async function notifyGoal(match,team,player){
-
-try{
-
-await sendNotification(
-"⚽ GOAL — MEFCO Watch",
-`${team} score! ${match.home} ${match.scoreHome} - ${match.scoreAway} ${match.away}${player?" — "+player:""}`,
-"/",
-"goal-"+match.id
-);
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-/* =========================================================
-   UI
-========================================================= */
-
-function toast(message){
-
-const el=document.getElementById("toast");
-
-el.textContent=message;
-el.style.display="block";
-
-clearTimeout(window.toastTimer);
-
-window.toastTimer=
-setTimeout(()=>{
-el.style.display="none";
-},3500);
-
-}
-
+/* =====================================================
+   RENDER EVERYTHING
+===================================================== */
 
 function renderAll(){
 
 renderHome();
 renderScores();
+renderNews();
 renderStats();
 
-if(document.getElementById("news").classList.contains("active"))
-renderNews();
+if(selectedMatchId)
+renderMatch();
 
 if(document.getElementById("admin").classList.contains("active"))
 renderAdmin();
@@ -2785,21 +2263,11 @@ renderAdmin();
 }
 
 
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
-loadMatches();
-loadNews();
-checkNotificationStatus();
-
-/*
-Refresh database data every 30 seconds.
-*/
-setInterval(()=>{
-loadMatches();
-loadNews();
-},30000);
+loadEverything();
 
 </script>
 
