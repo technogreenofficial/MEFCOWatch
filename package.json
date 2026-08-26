@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "playwright": "^1.62.1",
+    "sharp": "^0.35.3",
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "pg": "^8.13.1",
+    "dotenv": "^16.4.5"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
