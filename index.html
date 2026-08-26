@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MEFCO Watch</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -18,7 +20,7 @@
 --accent:#22c55e;
 --accent2:#4ade80;
 --danger:#ef4444;
---gold:#eab308;
+--gold:#eab308
 }
 
 html{scroll-behavior:smooth}
@@ -106,9 +108,7 @@ background:#f1f5f9;
 color:#080b10
 }
 
-.notification-button{
-margin-left:8px
-}
+.notification-button{margin-left:8px}
 
 .notification-button.enabled{
 background:#14532d;
@@ -124,9 +124,7 @@ margin:32px auto 60px
 .page{display:none}
 .page.active{display:block}
 
-.page-title{
-margin-bottom:24px
-}
+.page-title{margin-bottom:24px}
 
 .page-title h1{
 font-size:38px;
@@ -137,8 +135,6 @@ letter-spacing:-1px
 color:var(--muted);
 margin-top:6px
 }
-
-/* HERO */
 
 .hero{
 min-height:390px;
@@ -183,8 +179,6 @@ margin-top:14px;
 font-size:17px
 }
 
-/* GENERAL */
-
 .section,
 .card,
 .match-card,
@@ -214,9 +208,7 @@ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:16px
 }
 
-.card{
-padding:20px
-}
+.card{padding:20px}
 
 .card p,
 .news-card p{
@@ -238,8 +230,6 @@ transform:translateY(-3px);
 border-color:#3b4b5d;
 box-shadow:0 15px 35px #0005
 }
-
-/* MATCHES */
 
 .match-card{
 padding:18px;
@@ -266,10 +256,7 @@ align-items:center;
 gap:15px
 }
 
-.team{
-font-weight:750
-}
-
+.team{font-weight:750}
 .team.right{text-align:right}
 
 .match-score{
@@ -293,8 +280,6 @@ border:1px dashed #334155;
 border-radius:11px;
 background:#0c1219
 }
-
-/* MATCH CENTRE */
 
 .match-header{
 background:
@@ -365,25 +350,6 @@ color:var(--muted);
 margin-top:4px
 }
 
-.timeline{
-display:flex;
-flex-direction:column;
-gap:10px
-}
-
-.timeline-item{
-padding:13px;
-background:#111923;
-border-radius:9px;
-border-left:4px solid #475569
-}
-
-.timeline-item.goal{
-border-left-color:var(--accent)
-}
-
-/* NEWS */
-
 .news-feature{
 background:
 radial-gradient(circle at 90% 20%,#22c55e20,transparent 30%),
@@ -409,9 +375,7 @@ font-size:30px;
 margin:13px 0 7px
 }
 
-.news-feature p{
-color:#cbd5e1
-}
+.news-feature p{color:#cbd5e1}
 
 .news-meta{
 color:var(--muted);
@@ -442,8 +406,6 @@ text-transform:uppercase
 font-size:20px;
 line-height:1.2
 }
-
-/* ARTICLE */
 
 .article{
 padding:35px;
@@ -485,8 +447,6 @@ color:#dbe4ee;
 white-space:pre-wrap
 }
 
-/* STATS */
-
 table{
 width:100%;
 border-collapse:collapse
@@ -527,11 +487,7 @@ background:#111923;
 border-radius:8px
 }
 
-.stat-row strong{
-font-size:18px
-}
-
-/* ADMIN */
+.stat-row strong{font-size:18px}
 
 .admin-warning{
 background:#2a1b0c;
@@ -575,9 +531,7 @@ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
 gap:10px
 }
 
-.admin-controls{
-margin-bottom:20px
-}
+.admin-controls{margin-bottom:20px}
 
 .admin-btn{
 background:#18222d;
@@ -604,7 +558,7 @@ font-weight:800
 .admin-field input,
 .admin-field select,
 .admin-field textarea{
-border:1px solid var(--border2);
+border:1px solid var(--border);
 border-radius:8px;
 padding:11px;
 background:#0b1118;
@@ -679,7 +633,6 @@ header{padding:12px 18px}
 }
 
 @media(max-width:700px){
-
 header{
 flex-direction:column;
 gap:10px
@@ -705,9 +658,7 @@ min-height:330px;
 padding:25px
 }
 
-.hero h1{
-font-size:34px
-}
+.hero h1{font-size:34px}
 
 .match-teams,
 .match-header-teams{
@@ -715,49 +666,26 @@ grid-template-columns:1fr;
 text-align:center
 }
 
-.team.right{
-text-align:center
-}
+.team.right{text-align:center}
 
-.match-score{
-order:2
-}
+.match-score{order:2}
 
-.news-grid{
-grid-template-columns:1fr
-}
+.news-grid{grid-template-columns:1fr}
 
 .admin-status-grid,
 .stat-grid{
 grid-template-columns:1fr 1fr
 }
 
-.article{
-padding:25px
-}
-
-.article h1{
-font-size:32px
-}
+.article{padding:25px}
+.article h1{font-size:32px}
 }
 
 @media(max-width:430px){
-
-.logo{
-font-size:22px
-}
-
-.hero h1{
-font-size:29px
-}
-
-.admin-status-grid{
-grid-template-columns:1fr
-}
-
-.article h1{
-font-size:28px
-}
+.logo{font-size:22px}
+.hero h1{font-size:29px}
+.admin-status-grid{grid-template-columns:1fr}
+.article h1{font-size:28px}
 }
 </style>
 </head>
@@ -792,17 +720,13 @@ Enable Notifications
 
 <main>
 
-<!-- HOME -->
-
 <section id="home" class="page active">
 
 <div class="hero">
 
 <div class="hero-badge">MEFCO FEATURE</div>
 
-<h1>
-Follow the MEFCO football world.
-</h1>
+<h1>Follow the MEFCO football world.</h1>
 
 <p>
 Scores, live commentary, match statistics, news and records in one place.
@@ -841,44 +765,29 @@ Scores, live commentary, match statistics, news and records in one place.
 
 </section>
 
-
-<!-- SCORES -->
-
 <section id="scores" class="page">
 
 <div class="page-title">
-
 <h1>Scores</h1>
-
 <p id="scoresDate"></p>
-
 </div>
 
 <div class="filters">
 
 <button class="filter active"
-onclick="setScoreFilter('all',this)">
-All
-</button>
+onclick="setScoreFilter('all',this)">All</button>
 
 <button class="filter"
-onclick="setScoreFilter('favorites',this)">
-Favorites
-</button>
+onclick="setScoreFilter('favorites',this)">Favorites</button>
 
 <button class="filter"
-onclick="setScoreFilter('live',this)">
-Live
-</button>
+onclick="setScoreFilter('live',this)">Live</button>
 
 </div>
 
 <div id="scoreList"></div>
 
 </section>
-
-
-<!-- NEWS -->
 
 <section id="news" class="page">
 
@@ -902,9 +811,6 @@ Loading MEFCO News...
 
 </section>
 
-
-<!-- ARTICLE -->
-
 <section id="article-page" class="page">
 
 <button class="back-button" onclick="backToNews()">
@@ -914,9 +820,6 @@ Loading MEFCO News...
 <div id="articleContainer"></div>
 
 </section>
-
-
-<!-- STATS -->
 
 <section id="stats" class="page">
 
@@ -981,9 +884,6 @@ Stats will be added as MEFCO data is entered.
 
 </section>
 
-
-<!-- MATCH PAGE -->
-
 <section id="match-page" class="page">
 
 <button class="back-button" onclick="backToScores()">
@@ -993,9 +893,6 @@ Stats will be added as MEFCO data is entered.
 <div id="matchCentre"></div>
 
 </section>
-
-
-<!-- ADMIN -->
 
 <section id="admin" class="page">
 
@@ -1012,7 +909,7 @@ Create matches, control the clock, publish events and send MEFCO notifications.
 <div class="admin-warning">
 
 <strong>Admin Mode</strong><br>
-Changes are saved to the MEFCO database.
+Changes are saved directly to the MEFCO database.
 
 </div>
 
@@ -1183,24 +1080,32 @@ Clear
 </main>
 
 <footer>
-
 MEFCO Watch<br>
-
-<small>
-Follow the MEFCO world.
-</small>
-
+<small>Follow the MEFCO world.</small>
 </footer>
-
 
 <script>
 
-/* =========================
-   DATABASE
-========================= */
+/* =====================================================
+   SUPABASE
+===================================================== */
 
-const API="/api/matches";
-const NEWS_API="/api/news";
+const SUPABASE_URL =
+"https://qpokxolcdjxtmxrrqlgw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_7hKSyu9jxd65IA7zfyZy2w_O0maaXdC";
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+/* =====================================================
+   STATE
+===================================================== */
 
 let matches=[];
 let news=[];
@@ -1211,48 +1116,39 @@ let adminLog=[];
 let timer=null;
 
 
-/* =========================
-   API
-========================= */
+/* =====================================================
+   SUPABASE ERROR
+===================================================== */
 
-async function api(url,options={}){
+function databaseError(error){
 
-const response=await fetch(url,{
-headers:{
-"Content-Type":"application/json",
-...(options.headers||{})
-},
-...options
-});
+console.error("SUPABASE ERROR:",error);
 
-if(!response.ok){
-
-let message="Database request failed.";
-
-try{
-const data=await response.json();
-message=data.error||message;
-}catch{}
-
-throw new Error(message);
-}
-
-return response.status===204
-?null
-:response.json();
+return error?.message ||
+error?.details ||
+error?.hint ||
+"Database request failed.";
 
 }
 
 
-/* =========================
-   MATCH DATABASE
-========================= */
+/* =====================================================
+   MATCHES
+===================================================== */
 
 async function loadMatches(){
 
 try{
 
-const data=await api(API);
+const {data,error}=
+await supabaseClient
+.from("matches")
+.select("*")
+.order("match_date",{ascending:true})
+.order("match_time",{ascending:true});
+
+if(error)
+throw error;
 
 matches=Array.isArray(data)?data:[];
 
@@ -1281,7 +1177,8 @@ renderAll();
 
 document.getElementById("homeMatches").innerHTML=
 `<div class="empty">
-Could not load matches from the database.
+Could not load matches from Supabase.<br><br>
+<small>${escapeHTML(databaseError(error))}</small>
 </div>`;
 
 }
@@ -1289,14 +1186,16 @@ Could not load matches from the database.
 }
 
 
-/* =========================
-   NEWS DATABASE
-========================= */
+/* =====================================================
+   NEWS
+===================================================== */
 
 async function loadNews(){
 
 const container=
 document.getElementById("newsContainer");
+
+if(!container)return;
 
 container.innerHTML=
 `<div class="empty">
@@ -1305,28 +1204,27 @@ Loading MEFCO News...
 
 try{
 
-const response=await fetch(NEWS_API,{
-cache:"no-store"
-});
+const {data,error}=
+await supabaseClient
+.from("news")
+.select(`
+id,
+category,
+title,
+description,
+content,
+featured,
+author,
+created_at,
+updated_at
+`)
+.order("featured",{ascending:false})
+.order("created_at",{ascending:false});
 
-if(!response.ok){
+if(error)
+throw error;
 
-let message="Could not load news.";
-
-try{
-const data=await response.json();
-message=data.error||message;
-}catch{}
-
-throw new Error(message);
-
-}
-
-const data=await response.json();
-
-news=Array.isArray(data)
-?data
-:(Array.isArray(data.news)?data.news:[]);
+news=Array.isArray(data)?data:[];
 
 console.log("MEFCO NEWS:",news);
 
@@ -1339,7 +1237,7 @@ console.error("NEWS LOAD ERROR:",error);
 container.innerHTML=
 `<div class="empty">
 Could not load MEFCO News.<br><br>
-<small>${escapeHTML(error.message)}</small>
+<small>${escapeHTML(databaseError(error))}</small>
 </div>`;
 
 }
@@ -1347,14 +1245,16 @@ Could not load MEFCO News.<br><br>
 }
 
 
-/* =========================
-   NEWS RENDERING
-========================= */
+/* =====================================================
+   NEWS RENDER
+===================================================== */
 
 function renderNews(){
 
 const container=
 document.getElementById("newsContainer");
+
+if(!container)return;
 
 if(!news.length){
 
@@ -1371,7 +1271,10 @@ const featured=
 news.find(article=>article.featured);
 
 const normal=
-news.filter(article=>!featured || article.id!==featured.id);
+news.filter(article=>
+!featured ||
+article.id!==featured.id
+);
 
 let html="";
 
@@ -1381,7 +1284,7 @@ html+=`
 
 <div
 class="news-feature clickable"
-onclick="openArticle('${featured.id}')">
+onclick="openArticle('${escapeAttribute(featured.id)}')">
 
 <div class="news-feature-tag">
 FEATURED
@@ -1404,9 +1307,12 @@ featured.content ||
 ${escapeHTML(featured.category||"MEFCO NEWS")}
  ·
  ${formatNewsDate(featured.created_at)}
-${featured.author
+
+${
+featured.author
 ?` · ${escapeHTML(featured.author)}`
-:""}
+:""
+}
 
 </div>
 
@@ -1432,7 +1338,7 @@ ${normal.map(article=>`
 
 <article
 class="news-card"
-onclick="openArticle('${article.id}')">
+onclick="openArticle('${escapeAttribute(article.id)}')">
 
 <div class="news-card-category">
 ${escapeHTML(article.category||"MEFCO NEWS")}
@@ -1453,9 +1359,12 @@ article.content ||
 <div class="news-meta">
 
 ${formatNewsDate(article.created_at)}
-${article.author
+
+${
+article.author
 ?` · ${escapeHTML(article.author)}`
-:""}
+:""
+}
 
 </div>
 
@@ -1476,9 +1385,9 @@ container.innerHTML=html;
 }
 
 
-/* =========================
-   OPEN ARTICLE
-========================= */
+/* =====================================================
+   ARTICLE
+===================================================== */
 
 async function openArticle(id){
 
@@ -1496,21 +1405,27 @@ Loading article...
 
 try{
 
-const response=await fetch(
-`${NEWS_API}/${encodeURIComponent(id)}`,
-{
-cache:"no-store"
-}
-);
+const {data,error}=
+await supabaseClient
+.from("news")
+.select(`
+id,
+category,
+title,
+description,
+content,
+featured,
+author,
+created_at,
+updated_at
+`)
+.eq("id",id)
+.single();
 
-if(!response.ok)
-throw new Error("Article could not be loaded.");
+if(error)
+throw error;
 
-const data=await response.json();
-
-const article=data.article||data;
-
-renderArticle(article);
+renderArticle(data);
 
 }catch(error){
 
@@ -1518,7 +1433,8 @@ console.error("ARTICLE ERROR:",error);
 
 container.innerHTML=
 `<div class="empty">
-Could not load this article.
+Could not load this article.<br><br>
+<small>${escapeHTML(databaseError(error))}</small>
 </div>`;
 
 }
@@ -1558,9 +1474,11 @@ ${escapeHTML(article.title||"Untitled Article")}
 
 ${formatNewsDate(article.created_at)}
 
-${article.author
+${
+article.author
 ?` · By ${escapeHTML(article.author)}`
-:""}
+:""
+}
 
 </div>
 
@@ -1588,9 +1506,9 @@ article.description ||
 }
 
 
-/* =========================
-   SAFE TEXT
-========================= */
+/* =====================================================
+   SECURITY HELPERS
+===================================================== */
 
 function escapeHTML(value){
 
@@ -1606,10 +1524,16 @@ return String(value)
 
 }
 
+function escapeAttribute(value){
 
-/* =========================
-   NEWS DATE
-========================= */
+return escapeHTML(value)
+.replace(/`/g,"&#096;");
+}
+
+
+/* =====================================================
+   DATES
+===================================================== */
 
 function formatNewsDate(value){
 
@@ -1631,74 +1555,6 @@ year:"numeric"
 
 }
 
-
-/* =========================
-   NEWS NAVIGATION
-========================= */
-
-function backToNews(){
-
-showPage(
-"news",
-document.querySelectorAll("nav button")[2]
-);
-
-loadNews();
-
-}
-
-
-/* =========================
-   MATCH DATABASE HELPERS
-========================= */
-
-async function databaseCreateMatch(match){
-
-return api(API,{
-method:"POST",
-body:JSON.stringify(match)
-});
-
-}
-
-
-async function databaseUpdateMatch(match){
-
-return api(
-`${API}/${encodeURIComponent(match.id)}`,
-{
-method:"PUT",
-body:JSON.stringify(match)
-}
-);
-
-}
-
-
-async function databaseDeleteMatch(id){
-
-return api(
-`${API}/${encodeURIComponent(id)}`,
-{
-method:"DELETE"
-}
-);
-
-}
-
-
-/* =========================
-   UTILITIES
-========================= */
-
-function uid(){
-
-return "m_"+Date.now()+"_"+
-Math.random().toString(36).slice(2,7);
-
-}
-
-
 function todayISO(){
 
 return new Date()
@@ -1706,15 +1562,6 @@ return new Date()
 .slice(0,10);
 
 }
-
-
-function refreshApp(){
-
-loadMatches();
-loadNews();
-
-}
-
 
 function formatDate(d){
 
@@ -1727,7 +1574,9 @@ const today=
 new Date(todayISO()+"T00:00:00");
 
 const diff=
-Math.round((date-today)/86400000);
+Math.round(
+(date-today)/86400000
+);
 
 if(diff===0)return "Today";
 
@@ -1745,10 +1594,39 @@ month:"long"
 }
 
 
+/* =====================================================
+   NEWS NAV
+===================================================== */
+
+function backToNews(){
+
+showPage(
+"news",
+document.querySelectorAll("nav button")[2]
+);
+
+loadNews();
+
+}
+
+
+/* =====================================================
+   MATCH HELPERS
+===================================================== */
+
+function uid(){
+
+return "m_"+Date.now()+"_"+
+Math.random().toString(36).slice(2,7);
+
+}
+
 function matchLabel(m){
 
 if(m.status==="live")
-return `<span class="live">● ${m.minute||0}'${m.stoppage?"+"+m.stoppage:""}</span>`;
+return `<span class="live">
+● ${m.minute||0}'${m.stoppage?"+"+m.stoppage:""}
+</span>`;
 
 if(m.status==="halftime")
 return `<span class="live">● HT</span>`;
@@ -1756,7 +1634,9 @@ return `<span class="live">● HT</span>`;
 if(m.status==="finished")
 return `<span>FT</span>`;
 
-return `<span>${m.match_time||m.time||""}</span>`;
+return `<span>
+${escapeHTML(m.match_time||m.time||"")}
+</span>`;
 
 }
 
@@ -1772,18 +1652,22 @@ return `
 
 <div
 class="match-card"
-onclick="openMatch('${m.id}')">
+onclick="openMatch('${escapeAttribute(m.id)}')">
 
 <div class="match-date">
+
 ${formatDate(m.match_date||m.date)}
  ·
 ${escapeHTML(m.competition||"MEFCO Match")}
+
 </div>
 
 <div class="match-top">
 
 <span>
-${escapeHTML(m.home)} vs ${escapeHTML(m.away)}
+${escapeHTML(m.home)}
+vs
+${escapeHTML(m.away)}
 </span>
 
 ${matchLabel(m)}
@@ -1793,8 +1677,11 @@ ${matchLabel(m)}
 <div class="match-teams">
 
 <div class="team">
+
 ${m.home_flag||m.homeFlag||"⚽"}
+
 ${escapeHTML(m.home)}
+
 </div>
 
 <div class="match-score">
@@ -1802,8 +1689,11 @@ ${score}
 </div>
 
 <div class="team right">
+
 ${escapeHTML(m.away)}
+
 ${m.away_flag||m.awayFlag||"⚽"}
+
 </div>
 
 </div>
@@ -1818,24 +1708,29 @@ ${m.away_flag||m.awayFlag||"⚽"}
 function sortMatches(a,b){
 
 return (
-a.match_time||a.time||""
+a.match_time||
+a.time||
+""
 ).localeCompare(
-b.match_time||b.time||""
+b.match_time||
+b.time||
+""
 );
 
 }
 
 
-/* =========================
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 function showPage(id,button=null){
 
 document.querySelectorAll(".page")
 .forEach(p=>p.classList.remove("active"));
 
-const page=document.getElementById(id);
+const page=
+document.getElementById(id);
 
 if(page)
 page.classList.add("active");
@@ -1866,19 +1761,9 @@ renderAdmin();
 }
 
 
-function backToScores(){
-
-showPage(
-"scores",
-document.querySelectorAll("nav button")[1]
-);
-
-}
-
-
-/* =========================
+/* =====================================================
    HOME / SCORES
-========================= */
+===================================================== */
 
 function renderHome(){
 
@@ -1888,7 +1773,9 @@ const list=matches
 )
 .sort(sortMatches);
 
-document.getElementById("homeMatches").innerHTML=
+document.getElementById(
+"homeMatches"
+).innerHTML=
 
 list.length
 ?list.map(cardHTML).join("")
@@ -1934,7 +1821,9 @@ m.status==="halftime"
 
 list.sort(sortMatches);
 
-document.getElementById("scoreList").innerHTML=
+document.getElementById(
+"scoreList"
+).innerHTML=
 
 list.length
 ?list.map(cardHTML).join("")
@@ -1946,9 +1835,9 @@ No matches listed for today.
 }
 
 
-/* =========================
+/* =====================================================
    MATCH CENTRE
-========================= */
+===================================================== */
 
 function openMatch(id){
 
@@ -1970,15 +1859,19 @@ x=>String(x.id)===String(selectedMatchId)
 if(!m)return;
 
 const scoreHome=
-m.score_home??m.scoreHome??0;
+m.score_home??
+m.scoreHome??
+0;
 
 const scoreAway=
-m.score_away??m.scoreAway??0;
+m.score_away??
+m.scoreAway??
+0;
 
 const events=
 Array.isArray(m.events)
 ?m.events.slice().sort(
-(a,b)=>b.minute-a.minute
+(a,b)=>(b.minute||0)-(a.minute||0)
 )
 :[];
 
@@ -2047,10 +1940,15 @@ ${escapeHTML(m.away)}
 <h2>Commentary</h2>
 
 <span>
-${m.status==="live"?"● LIVE":
-m.status==="halftime"?"● HALF-TIME":
-m.status==="finished"?"FULL TIME":
-"NOT STARTED"}
+${
+m.status==="live"
+?"● LIVE":
+m.status==="halftime"
+?"● HALF-TIME":
+m.status==="finished"
+?"FULL TIME":
+"NOT STARTED"
+}
 </span>
 
 </div>
@@ -2123,7 +2021,9 @@ ${e.minute||0}'
 
 <div>
 ${escapeHTML(
-e.description||e.type||"Event"
+e.description||
+e.type||
+"Event"
 )}
 </div>
 
@@ -2131,13 +2031,17 @@ e.description||e.type||"Event"
 
 ${escapeHTML(e.type||"")}
 
-${e.player
+${
+e.player
 ?" · "+escapeHTML(e.player)
-:""}
+:""
+}
 
-${e.assist
+${
+e.assist
 ?" · "+escapeHTML(e.assist)
-:""}
+:""
+}
 
 </div>
 
@@ -2161,7 +2065,7 @@ return `
 <div class="stat-row">
 <span>Possession</span>
 <strong>
-${s.possessionHome??50}%
+${s.possessionHome??50}
  —
 ${s.possessionAway??50}%
 </strong>
@@ -2201,9 +2105,9 @@ ${s.cornersAway??0}
 }
 
 
-/* =========================
+/* =====================================================
    ADMIN
-========================= */
+===================================================== */
 
 function renderAdmin(){
 
@@ -2219,9 +2123,12 @@ matches.length
 ?matches.map(m=>`
 
 <option
-value="${m.id}"
-${String(m.id)===String(selectedMatchId)
-?"selected":""}
+value="${escapeAttribute(m.id)}"
+${
+String(m.id)===String(selectedMatchId)
+?"selected"
+:""
+}
 >
 
 ${escapeHTML(m.home)}
@@ -2232,7 +2139,7 @@ ${escapeHTML(m.away)}
 
 ${formatDate(m.match_date||m.date)}
 
-${m.match_time||m.time||""}
+${escapeHTML(m.match_time||m.time||"")}
 
 </option>
 
@@ -2315,9 +2222,9 @@ ${m.minute??0}'
 <div>
 <div class="admin-label">Score</div>
 <div class="admin-status-value">
-${m.score_home??m.scoreHome??0}
+${m.score_home??0}
  -
-${m.score_away??m.scoreAway??0}
+${m.score_away??0}
 </div>
 </div>
 
@@ -2546,9 +2453,9 @@ onclick="quickGoal()">
 }
 
 
-/* =========================
+/* =====================================================
    ADMIN LOG
-========================= */
+===================================================== */
 
 function log(message){
 
@@ -2565,9 +2472,12 @@ renderAdminLog();
 
 function renderAdminLog(){
 
-document.getElementById(
-"adminLog"
-).innerHTML=
+const element=
+document.getElementById("adminLog");
+
+if(!element)return;
+
+element.innerHTML=
 
 adminLog.length
 ?adminLog.map(x=>
@@ -2592,9 +2502,9 @@ renderAdminLog();
 }
 
 
-/* =========================
-   UPDATE MATCH
-========================= */
+/* =====================================================
+   DIRECT SUPABASE MATCH UPDATE
+===================================================== */
 
 async function updateMatch(m,message){
 
@@ -2610,30 +2520,45 @@ match_date:m.match_date||m.date,
 match_time:m.match_time||m.time,
 status:m.status,
 minute:m.minute,
-score_home:m.score_home??m.scoreHome,
-score_away:m.score_away??m.scoreAway,
-stoppage:m.stoppage,
-favorite:m.favorite,
-stats:m.stats
+score_home:m.score_home??m.scoreHome??0,
+score_away:m.score_away??m.scoreAway??0,
+stoppage:m.stoppage??0,
+favorite:m.favorite??false,
+stats:m.stats||{},
+events:Array.isArray(m.events)?m.events:[]
 };
 
-await databaseUpdateMatch({
-...m,
-...payload
-});
+const {data,error}=
+await supabaseClient
+.from("matches")
+.update(payload)
+.eq("id",m.id)
+.select()
+.single();
 
-await loadMatches();
+if(error)
+throw error;
+
+const index=
+matches.findIndex(
+x=>String(x.id)===String(m.id)
+);
+
+if(index!==-1)
+matches[index]=data;
+
+renderAll();
 
 if(message)
 log(message);
 
 }catch(error){
 
-console.error(error);
+console.error("UPDATE MATCH ERROR:",error);
 
 alert(
-"Database update failed: "+
-error.message
+"Database update failed:\n"+
+databaseError(error)
 );
 
 }
@@ -2641,9 +2566,9 @@ error.message
 }
 
 
-/* =========================
+/* =====================================================
    CLOCK
-========================= */
+===================================================== */
 
 async function startSelected(){
 
@@ -2663,7 +2588,10 @@ m,
 `Started ${m.home} vs ${m.away}`
 );
 
-timer=setInterval(realMinute,60000);
+timer=setInterval(
+realMinute,
+60000
+);
 
 }
 
@@ -2827,9 +2755,9 @@ m,
 }
 
 
-/* =========================
+/* =====================================================
    STATS
-========================= */
+===================================================== */
 
 async function saveStats(){
 
@@ -2875,9 +2803,9 @@ m,
 }
 
 
-/* =========================
+/* =====================================================
    EVENTS
-========================= */
+===================================================== */
 
 function quickGoal(){
 
@@ -2950,7 +2878,10 @@ type,
 team,
 player,
 assist
-)
+),
+
+created_at:
+new Date().toISOString()
 
 });
 
@@ -2959,12 +2890,12 @@ if(type==="Goal"){
 if(team===m.home){
 
 m.score_home=
-(m.score_home??m.scoreHome??0)+1;
+(m.score_home??0)+1;
 
 }else{
 
 m.score_away=
-(m.score_away??m.scoreAway??0)+1;
+(m.score_away??0)+1;
 
 }
 
@@ -2999,9 +2930,9 @@ player?" — "+player:""
 }
 
 
-/* =========================
+/* =====================================================
    CREATE MATCH
-========================= */
+===================================================== */
 
 async function createMatch(){
 
@@ -3031,7 +2962,10 @@ document.getElementById(
 "newTime"
 ).value;
 
-if(!home||!away||!date||!time){
+if(!home||
+!away||
+!date||
+!time){
 
 alert(
 "Enter the teams, date and kickoff time."
@@ -3043,22 +2977,58 @@ return;
 
 try{
 
-const created=
-await databaseCreateMatch({
+const stats={
+
+possessionHome:50,
+possessionAway:50,
+shotsHome:0,
+shotsAway:0,
+targetHome:0,
+targetAway:0,
+cornersHome:0,
+cornersAway:0
+
+};
+
+const payload={
+
+id:uid(),
 
 competition,
 home,
 away,
+
 home_flag:"⚽",
 away_flag:"⚽",
+
 match_date:date,
-match_time:time
+match_time:time,
 
-});
+status:"scheduled",
+minute:0,
 
-selectedMatchId=
-created.match?.id||
-created.id;
+score_home:0,
+score_away:0,
+
+stoppage:0,
+favorite:false,
+
+stats,
+events:[]
+
+};
+
+const {data,error}=
+await supabaseClient
+.from("matches")
+.insert(payload)
+.select()
+.single();
+
+if(error)
+throw error;
+
+selectedMatchId=data.id;
 
 await loadMatches();
 
@@ -3066,13 +3036,19 @@ log(
 `Created ${home} vs ${away}`
 );
 
+document.getElementById("newHome").value="";
+document.getElementById("newAway").value="";
+
 }catch(error){
 
-console.error(error);
+console.error(
+"CREATE MATCH ERROR:",
+error
+);
 
 alert(
-"Could not create match: "+
-error.message
+"Could not create match:\n"+
+databaseError(error)
 );
 
 }
@@ -3080,12 +3056,13 @@ error.message
 }
 
 
-/* =========================
+/* =====================================================
    NOTIFICATIONS
-========================= */
+===================================================== */
 
 const NOTIFICATION_API=
 "https://mefco-notifications.drtwelveyt.workers.dev";
+
 
 function setNotificationStatus(
 message,
@@ -3119,9 +3096,52 @@ return;
 
 }
 
-alert(
-"Notification setup remains connected to your existing notification system."
+try{
+
+const permission=
+await Notification.requestPermission();
+
+if(permission==="granted"){
+
+document
+.getElementById(
+"notificationButton"
+)
+.classList.add("enabled");
+
+document
+.getElementById(
+"notificationButton"
+)
+.textContent=
+"Notifications Enabled";
+
+setNotificationStatus(
+"Notifications are allowed.",
+"success"
 );
+
+}else if(permission==="denied"){
+
+setNotificationStatus(
+"Notifications are blocked.",
+"error"
+);
+
+}else{
+
+setNotificationStatus(
+"Notifications were not enabled.",
+"warning"
+);
+
+}
+
+}catch(error){
+
+console.error(error);
+
+}
 
 }
 
@@ -3245,9 +3265,9 @@ error.message,
 }
 
 
-/* =========================
-   RENDER
-========================= */
+/* =====================================================
+   RENDER ALL
+===================================================== */
 
 function renderAll(){
 
@@ -3258,22 +3278,42 @@ if(selectedMatchId)
 renderMatch();
 
 if(
-document.getElementById(
-"admin"
-).classList.contains("active")
+document.getElementById("admin") &&
+document
+.getElementById("admin")
+.classList
+.contains("active")
 )
 renderAdmin();
 
 }
 
 
-/* =========================
+/* =====================================================
    START
-========================= */
+===================================================== */
 
-loadMatches();
-loadNews();
+async function startApp(){
+
+console.log(
+"MEFCO Watch starting..."
+);
+
+console.log(
+"Supabase:",
+SUPABASE_URL
+);
+
+await Promise.all([
+loadMatches(),
+loadNews()
+]);
+
 checkNotificationStatus();
+
+}
+
+startApp();
 
 </script>
 
