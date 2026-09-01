@@ -3,759 +3,962 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070a0f">
 <title>MEFCO Watch</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 :root{
   --bg:#070a0f;
   --card:#10161f;
   --card2:#141c26;
+  --card3:#1a2430;
   --text:#f8fafc;
-  --muted:#8b98a8;
-  --border:#1d2935;
-  --border2:#263545;
-  --green:#22c55e;
-  --blue:#3b82f6;
+  --muted:#94a3b8;
+  --border:#243140;
+  --border2:#334155;
+  --green:#16a34a;
+  --green2:#15803d;
   --red:#ef4444;
-  --gold:#f59e0b
+  --yellow:#f59e0b;
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
 }
-
 html{scroll-behavior:smooth}
-
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,Arial,sans-serif;
-  min-height:100vh
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh;
 }
-
 button,input,select,textarea{font:inherit}
-
 button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+img{max-width:100%}
 
 header{
   position:sticky;
   top:0;
   z-index:100;
+  background:rgba(7,10,15,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  padding:12px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
-  padding:14px 30px;
-  background:rgba(7,10,15,.94);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border)
+  gap:15px;
 }
 
 .logo{
-  background:none;
   border:0;
-  color:white;
-  font-size:24px;
-  font-weight:950;
-  letter-spacing:-1px
+  background:none;
+  color:#fff;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:-.5px;
 }
+.logo span{color:#22c55e}
 
-.logo span{color:var(--green)}
+header>div{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
 nav{
   display:flex;
-  gap:5px;
-  flex-wrap:wrap
+  gap:4px;
+  flex-wrap:wrap;
 }
 
-nav button,
-.filter,
-.notification-button,
-.back-button{
-  border:1px solid var(--border2);
-  background:#101720;
-  color:#cbd5e1;
-  border-radius:9px;
-  padding:9px 13px;
+nav button{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:9px 11px;
+  border-radius:8px;
+  font-size:13px;
   font-weight:750;
-  transition:.2s
 }
-
 nav button:hover,
-.filter:hover,
-.notification-button:hover,
-.back-button:hover{
-  background:#18222d;
-  color:white
-}
-
-nav button.active,
-.filter.active{
-  background:#19351f;
-  border-color:#26723d;
-  color:#86efac
+nav button.active{
+  background:var(--card2);
+  color:#fff;
 }
 
 .notification-button{
-  margin-left:10px;
-  background:#121b25
+  border:1px solid var(--border2);
+  background:var(--card2);
+  color:#fff;
+  border-radius:8px;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:750;
 }
 
-main{
-  width:min(1180px,94%);
-  margin:35px auto 60px
+.page{
+  display:none;
+  max-width:1250px;
+  margin:auto;
+  padding:28px 18px 60px;
 }
-
-.page{display:none}
 .page.active{display:block}
 
-.hero{
-  min-height:440px;
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:50px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  background:
-    radial-gradient(circle at 80% 20%,rgba(34,197,94,.13),transparent 35%),
-    linear-gradient(145deg,#101923,#090e14)
+.page-title{
+  margin-bottom:24px;
 }
-
-.hero-badge,
-.news-feature-tag,
-.article-category{
-  display:inline-block;
-  color:#86efac;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1.4px
+.page-title h1{
+  font-size:32px;
+  letter-spacing:-1px;
+  margin-bottom:6px;
 }
-
-.hero h1{
-  max-width:700px;
-  margin:15px 0;
-  font-size:58px;
-  line-height:1;
-  letter-spacing:-3px
-}
-
-.hero p{
-  max-width:650px;
+.page-title p{
   color:var(--muted);
-  font-size:17px;
-  line-height:1.6
+  font-size:14px;
+}
+
+/* HOME */
+
+.hero{
+  min-height:330px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 80% 30%,rgba(22,163,74,.18),transparent 35%),
+    linear-gradient(135deg,#101923,#080c12);
+  display:flex;
+  align-items:center;
+  padding:42px;
+  margin-bottom:24px;
+  overflow:hidden;
+}
+.hero-content{max-width:650px}
+.hero-kicker{
+  color:#4ade80;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  margin-bottom:12px;
+}
+.hero h1{
+  font-size:48px;
+  line-height:1;
+  letter-spacing:-2px;
+  margin-bottom:14px;
+}
+.hero p{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.6;
+  max-width:560px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:10px;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+
+.primary-btn,
+.secondary-btn{
+  border-radius:9px;
+  padding:11px 16px;
+  font-weight:800;
+  border:1px solid var(--border2);
+}
+.primary-btn{
+  background:var(--green2);
+  color:#fff;
+  border-color:#16a34a;
+}
+.secondary-btn{
+  background:var(--card2);
+  color:#fff;
 }
 
 .section{
-  margin-top:20px;
-  padding:22px;
-  border:1px solid var(--border);
-  border-radius:16px;
-  background:linear-gradient(145deg,#10161f,#0b1118)
+  margin-top:28px;
 }
-
-.section-header{
+.section-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
-  margin-bottom:15px
+  gap:10px;
+  margin-bottom:13px;
+}
+.section-head h2{
+  font-size:19px;
+}
+.section-head button{
+  border:0;
+  background:none;
+  color:#4ade80;
+  font-size:12px;
+  font-weight:800;
 }
 
-.section-header h2{font-size:19px}
-
-.cards{
+.grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-top:20px
+  gap:14px;
 }
 
-.card{
+.feature-card,
+.home-card,
+.match-card,
+.team-card,
+.player-card,
+.news-card,
+.competition-card,
+.record-card,
+.table-card{
   border:1px solid var(--border);
-  border-radius:15px;
-  padding:22px;
   background:var(--card);
-  transition:.2s
-}
-
-.card.clickable{cursor:pointer}
-
-.card.clickable:hover{
-  transform:translateY(-2px);
-  border-color:#314354;
-  background:#131c26
-}
-
-.card h3{margin-bottom:8px}
-
-.card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5
-}
-
-.page-title{margin-bottom:25px}
-
-.page-title h1{
-  font-size:42px;
-  letter-spacing:-2px
-}
-
-.page-title p{
-  margin-top:7px;
-  color:var(--muted)
-}
-
-.match-card{
-  margin-bottom:10px;
-  padding:18px;
-  border:1px solid var(--border);
   border-radius:14px;
-  background:#101720;
-  cursor:pointer;
-  transition:.2s
 }
 
-.match-card:hover{
-  border-color:#34485a;
-  background:#131d27
+.feature-card{
+  padding:22px;
 }
-
-.match-date{
+.feature-card h2{
+  font-size:22px;
+  margin:8px 0;
+}
+.feature-card p{
   color:var(--muted);
+  line-height:1.5;
+}
+.feature-card .tag{
+  color:#4ade80;
   font-size:11px;
-  margin-bottom:10px
+  font-weight:900;
+  text-transform:uppercase;
 }
 
-.match-top{
-  display:flex;
-  justify-content:space-between;
-  color:#cbd5e1;
-  font-size:12px;
-  margin-bottom:14px
+.home-card{
+  padding:20px;
+  transition:.2s;
 }
-
-.match-teams,
-.match-header-teams{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  gap:20px
+.home-card:hover,
+.team-card:hover,
+.player-card:hover,
+.news-card:hover,
+.competition-card:hover{
+  transform:translateY(-2px);
+  border-color:#3b4b5e;
 }
+.home-card h3{margin-bottom:7px}
+.home-card p{color:var(--muted);font-size:13px}
 
-.team{
-  font-weight:850;
-  font-size:16px
+.live-ticker{
+  border:1px solid rgba(239,68,68,.3);
+  background:rgba(127,29,29,.15);
+  border-radius:12px;
+  padding:13px 15px;
+  margin-bottom:20px;
 }
-
-.team.right{text-align:right}
-
-.match-score{
-  font-weight:950;
-  font-size:21px;
-  white-space:nowrap
-}
-
-.live{
+.live-ticker-title{
   color:#f87171;
-  font-weight:900
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.8px;
+  margin-bottom:8px;
+}
+.live-ticker-list{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+}
+.live-chip{
+  white-space:nowrap;
+  background:#121923;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:8px 10px;
+  font-size:12px;
 }
 
-.empty{
-  padding:35px;
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed var(--border2);
-  border-radius:12px
+/* SCORES */
+
+.score-date-nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin:-8px 0 20px;
+}
+
+.date-nav-btn,
+.date-today-btn{
+  border:1px solid var(--border2);
+  background:#121b25;
+  color:#fff;
+  border-radius:9px;
+  padding:9px 14px;
+  font-weight:750;
+}
+.date-today-btn{
+  background:var(--green2);
+  border-color:#16a34a;
 }
 
 .filters{
   display:flex;
   gap:7px;
   flex-wrap:wrap;
-  margin-bottom:18px
+  margin-bottom:18px;
 }
 
-.news-feature{
-  padding:35px;
+.filter{
   border:1px solid var(--border);
-  border-radius:18px;
-  background:
-    radial-gradient(circle at 85% 20%,rgba(34,197,94,.12),transparent 35%),
-    linear-gradient(145deg,#111a23,#0c1219);
-  cursor:pointer
-}
-
-.news-feature h2{
-  margin:12px 0;
-  font-size:34px
-}
-
-.news-feature p,
-.news-card p{
-  color:#a9b5c3;
-  line-height:1.55
-}
-
-.news-meta{
-  margin-top:18px;
-  color:#657487;
-  font-size:11px
-}
-
-.news-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px
-}
-
-.news-card{
-  min-height:180px;
-  padding:22px;
-  border:1px solid var(--border);
-  border-radius:14px;
   background:var(--card);
-  cursor:pointer;
-  transition:.2s
+  color:var(--muted);
+  border-radius:8px;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:750;
+}
+.filter.active{
+  color:#fff;
+  background:var(--green2);
+  border-color:#16a34a;
 }
 
-.news-card:hover{
-  border-color:#34485a;
-  transform:translateY(-2px)
+.match-list{
+  display:grid;
+  gap:10px;
 }
 
-.news-card-category{
-  color:#86efac;
+.match-card{
+  padding:15px;
+  transition:.2s;
+}
+.match-card:hover{
+  border-color:#3b4b5e;
+}
+
+.match-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:13px;
+}
+
+.match-main{
+  display:grid;
+  grid-template-columns:1fr 90px 1fr;
+  align-items:center;
+  gap:10px;
+}
+
+.team{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-width:0;
+}
+.team.away{
+  justify-content:flex-end;
+  text-align:right;
+}
+.team-name{
+  font-weight:800;
+  font-size:14px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.flag{
+  width:25px;
+  height:25px;
+  object-fit:cover;
+  border-radius:50%;
+  background:#202a36;
+}
+
+.match-result{
+  text-align:center;
+  font-weight:900;
+  font-size:18px;
+}
+.match-status{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
+}
+.match-status.live{color:#f87171}
+
+.favorite-star{
+  border:0;
+  background:none;
+  color:#64748b;
+  font-size:18px;
+}
+.favorite-star.active{color:#facc15}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--border2);
+  border-radius:12px;
+  padding:35px 20px;
+}
+
+/* NEWS */
+
+.featured-news{
+  border:1px solid var(--border);
+  background:linear-gradient(135deg,#121b25,#0c1118);
+  border-radius:17px;
+  padding:25px;
+  margin-bottom:20px;
+}
+.featured-news .tag,
+.news-card .tag{
+  color:#4ade80;
   font-size:10px;
   font-weight:900;
-  margin-bottom:12px
+  text-transform:uppercase;
+}
+.featured-news h2{
+  font-size:28px;
+  margin:10px 0;
+}
+.featured-news p{
+  color:var(--muted);
+  line-height:1.6;
+}
+.news-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.news-card{
+  padding:18px;
+  cursor:pointer;
+}
+.news-card h3{
+  margin:9px 0;
+  font-size:17px;
+}
+.news-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+.news-date{
+  color:#64748b;
+  font-size:11px;
+  margin-top:12px;
 }
 
-.news-card h3{
-  margin-bottom:8px;
-  font-size:19px
+.back-button{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:#fff;
+  border-radius:8px;
+  padding:9px 12px;
+  margin-bottom:20px;
 }
 
 .article{
-  padding:45px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:#10161f
+  max-width:850px;
+  margin:auto;
 }
-
-.back-button{margin-bottom:18px}
-
-.article h1{
-  margin:12px 0;
-  font-size:48px;
-  letter-spacing:-2px
-}
-
-.article-info{
-  color:#657487;
-  font-size:12px
-}
-
-.article-description{
-  margin-top:25px;
-  padding:18px;
-  border-left:3px solid var(--green);
-  background:#0b131a;
-  color:#cbd5e1;
-  font-size:18px;
-  line-height:1.6
-}
-
-.article-content{
-  margin-top:25px;
-  color:#cbd5e1;
-  font-size:16px;
-  line-height:1.8;
-  white-space:pre-wrap
-}
-
-.match-header{
-  padding:35px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:linear-gradient(145deg,#111923,#0b1118)
-}
-
-.competition{
-  text-align:center;
-  color:#86efac;
+.article-meta{
+  color:#4ade80;
   font-size:11px;
   font-weight:900;
-  letter-spacing:1px;
-  margin-bottom:30px
+  text-transform:uppercase;
 }
-
-.big-team{
-  text-align:center;
-  font-size:25px;
-  font-weight:900
+.article h1{
+  font-size:42px;
+  line-height:1.08;
+  margin:12px 0;
 }
-
-.big-score{
-  text-align:center;
-  font-size:46px;
-  font-weight:950
-}
-
-.match-status{
-  text-align:center;
+.article-date{
   color:var(--muted);
   font-size:12px;
-  margin-top:5px
+  margin-bottom:25px;
+}
+.article-body{
+  color:#d7dee8;
+  line-height:1.8;
+  white-space:pre-wrap;
 }
 
-.match-grid{
+/* SEARCH */
+
+.search-box{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+.search-box input{
+  flex:1;
+  background:var(--card);
+  color:#fff;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:12px;
+  outline:none;
+}
+.search-box input:focus{
+  border-color:#3b82f6;
+}
+.search-results{
   display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:20px
+  gap:9px;
+}
+.search-result{
+  padding:15px;
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:11px;
+  cursor:pointer;
+}
+.search-result small{
+  color:#4ade80;
+  font-weight:800;
+}
+.search-result strong{
+  display:block;
+  margin-top:4px;
 }
 
-.commentary-event{
+/* COMPETITIONS */
+
+.competition-grid{
   display:grid;
-  grid-template-columns:50px 1fr;
-  gap:15px;
-  padding:14px 0;
-  border-bottom:1px solid var(--border)
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.competition-card{
+  padding:20px;
+  cursor:pointer;
+}
+.competition-icon{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:var(--card3);
+  margin-bottom:14px;
+  font-size:20px;
+}
+.competition-card h3{
+  margin-bottom:6px;
+}
+.competition-card p{
+  color:var(--muted);
+  font-size:12px;
 }
 
-.minute{
-  color:#86efac;
-  font-weight:900
+.competition-header{
+  padding:22px;
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:15px;
+  margin-bottom:18px;
+}
+.competition-header h2{font-size:26px}
+.competition-header p{
+  color:var(--muted);
+  margin-top:5px;
 }
 
-.event-type{
-  color:#64748b;
+/* TABLE */
+
+.table-wrap{
+  overflow-x:auto;
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+th,td{
+  padding:12px;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+  font-size:12px;
+}
+th{
+  background:var(--card2);
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+}
+td:first-child,
+th:first-child{text-align:left}
+tr:last-child td{border-bottom:0}
+.position{
+  width:35px;
+  color:var(--muted);
+}
+.club-cell{
+  font-weight:800;
+}
+
+/* TEAM / PLAYER */
+
+.entity-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+.team-card,
+.player-card{
+  padding:17px;
+  cursor:pointer;
+}
+.team-card-top,
+.player-card-top{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.entity-avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--card3);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+.entity-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.entity-sub{
+  color:var(--muted);
   font-size:11px;
-  margin-top:4px
+  margin-top:4px;
 }
+
+.profile{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:16px;
+  padding:25px;
+}
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+.profile-avatar{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:var(--card3);
+  display:grid;
+  place-items:center;
+  font-size:28px;
+}
+.profile h2{font-size:27px}
+.profile p{color:var(--muted);margin-top:4px}
 
 .stat-grid{
   display:grid;
-  gap:10px
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:18px;
 }
-
-.stat-row{
-  display:flex;
-  justify-content:space-between;
-  padding:13px;
-  background:#0b1118;
+.stat-box{
+  background:var(--card2);
   border:1px solid var(--border);
-  border-radius:9px
-}
-
-.stat-row span{color:#94a3b8}
-
-.stat-row strong{font-size:13px}
-
-.stats-filter{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:18px
-}
-
-.stats-filter select{
-  min-width:180px
-}
-
-.stats-table{
-  width:100%;
-  border-collapse:collapse
-}
-
-.stats-table th,
-.stats-table td{
-  padding:13px 10px;
-  text-align:left;
-  border-bottom:1px solid var(--border)
-}
-
-.stats-table th{
-  color:#718096;
-  font-size:11px;
-  text-transform:uppercase
-}
-
-.stats-table td{
-  font-size:13px
-}
-
-.rank{
-  color:#64748b;
-  width:40px
-}
-
-.stat-number{
-  color:#86efac;
-  font-weight:950
-}
-
-.admin-warning{
-  padding:15px;
-  border:1px solid #713f12;
-  background:#241b0b;
-  color:#fde68a;
   border-radius:10px;
-  margin-bottom:20px
+  padding:15px;
+}
+.stat-box strong{
+  display:block;
+  font-size:23px;
+}
+.stat-box span{
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
 }
 
-.admin-inputs{
+/* RECORDS */
+
+.record-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
 }
+.record-card{
+  padding:18px;
+}
+.record-card small{
+  color:#4ade80;
+  font-weight:850;
+}
+.record-card h3{
+  margin:7px 0;
+}
+.record-card p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* STATS */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+  margin-bottom:20px;
+}
+.stat-highlight{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:13px;
+  padding:20px;
+}
+.stat-highlight strong{
+  display:block;
+  font-size:28px;
+}
+.stat-highlight span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* MATCH CENTRE */
+
+.match-centre{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:16px;
+  overflow:hidden;
+}
+.mc-header{
+  padding:24px;
+  text-align:center;
+  background:linear-gradient(135deg,#111a24,#0b1016);
+}
+.mc-competition{
+  color:#4ade80;
+  font-size:11px;
+  font-weight:900;
+}
+.mc-teams{
+  display:grid;
+  grid-template-columns:1fr 120px 1fr;
+  align-items:center;
+  gap:15px;
+  margin-top:18px;
+}
+.mc-team{
+  font-size:20px;
+  font-weight:900;
+}
+.mc-score{
+  font-size:35px;
+  font-weight:950;
+}
+.mc-status{
+  color:var(--muted);
+  font-size:11px;
+}
+.mc-body{padding:20px}
+.mc-section{
+  margin-bottom:22px;
+}
+.mc-section h3{
+  font-size:14px;
+  margin-bottom:10px;
+}
+.timeline{
+  display:grid;
+  gap:7px;
+}
+.timeline-event{
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--card2);
+  font-size:12px;
+}
+.timeline-event b{color:#4ade80}
+
+/* ADMIN */
+
+.admin-panel{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:14px;
+  padding:20px;
+}
+.admin-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:15px 0;
+}
+.admin-btn{
+  border:1px solid var(--border2);
+  background:var(--card2);
+  color:#fff;
+  border-radius:8px;
+  padding:9px 12px;
+  font-size:12px;
+  font-weight:800;
+}
+.admin-btn.green{background:#14532d;border-color:#166534}
+.admin-btn.red{background:#7f1d1d;border-color:#991b1b}
+.admin-btn.blue{background:#1e3a8a;border-color:#1d4ed8}
+.admin-btn.gold{background:#78350f;border-color:#92400e}
 
 .admin-field{
-  display:flex;
-  flex-direction:column;
-  gap:6px
+  display:grid;
+  gap:6px;
+  margin-bottom:12px;
 }
-
 .admin-field label{
-  font-size:11px;
   color:var(--muted);
-  font-weight:850
+  font-size:11px;
+  font-weight:800;
 }
-
 .admin-field input,
 .admin-field select,
 .admin-field textarea{
-  border:1px solid var(--border2);
-  border-radius:9px;
-  padding:11px;
-  background:#080d13;
-  color:white;
+  width:100%;
+  background:#0b1118;
+  color:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px;
   outline:none;
-  font-family:inherit
 }
-
-.admin-field textarea{
-  min-height:90px;
-  resize:vertical
-}
-
+.admin-field textarea{min-height:90px;resize:vertical}
 .admin-field input:focus,
 .admin-field select:focus,
 .admin-field textarea:focus{
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(34,197,94,.08)
+  border-color:#3b82f6;
 }
-
-.admin-controls,
+.admin-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
 .admin-event-buttons{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
+  gap:7px;
 }
-
-.admin-btn{
-  border:1px solid #253342;
-  border-radius:9px;
-  padding:10px 13px;
-  background:#121b25;
-  color:#fff;
-  font-weight:750
-}
-
-.admin-btn.blue{
-  background:#1d4ed8;
-  border-color:#2563eb
-}
-
-.admin-btn.green{
-  background:#15803d;
-  border-color:#16a34a
-}
-
-.admin-btn.red{
-  background:#b91c1c;
-  border-color:#dc2626
-}
-
-.admin-btn.gold{
-  background:#92400e;
-  border-color:#a16207
-}
-
-.admin-btn:hover{filter:brightness(1.12)}
-
-.admin-status-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px
-}
-
-.admin-match-status{
-  padding:18px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  background:#0c131b
-}
-
-.admin-label{
-  color:#64748b;
-  font-size:10px;
-  font-weight:900;
-  margin-bottom:6px
-}
-
-.admin-status-value{
-  font-size:21px;
-  font-weight:950
-}
-
 .admin-log{
-  max-height:300px;
-  overflow:auto
+  display:grid;
+  gap:6px;
+  margin-top:15px;
+}
+.admin-log-item{
+  padding:9px;
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:7px;
+  font-size:11px;
+  color:var(--muted);
 }
 
-.admin-log-item{
-  padding:10px 2px;
-  border-bottom:1px solid var(--border);
-  color:#cbd5e1;
-  font-size:12px
-}
+/* NOTIFICATIONS */
 
 .notification-box{
+  margin-top:20px;
   border:1px solid var(--border);
-  border-radius:12px;
+  background:var(--card);
+  border-radius:14px;
   padding:20px;
-  background:linear-gradient(145deg,#0d141c,#090e14)
 }
-
 .notification-status{
-  padding:12px;
-  border-radius:9px;
-  background:#121a23;
-  color:#cbd5e1;
-  margin-top:12px;
-  font-size:13px
+  padding:10px;
+  border-radius:8px;
+  font-size:12px;
+  margin-bottom:12px;
 }
+.notification-status.success{background:#052e16;color:#86efac}
+.notification-status.error{background:#450a0a;color:#fca5a5}
+.notification-status.warning{background:#451a03;color:#fcd34d}
 
-.notification-status.success{
-  background:#0b2617;
-  color:#86efac;
-  border:1px solid #14532d
-}
-
-.notification-status.error{
-  background:#291011;
-  color:#fca5a5;
-  border:1px solid #7f1d1d
-}
-
-.notification-status.warning{
-  background:#2a210c;
-  color:#fde68a;
-  border:1px solid #713f12
-}
+/* FOOTER */
 
 footer{
+  border-top:1px solid var(--border);
+  color:#64748b;
   text-align:center;
-  padding:50px 20px;
-  color:#4d5968;
-  border-top:1px solid rgba(255,255,255,.05);
-  font-size:12px
+  padding:25px 15px;
+  font-size:11px;
 }
 
-::-webkit-scrollbar{
-  width:8px;
-  height:8px
-}
-
-::-webkit-scrollbar-track{background:#070b10}
-::-webkit-scrollbar-thumb{
-  background:#202c39;
-  border-radius:999px
-}
-
-::selection{
-  background:rgba(34,197,94,.25);
-  color:white
-}
+/* RESPONSIVE */
 
 @media(max-width:1000px){
-  .match-grid{grid-template-columns:1fr}
-  .admin-status-grid{grid-template-columns:1fr 1fr}
-  .hero h1{font-size:48px}
+  .grid,
+  .news-grid,
+  .competition-grid,
+  .entity-grid,
+  .record-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:700px){
   header{
     flex-direction:column;
-    padding:12px 20px
+    align-items:stretch;
   }
-
+  header>div{
+    justify-content:center;
+    flex-wrap:wrap;
+  }
   nav{justify-content:center}
-
-  .notification-button{margin-left:0}
-
-  .cards,
-  .news-grid{
-    grid-template-columns:1fr
-  }
-
-  .admin-inputs{
-    grid-template-columns:1fr
-  }
-
-  .admin-status-grid{
-    grid-template-columns:1fr 1fr
-  }
-
   .hero{
-    min-height:350px;
-    padding:27px
+    min-height:280px;
+    padding:28px;
   }
-
-  .hero h1{
-    font-size:38px
-  }
-
-  .match-teams,
-  .match-header-teams{
-    grid-template-columns:1fr;
-    text-align:center
-  }
-
-  .team.right{text-align:center}
-
-  .article{padding:25px}
-
-  .article h1{font-size:34px}
+  .hero h1{font-size:37px}
+  .grid,
+  .news-grid,
+  .competition-grid,
+  .entity-grid,
+  .record-grid,
+  .stats-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .admin-grid{grid-template-columns:1fr}
+  .mc-teams{grid-template-columns:1fr}
+  .mc-team{font-size:17px}
 }
 
 @media(max-width:430px){
-  .logo{font-size:21px}
-
-  nav button{
-    font-size:11px;
-    padding:8px 5px
-  }
-
-  .hero{
-    min-height:320px;
-    padding:22px
-  }
-
+  .page{padding:22px 12px 45px}
+  .page-title h1{font-size:27px}
+  .hero{padding:23px}
   .hero h1{font-size:32px}
-
-  .page-title h1{font-size:30px}
-
-  .admin-status-grid{
-    grid-template-columns:1fr
+  .match-main{grid-template-columns:1fr 70px 1fr}
+  .team-name{font-size:12px}
+  .date-nav-btn,
+  .date-today-btn{
+    padding:8px 9px;
+    font-size:11px;
   }
+}
 
-  .article{
-    padding:20px
+/* REDUCED MOTION */
+
+@media(prefers-reduced-motion:reduce){
+  *{
+    scroll-behavior:auto!important;
+    transition:none!important;
   }
-
-  .article h1{font-size:29px}
 }
 </style>
 </head>
@@ -763,75 +966,94 @@ footer{
 <body>
 
 <header>
+  <button class="logo" onclick="showPage('home',this)">
+    MEFCO <span>WATCH</span>
+  </button>
 
-<button class="logo" onclick="showPage('home')">
-MEFCO <span>WATCH</span>
-</button>
+  <div>
+    <nav>
+      <button class="active" onclick="showPage('home',this)">Home</button>
+      <button onclick="showPage('scores',this)">Scores</button>
+      <button onclick="showPage('news',this)">News</button>
+      <button onclick="showPage('competitions',this)">Competitions</button>
+      <button onclick="showPage('stats',this)">Stats</button>
+      <button onclick="showPage('search',this)">Search</button>
+      <button onclick="showPage('admin',this)">Admin</button>
+    </nav>
 
-<div style="display:flex;align-items:center;flex-wrap:wrap;justify-content:center">
-
-<nav>
-<button class="active" onclick="showPage('home',this)">Home</button>
-<button onclick="showPage('scores',this)">Scores</button>
-<button onclick="showPage('news',this)">News</button>
-<button onclick="showPage('stats',this)">Stats</button>
-<button onclick="showPage('admin',this)">Admin</button>
-</nav>
-
-<button
-id="notificationButton"
-class="notification-button"
-onclick="enableNotifications()">
-Enable Notifications
-</button>
-
-</div>
+    <button id="notificationButton"
+            class="notification-button"
+            onclick="enableNotifications()">
+      Enable Notifications
+    </button>
+  </div>
 </header>
-
-<main>
 
 <!-- HOME -->
 
 <section id="home" class="page active">
 
-<div class="hero">
-<div class="hero-badge">MEFCO FEATURE</div>
+  <div id="liveTicker"></div>
 
-<h1>Follow the MEFCO football world.</h1>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-kicker">MEFCO WATCH</div>
+      <h1>Follow the MEFCO football world.</h1>
+      <p>
+        Scores, live matches, competitions, statistics, news,
+        records and everything happening across MEFCO.
+      </p>
 
-<p>
-Scores, live commentary, match statistics, news and records in one place.
-</p>
-</div>
+      <div class="hero-actions">
+        <button class="primary-btn" onclick="showPage('scores')">
+          View Scores
+        </button>
 
-<div class="section">
+        <button class="secondary-btn" onclick="showPage('competitions')">
+          Explore Competitions
+        </button>
+      </div>
+    </div>
+  </div>
 
-<div class="section-header">
-<h2>Today</h2>
-</div>
+  <div class="section">
+    <div class="section-head">
+      <h2>Today's Matches</h2>
+      <button onclick="showPage('scores')">View all</button>
+    </div>
 
-<div id="homeMatches"></div>
+    <div id="homeMatches" class="match-list"></div>
+  </div>
 
-</div>
+  <div class="section">
+    <div class="section-head">
+      <h2>Latest MEFCO News</h2>
+      <button onclick="showPage('news')">All news</button>
+    </div>
 
-<div class="cards">
+    <div id="homeNews" class="grid"></div>
+  </div>
 
-<div class="card clickable" onclick="showPage('scores')">
-<h3>⚽ Scores</h3>
-<p>Open matches and follow live match centres.</p>
-</div>
+  <div class="section">
+    <div class="grid">
 
-<div class="card clickable" onclick="showPage('news')">
-<h3>📰 MEFCO News</h3>
-<p>Transfers, competitions, managers and stories.</p>
-</div>
+      <div class="home-card" onclick="showPage('scores')">
+        <h3>Scores</h3>
+        <p>Browse previous, current and upcoming matchdays.</p>
+      </div>
 
-<div class="card clickable" onclick="showPage('stats')">
-<h3>📊 Stats</h3>
-<p>Goals, assists, results and competition records.</p>
-</div>
+      <div class="home-card" onclick="showPage('competitions')">
+        <h3>Competitions</h3>
+        <p>Follow leagues, cups, tables and fixtures.</p>
+      </div>
 
-</div>
+      <div class="home-card" onclick="showPage('stats')">
+        <h3>Stats & Records</h3>
+        <p>Goals, assists, records and competition statistics.</p>
+      </div>
+
+    </div>
+  </div>
 
 </section>
 
@@ -840,31 +1062,43 @@ Scores, live commentary, match statistics, news and records in one place.
 
 <section id="scores" class="page">
 
-<div class="page-title">
-<h1>Scores</h1>
-<p id="scoresDate"></p>
-</div>
+  <div class="page-title">
+    <h1>Scores</h1>
+    <p id="scoresDate"></p>
+  </div>
 
-<div class="filters">
+  <div class="score-date-nav">
+    <button class="date-nav-btn" onclick="changeScoreDate(-1)">
+      ← Previous
+    </button>
 
-<button class="filter active"
-onclick="setScoreFilter('all',this)">
-All
-</button>
+    <button class="date-today-btn" onclick="goToToday()">
+      Today
+    </button>
 
-<button class="filter"
-onclick="setScoreFilter('favorites',this)">
-Favorites
-</button>
+    <button class="date-nav-btn" onclick="changeScoreDate(1)">
+      Next →
+    </button>
+  </div>
 
-<button class="filter"
-onclick="setScoreFilter('live',this)">
-Live
-</button>
+  <div class="filters">
+    <button class="filter active"
+            onclick="setScoreFilter('all',this)">
+      All
+    </button>
 
-</div>
+    <button class="filter"
+            onclick="setScoreFilter('favorites',this)">
+      Favorites
+    </button>
 
-<div id="scoreList"></div>
+    <button class="filter"
+            onclick="setScoreFilter('live',this)">
+      Live
+    </button>
+  </div>
+
+  <div id="scoreList" class="match-list"></div>
 
 </section>
 
@@ -873,14 +1107,14 @@ Live
 
 <section id="news" class="page">
 
-<div class="page-title">
-<h1>MEFCO News</h1>
-<p>The latest stories, match reports and updates from across the MEFCO world.</p>
-</div>
+  <div class="page-title">
+    <h1>MEFCO News</h1>
+    <p>The latest stories, match reports and updates from across MEFCO.</p>
+  </div>
 
-<div id="newsContainer">
-<div class="empty">Loading MEFCO News...</div>
-</div>
+  <div id="newsContainer">
+    <div class="empty">Loading MEFCO News...</div>
+  </div>
 
 </section>
 
@@ -889,11 +1123,38 @@ Live
 
 <section id="article-page" class="page">
 
-<button class="back-button" onclick="backToNews()">
-← Back to News
-</button>
+  <button class="back-button" onclick="backToNews()">
+    ← Back to News
+  </button>
 
-<div id="articleContainer"></div>
+  <div id="articleContainer"></div>
+
+</section>
+
+
+<!-- COMPETITIONS -->
+
+<section id="competitions" class="page">
+
+  <div class="page-title">
+    <h1>Competitions</h1>
+    <p>Follow every MEFCO competition, league and cup.</p>
+  </div>
+
+  <div id="competitionGrid" class="competition-grid"></div>
+
+</section>
+
+
+<!-- COMPETITION DETAIL -->
+
+<section id="competition-page" class="page">
+
+  <button class="back-button" onclick="showPage('competitions')">
+    ← Back to Competitions
+  </button>
+
+  <div id="competitionContainer"></div>
 
 </section>
 
@@ -902,146 +1163,111 @@ Live
 
 <section id="stats" class="page">
 
-<div class="page-title">
+  <div class="page-title">
+    <h1>Stats</h1>
+    <p>Explore MEFCO records and competition statistics.</p>
+  </div>
 
-<h1>Stats</h1>
+  <div id="statsHighlights" class="stats-grid"></div>
 
-<p>
-Explore goals, assists, results and records from MEFCO matches.
-</p>
+  <div class="section">
+    <div class="section-head">
+      <h2>Top Scorers</h2>
+    </div>
 
-</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Goals</th>
+            <th>Assists</th>
+          </tr>
+        </thead>
 
-<div class="stats-filter">
+        <tbody id="statsTableBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<select id="statsCompetition" onchange="renderStats()">
-<option value="all">All competitions</option>
-</select>
+  <div class="section">
 
-<select id="statsTeam" onchange="renderStats()">
-<option value="all">All teams</option>
-</select>
+    <div class="section-head">
+      <h2>Records</h2>
+    </div>
 
-</div>
+    <div id="recordsGrid" class="record-grid"></div>
 
-
-<div class="cards">
-
-<div class="card">
-<div id="statTopScorer" class="stat-number">—</div>
-<div class="stat-label">Top scorer</div>
-</div>
-
-<div class="card">
-<div id="statTopAssist" class="stat-number">—</div>
-<div class="stat-label">Top assister</div>
-</div>
-
-<div class="card">
-<div id="statMostGoals" class="stat-number">—</div>
-<div class="stat-label">Most goals in a match</div>
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-header">
-<h2>Top Scorers</h2>
-</div>
-
-<table class="stats-table">
-
-<thead>
-<tr>
-<th>#</th>
-<th>Player</th>
-<th>Team</th>
-<th>Goals</th>
-</tr>
-</thead>
-
-<tbody id="topScorersBody"></tbody>
-
-</table>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-header">
-<h2>Top Assists</h2>
-</div>
-
-<table class="stats-table">
-
-<thead>
-<tr>
-<th>#</th>
-<th>Player</th>
-<th>Team</th>
-<th>Assists</th>
-</tr>
-</thead>
-
-<tbody id="topAssistsBody"></tbody>
-
-</table>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-header">
-<h2>Match Records</h2>
-</div>
-
-<div id="matchRecords"></div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-header">
-<h2>Team Records</h2>
-</div>
-
-<table class="stats-table">
-
-<thead>
-<tr>
-<th>Team</th>
-<th>MP</th>
-<th>W</th>
-<th>D</th>
-<th>L</th>
-<th>GF</th>
-<th>GA</th>
-</tr>
-</thead>
-
-<tbody id="teamStatsBody"></tbody>
-
-</table>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- MATCH CENTRE -->
+<!-- SEARCH -->
+
+<section id="search" class="page">
+
+  <div class="page-title">
+    <h1>Search MEFCO</h1>
+    <p>Find teams, players, matches, competitions and news.</p>
+  </div>
+
+  <div class="search-box">
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Search MEFCO..."
+      oninput="performSearch()"
+    >
+  </div>
+
+  <div id="searchResults" class="search-results">
+    <div class="empty">
+      Start typing to search MEFCO.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- TEAM -->
+
+<section id="team-page" class="page">
+
+  <button class="back-button" onclick="showPage('search')">
+    ← Back
+  </button>
+
+  <div id="teamContainer"></div>
+
+</section>
+
+
+<!-- PLAYER -->
+
+<section id="player-page" class="page">
+
+  <button class="back-button" onclick="showPage('search')">
+    ← Back
+  </button>
+
+  <div id="playerContainer"></div>
+
+</section>
+
+
+<!-- MATCH -->
 
 <section id="match-page" class="page">
 
-<button class="back-button" onclick="backToScores()">
-← Back to Scores
-</button>
+  <button class="back-button" onclick="showPage('scores')">
+    ← Back to Scores
+  </button>
 
-<div id="matchCentre"></div>
+  <div id="matchCentre"></div>
 
 </section>
 
@@ -1050,196 +1276,163 @@ Explore goals, assists, results and records from MEFCO matches.
 
 <section id="admin" class="page">
 
-<div class="page-title">
+  <div class="page-title">
+    <h1>Admin</h1>
+    <p>Manage MEFCO Watch matches, events, statistics, news and notifications.</p>
+  </div>
 
-<h1>Admin Control</h1>
+  <div class="admin-panel">
 
-<p>
-Create matches, control the clock, publish events and send MEFCO notifications.
-</p>
+    <div class="admin-field">
+      <label>SELECT MATCH</label>
 
-</div>
+      <select id="adminMatchSelect"
+              onchange="selectAdminMatch()">
+        <option value="">Select a match...</option>
+      </select>
+    </div>
 
-<div class="admin-warning">
+    <div id="adminPanelContent">
+      <div class="empty">
+        Select a match to manage it.
+      </div>
+    </div>
 
-<strong>Admin Mode</strong><br>
-Changes are saved to the MEFCO database.
-
-</div>
-
-
-<div class="section">
-
-<div class="section-header">
-<h2>Match Selection</h2>
-</div>
-
-<div class="admin-inputs">
-
-<div class="admin-field">
-
-<label>Control match</label>
-
-<select
-id="adminMatchSelect"
-onchange="selectAdminMatch()">
-</select>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="adminPanel"></div>
+  </div>
 
 
-<div class="section">
+  <div class="admin-panel section">
 
-<div class="section-header">
-<h2>🔔 Notifications</h2>
-</div>
+    <div class="section-head">
+      <h2>Create Match</h2>
+    </div>
 
-<div class="notification-box">
+    <div class="admin-grid">
 
-<h3>Send MEFCO Watch Notification</h3>
+      <div class="admin-field">
+        <label>COMPETITION</label>
+        <input id="createCompetition" placeholder="MEFCO IPL">
+      </div>
 
-<br>
+      <div class="admin-field">
+        <label>HOME TEAM</label>
+        <input id="createHome" placeholder="England">
+      </div>
 
-<div class="admin-inputs">
+      <div class="admin-field">
+        <label>AWAY TEAM</label>
+        <input id="createAway" placeholder="Nigeria">
+      </div>
 
-<div class="admin-field">
-<label>Notification title</label>
-<input id="notificationTitle" value="MEFCO Watch">
-</div>
+      <div class="admin-field">
+        <label>DATE</label>
+        <input id="createDate" type="date">
+      </div>
 
-<div class="admin-field">
-<label>Message</label>
-<input id="notificationBody" placeholder="New MEFCO update">
-</div>
+      <div class="admin-field">
+        <label>KICKOFF</label>
+        <input id="createKickoff" type="time">
+      </div>
 
-<div class="admin-field">
-<label>Open URL</label>
-<input id="notificationUrl" value="/">
-</div>
+      <div class="admin-field">
+        <label>HOME FLAG URL</label>
+        <input id="createHomeFlag" placeholder="https://...">
+      </div>
 
-</div>
+      <div class="admin-field">
+        <label>AWAY FLAG URL</label>
+        <input id="createAwayFlag" placeholder="https://...">
+      </div>
 
-<br>
+    </div>
 
-<div class="admin-event-buttons">
+    <button class="admin-btn green"
+            onclick="createMatch()">
+      Create Match
+    </button>
 
-<button class="admin-btn blue"
-onclick="sendAdminNotification()">
-🔔 Send Notification
-</button>
-
-<button class="admin-btn"
-onclick="checkNotificationStatus()">
-Check Status
-</button>
-
-</div>
-
-<div id="notificationStatus" class="notification-status">
-Notification system ready.
-</div>
-
-</div>
-
-</div>
+  </div>
 
 
-<div class="section">
+  <div class="notification-box">
 
-<div class="section-header">
-<h2>Create Match</h2>
-</div>
+    <div class="section-head">
+      <h2>Send Notification</h2>
+    </div>
 
-<div class="admin-inputs">
+    <div id="notificationStatus"></div>
 
-<div class="admin-field">
-<label>Competition</label>
-<input id="newCompetition" placeholder="MEFCO League">
-</div>
+    <div class="admin-field">
+      <label>TITLE</label>
+      <input id="notificationTitle" placeholder="MEFCO Watch">
+    </div>
 
-<div class="admin-field">
-<label>Home team</label>
-<input id="newHome" placeholder="Argentina">
-</div>
+    <div class="admin-field">
+      <label>BODY</label>
+      <textarea id="notificationBody"
+                placeholder="New MEFCO update"></textarea>
+    </div>
 
-<div class="admin-field">
-<label>Away team</label>
-<input id="newAway" placeholder="Ghana">
-</div>
+    <div class="admin-field">
+      <label>URL</label>
+      <input id="notificationUrl" placeholder="/">
+    </div>
 
-<div class="admin-field">
-<label>Date</label>
-<input id="newDate" type="date">
-</div>
+    <div class="admin-controls">
 
-<div class="admin-field">
-<label>Kickoff</label>
-<input id="newTime" type="time">
-</div>
+      <button class="admin-btn green"
+              onclick="sendNotification()">
+        Send Notification
+      </button>
 
-</div>
+      <button class="admin-btn blue"
+              onclick="checkNotificationStatus()">
+        Check Status
+      </button>
 
-<br>
+    </div>
 
-<button class="admin-btn green" onclick="createMatch()">
-+ Add Match
-</button>
-
-</div>
+  </div>
 
 
-<div class="section">
+  <div class="admin-panel section">
 
-<div class="section-header">
+    <div class="section-head">
+      <h2>Admin Log</h2>
+    </div>
 
-<h2>Admin Log</h2>
+    <div id="adminLog" class="admin-log"></div>
 
-<button class="admin-btn" onclick="clearAdminLog()">
-Clear
-</button>
-
-</div>
-
-<div id="adminLog" class="admin-log"></div>
-
-</div>
+  </div>
 
 </section>
 
-</main>
-
 
 <footer>
-MEFCO Watch<br>
-<small>Follow the MEFCO world.</small>
+  MEFCO Watch · The MEFCO football world
 </footer>
 
 
 <script>
 
 /* =========================================================
-   SUPABASE
+   DATABASE
 ========================================================= */
 
-const SUPABASE_URL="https://qpokxolcdjxtmxrrqlgw.supabase.co";
+const SUPABASE_URL =
+  "https://qpokxolcdjxtmxrrqlgw.supabase.co";
 
-const SUPABASE_KEY=
-"sb_publishable_7hKSyu9jxd65IA7zfyZy2w_O0maaXdC";
+const SUPABASE_KEY =
+  "sb_publishable_7hKSyu9jxd65IA7zfyZy2w_O0maaXdC";
 
-const MATCHES_URL=
-SUPABASE_URL+"/rest/v1/matches";
+const MATCHES_URL =
+  SUPABASE_URL + "/rest/v1/matches";
 
-const EVENTS_URL=
-SUPABASE_URL+"/rest/v1/matches-events";
+const EVENTS_URL =
+  SUPABASE_URL + "/rest/v1/matches-events";
 
-const NEWS_URL=
-SUPABASE_URL+"/rest/v1/news";
+const NEWS_URL =
+  SUPABASE_URL + "/rest/v1/news";
 
 
 /* =========================================================
@@ -1250,518 +1443,314 @@ let matches=[];
 let news=[];
 let selectedMatchId=null;
 let selectedArticleId=null;
+let selectedCompetition=null;
+
 let scoreFilter="all";
+let scoreDate=todayISO();
+
 let adminLog=[];
 let timer=null;
 
 
 /* =========================================================
-   SUPABASE REQUEST
+   SUPABASE
 ========================================================= */
 
 async function supabaseFetch(url,options={}){
+  const response=await fetch(url,{
+    ...options,
+    headers:{
+      apikey:SUPABASE_KEY,
+      Authorization:"Bearer "+SUPABASE_KEY,
+      "Content-Type":"application/json",
+      Accept:"application/json",
+      ...(options.headers||{})
+    }
+  });
 
-const response=await fetch(url,{
+  if(!response.ok){
+    const text=await response.text();
+    throw new Error(text||("HTTP "+response.status));
+  }
 
-...options,
+  const text=await response.text();
 
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json",
-"Accept":"application/json",
-...(options.headers||{})
-}
-
-});
-
-if(!response.ok){
-
-let message="Supabase request failed.";
-
-try{
-
-const data=await response.json();
-
-message=
-data.message||
-data.error_description||
-data.error||
-message;
-
-}catch{}
-
-throw new Error(message);
-
-}
-
-if(response.status===204)
-return null;
-
-return response.json();
-
+  return text ? JSON.parse(text) : null;
 }
 
 
 /* =========================================================
-   MATCHES
+   LOAD DATA
 ========================================================= */
 
 async function loadMatches(){
 
-try{
+  try{
 
-const data=await supabaseFetch(
-MATCHES_URL+
-"?select=*&order=match_date.asc,match_time.asc"
-);
+    const data=await supabaseFetch(
+      MATCHES_URL+
+      "?select=*&order=match_date.asc,match_time.asc"
+    );
 
-matches=Array.isArray(data)?data:[];
+    matches=Array.isArray(data)?data:[];
 
-if(
-selectedMatchId &&
-!matches.some(
-m=>String(m.id)===String(selectedMatchId)
-)
-)
-selectedMatchId=null;
+    await loadAllEvents();
 
-if(!selectedMatchId&&matches.length)
-selectedMatchId=matches[0].id;
+    renderAll();
 
-await loadAllEvents();
+  }catch(error){
 
-populateStatsFilters();
+    console.error("Matches:",error);
 
-renderAll();
+    matches=[];
 
-}catch(error){
+    renderAll();
 
-console.error("MATCH LOAD ERROR:",error);
-
-matches=[];
-
-renderAll();
-
-document.getElementById("homeMatches").innerHTML=
-`<div class="empty">
-Could not load matches.<br><br>
-<small>${escapeHTML(error.message)}</small>
-</div>`;
+  }
 
 }
 
-}
-
-
-/* =========================================================
-   EVENTS
-========================================================= */
 
 async function loadAllEvents(){
 
-try{
+  try{
 
-const data=await supabaseFetch(
-EVENTS_URL+
-"?select=*&order=minute.asc,created_at.asc"
-);
+    const data=await supabaseFetch(
+      EVENTS_URL+
+      "?select=*&order=minute.asc,created_at.asc"
+    );
 
-const events=Array.isArray(data)?data:[];
+    const events=Array.isArray(data)?data:[];
 
-matches.forEach(match=>{
+    matches.forEach(match=>{
 
-match.events=events.filter(
-event=>
-String(event.match_id)===
-String(match.id)
-);
+      match.events=events.filter(event=>
+        String(event.match_id)===String(match.id)
+      );
 
-});
+    });
 
-}catch(error){
+  }catch(error){
 
-console.error("EVENT LOAD ERROR:",error);
+    console.error("Events:",error);
 
-matches.forEach(match=>{
-if(!Array.isArray(match.events))
-match.events=[];
-});
+    matches.forEach(match=>{
+      match.events=[];
+    });
 
-}
+  }
 
 }
 
-
-/* =========================================================
-   NEWS
-========================================================= */
 
 async function loadNews(){
 
-const container=
-document.getElementById("newsContainer");
+  try{
 
-container.innerHTML=
-`<div class="empty">
-Loading MEFCO News...
-</div>`;
+    const data=await supabaseFetch(
+      NEWS_URL+
+      "?select=*&order=featured.desc,created_at.desc"
+    );
 
-try{
+    news=Array.isArray(data)?data:[];
 
-const data=await supabaseFetch(
-NEWS_URL+
-"?select=*&order=featured.desc,created_at.desc"
-);
+    renderNews();
+    renderHomeNews();
 
-news=Array.isArray(data)?data:[];
+  }catch(error){
 
-renderNews();
+    console.error("News:",error);
 
-}catch(error){
+    news=[];
 
-console.error("NEWS LOAD ERROR:",error);
+    renderNews();
+    renderHomeNews();
 
-container.innerHTML=
-`<div class="empty">
-Could not load MEFCO News.<br><br>
-<small>${escapeHTML(error.message)}</small>
-</div>`;
-
-}
-
-}
-
-
-function renderNews(){
-
-const container=
-document.getElementById("newsContainer");
-
-if(!news.length){
-
-container.innerHTML=
-`<div class="empty">
-No news articles have been published yet.
-</div>`;
-
-return;
-
-}
-
-const featured=
-news.find(article=>article.featured);
-
-const normal=
-news.filter(
-article=>
-!featured||
-article.id!==featured.id
-);
-
-let html="";
-
-if(featured){
-
-html+=`
-
-<div class="news-feature"
-onclick="openArticle('${featured.id}')">
-
-<div class="news-feature-tag">FEATURED</div>
-
-<h2>${escapeHTML(featured.title)}</h2>
-
-<p>
-${escapeHTML(
-featured.description||
-featured.content||
-""
-)}
-</p>
-
-<div class="news-meta">
-
-${escapeHTML(
-featured.category||
-"MEFCO NEWS"
-)}
-
- ·
-
-${formatNewsDate(featured.created_at)}
-
-${
-featured.author
-?" · "+escapeHTML(featured.author)
-:""
-}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-if(normal.length){
-
-html+=`
-
-<div class="section">
-
-<div class="section-header">
-<h2>Latest News</h2>
-</div>
-
-<div class="news-grid">
-
-${normal.map(article=>`
-
-<article
-class="news-card"
-onclick="openArticle('${article.id}')">
-
-<div class="news-card-category">
-
-${escapeHTML(
-article.category||
-"MEFCO NEWS"
-)}
-
-</div>
-
-<h3>${escapeHTML(article.title)}</h3>
-
-<p>
-${escapeHTML(
-article.description||
-article.content||
-""
-)}
-</p>
-
-<div class="news-meta">
-
-${formatNewsDate(article.created_at)}
-
-${
-article.author
-?" · "+escapeHTML(article.author)
-:""
-}
-
-</div>
-
-</article>
-
-`).join("")}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-container.innerHTML=html;
+  }
 
 }
 
 
 /* =========================================================
-   ARTICLE
-========================================================= */
-
-async function openArticle(id){
-
-selectedArticleId=id;
-
-showPage("article-page");
-
-const container=
-document.getElementById("articleContainer");
-
-container.innerHTML=
-`<div class="empty">Loading article...</div>`;
-
-try{
-
-const data=await supabaseFetch(
-NEWS_URL+
-"?id=eq."+
-encodeURIComponent(id)+
-"&select=*"
-);
-
-const article=
-Array.isArray(data)?data[0]:null;
-
-if(!article)
-throw new Error("Article not found.");
-
-renderArticle(article);
-
-}catch(error){
-
-container.innerHTML=
-`<div class="empty">
-Could not load this article.<br><br>
-<small>${escapeHTML(error.message)}</small>
-</div>`;
-
-}
-
-}
-
-
-function renderArticle(article){
-
-const container=
-document.getElementById("articleContainer");
-
-container.innerHTML=`
-
-<article class="article">
-
-<div class="article-category">
-
-${escapeHTML(
-article.category||
-"MEFCO NEWS"
-)}
-
-</div>
-
-<h1>
-${escapeHTML(
-article.title||
-"Untitled Article"
-)}
-</h1>
-
-<div class="article-info">
-
-${formatNewsDate(article.created_at)}
-
-${
-article.author
-?" · By "+escapeHTML(article.author)
-:""
-}
-
-</div>
-
-${
-article.description
-?
-`<div class="article-description">
-${escapeHTML(article.description)}
-</div>`
-:""
-}
-
-<div class="article-content">
-
-${escapeHTML(
-article.content||
-article.description||
-"No article content available."
-)}
-
-</div>
-
-</article>
-
-`;
-
-}
-
-
-/* =========================================================
-   SAFE TEXT
+   UTILITIES
 ========================================================= */
 
 function escapeHTML(value){
 
-if(value===null||value===undefined)
-return "";
-
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+  return String(value??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
-
-/* =========================================================
-   DATES
-========================================================= */
 
 function todayISO(){
 
-const d=new Date();
+  const d=new Date();
 
-return `${d.getFullYear()}-${
-String(d.getMonth()+1).padStart(2,"0")
-}-${
-String(d.getDate()).padStart(2,"0")
-}`;
+  const y=d.getFullYear();
+
+  const m=String(d.getMonth()+1).padStart(2,"0");
+
+  const day=String(d.getDate()).padStart(2,"0");
+
+  return `${y}-${m}-${day}`;
 
 }
 
 
-function formatDate(d){
+function formatMatchTime(value){
 
-if(!d)return "";
+  if(!value)return "";
 
-const date=new Date(d+"T00:00:00");
+  const text=String(value);
 
-const today=
-new Date(todayISO()+"T00:00:00");
+  if(/^\d{2}:\d{2}(:\d{2})?$/.test(text)){
+    return text.slice(0,5);
+  }
 
-const diff=
-Math.round(
-(date-today)/86400000
-);
+  const date=new Date(value);
 
-if(diff===0)return "Today";
-if(diff===-1)return "Yesterday";
+  if(!Number.isNaN(date.getTime())){
 
-return date.toLocaleDateString(
-undefined,
-{
-weekday:"long",
-day:"numeric",
-month:"long"
-}
-);
+    return date.toLocaleTimeString([],{
+      hour:"2-digit",
+      minute:"2-digit",
+      hour12:false
+    });
+
+  }
+
+  return text;
 
 }
 
 
 function formatNewsDate(value){
 
-if(!value)return "";
+  if(!value)return "";
 
-const date=new Date(value);
+  const d=new Date(value);
 
-if(Number.isNaN(date.getTime()))
-return "";
+  if(Number.isNaN(d.getTime()))return value;
 
-return date.toLocaleDateString(
-undefined,
-{
-day:"numeric",
-month:"long",
-year:"numeric"
+  return d.toLocaleDateString(undefined,{
+    year:"numeric",
+    month:"long",
+    day:"numeric"
+  });
+
 }
-);
+
+
+function formatLongDate(value){
+
+  if(!value)return "";
+
+  const d=new Date(value+"T00:00:00");
+
+  if(Number.isNaN(d.getTime()))return value;
+
+  return d.toLocaleDateString(undefined,{
+    weekday:"long",
+    month:"long",
+    day:"numeric",
+    year:"numeric"
+  });
+
+}
+
+
+function formatDateLabel(value){
+
+  if(value===todayISO())return "Today";
+
+  const d=new Date(value+"T00:00:00");
+
+  const yesterday=new Date();
+
+  yesterday.setDate(yesterday.getDate()-1);
+
+  const y=yesterday.toISOString().slice(0,10);
+
+  if(value===y)return "Yesterday";
+
+  return d.toLocaleDateString(undefined,{
+    weekday:"long",
+    month:"short",
+    day:"numeric"
+  });
+
+}
+
+
+function matchDate(m){
+
+  return m.match_date || m.date || "";
+
+}
+
+
+function matchTime(m){
+
+  return m.match_time || m.time || "";
+
+}
+
+
+function isLive(m){
+
+  return String(m.status||"").toLowerCase()==="live";
+
+}
+
+
+function isFinished(m){
+
+  return String(m.status||"").toLowerCase()==="finished";
+
+}
+
+
+function matchLabel(m){
+
+  if(isLive(m)){
+
+    return `● ${m.minute||0}'${m.stoppage?"+":""}${m.stoppage||""}`;
+
+  }
+
+  if(String(m.status).toLowerCase()==="halftime"){
+    return "● HT";
+  }
+
+  if(isFinished(m)){
+    return "FT";
+  }
+
+  return formatMatchTime(matchTime(m));
+
+}
+
+
+function sortMatches(a,b){
+
+  return String(matchTime(a)).localeCompare(
+    String(matchTime(b))
+  );
+
+}
+
+
+function scoreOf(m){
+
+  const home=m.score_home??m.home_score??0;
+  const away=m.score_away??m.away_score??0;
+
+  return `${home} - ${away}`;
 
 }
 
@@ -1772,61 +1761,72 @@ year:"numeric"
 
 function showPage(id,button=null){
 
-document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".page")
+    .forEach(page=>page.classList.remove("active"));
 
-const page=document.getElementById(id);
+  const page=document.getElementById(id);
 
-if(page)
-page.classList.add("active");
+  if(page)page.classList.add("active");
 
-document.querySelectorAll("nav button")
-.forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("nav button")
+    .forEach(b=>b.classList.remove("active"));
 
-if(button)
-button.classList.add("active");
+  if(button)button.classList.add("active");
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-if(id==="home")
-renderHome();
+  if(id==="home")renderHome();
 
-if(id==="scores")
-renderScores();
+  if(id==="scores")renderScores();
 
-if(id==="news")
-loadNews();
+  if(id==="news")loadNews();
 
-if(id==="stats")
-renderStats();
+  if(id==="competitions")renderCompetitions();
 
-if(id==="admin")
-renderAdmin();
+  if(id==="stats")renderStats();
+
+  if(id==="admin")renderAdmin();
 
 }
 
 
-function backToNews(){
+/* =========================================================
+   SCORE DATE NAVIGATION
+========================================================= */
 
-showPage(
-"news",
-document.querySelectorAll("nav button")[2]
-);
+function changeScoreDate(days){
 
-loadNews();
+  const date=new Date(
+    scoreDate+"T00:00:00"
+  );
+
+  date.setDate(date.getDate()+days);
+
+  const y=date.getFullYear();
+
+  const m=String(
+    date.getMonth()+1
+  ).padStart(2,"0");
+
+  const d=String(
+    date.getDate()
+  ).padStart(2,"0");
+
+  scoreDate=`${y}-${m}-${d}`;
+
+  renderScores();
 
 }
 
 
-function backToScores(){
+function goToToday(){
 
-showPage(
-"scores",
-document.querySelectorAll("nav button")[1]
-);
+  scoreDate=todayISO();
+
+  renderScores();
 
 }
 
@@ -1835,919 +1835,1709 @@ document.querySelectorAll("nav button")[1]
    MATCH CARD
 ========================================================= */
 
-function matchLabel(m){
-
-if(m.status==="live")
-return `<span class="live">
-● ${m.minute||0}'${m.stoppage?"+"+m.stoppage:""}
-</span>`;
-
-if(m.status==="halftime")
-return `<span class="live">● HT</span>`;
-
-if(m.status==="finished")
-return `<span>FT</span>`;
-
-return `<span>
-${m.match_time||m.time||""}
-</span>`;
-
-}
-
-
 function cardHTML(m){
 
-const score=
-m.status==="scheduled"
-?
-(m.match_time||m.time||"")
-:
-`${m.score_home??m.scoreHome??0} -
-${m.score_away??m.scoreAway??0}`;
+  const favorite=m.favorite===true;
 
-return `
+  const home=escapeHTML(m.home||"Home");
 
-<div
-class="match-card"
-onclick="openMatch('${m.id}')">
+  const away=escapeHTML(m.away||"Away");
 
-<div class="match-date">
+  const competition=
+    escapeHTML(m.competition||"MEFCO");
 
-${formatDate(
-m.match_date||m.date
-)}
+  const homeFlag=
+    m.home_flag
+      ? `<img class="flag" src="${escapeHTML(m.home_flag)}">`
+      : "";
 
- ·
+  const awayFlag=
+    m.away_flag
+      ? `<img class="flag" src="${escapeHTML(m.away_flag)}">`
+      : "";
 
-${escapeHTML(
-m.competition||
-"MEFCO Match"
-)}
+  const scheduled=
+    !isLive(m)&&!isFinished(m)&&
+    String(m.status||"").toLowerCase()!=="halftime";
 
-</div>
+  return `
 
-<div class="match-top">
+    <div class="match-card"
+         onclick="openMatch('${escapeHTML(m.id)}')">
 
-<span>
-${escapeHTML(m.home)}
-vs
-${escapeHTML(m.away)}
-</span>
+      <div class="match-top">
 
-${matchLabel(m)}
+        <span>
+          ${competition}
+        </span>
 
-</div>
+        <button
+          class="favorite-star ${favorite?"active":""}"
+          onclick="event.stopPropagation();toggleFavorite('${escapeHTML(m.id)}')">
+          ${favorite?"★":"☆"}
+        </button>
 
-<div class="match-teams">
+      </div>
 
-<div class="team">
+      <div class="match-main">
 
-${m.home_flag||m.homeFlag||"⚽"}
+        <div class="team">
 
-${escapeHTML(m.home)}
+          ${homeFlag}
 
-</div>
+          <span class="team-name">
+            ${home}
+          </span>
 
-<div class="match-score">
-${score}
-</div>
+        </div>
 
-<div class="team right">
+        <div class="match-result">
 
-${escapeHTML(m.away)}
+          ${
+            scheduled
+              ? escapeHTML(formatMatchTime(matchTime(m)))
+              : escapeHTML(scoreOf(m))
+          }
 
-${m.away_flag||m.awayFlag||"⚽"}
+          <div class="match-status ${isLive(m)?"live":""}">
+            ${escapeHTML(matchLabel(m))}
+          </div>
 
-</div>
+        </div>
 
-</div>
+        <div class="team away">
 
-</div>
+          <span class="team-name">
+            ${away}
+          </span>
 
-`;
+          ${awayFlag}
 
-}
+        </div>
 
+      </div>
 
-function sortMatches(a,b){
+    </div>
 
-return (
-a.match_time||
-a.time||
-""
-).localeCompare(
-b.match_time||
-b.time||
-""
-);
+  `;
 
 }
 
 
 /* =========================================================
-   HOME / SCORES
+   HOME
 ========================================================= */
 
 function renderHome(){
 
-const list=matches
-.filter(
-m=>
-(m.match_date||m.date)===
-todayISO()
-)
-.sort(sortMatches);
+  const container=
+    document.getElementById("homeMatches");
 
-document.getElementById("homeMatches").innerHTML=
+  if(!container)return;
 
-list.length
-?
-list.map(cardHTML).join("")
-:
-`<div class="empty">
-No matches listed for today.
-</div>`;
+  const today=
+    matches
+      .filter(m=>matchDate(m)===todayISO())
+      .sort(sortMatches);
+
+  if(!today.length){
+
+    container.innerHTML=
+      `<div class="empty">No matches today.</div>`;
+
+  }else{
+
+    container.innerHTML=
+      today.slice(0,6)
+        .map(cardHTML)
+        .join("");
+
+  }
+
+  renderLiveTicker();
 
 }
 
 
+function renderLiveTicker(){
+
+  const box=
+    document.getElementById("liveTicker");
+
+  if(!box)return;
+
+  const live=matches.filter(isLive);
+
+  if(!live.length){
+
+    box.innerHTML="";
+
+    return;
+
+  }
+
+  box.innerHTML=`
+
+    <div class="live-ticker">
+
+      <div class="live-ticker-title">
+        ● LIVE NOW
+      </div>
+
+      <div class="live-ticker-list">
+
+        ${live.map(m=>`
+
+          <div
+            class="live-chip"
+            onclick="openMatch('${escapeHTML(m.id)}')">
+
+            ${escapeHTML(m.home)}
+            ${escapeHTML(scoreOf(m))}
+            ${escapeHTML(m.away)}
+            · ${escapeHTML(matchLabel(m))}
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function renderHomeNews(){
+
+  const box=
+    document.getElementById("homeNews");
+
+  if(!box)return;
+
+  const latest=news.slice(0,3);
+
+  if(!latest.length){
+
+    box.innerHTML=
+      `<div class="empty">No news available.</div>`;
+
+    return;
+
+  }
+
+  box.innerHTML=latest.map(article=>`
+
+    <div class="feature-card"
+         onclick="openArticle('${escapeHTML(article.id)}')">
+
+      <div class="tag">
+        ${escapeHTML(article.category||"MEFCO News")}
+      </div>
+
+      <h2>
+        ${escapeHTML(article.title||"Untitled")}
+      </h2>
+
+      <p>
+        ${escapeHTML(article.excerpt||article.summary||"")}
+      </p>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* =========================================================
+   SCORES
+========================================================= */
+
 function setScoreFilter(filter,button){
 
-scoreFilter=filter;
+  scoreFilter=filter;
 
-document.querySelectorAll(".filter")
-.forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".filter")
+    .forEach(b=>b.classList.remove("active"));
 
-button.classList.add("active");
+  if(button)button.classList.add("active");
 
-renderScores();
+  renderScores();
 
 }
 
 
 function renderScores(){
 
-document.getElementById("scoresDate")
-.textContent=formatDate(todayISO());
+  const list=
+    document.getElementById("scoreList");
 
-let list=matches.filter(
-m=>
-(m.match_date||m.date)===
-todayISO()
-);
+  const dateText=
+    document.getElementById("scoresDate");
 
-if(scoreFilter==="favorites")
-list=list.filter(m=>m.favorite);
+  if(!list)return;
 
-if(scoreFilter==="live")
-list=list.filter(
-m=>
-m.status==="live"||
-m.status==="halftime"
-);
+  if(dateText){
+    dateText.textContent=
+      formatLongDate(scoreDate);
+  }
 
-list.sort(sortMatches);
+  let filtered=
+    matches
+      .filter(m=>matchDate(m)===scoreDate);
 
-document.getElementById("scoreList").innerHTML=
+  if(scoreFilter==="favorites"){
 
-list.length
-?
-list.map(cardHTML).join("")
-:
-`<div class="empty">
-No matches listed for today.
-</div>`;
+    filtered=
+      filtered.filter(m=>m.favorite===true);
+
+  }
+
+  if(scoreFilter==="live"){
+
+    filtered=
+      filtered.filter(isLive);
+
+  }
+
+  filtered.sort(sortMatches);
+
+  if(!filtered.length){
+
+    list.innerHTML=`
+
+      <div class="empty">
+
+        No matches on this date.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  list.innerHTML=
+    filtered.map(cardHTML).join("");
 
 }
 
 
 /* =========================================================
-   MATCH CENTRE
+   MATCH
 ========================================================= */
 
 function openMatch(id){
 
-selectedMatchId=id;
+  selectedMatchId=id;
 
-renderMatch();
+  showPage("match-page");
 
-showPage("match-page");
+  renderMatch();
 
 }
 
 
 function renderMatch(){
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+  const box=
+    document.getElementById("matchCentre");
 
-if(!m)return;
+  if(!box)return;
 
-const scoreHome=
-m.score_home??m.scoreHome??0;
+  const m=
+    matches.find(x=>String(x.id)===String(selectedMatchId));
 
-const scoreAway=
-m.score_away??m.scoreAway??0;
+  if(!m){
 
-const events=
-Array.isArray(m.events)
-?
-m.events
-.slice()
-.sort(
-(a,b)=>
-Number(b.minute||0)-
-Number(a.minute||0)
-)
-:
-[];
+    box.innerHTML=
+      `<div class="empty">Match not found.</div>`;
 
-document.getElementById("matchCentre").innerHTML=`
+    return;
 
-<div class="match-header">
+  }
 
-<div class="competition">
+  const events=
+    Array.isArray(m.events)
+      ? m.events
+      : [];
 
-${escapeHTML(
-m.competition||"MEFCO"
-).toUpperCase()}
+  box.innerHTML=`
 
-</div>
+    <div class="match-centre">
 
-<div class="match-header-teams">
+      <div class="mc-header">
 
-<div class="big-team">
+        <div class="mc-competition">
+          ${escapeHTML(m.competition||"MEFCO")}
+        </div>
 
-${m.home_flag||m.homeFlag||"⚽"}
+        <div class="mc-teams">
 
-<br>
+          <div class="mc-team">
+            ${escapeHTML(m.home||"Home")}
+          </div>
 
-${escapeHTML(m.home)}
+          <div>
 
-</div>
+            <div class="mc-score">
+              ${escapeHTML(scoreOf(m))}
+            </div>
 
-<div>
+            <div class="mc-status ${isLive(m)?"live":""}">
+              ${escapeHTML(matchLabel(m))}
+            </div>
 
-<div class="big-score">
+          </div>
 
-${
-m.status==="scheduled"
-?
-(m.match_time||m.time||"")
-:
-`${scoreHome} - ${scoreAway}`
-}
+          <div class="mc-team">
+            ${escapeHTML(m.away||"Away")}
+          </div>
 
-</div>
+        </div>
 
-<div class="match-status">
-${statusText(m)}
-</div>
+      </div>
 
-</div>
+      <div class="mc-body">
 
-<div class="big-team">
+        <div class="mc-section">
 
-${m.away_flag||m.awayFlag||"⚽"}
+          <h3>Match Information</h3>
 
-<br>
+          <div class="stat-grid">
 
-${escapeHTML(m.away)}
+            <div class="stat-box">
+              <strong>
+                ${escapeHTML(formatMatchTime(matchTime(m)))}
+              </strong>
+              <span>Kickoff</span>
+            </div>
 
-</div>
+            <div class="stat-box">
+              <strong>
+                ${escapeHTML(matchDate(m))}
+              </strong>
+              <span>Date</span>
+            </div>
 
-</div>
+            <div class="stat-box">
+              <strong>
+                ${escapeHTML(m.minute??"—")}
+              </strong>
+              <span>Minute</span>
+            </div>
 
-</div>
+            <div class="stat-box">
+              <strong>
+                ${escapeHTML(String(events.length))}
+              </strong>
+              <span>Events</span>
+            </div>
 
+          </div>
 
-<div class="match-grid">
-
-<div class="section">
-
-<div class="section-header">
-
-<h2>Commentary</h2>
-
-<span>
-${
-m.status==="live"
-?"● LIVE":
-m.status==="halftime"
-?"● HALF-TIME":
-m.status==="finished"
-?"FULL TIME":
-"NOT STARTED"
-}
-</span>
-
-</div>
-
-<div class="commentary">
-
-${
-events.length
-?
-events.map(eventHTML).join("")
-:
-`<div class="empty">
-No events have been published.
-</div>`
-}
-
-</div>
-
-</div>
+        </div>
 
 
-<div>
+        <div class="mc-section">
 
-<div class="section">
+          <h3>Match Timeline</h3>
 
-<h2>Match Stats</h2>
+          <div class="timeline">
 
-<br>
+            ${
+              events.length
+              ? events.map(eventHTML).join("")
+              : `<div class="empty">No events recorded.</div>`
+            }
 
-${statsHTML(m)}
+          </div>
 
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
+        </div>
 
 
-function statusText(m){
+        <div class="mc-section">
 
-if(m.status==="live")
-return `${m.minute||0}' LIVE`;
+          <h3>Match Statistics</h3>
 
-if(m.status==="halftime")
-return "HALF-TIME";
+          ${renderMatchStats(m)}
 
-if(m.status==="finished")
-return "FULL TIME";
+        </div>
 
-return formatDate(
-m.match_date||m.date
-)+
-" · "+
-(m.match_time||m.time||"");
+      </div>
+
+    </div>
+
+  `;
 
 }
 
 
 function eventHTML(e){
 
-return `
+  return `
 
-<div class="commentary-event">
+    <div class="timeline-event">
 
-<div class="minute">
-${e.minute||0}'
-</div>
+      <b>
+        ${escapeHTML(e.minute??"")}
+        ${e.stoppage?"+":""}
+        ${escapeHTML(e.stoppage??"")}'
+      </b>
 
-<div>
+      &nbsp;
 
-<div>
-${escapeHTML(
-e.description||
-e.type||
-"Event"
-)}
-</div>
+      ${escapeHTML(e.type||e.event_type||"Event")}
 
-<div class="event-type">
+      ${e.player
+        ? " · "+escapeHTML(e.player)
+        : ""}
 
-${escapeHTML(e.type||"")}
+      ${e.detail
+        ? " · "+escapeHTML(e.detail)
+        : ""}
 
-${
-e.player
-?" · "+escapeHTML(e.player)
-:""
-}
+    </div>
 
-${
-e.assist
-?" · "+escapeHTML(e.assist)
-:""
-}
-
-</div>
-
-</div>
-
-</div>
-
-`;
+  `;
 
 }
 
 
-function statsHTML(m){
+function renderMatchStats(m){
 
-const s=m.stats||{};
+  const stats=m.stats;
 
-return `
+  if(!stats){
 
-<div class="stat-grid">
+    return `
+      <div class="empty">
+        Match statistics have not been entered yet.
+      </div>
+    `;
 
-<div class="stat-row">
-<span>Possession</span>
-<strong>
-${s.possessionHome??50} —
-${s.possessionAway??50}
-</strong>
-</div>
+  }
 
-<div class="stat-row">
-<span>Shots</span>
-<strong>
-${s.shotsHome??0} —
-${s.shotsAway??0}
-</strong>
-</div>
+  let rows=[];
 
-<div class="stat-row">
-<span>Shots on target</span>
-<strong>
-${s.targetHome??0} —
-${s.targetAway??0}
-</strong>
-</div>
+  if(typeof stats==="object"){
 
-<div class="stat-row">
-<span>Corners</span>
-<strong>
-${s.cornersHome??0} —
-${s.cornersAway??0}
-</strong>
-</div>
+    Object.entries(stats).forEach(([key,value])=>{
 
-</div>
+      if(typeof value==="object"&&value!==null){
 
-`;
+        rows.push(`
+
+          <div class="stat-box">
+
+            <strong>
+              ${escapeHTML(value.home??"—")}
+              -
+              ${escapeHTML(value.away??"—")}
+            </strong>
+
+            <span>
+              ${escapeHTML(key)}
+            </span>
+
+          </div>
+
+        `);
+
+      }
+
+    });
+
+  }
+
+  return rows.length
+    ? `<div class="stat-grid">${rows.join("")}</div>`
+    : `<div class="empty">No statistics recorded.</div>`;
 
 }
 
 
 /* =========================================================
-   FUNCTIONAL STATS
+   FAVORITES
 ========================================================= */
 
-function populateStatsFilters(){
+async function toggleFavorite(id){
 
-const competition=
-document.getElementById("statsCompetition");
+  const match=
+    matches.find(m=>String(m.id)===String(id));
 
-const team=
-document.getElementById("statsTeam");
+  if(!match)return;
 
-if(!competition||!team)return;
+  const value=!Boolean(match.favorite);
 
-const currentCompetition=competition.value;
-const currentTeam=team.value;
+  try{
 
-const competitions=
-[...new Set(
-matches
-.map(m=>m.competition)
-.filter(Boolean)
-)]
-.sort();
+    await updateMatch(id,{
+      favorite:value
+    });
 
-const teams=
-[...new Set(
-matches.flatMap(
-m=>[m.home,m.away]
-).filter(Boolean)
-)]
-.sort();
+    match.favorite=value;
 
-competition.innerHTML=
-`<option value="all">
-All competitions
-</option>`+
-competitions.map(c=>
-`<option value="${escapeHTML(c)}">
-${escapeHTML(c)}
-</option>`
-).join("");
+    renderAll();
 
-team.innerHTML=
-`<option value="all">
-All teams
-</option>`+
-teams.map(t=>
-`<option value="${escapeHTML(t)}">
-${escapeHTML(t)}
-</option>`
-).join("");
+  }catch(error){
 
-if(
-competitions.includes(currentCompetition)
-)
-competition.value=currentCompetition;
+    console.error(error);
 
-if(
-teams.includes(currentTeam)
-)
-team.value=currentTeam;
+  }
 
 }
 
 
-function getFilteredStatsMatches(){
+/* =========================================================
+   NEWS
+========================================================= */
 
-const competition=
-document.getElementById("statsCompetition")?.value||
-"all";
+function renderNews(){
 
-const team=
-document.getElementById("statsTeam")?.value||
-"all";
+  const box=
+    document.getElementById("newsContainer");
 
-return matches.filter(m=>{
+  if(!box)return;
 
-if(
-competition!=="all" &&
-m.competition!==competition
-)
-return false;
+  if(!news.length){
 
-if(
-team!=="all" &&
-m.home!==team &&
-m.away!==team
-)
-return false;
+    box.innerHTML=
+      `<div class="empty">No MEFCO News available.</div>`;
 
-return true;
+    return;
 
-});
+  }
+
+  const featured=
+    news.find(a=>a.featured) || news[0];
+
+  const latest=
+    news.filter(a=>String(a.id)!==String(featured.id));
+
+  box.innerHTML=`
+
+    <div class="featured-news"
+         onclick="openArticle('${escapeHTML(featured.id)}')">
+
+      <div class="tag">
+        ${escapeHTML(featured.category||"MEFCO News")}
+      </div>
+
+      <h2>
+        ${escapeHTML(featured.title||"Untitled")}
+      </h2>
+
+      <p>
+        ${escapeHTML(
+          featured.excerpt||
+          featured.summary||
+          featured.body||
+          ""
+        )}
+      </p>
+
+      <div class="news-date">
+        ${escapeHTML(formatNewsDate(featured.created_at))}
+      </div>
+
+    </div>
+
+    <div class="news-grid">
+
+      ${latest.map(article=>`
+
+        <div class="news-card"
+             onclick="openArticle('${escapeHTML(article.id)}')">
+
+          <div class="tag">
+            ${escapeHTML(article.category||"MEFCO")}
+          </div>
+
+          <h3>
+            ${escapeHTML(article.title||"Untitled")}
+          </h3>
+
+          <p>
+            ${escapeHTML(
+              article.excerpt||
+              article.summary||
+              ""
+            )}
+          </p>
+
+          <div class="news-date">
+            ${escapeHTML(formatNewsDate(article.created_at))}
+          </div>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+async function openArticle(id){
+
+  selectedArticleId=id;
+
+  showPage("article-page");
+
+  const box=
+    document.getElementById("articleContainer");
+
+  box.innerHTML=
+    `<div class="empty">Loading article...</div>`;
+
+  try{
+
+    const data=
+      await supabaseFetch(
+        NEWS_URL+
+        "?id=eq."+
+        encodeURIComponent(id)+
+        "&select=*"
+      );
+
+    const article=
+      Array.isArray(data)
+        ? data[0]
+        : null;
+
+    if(!article){
+
+      box.innerHTML=
+        `<div class="empty">Article not found.</div>`;
+
+      return;
+
+    }
+
+    renderArticle(article);
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML=
+      `<div class="empty">Could not load article.</div>`;
+
+  }
+
+}
+
+
+function renderArticle(article){
+
+  const box=
+    document.getElementById("articleContainer");
+
+  box.innerHTML=`
+
+    <article class="article">
+
+      <div class="article-meta">
+        ${escapeHTML(article.category||"MEFCO NEWS")}
+      </div>
+
+      <h1>
+        ${escapeHTML(article.title||"Untitled")}
+      </h1>
+
+      <div class="article-date">
+        ${escapeHTML(formatNewsDate(article.created_at))}
+      </div>
+
+      <div class="article-body">
+        ${escapeHTML(
+          article.body||
+          article.content||
+          article.excerpt||
+          ""
+        )}
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+function backToNews(){
+
+  showPage("news");
+
+}
+
+
+/* =========================================================
+   COMPETITIONS
+========================================================= */
+
+function getCompetitions(){
+
+  const names=new Set();
+
+  matches.forEach(m=>{
+
+    if(m.competition){
+      names.add(m.competition);
+    }
+
+  });
+
+  const defaults=[
+    "MEFCO IPL",
+    "Global Cup",
+    "Continental Cup",
+    "Leagues Cup"
+  ];
+
+  defaults.forEach(x=>names.add(x));
+
+  return [...names];
+
+}
+
+
+function competitionIcon(name){
+
+  const n=name.toLowerCase();
+
+  if(n.includes("global"))return "🌐";
+
+  if(n.includes("continental"))return "🏆";
+
+  if(n.includes("league"))return "🏟";
+
+  if(n.includes("ipl"))return "⚽";
+
+  return "🏆";
+
+}
+
+
+function renderCompetitions(){
+
+  const box=
+    document.getElementById("competitionGrid");
+
+  if(!box)return;
+
+  const competitions=
+    getCompetitions();
+
+  box.innerHTML=
+    competitions.map(name=>`
+
+      <div class="competition-card"
+           onclick="openCompetition('${escapeHTML(name)}')">
+
+        <div class="competition-icon">
+          ${competitionIcon(name)}
+        </div>
+
+        <h3>
+          ${escapeHTML(name)}
+        </h3>
+
+        <p>
+          ${matches.filter(m=>m.competition===name).length}
+          recorded matches
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function openCompetition(name){
+
+  selectedCompetition=name;
+
+  showPage("competition-page");
+
+  renderCompetition();
+
+}
+
+
+function renderCompetition(){
+
+  const box=
+    document.getElementById("competitionContainer");
+
+  if(!box)return;
+
+  const games=
+    matches
+      .filter(m=>m.competition===selectedCompetition)
+      .sort((a,b)=>{
+
+        const d=
+          String(matchDate(a))
+          .localeCompare(String(matchDate(b)));
+
+        return d||sortMatches(a,b);
+
+      });
+
+  box.innerHTML=`
+
+    <div class="competition-header">
+
+      <h2>
+        ${escapeHTML(selectedCompetition)}
+      </h2>
+
+      <p>
+        Fixtures, results and competition data.
+      </p>
+
+    </div>
+
+    <div class="section">
+
+      <div class="section-head">
+        <h2>Fixtures & Results</h2>
+      </div>
+
+      <div class="match-list">
+
+        ${
+          games.length
+          ? games.map(cardHTML).join("")
+          : `<div class="empty">
+              No matches recorded yet.
+             </div>`
+        }
+
+      </div>
+
+    </div>
+
+    <div class="section">
+
+      <div class="section-head">
+        <h2>Competition Table</h2>
+      </div>
+
+      ${renderCompetitionTable(games)}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   TABLE GENERATOR
+========================================================= */
+
+function renderCompetitionTable(games){
+
+  const teams={};
+
+  games.forEach(m=>{
+
+    const home=m.home;
+    const away=m.away;
+
+    if(!home||!away)return;
+
+    if(!teams[home])teams[home]=blankTeam(home);
+
+    if(!teams[away])teams[away]=blankTeam(away);
+
+    const hs=Number(m.score_home);
+    const as=Number(m.score_away);
+
+    if(!isFinished(m))return;
+
+    teams[home].played++;
+    teams[away].played++;
+
+    teams[home].gf+=Number.isFinite(hs)?hs:0;
+    teams[home].ga+=Number.isFinite(as)?as:0;
+
+    teams[away].gf+=Number.isFinite(as)?as:0;
+    teams[away].ga+=Number.isFinite(hs)?hs:0;
+
+    if(hs>as){
+
+      teams[home].wins++;
+      teams[home].points+=3;
+
+      teams[away].losses++;
+
+    }else if(as>hs){
+
+      teams[away].wins++;
+      teams[away].points+=3;
+
+      teams[home].losses++;
+
+    }else{
+
+      teams[home].draws++;
+      teams[away].draws++;
+
+      teams[home].points++;
+      teams[away].points++;
+
+    }
+
+  });
+
+  const rows=
+    Object.values(teams)
+      .map(t=>{
+
+        t.gd=t.gf-t.ga;
+
+        return t;
+
+      })
+      .sort((a,b)=>
+        b.points-a.points||
+        b.gd-a.gd||
+        b.gf-a.gf
+      );
+
+  if(!rows.length){
+
+    return `
+      <div class="empty">
+        Not enough completed matches for a table.
+      </div>
+    `;
+
+  }
+
+  return `
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>#</th>
+            <th>Team</th>
+            <th>P</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GF</th>
+            <th>GA</th>
+            <th>GD</th>
+            <th>Pts</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${rows.map((t,i)=>`
+
+            <tr>
+
+              <td class="position">
+                ${i+1}
+              </td>
+
+              <td class="club-cell">
+                ${escapeHTML(t.name)}
+              </td>
+
+              <td>${t.played}</td>
+              <td>${t.wins}</td>
+              <td>${t.draws}</td>
+              <td>${t.losses}</td>
+              <td>${t.gf}</td>
+              <td>${t.ga}</td>
+              <td>${t.gd}</td>
+              <td><b>${t.points}</b></td>
+
+            </tr>
+
+          `).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+function blankTeam(name){
+
+  return {
+    name,
+    played:0,
+    wins:0,
+    draws:0,
+    losses:0,
+    gf:0,
+    ga:0,
+    points:0
+  };
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+function collectPlayerStats(){
+
+  const players={};
+
+  matches.forEach(m=>{
+
+    const events=
+      Array.isArray(m.events)
+        ? m.events
+        : [];
+
+    events.forEach(e=>{
+
+      const name=
+        e.player||
+        e.player_name;
+
+      if(!name)return;
+
+      if(!players[name]){
+
+        players[name]={
+          name,
+          team:e.team||"",
+          goals:0,
+          assists:0
+        };
+
+      }
+
+      const type=
+        String(
+          e.type||
+          e.event_type||
+          ""
+        ).toLowerCase();
+
+      if(type.includes("goal")){
+        players[name].goals++;
+      }
+
+      if(type.includes("assist")){
+        players[name].assists++;
+      }
+
+    });
+
+  });
+
+  return Object.values(players)
+    .sort((a,b)=>
+      b.goals-a.goals||
+      b.assists-a.assists
+    );
 
 }
 
 
 function renderStats(){
 
-const list=getFilteredStatsMatches();
+  const players=
+    collectPlayerStats();
 
-const scorers={};
-const assists={};
+  const highlights=
+    document.getElementById("statsHighlights");
 
-list.forEach(m=>{
+  const body=
+    document.getElementById("statsTableBody");
 
-const events=
-Array.isArray(m.events)
-?m.events
-:[];
+  const records=
+    document.getElementById("recordsGrid");
 
-events.forEach(e=>{
+  if(!highlights)return;
 
-if(e.type!=="Goal")
-return;
+  const totalGoals=
+    players.reduce(
+      (sum,p)=>sum+p.goals,
+      0
+    );
 
-if(e.player){
+  const totalAssists=
+    players.reduce(
+      (sum,p)=>sum+p.assists,
+      0
+    );
 
-const key=
-e.player+"|||"+(e.team||"");
+  const matchesPlayed=
+    matches.filter(isFinished).length;
 
-if(!scorers[key])
-scorers[key]={
-player:e.player,
-team:e.team||"—",
-goals:0
-};
+  highlights.innerHTML=`
 
-scorers[key].goals++;
+    <div class="stat-highlight">
+      <strong>${matchesPlayed}</strong>
+      <span>Completed Matches</span>
+    </div>
 
-}
+    <div class="stat-highlight">
+      <strong>${totalGoals}</strong>
+      <span>Recorded Goals</span>
+    </div>
 
-if(e.assist){
+    <div class="stat-highlight">
+      <strong>${totalAssists}</strong>
+      <span>Recorded Assists</span>
+    </div>
 
-const key=
-e.assist+"|||"+(e.team||"");
+  `;
 
-if(!assists[key])
-assists[key]={
-player:e.assist,
-team:e.team||"—",
-assists:0
-};
+  if(!players.length){
 
-assists[key].assists++;
+    body.innerHTML=`
 
-}
+      <tr>
+        <td colspan="5">
+          Stats will be added as MEFCO data is entered.
+        </td>
+      </tr>
 
-});
+    `;
 
-});
+  }else{
 
+    body.innerHTML=
+      players.slice(0,20)
+        .map((p,i)=>`
 
-const topScorers=
-Object.values(scorers)
-.sort((a,b)=>b.goals-a.goals);
+          <tr>
 
-const topAssists=
-Object.values(assists)
-.sort((a,b)=>b.assists-a.assists);
+            <td>${i+1}</td>
 
+            <td>
+              <b>${escapeHTML(p.name)}</b>
+            </td>
 
-document.getElementById("topScorersBody").innerHTML=
+            <td>
+              ${escapeHTML(p.team||"—")}
+            </td>
 
-topScorers.length
-?
-topScorers
-.map((p,i)=>`
+            <td>${p.goals}</td>
 
-<tr>
-<td class="rank">${i+1}</td>
-<td>${escapeHTML(p.player)}</td>
-<td>${escapeHTML(p.team)}</td>
-<td class="stat-number">${p.goals}</td>
-</tr>
+            <td>${p.assists}</td>
 
-`)
-.join("")
-:
-`<tr>
-<td colspan="4">
-No goal data available.
-</td>
-</tr>`;
+          </tr>
 
+        `)
+        .join("");
 
-document.getElementById("topAssistsBody").innerHTML=
+  }
 
-topAssists.length
-?
-topAssists
-.map((p,i)=>`
-
-<tr>
-<td class="rank">${i+1}</td>
-<td>${escapeHTML(p.player)}</td>
-<td>${escapeHTML(p.team)}</td>
-<td class="stat-number">${p.assists}</td>
-</tr>
-
-`)
-.join("")
-:
-`<tr>
-<td colspan="4">
-No assist data available.
-</td>
-</tr>`;
-
-
-const topScorer=
-topScorers[0];
-
-const topAssist=
-topAssists[0];
-
-
-document.getElementById("statTopScorer")
-.textContent=
-topScorer
-?
-`${topScorer.player} — ${topScorer.goals}`
-:"—";
-
-
-document.getElementById("statTopAssist")
-.textContent=
-topAssist
-?
-`${topAssist.player} — ${topAssist.assists}`
-:"—";
-
-
-let biggest=null;
-
-list.forEach(m=>{
-
-const home=
-Number(m.score_home??m.scoreHome??0);
-
-const away=
-Number(m.score_away??m.scoreAway??0);
-
-const total=home+away;
-
-if(!biggest||total>biggest.total)
-biggest={
-match:m,
-home,
-away,
-total
-};
-
-});
-
-
-document.getElementById("statMostGoals")
-.textContent=
-biggest
-?
-`${biggest.total} — ${biggest.match.home} vs ${biggest.match.away}`
-:"—";
-
-
-renderMatchRecords(list);
-renderTeamStats(list);
+  renderRecords(players,records);
 
 }
 
 
-function renderMatchRecords(list){
+function renderRecords(players,box){
 
-const container=
-document.getElementById("matchRecords");
+  if(!box)return;
 
-if(!list.length){
+  const topScorer=
+    players[0];
 
-container.innerHTML=
-`<div class="empty">
-No match records available.
-</div>`;
+  let highestScoreMatch=null;
+  let biggestWin=null;
 
-return;
+  matches
+    .filter(isFinished)
+    .forEach(m=>{
+
+      const hs=Number(m.score_home)||0;
+      const as=Number(m.score_away)||0;
+
+      const total=hs+as;
+
+      if(
+        !highestScoreMatch||
+        total>
+        (
+          Number(highestScoreMatch.score_home)||0
+        )+
+        (
+          Number(highestScoreMatch.score_away)||0
+        )
+      ){
+
+        highestScoreMatch=m;
+
+      }
+
+      const diff=Math.abs(hs-as);
+
+      if(
+        !biggestWin||
+        diff>
+        Math.abs(
+          (Number(biggestWin.score_home)||0)-
+          (Number(biggestWin.score_away)||0)
+        )
+      ){
+
+        biggestWin=m;
+
+      }
+
+    });
+
+  const records=[];
+
+  if(topScorer){
+
+    records.push({
+
+      label:"Top Scorer",
+      title:topScorer.name,
+      text:`${topScorer.goals} recorded goals`
+
+    });
+
+  }
+
+  if(highestScoreMatch){
+
+    records.push({
+
+      label:"Highest Scoring Match",
+      title:
+        `${highestScoreMatch.home} ${scoreOf(highestScoreMatch)} ${highestScoreMatch.away}`,
+      text:
+        `${(
+          Number(highestScoreMatch.score_home)||0
+        )+
+        (
+          Number(highestScoreMatch.score_away)||0
+        )} total goals`
+
+    });
+
+  }
+
+  if(biggestWin){
+
+    records.push({
+
+      label:"Biggest Recorded Win",
+      title:
+        `${biggestWin.home} ${scoreOf(biggestWin)} ${biggestWin.away}`,
+      text:"Largest goal difference currently recorded"
+
+    });
+
+  }
+
+  box.innerHTML=
+    records.length
+    ? records.map(r=>`
+
+      <div class="record-card">
+
+        <small>${escapeHTML(r.label)}</small>
+
+        <h3>
+          ${escapeHTML(r.title)}
+        </h3>
+
+        <p>
+          ${escapeHTML(r.text)}
+        </p>
+
+      </div>
+
+    `).join("")
+    : `<div class="empty">Records will appear as data is added.</div>`;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function performSearch(){
+
+  const input=
+    document.getElementById("searchInput");
+
+  const box=
+    document.getElementById("searchResults");
+
+  if(!input||!box)return;
+
+  const query=
+    input.value.trim().toLowerCase();
+
+  if(!query){
+
+    box.innerHTML=
+      `<div class="empty">Start typing to search MEFCO.</div>`;
+
+    return;
+
+  }
+
+  const results=[];
+
+  /* Teams */
+
+  const teamNames=new Set();
+
+  matches.forEach(m=>{
+
+    if(m.home)teamNames.add(m.home);
+
+    if(m.away)teamNames.add(m.away);
+
+  });
+
+  teamNames.forEach(team=>{
+
+    if(team.toLowerCase().includes(query)){
+
+      results.push({
+
+        type:"Team",
+        title:team,
+        action:()=>openTeam(team)
+
+      });
+
+    }
+
+  });
+
+
+  /* Competitions */
+
+  getCompetitions().forEach(comp=>{
+
+    if(comp.toLowerCase().includes(query)){
+
+      results.push({
+
+        type:"Competition",
+        title:comp,
+        action:()=>openCompetition(comp)
+
+      });
+
+    }
+
+  });
+
+
+  /* Matches */
+
+  matches.forEach(m=>{
+
+    const text=
+      `${m.home} ${m.away} ${m.competition}`
+      .toLowerCase();
+
+    if(text.includes(query)){
+
+      results.push({
+
+        type:"Match",
+        title:
+          `${m.home} ${scoreOf(m)} ${m.away}`,
+        action:()=>openMatch(m.id)
+
+      });
+
+    }
+
+  });
+
+
+  /* News */
+
+  news.forEach(article=>{
+
+    const text=
+      `${article.title} ${article.category} ${article.excerpt}`
+      .toLowerCase();
+
+    if(text.includes(query)){
+
+      results.push({
+
+        type:"News",
+        title:article.title,
+        action:()=>openArticle(article.id)
+
+      });
+
+    }
+
+  });
+
+
+  if(!results.length){
+
+    box.innerHTML=
+      `<div class="empty">No results found.</div>`;
+
+    return;
+
+  }
+
+  box.innerHTML=
+    results.slice(0,40).map((r,i)=>`
+
+      <div class="search-result"
+           onclick="searchOpen(${i})">
+
+        <small>
+          ${escapeHTML(r.type)}
+        </small>
+
+        <strong>
+          ${escapeHTML(r.title)}
+        </strong>
+
+      </div>
+
+    `).join("");
+
+  window._searchResults=results;
 
 }
 
 
-let highest=null;
-let largestWin=null;
+function searchOpen(index){
 
-list.forEach(m=>{
+  const result=
+    window._searchResults?.[index];
 
-const home=
-Number(m.score_home??m.scoreHome??0);
-
-const away=
-Number(m.score_away??m.scoreAway??0);
-
-const total=home+away;
-
-if(!highest||total>highest.total)
-highest={m,home,away,total};
-
-const margin=Math.abs(home-away);
-
-if(
-margin>0 &&
-(!largestWin||margin>largestWin.margin)
-)
-largestWin={m,home,away,margin};
-
-});
-
-
-container.innerHTML=`
-
-<div class="stat-grid">
-
-<div class="stat-row">
-
-<span>Highest-scoring match</span>
-
-<strong>
-
-${
-highest
-?
-`${highest.m.home} ${highest.home}–${highest.away} ${highest.m.away}`
-:"—"
-}
-
-</strong>
-
-</div>
-
-
-<div class="stat-row">
-
-<span>Largest winning margin</span>
-
-<strong>
-
-${
-largestWin
-?
-`${largestWin.m.home} ${largestWin.home}–${largestWin.away} ${largestWin.m.away}`
-:"—"
-}
-
-</strong>
-
-</div>
-
-</div>
-
-`;
+  if(result)result.action();
 
 }
 
 
-function renderTeamStats(list){
+/* =========================================================
+   TEAM PAGE
+========================================================= */
 
-const teams={};
+function openTeam(team){
 
-list.forEach(m=>{
+  showPage("team-page");
 
-const home=m.home;
-const away=m.away;
+  const box=
+    document.getElementById("teamContainer");
 
-if(!home||!away)return;
+  const teamMatches=
+    matches.filter(m=>
+      m.home===team||
+      m.away===team
+    );
 
-if(!teams[home])
-teams[home]={
-mp:0,w:0,d:0,l:0,gf:0,ga:0
-};
+  const wins=
+    teamMatches.filter(m=>
+      isFinished(m)&&
+      (
+        (m.home===team&&Number(m.score_home)>Number(m.score_away))||
+        (m.away===team&&Number(m.score_away)>Number(m.score_home))
+      )
+    ).length;
 
-if(!teams[away])
-teams[away]={
-mp:0,w:0,d:0,l:0,gf:0,ga:0
-};
+  const draws=
+    teamMatches.filter(m=>
+      isFinished(m)&&
+      Number(m.score_home)===Number(m.score_away)
+    ).length;
 
-const h=
-Number(m.score_home??m.scoreHome??0);
+  const losses=
+    teamMatches.filter(m=>
+      isFinished(m)&&
+      (
+        (m.home===team&&Number(m.score_home)<Number(m.score_away))||
+        (m.away===team&&Number(m.score_away)<Number(m.score_home))
+      )
+    ).length;
 
-const a=
-Number(m.score_away??m.scoreAway??0);
+  box.innerHTML=`
 
-teams[home].mp++;
-teams[away].mp++;
+    <div class="profile">
 
-teams[home].gf+=h;
-teams[home].ga+=a;
+      <div class="profile-head">
 
-teams[away].gf+=a;
-teams[away].ga+=h;
+        <div class="profile-avatar">
+          ⚽
+        </div>
 
-if(h>a){
+        <div>
 
-teams[home].w++;
-teams[away].l++;
+          <h2>${escapeHTML(team)}</h2>
 
-}else if(a>h){
+          <p>MEFCO Team</p>
 
-teams[away].w++;
-teams[home].l++;
+        </div>
 
-}else{
+      </div>
 
-teams[home].d++;
-teams[away].d++;
+      <div class="stat-grid">
+
+        <div class="stat-box">
+          <strong>${teamMatches.length}</strong>
+          <span>Matches</span>
+        </div>
+
+        <div class="stat-box">
+          <strong>${wins}</strong>
+          <span>Wins</span>
+        </div>
+
+        <div class="stat-box">
+          <strong>${draws}</strong>
+          <span>Draws</span>
+        </div>
+
+        <div class="stat-box">
+          <strong>${losses}</strong>
+          <span>Losses</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="section">
+
+      <div class="section-head">
+        <h2>Fixtures & Results</h2>
+      </div>
+
+      <div class="match-list">
+
+        ${
+          teamMatches.length
+          ? teamMatches
+              .sort((a,b)=>
+                String(matchDate(b))
+                .localeCompare(String(matchDate(a)))
+              )
+              .map(cardHTML)
+              .join("")
+          : `<div class="empty">No matches recorded.</div>`
+        }
+
+      </div>
+
+    </div>
+
+  `;
 
 }
 
-});
 
+/* =========================================================
+   PLAYER PAGE
+========================================================= */
 
-const rows=
-Object.entries(teams)
-.sort(
-(a,b)=>
-(b[1].gf-b[1].ga)-
-(a[1].gf-a[1].ga)
-);
+function openPlayer(name){
 
+  const player=
+    collectPlayerStats()
+      .find(p=>p.name===name);
 
-document.getElementById("teamStatsBody").innerHTML=
+  showPage("player-page");
 
-rows.length
-?
-rows.map(([team,s])=>`
+  const box=
+    document.getElementById("playerContainer");
 
-<tr>
+  if(!player){
 
-<td>${escapeHTML(team)}</td>
-<td>${s.mp}</td>
-<td>${s.w}</td>
-<td>${s.d}</td>
-<td>${s.l}</td>
-<td>${s.gf}</td>
-<td>${s.ga}</td>
+    box.innerHTML=
+      `<div class="empty">Player not found.</div>`;
 
-</tr>
+    return;
 
-`).join("")
-:
-`<tr>
-<td colspan="7">
-No team data available.
-</td>
-</tr>`;
+  }
+
+  box.innerHTML=`
+
+    <div class="profile">
+
+      <div class="profile-head">
+
+        <div class="profile-avatar">
+          👤
+        </div>
+
+        <div>
+
+          <h2>
+            ${escapeHTML(player.name)}
+          </h2>
+
+          <p>
+            ${escapeHTML(player.team||"MEFCO Player")}
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="stat-grid">
+
+        <div class="stat-box">
+          <strong>${player.goals}</strong>
+          <span>Goals</span>
+        </div>
+
+        <div class="stat-box">
+          <strong>${player.assists}</strong>
+          <span>Assists</span>
+        </div>
+
+        <div class="stat-box">
+          <strong>—</strong>
+          <span>Appearances</span>
+        </div>
+
+        <div class="stat-box">
+          <strong>—</strong>
+          <span>Competition</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
 
 }
 
@@ -2758,748 +3548,502 @@ No team data available.
 
 function renderAdmin(){
 
-const select=
-document.getElementById("adminMatchSelect");
+  const select=
+    document.getElementById("adminMatchSelect");
 
-select.innerHTML=
+  if(!select)return;
 
-matches.length
+  select.innerHTML=`
 
-?
+    <option value="">
+      Select a match...
+    </option>
 
-matches.map(m=>`
+    ${matches.map(m=>`
 
-<option
-value="${m.id}"
-${
-String(m.id)===
-String(selectedMatchId)
-?"selected"
-:""
-}>
+      <option value="${escapeHTML(m.id)}">
 
-${escapeHTML(m.home)}
-vs
-${escapeHTML(m.away)}
+        ${escapeHTML(m.home)}
+        vs
+        ${escapeHTML(m.away)}
+        ·
+        ${escapeHTML(matchDate(m))}
 
- ·
+      </option>
 
-${formatDate(
-m.match_date||m.date
-)}
+    `).join("")}
 
- ${m.match_time||m.time||""}
+  `;
 
-</option>
+  if(selectedMatchId){
 
-`).join("")
+    select.value=selectedMatchId;
 
-:
+  }
 
-`<option value="">
-No matches
-</option>`;
+  renderAdminPanel();
 
-renderAdminPanel();
-renderAdminLog();
+  renderAdminLog();
 
 }
 
 
 function selectAdminMatch(){
 
-selectedMatchId=
-document.getElementById("adminMatchSelect").value;
+  const select=
+    document.getElementById("adminMatchSelect");
 
-renderAdminPanel();
+  selectedMatchId=
+    select.value||null;
+
+  renderAdminPanel();
 
 }
 
 
 function renderAdminPanel(){
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+  const box=
+    document.getElementById("adminPanelContent");
 
-if(!m){
+  if(!box)return;
 
-document.getElementById("adminPanel").innerHTML=
-`<div class="empty">
-Create a match first.
-</div>`;
+  const m=
+    matches.find(x=>
+      String(x.id)===String(selectedMatchId)
+    );
 
-return;
-
-}
-
-const s=m.stats||{};
-
-document.getElementById("adminPanel").innerHTML=`
+  if(!m){
 
-<div class="admin-match-status">
+    box.innerHTML=
+      `<div class="empty">Select a match to manage it.</div>`;
 
-<div class="admin-status-grid">
+    return;
 
-<div>
-<div class="admin-label">Match</div>
-<div>
-${escapeHTML(m.home)}
-vs
-${escapeHTML(m.away)}
-</div>
-</div>
+  }
 
-<div>
-<div class="admin-label">Status</div>
-<div>${statusText(m)}</div>
-</div>
+  box.innerHTML=`
 
-<div>
-<div class="admin-label">Minute</div>
-<div class="admin-status-value">
-${m.minute??0}'
-</div>
-</div>
+    <h2>
+      ${escapeHTML(m.home)}
+      vs
+      ${escapeHTML(m.away)}
+    </h2>
 
-<div>
-<div class="admin-label">Score</div>
-<div class="admin-status-value">
+    <div class="admin-controls">
 
-${m.score_home??m.scoreHome??0}
--
-${m.score_away??m.scoreAway??0}
+      <button class="admin-btn green"
+              onclick="startSelected()">
+        Start
+      </button>
+
+      <button class="admin-btn gold"
+              onclick="pauseSelected()">
+        Pause
+      </button>
+
+      <button class="admin-btn blue"
+              onclick="addMinute(1)">
+        +1'
+      </button>
+
+      <button class="admin-btn blue"
+              onclick="addMinute(5)">
+        +5'
+      </button>
 
-</div>
-</div>
+      <button class="admin-btn blue"
+              onclick="addMinute(10)">
+        +10'
+      </button>
+
+      <button class="admin-btn red"
+              onclick="finishSelected()">
+        Finish
+      </button>
 
-</div>
+    </div>
 
-</div>
 
+    <div class="admin-grid">
 
-<div class="section">
+      <div class="admin-field">
+        <label>HOME SCORE</label>
+        <input id="adminHomeScore"
+               type="number"
+               value="${Number(m.score_home)||0}">
+      </div>
 
-<div class="section-header">
-<h2>Quick Controls</h2>
-</div>
+      <div class="admin-field">
+        <label>AWAY SCORE</label>
+        <input id="adminAwayScore"
+               type="number"
+               value="${Number(m.score_away)||0}">
+      </div>
 
-<div class="admin-controls">
+      <div class="admin-field">
+        <label>MINUTE</label>
+        <input id="adminMinute"
+               type="number"
+               value="${Number(m.minute)||0}">
+      </div>
 
-<button
-class="admin-btn green"
-onclick="startSelected()">
-▶ Start
-</button>
-
-<button
-class="admin-btn"
-onclick="pauseSelected()">
-⏸ Pause
-</button>
+      <div class="admin-field">
+        <label>STOPPAGE</label>
+        <input id="adminStoppage"
+               type="number"
+               value="${Number(m.stoppage)||0}">
+      </div>
 
-<button
-class="admin-btn"
-onclick="advanceSelected(1)">
-+1'
-</button>
-
-<button
-class="admin-btn"
-onclick="advanceSelected(5)">
-+5'
-</button>
+    </div>
 
-<button
-class="admin-btn"
-onclick="advanceSelected(10)">
-+10'
-</button>
 
-<button
-class="admin-btn blue"
-onclick="setSelectedMinute()">
-Set minute
-</button>
+    <button class="admin-btn green"
+            onclick="saveAdminMatch()">
+      Save Match
+    </button>
 
-<button
-class="admin-btn gold"
-onclick="generateStoppage()">
-+ Stoppage
-</button>
 
-<button
-class="admin-btn red"
-onclick="finishSelected()">
-Finish
-</button>
+    <div class="section">
 
-</div>
+      <h3>Match Event</h3>
 
-</div>
+      <div class="admin-grid">
 
+        <div class="admin-field">
+          <label>MINUTE</label>
+          <input id="eventMinute" type="number">
+        </div>
 
-<div class="section">
+        <div class="admin-field">
+          <label>STOPPAGE</label>
+          <input id="eventStoppage" type="number">
+        </div>
 
-<h2>Match Stats</h2>
+        <div class="admin-field">
+          <label>TYPE</label>
+          <select id="eventType">
+            <option value="Goal">Goal</option>
+            <option value="Assist">Assist</option>
+            <option value="Yellow Card">Yellow Card</option>
+            <option value="Red Card">Red Card</option>
+            <option value="Substitution">Substitution</option>
+            <option value="Shot">Shot</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-<br>
+        <div class="admin-field">
+          <label>PLAYER</label>
+          <input id="eventPlayer">
+        </div>
 
-<div class="admin-inputs">
+        <div class="admin-field">
+          <label>TEAM</label>
+          <input id="eventTeam">
+        </div>
 
-<div class="admin-field">
-<label>Possession Home</label>
-<input id="posH" type="number"
-value="${s.possessionHome??50}">
-</div>
+        <div class="admin-field">
+          <label>DETAIL</label>
+          <input id="eventDetail">
+        </div>
 
-<div class="admin-field">
-<label>Possession Away</label>
-<input id="posA" type="number"
-value="${s.possessionAway??50}">
-</div>
+      </div>
 
-<div class="admin-field">
-<label>Home Shots</label>
-<input id="shotsH" type="number"
-value="${s.shotsHome??0}">
-</div>
+      <button class="admin-btn blue"
+              onclick="addEvent()">
+        Add Event
+      </button>
 
-<div class="admin-field">
-<label>Away Shots</label>
-<input id="shotsA" type="number"
-value="${s.shotsAway??0}">
-</div>
+    </div>
 
-<div class="admin-field">
-<label>Home Target</label>
-<input id="targetH" type="number"
-value="${s.targetHome??0}">
-</div>
 
-<div class="admin-field">
-<label>Away Target</label>
-<input id="targetA" type="number"
-value="${s.targetAway??0}">
-</div>
+    <div class="section">
 
-<div class="admin-field">
-<label>Home Corners</label>
-<input id="cornersH" type="number"
-value="${s.cornersHome??0}">
-</div>
+      <h3>Quick Events</h3>
 
-<div class="admin-field">
-<label>Away Corners</label>
-<input id="cornersA" type="number"
-value="${s.cornersAway??0}">
-</div>
+      <div class="admin-event-buttons">
 
-</div>
+        <button class="admin-btn"
+                onclick="quickEvent('Goal')">
+          Goal
+        </button>
 
-<br>
+        <button class="admin-btn"
+                onclick="quickEvent('Yellow Card')">
+          Yellow Card
+        </button>
 
-<button
-class="admin-btn blue"
-onclick="saveStats()">
-Save Stats
-</button>
+        <button class="admin-btn"
+                onclick="quickEvent('Red Card')">
+          Red Card
+        </button>
 
-</div>
+        <button class="admin-btn"
+                onclick="quickEvent('Substitution')">
+          Substitution
+        </button>
 
+      </div>
 
-<div class="section">
+    </div>
 
-<h2>Add Event</h2>
-
-<br>
-
-<div class="admin-inputs">
-
-<div class="admin-field">
-
-<label>Minute</label>
-
-<input
-id="eventMinute"
-type="number"
-value="${m.minute??0}">
-
-</div>
-
-<div class="admin-field">
-
-<label>Type</label>
-
-<select id="eventType">
-
-<option>Goal</option>
-<option>Yellow Card</option>
-<option>Red Card</option>
-<option>Substitution</option>
-<option>Penalty</option>
-<option>VAR</option>
-<option>Chance</option>
-<option>Injury</option>
-
-</select>
-
-</div>
-
-<div class="admin-field">
-
-<label>Team</label>
-
-<select id="eventTeam">
-
-<option>${escapeHTML(m.home)}</option>
-<option>${escapeHTML(m.away)}</option>
-
-</select>
-
-</div>
-
-<div class="admin-field">
-
-<label>Player</label>
-
-<input
-id="eventPlayer"
-placeholder="Player">
-
-</div>
-
-<div class="admin-field">
-
-<label>Assist</label>
-
-<input
-id="eventAssist"
-placeholder="Player">
-
-</div>
-
-</div>
-
-<br>
-
-<div class="admin-field">
-
-<label>Description</label>
-
-<textarea
-id="eventDescription"
-placeholder="Optional commentary"></textarea>
-
-</div>
-
-<br>
-
-<div class="admin-event-buttons">
-
-<button
-class="admin-btn green"
-onclick="addEvent()">
-Publish Event
-</button>
-
-<button
-class="admin-btn"
-onclick="quickGoal()">
-⚽ Goal
-</button>
-
-</div>
-
-</div>
-
-`;
+  `;
 
 }
 
 
-/* =========================================================
-   ADMIN LOG
-========================================================= */
+async function updateMatch(id,changes){
 
-function log(message){
+  const result=
+    await supabaseFetch(
+      MATCHES_URL+
+      "?id=eq."+
+      encodeURIComponent(id),
+      {
+        method:"PATCH",
+        headers:{
+          Prefer:"return=representation"
+        },
+        body:JSON.stringify(changes)
+      }
+    );
 
-adminLog.unshift(
-new Date().toLocaleTimeString()+
-" — "+
-message
-);
-
-renderAdminLog();
-
-}
-
-
-function renderAdminLog(){
-
-document.getElementById("adminLog").innerHTML=
-
-adminLog.length
-
-?
-
-adminLog.map(
-x=>
-`<div class="admin-log-item">
-${escapeHTML(x)}
-</div>`
-).join("")
-
-:
-
-`<div class="admin-log-item">
-No admin actions yet.
-</div>`;
+  return result;
 
 }
 
 
-function clearAdminLog(){
+async function saveAdminMatch(){
 
-adminLog=[];
+  const m=
+    matches.find(x=>
+      String(x.id)===String(selectedMatchId)
+    );
 
-renderAdminLog();
+  if(!m)return;
 
-}
+  const changes={
 
+    score_home:
+      Number(
+        document.getElementById("adminHomeScore").value
+      )||0,
 
-/* =========================================================
-   UPDATE MATCH
-========================================================= */
+    score_away:
+      Number(
+        document.getElementById("adminAwayScore").value
+      )||0,
 
-async function updateMatch(m,message){
+    minute:
+      Number(
+        document.getElementById("adminMinute").value
+      )||0,
 
-try{
+    stoppage:
+      Number(
+        document.getElementById("adminStoppage").value
+      )||0
 
-const payload={
+  };
 
-competition:m.competition,
-home:m.home,
-away:m.away,
+  try{
 
-home_flag:
-m.home_flag||
-m.homeFlag,
+    await updateMatch(m.id,changes);
 
-away_flag:
-m.away_flag||
-m.awayFlag,
+    Object.assign(m,changes);
 
-match_date:
-m.match_date||
-m.date,
+    addLog("Match updated.");
 
-match_time:
-m.match_time||
-m.time,
+    renderAll();
+    renderAdmin();
 
-status:m.status,
-minute:m.minute,
+  }catch(error){
 
-score_home:
-m.score_home??
-m.scoreHome,
+    addLog("Update failed: "+error.message);
 
-score_away:
-m.score_away??
-m.scoreAway,
-
-stoppage:m.stoppage,
-favorite:m.favorite,
-stats:m.stats
-
-};
-
-await supabaseFetch(
-MATCHES_URL+
-"?id=eq."+
-encodeURIComponent(m.id),
-{
-method:"PATCH",
-headers:{
-"Prefer":"return=representation"
-},
-body:JSON.stringify(payload)
-}
-);
-
-await loadMatches();
-
-if(message)
-log(message);
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Database update failed: "+
-error.message
-);
+  }
 
 }
 
-}
-
-
-/* =========================================================
-   CLOCK
-========================================================= */
 
 async function startSelected(){
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+  const m=
+    matches.find(x=>
+      String(x.id)===String(selectedMatchId)
+    );
 
-if(
-!m||
-m.status==="finished"||
-timer
-)
-return;
+  if(!m)return;
 
-m.status="live";
+  try{
 
-await updateMatch(
-m,
-`Started ${m.home} vs ${m.away}`
-);
+    await updateMatch(m.id,{
+      status:"live"
+    });
 
-timer=setInterval(realMinute,60000);
+    m.status="live";
 
-}
+    addLog("Match started.");
 
+    renderAll();
+    renderAdmin();
 
-async function realMinute(){
+    startTimer();
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+  }catch(error){
 
-if(
-!m||
-m.status!=="live"
-)
-return;
+    addLog(error.message);
 
-m.minute=(m.minute||0)+1;
-
-if(m.minute>=90){
-
-await finishSelected();
-
-return;
-
-}
-
-await updateMatch(m);
+  }
 
 }
 
 
 async function pauseSelected(){
 
-if(timer){
+  const m=
+    matches.find(x=>
+      String(x.id)===String(selectedMatchId)
+    );
 
-clearInterval(timer);
-timer=null;
+  if(!m)return;
 
-}
+  try{
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+    await updateMatch(m.id,{
+      status:"scheduled"
+    });
 
-if(!m)return;
+    m.status="scheduled";
 
-if(m.status==="live")
-m.status="scheduled";
+    stopTimer();
 
-await updateMatch(
-m,
-"Paused match clock"
-);
+    addLog("Match paused.");
 
-}
+    renderAll();
+    renderAdmin();
 
+  }catch(error){
 
-async function advanceSelected(n){
+    addLog(error.message);
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
-
-if(!m)return;
-
-m.minute=Math.min(
-90,
-(m.minute||0)+n
-);
-
-if(m.minute>0)
-m.status="live";
-
-await updateMatch(
-m,
-`Advanced match to ${m.minute}'`
-);
-
-}
-
-
-async function setSelectedMinute(){
-
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
-
-if(!m)return;
-
-const value=prompt(
-"Set match minute:",
-m.minute||0
-);
-
-if(value===null)
-return;
-
-const minute=Number(value);
-
-if(!Number.isFinite(minute))
-return;
-
-m.minute=Math.max(
-0,
-Math.min(90,minute)
-);
-
-if(m.minute>0)
-m.status="live";
-
-await updateMatch(
-m,
-`Set minute to ${m.minute}'`
-);
-
-}
-
-
-async function generateStoppage(){
-
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
-
-if(!m)return;
-
-m.stoppage=
-Math.floor(Math.random()*5)+3;
-
-await updateMatch(
-m,
-`Generated +${m.stoppage} stoppage time`
-);
+  }
 
 }
 
 
 async function finishSelected(){
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+  const m=
+    matches.find(x=>
+      String(x.id)===String(selectedMatchId)
+    );
 
-if(!m)return;
+  if(!m)return;
 
-if(timer){
+  try{
 
-clearInterval(timer);
-timer=null;
+    await updateMatch(m.id,{
+      status:"finished"
+    });
+
+    m.status="finished";
+
+    stopTimer();
+
+    addLog("Match finished.");
+
+    renderAll();
+    renderAdmin();
+
+  }catch(error){
+
+    addLog(error.message);
+
+  }
 
 }
 
-m.minute=90;
-m.status="finished";
 
-if(!m.stoppage)
-m.stoppage=
-Math.floor(Math.random()*5)+3;
+async function addMinute(amount){
 
-await updateMatch(
-m,
-`Finished ${m.home} vs ${m.away}`
-);
+  const m=
+    matches.find(x=>
+      String(x.id)===String(selectedMatchId)
+    );
+
+  if(!m)return;
+
+  const minute=
+    Number(m.minute)||0;
+
+  try{
+
+    await updateMatch(m.id,{
+      minute:minute+amount
+    });
+
+    m.minute=minute+amount;
+
+    renderMatch();
+    renderAdmin();
+
+  }catch(error){
+
+    addLog(error.message);
+
+  }
 
 }
 
 
-/* =========================================================
-   SAVE MATCH STATS
-========================================================= */
+function startTimer(){
 
-async function saveStats(){
+  stopTimer();
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+  timer=setInterval(async()=>{
 
-if(!m)return;
+    const m=
+      matches.find(x=>
+        String(x.id)===String(selectedMatchId)
+      );
 
-m.stats={
+    if(!m||!isLive(m))return;
 
-possessionHome:Number(
-document.getElementById("posH").value
-)||0,
+    const minute=
+      Number(m.minute)||0;
 
-possessionAway:Number(
-document.getElementById("posA").value
-)||0,
+    try{
 
-shotsHome:Number(
-document.getElementById("shotsH").value
-)||0,
+      await updateMatch(m.id,{
+        minute:minute+1
+      });
 
-shotsAway:Number(
-document.getElementById("shotsA").value
-)||0,
+      m.minute=minute+1;
 
-targetHome:Number(
-document.getElementById("targetH").value
-)||0,
+      renderAll();
 
-targetAway:Number(
-document.getElementById("targetA").value
-)||0,
+    }catch(error){
 
-cornersHome:Number(
-document.getElementById("cornersH").value
-)||0,
+      console.error(error);
 
-cornersAway:Number(
-document.getElementById("cornersA").value
-)||0
+    }
 
-};
+  },60000);
 
-await updateMatch(
-m,
-"Updated match stats"
-);
+}
+
+
+function stopTimer(){
+
+  if(timer){
+
+    clearInterval(timer);
+
+    timer=null;
+
+  }
 
 }
 
@@ -3508,155 +4052,86 @@ m,
    EVENTS
 ========================================================= */
 
-function uid(){
-
-return "e_"+
-Date.now()+"_"+
-Math.random()
-.toString(36)
-.slice(2,8);
-
-}
-
-
-function quickGoal(){
-
-document.getElementById("eventType")
-.value="Goal";
-
-addEvent();
-
-}
-
-
 async function addEvent(){
 
-const m=matches.find(
-x=>String(x.id)===
-String(selectedMatchId)
-);
+  const m=
+    matches.find(x=>
+      String(x.id)===String(selectedMatchId)
+    );
 
-if(!m)return;
+  if(!m)return;
 
-const minute=Number(
-document.getElementById("eventMinute").value
-);
+  const event={
 
-if(!Number.isFinite(minute))
-return;
+    match_id:m.id,
 
-const type=
-document.getElementById("eventType").value;
+    minute:
+      Number(
+        document.getElementById("eventMinute").value
+      )||Number(m.minute)||0,
 
-const team=
-document.getElementById("eventTeam").value;
+    stoppage:
+      Number(
+        document.getElementById("eventStoppage").value
+      )||0,
 
-const player=
-document.getElementById("eventPlayer")
-.value.trim();
+    type:
+      document.getElementById("eventType").value,
 
-const assist=
-document.getElementById("eventAssist")
-.value.trim();
+    player:
+      document.getElementById("eventPlayer").value.trim(),
 
-const description=
-document.getElementById("eventDescription")
-.value.trim();
+    team:
+      document.getElementById("eventTeam").value.trim(),
 
-const event={
+    detail:
+      document.getElementById("eventDetail").value.trim()
 
-id:uid(),
+  };
 
-match_id:m.id,
+  try{
 
-minute,
-type,
-team,
-player,
-assist,
+    const result=
+      await supabaseFetch(
+        EVENTS_URL,
+        {
+          method:"POST",
+          headers:{
+            Prefer:"return=representation"
+          },
+          body:JSON.stringify(event)
+        }
+      );
 
-description:
-description||
-defaultDescription(
-type,
-team,
-player,
-assist
-)
+    if(!Array.isArray(m.events)){
+      m.events=[];
+    }
 
-};
+    m.events.push(
+      Array.isArray(result)
+        ? result[0]
+        : event
+    );
 
-try{
+    addLog("Event added.");
 
-await supabaseFetch(
-EVENTS_URL,
-{
-method:"POST",
-headers:{
-"Prefer":"return=representation"
-},
-body:JSON.stringify(event)
-}
-);
+    renderMatch();
+    renderAdmin();
 
-if(!Array.isArray(m.events))
-m.events=[];
+  }catch(error){
 
-m.events.push(event);
+    addLog("Event failed: "+error.message);
 
-if(type==="Goal"){
-
-if(team===m.home){
-
-m.score_home=
-(m.score_home??m.scoreHome??0)+1;
-
-}else{
-
-m.score_away=
-(m.score_away??m.scoreAway??0)+1;
-
-}
-
-}
-
-await updateMatch(
-m,
-`${minute}' ${type} — ${team}`
-);
-
-}catch(error){
-
-console.error("ADD EVENT ERROR:",error);
-
-alert(
-"Could not publish event: "+
-error.message
-);
-
-}
+  }
 
 }
 
 
-function defaultDescription(
-type,
-team,
-player,
-assist
-){
+function quickEvent(type){
 
-if(type==="Goal")
+  document.getElementById("eventType").value=type;
 
-return `GOAL! ${team}${
-player?" — "+player:""
-}${
-assist?" ("+assist+")":""
-}.`;
-
-return `${type} — ${team}${
-player?" — "+player:""
-}.`;
+  addEvent();
 
 }
 
@@ -3667,119 +4142,136 @@ player?" — "+player:""
 
 async function createMatch(){
 
-const home=
-document.getElementById("newHome")
-.value.trim();
+  const match={
 
-const away=
-document.getElementById("newAway")
-.value.trim();
+    competition:
+      document.getElementById("createCompetition").value.trim(),
 
-const competition=
-document.getElementById("newCompetition")
-.value.trim()||
-"MEFCO Match";
+    home:
+      document.getElementById("createHome").value.trim(),
 
-const date=
-document.getElementById("newDate").value;
+    away:
+      document.getElementById("createAway").value.trim(),
 
-const time=
-document.getElementById("newTime").value;
+    match_date:
+      document.getElementById("createDate").value,
 
-if(!home||!away||!date||!time){
+    match_time:
+      document.getElementById("createKickoff").value,
 
-alert(
-"Enter the teams, date and kickoff time."
-);
+    home_flag:
+      document.getElementById("createHomeFlag").value.trim(),
 
-return;
+    away_flag:
+      document.getElementById("createAwayFlag").value.trim(),
+
+    status:"scheduled",
+
+    minute:0,
+
+    score_home:0,
+
+    score_away:0,
+
+    stoppage:0,
+
+    favorite:false
+
+  };
+
+  if(
+    !match.home||
+    !match.away||
+    !match.match_date||
+    !match.match_time
+  ){
+
+    addLog("Home, away, date and kickoff are required.");
+
+    return;
+
+  }
+
+  try{
+
+    const result=
+      await supabaseFetch(
+        MATCHES_URL,
+        {
+          method:"POST",
+          headers:{
+            Prefer:"return=representation"
+          },
+          body:JSON.stringify(match)
+        }
+      );
+
+    if(Array.isArray(result)){
+      matches.push(result[0]);
+    }else{
+      matches.push(match);
+    }
+
+    addLog(
+      `Created ${match.home} vs ${match.away}.`
+    );
+
+    renderAll();
+    renderAdmin();
+
+  }catch(error){
+
+    addLog(
+      "Create match failed: "+
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ADMIN LOG
+========================================================= */
+
+function addLog(message){
+
+  adminLog.unshift({
+
+    message,
+    time:new Date().toLocaleTimeString()
+
+  });
+
+  adminLog=adminLog.slice(0,50);
+
+  renderAdminLog();
 
 }
 
-const id=
-"m_"+
-Date.now()+"_"+
-Math.random()
-.toString(36)
-.slice(2,7);
 
-const stats={
+function renderAdminLog(){
 
-possessionHome:50,
-possessionAway:50,
+  const box=
+    document.getElementById("adminLog");
 
-shotsHome:0,
-shotsAway:0,
+  if(!box)return;
 
-targetHome:0,
-targetAway:0,
+  box.innerHTML=
+    adminLog.length
+    ? adminLog.map(item=>`
 
-cornersHome:0,
-cornersAway:0
+      <div class="admin-log-item">
 
-};
+        ${escapeHTML(item.time)}
+        ·
+        ${escapeHTML(item.message)}
 
-try{
+      </div>
 
-const created=
-await supabaseFetch(
-MATCHES_URL,
-{
-method:"POST",
-headers:{
-"Prefer":"return=representation"
-},
-body:JSON.stringify({
-
-id,
-competition,
-home,
-away,
-
-home_flag:"⚽",
-away_flag:"⚽",
-
-match_date:date,
-match_time:time,
-
-status:"scheduled",
-
-minute:0,
-
-score_home:0,
-score_away:0,
-
-stoppage:0,
-
-favorite:false,
-
-stats
-
-})
-}
-);
-
-selectedMatchId=
-Array.isArray(created)
-?created[0]?.id
-:created?.id;
-
-await loadMatches();
-
-log(
-`Created ${home} vs ${away}`
-);
-
-}catch(error){
-
-console.error("CREATE MATCH ERROR:",error);
-
-alert(
-"Could not create match: "+
-error.message
-);
-
-}
+    `).join("")
+    : `<div class="empty">No admin actions yet.</div>`;
 
 }
 
@@ -3789,165 +4281,142 @@ error.message
 ========================================================= */
 
 const NOTIFICATION_API=
-"https://mefco-notifications.drtwelveyt.workers.dev";
-
-
-function setNotificationStatus(
-message,
-type=""
-){
-
-const element=
-document.getElementById(
-"notificationStatus"
-);
-
-if(!element)return;
-
-element.textContent=message;
-
-element.className=
-"notification-status "+type;
-
-}
+  "https://mefco-notifications.drtwelveyt.workers.dev";
 
 
 async function enableNotifications(){
 
-if(!("Notification" in window)){
+  if(!("Notification" in window)){
 
-alert(
-"This browser does not support push notifications."
-);
+    showNotificationStatus(
+      "error",
+      "This browser does not support notifications."
+    );
 
-return;
+    return;
 
-}
+  }
 
-alert(
-"Notification setup remains connected to your existing notification system."
-);
+  const permission=
+    await Notification.requestPermission();
 
-}
+  if(permission==="granted"){
 
+    document.getElementById(
+      "notificationButton"
+    ).textContent="Notifications Enabled";
 
-function checkNotificationStatus(){
+    showNotificationStatus(
+      "success",
+      "Notifications are enabled."
+    );
 
-if(!("Notification" in window)){
+  }else{
 
-setNotificationStatus(
-"Notifications are not supported.",
-"error"
-);
+    showNotificationStatus(
+      "warning",
+      "Notification permission was not granted."
+    );
 
-return;
-
-}
-
-if(Notification.permission==="granted"){
-
-setNotificationStatus(
-"Notifications are allowed.",
-"success"
-);
-
-}else if(Notification.permission==="denied"){
-
-setNotificationStatus(
-"Notifications are blocked.",
-"error"
-);
-
-}else{
-
-setNotificationStatus(
-"Notifications have not been enabled.",
-"warning"
-);
-
-}
+  }
 
 }
 
 
-async function sendAdminNotification(){
+async function sendNotification(){
 
-const title=
-document.getElementById(
-"notificationTitle"
-).value.trim()||
-"MEFCO Watch";
+  const title=
+    document.getElementById("notificationTitle").value;
 
-const body=
-document.getElementById(
-"notificationBody"
-).value.trim();
+  const body=
+    document.getElementById("notificationBody").value;
 
-const url=
-document.getElementById(
-"notificationUrl"
-).value.trim()||
-"/";
+  const url=
+    document.getElementById("notificationUrl").value;
 
-if(!body){
+  try{
 
-setNotificationStatus(
-"Enter a notification message first.",
-"warning"
-);
+    const response=
+      await fetch(
+        NOTIFICATION_API+"/api/notify",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            title,
+            body,
+            url
+          })
+        }
+      );
 
-return;
+    if(!response.ok){
+
+      throw new Error(
+        await response.text()
+      );
+
+    }
+
+    showNotificationStatus(
+      "success",
+      "Notification sent."
+    );
+
+  }catch(error){
+
+    showNotificationStatus(
+      "error",
+      "Notification failed: "+
+      error.message
+    );
+
+  }
+
+}
+
+
+async function checkNotificationStatus(){
+
+  try{
+
+    const response=
+      await fetch(
+        NOTIFICATION_API
+      );
+
+    showNotificationStatus(
+      response.ok?"success":"warning",
+      response.ok
+        ? "Notification service is online."
+        : "Notification service responded with an error."
+    );
+
+  }catch(error){
+
+    showNotificationStatus(
+      "error",
+      "Notification service could not be reached."
+    );
+
+  }
 
 }
 
-try{
 
-const response=
-await fetch(
-NOTIFICATION_API+"/api/notify",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-title,
-body,
-url,
-tag:"mefco-watch-admin"
-})
-}
-);
+function showNotificationStatus(type,message){
 
-const data=await response.json();
+  const box=
+    document.getElementById("notificationStatus");
 
-if(
-!response.ok||
-!data.ok
-)
-throw new Error(
-data.error||
-"Notification request failed."
-);
+  if(!box)return;
 
-setNotificationStatus(
-`Notification sent to ${data.sent} subscription(s).`,
-"success"
-);
+  box.className=
+    "notification-status "+type;
 
-log(
-`Sent notification: ${title}`
-);
-
-}catch(error){
-
-setNotificationStatus(
-"Notification failed: "+
-error.message,
-"error"
-);
-
-}
+  box.textContent=message;
 
 }
 
@@ -3958,28 +4427,33 @@ error.message,
 
 function renderAll(){
 
-renderHome();
-renderScores();
-renderStats();
+  renderHome();
 
-if(selectedMatchId)
-renderMatch();
+  renderScores();
 
-if(
-document.getElementById("admin")
-.classList.contains("active")
-)
-renderAdmin();
+  renderCompetitions();
+
+  renderStats();
+
+  renderLiveTicker();
+
+  if(selectedMatchId){
+
+    renderMatch();
+
+  }
 
 }
 
 
 /* =========================================================
-   START
+   STARTUP
 ========================================================= */
 
 loadMatches();
+
 loadNews();
+
 checkNotificationStatus();
 
 </script>
