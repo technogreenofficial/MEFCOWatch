@@ -7,67 +7,90 @@
 <title>MEFCO Watch</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 :root{
   --bg:#070a0f;
   --bg2:#0a0f16;
   --card:#10161f;
   --card2:#141c26;
-  --card3:#192331;
+  --card3:#192330;
+
   --text:#f8fafc;
-  --muted:#8793a3;
-  --border:#202b39;
-  --border2:#2a3747;
-  --green:#29e57c;
-  --green2:#16a85a;
-  --red:#ff4d5d;
-  --yellow:#f7c948;
-  --blue:#4ea1ff;
-  --purple:#a678ff;
-  --shadow:0 16px 45px rgba(0,0,0,.28);
+  --muted:#8995a5;
+  --border:#202b38;
+  --border2:#2b3949;
+
+  --green:#55e38a;
+  --green2:#25c96b;
+  --red:#ff5c67;
+  --yellow:#ffd166;
+  --blue:#5ca8ff;
+  --purple:#9b7cff;
+
+  --shadow:0 18px 60px rgba(0,0,0,.32);
+  --radius:18px;
 }
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   background:
-    radial-gradient(circle at 15% -10%,rgba(41,229,124,.09),transparent 28%),
-    radial-gradient(circle at 90% 10%,rgba(78,161,255,.07),transparent 25%),
+    radial-gradient(circle at 15% -10%,rgba(85,227,138,.08),transparent 28%),
+    radial-gradient(circle at 90% 0%,rgba(92,168,255,.08),transparent 30%),
     var(--bg);
   color:var(--text);
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   min-height:100vh;
 }
 
-button,input,select{font:inherit}
+button,
+input,
+select{
+  font:inherit;
+}
 
-button{cursor:pointer}
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
 
 header{
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:100;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:20px;
+  align-items:center;
+  gap:25px;
   padding:14px 28px;
-  background:rgba(7,10,15,.88);
-  backdrop-filter:blur(20px);
+  background:rgba(7,10,15,.82);
+  backdrop-filter:blur(22px);
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .logo{
   border:0;
   background:none;
-  color:var(--text);
-  font-size:23px;
+  color:white;
+  font-size:21px;
   font-weight:900;
-  letter-spacing:-1px;
+  letter-spacing:-.8px;
 }
 
-.logo span{color:var(--green)}
+.logo span{
+  color:var(--green);
+}
 
 header>div{
   display:flex;
@@ -77,35 +100,35 @@ header>div{
 
 nav{
   display:flex;
-  gap:3px;
-  overflow:auto;
+  gap:4px;
+  flex-wrap:wrap;
 }
 
 nav button{
   border:0;
   background:transparent;
   color:var(--muted);
-  padding:9px 11px;
-  border-radius:9px;
-  white-space:nowrap;
-  font-size:13px;
-  font-weight:700;
+  padding:9px 12px;
+  border-radius:10px;
+  transition:.2s;
 }
 
 nav button:hover,
 nav button.active{
-  color:var(--text);
   background:var(--card2);
+  color:white;
+}
+
+nav button.active{
+  box-shadow:inset 0 -2px var(--green);
 }
 
 .notification-button{
   border:1px solid var(--border2);
   background:var(--card);
-  color:var(--text);
+  color:white;
   padding:9px 13px;
-  border-radius:9px;
-  font-size:12px;
-  font-weight:800;
+  border-radius:11px;
 }
 
 .notification-button:hover{
@@ -114,704 +137,790 @@ nav button.active{
 
 .page{
   display:none;
-  width:min(1400px,100%);
+  width:min(1400px,calc(100% - 40px));
   margin:auto;
-  padding:30px 28px 70px;
+  padding:34px 0 80px;
 }
 
-.page.active{display:block}
+.page.active{
+  display:block;
+}
 
 .page-title{
   display:flex;
-  justify-content:space-between;
   align-items:end;
+  justify-content:space-between;
   gap:20px;
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
 .page-title h1{
-  font-size:32px;
+  font-size:34px;
   letter-spacing:-1.5px;
 }
 
 .page-title p{
   color:var(--muted);
   margin-top:5px;
-  font-size:14px;
 }
 
-.hero{
-  min-height:330px;
-  display:flex;
-  align-items:end;
-  padding:35px;
-  border:1px solid var(--border);
-  border-radius:22px;
-  overflow:hidden;
-  position:relative;
+.section{
+  margin-top:28px;
+}
+
+.section h2,
+.section h3{
+  margin-bottom:15px;
+}
+
+.card{
   background:
-    linear-gradient(120deg,rgba(41,229,124,.13),transparent 48%),
-    linear-gradient(135deg,#111923,#0b1017);
+    linear-gradient(145deg,rgba(255,255,255,.025),transparent 50%),
+    var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
   box-shadow:var(--shadow);
 }
 
-.hero:after{
+.card-pad{
+  padding:22px;
+}
+
+.grid{
+  display:grid;
+  gap:16px;
+}
+
+.grid-2{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.grid-3{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+.grid-4{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+.empty{
+  padding:35px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--border2);
+  border-radius:15px;
+}
+
+/* HOME */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:330px;
+  display:flex;
+  align-items:flex-end;
+  padding:38px;
+  border:1px solid var(--border);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 80% 30%,rgba(85,227,138,.2),transparent 25%),
+    linear-gradient(135deg,#101923,#0b1017);
+  box-shadow:var(--shadow);
+}
+
+.hero:before{
   content:"";
   position:absolute;
-  width:430px;
-  height:430px;
-  right:-120px;
-  top:-180px;
-  border:70px solid rgba(41,229,124,.045);
+  inset:auto -10% -65% 35%;
+  height:350px;
+  border:1px solid rgba(85,227,138,.1);
   border-radius:50%;
+  transform:rotate(-18deg);
 }
 
 .hero-content{
   position:relative;
-  z-index:2;
-  max-width:700px;
+  z-index:1;
+  max-width:720px;
 }
 
-.eyebrow{
+.hero-kicker{
   color:var(--green);
-  font-size:11px;
-  font-weight:900;
+  font-weight:800;
+  font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
   margin-bottom:12px;
 }
 
 .hero h1{
-  font-size:clamp(36px,6vw,66px);
-  line-height:.94;
+  font-size:clamp(42px,7vw,76px);
+  line-height:.9;
   letter-spacing:-4px;
 }
 
 .hero p{
-  color:#aab5c3;
-  margin-top:17px;
-  max-width:570px;
-  line-height:1.6;
+  margin-top:18px;
+  color:#aeb9c7;
+  max-width:620px;
+  font-size:16px;
 }
 
-.hero-actions{
-  display:flex;
-  gap:10px;
-  margin-top:22px;
-  flex-wrap:wrap;
-}
-
-.primary-btn,
-.secondary-btn{
-  border-radius:10px;
-  padding:11px 16px;
-  font-weight:800;
-  border:1px solid var(--border2);
-}
-
-.primary-btn{
-  background:var(--green);
-  color:#041009;
-  border-color:var(--green);
-}
-
-.secondary-btn{
-  background:var(--card2);
-  color:var(--text);
-}
-
-.section{
-  margin-top:30px;
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin-bottom:13px;
-}
-
-.section-head h2,
-.section>h2,
-.section>h3{
-  font-size:18px;
-  letter-spacing:-.4px;
-}
-
-.grid{
+.home-stat-strip{
   display:grid;
-  gap:14px;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:14px;
 }
 
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-
-.card{
-  background:linear-gradient(145deg,var(--card2),var(--card));
+.home-stat{
+  padding:18px;
+  background:var(--card);
   border:1px solid var(--border);
   border-radius:16px;
-  padding:17px;
-  box-shadow:0 8px 25px rgba(0,0,0,.14);
 }
 
-.card:hover{
-  border-color:var(--border2);
-}
-
-.stat-card strong{
+.home-stat strong{
   display:block;
-  font-size:28px;
-  margin-top:6px;
+  font-size:26px;
 }
 
-.stat-card span{
+.home-stat span{
   color:var(--muted);
   font-size:12px;
 }
 
+/* TICKER */
+
 .live-ticker{
+  margin:16px 0;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:13px;
+}
+
+.ticker-inner{
   display:flex;
-  gap:12px;
+  gap:25px;
+  padding:10px 15px;
   overflow:auto;
-  padding:4px 0 2px;
 }
 
 .ticker-item{
-  min-width:220px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:12px;
+  white-space:nowrap;
+  color:#cdd6e0;
 }
 
 .live-dot{
   display:inline-block;
   width:7px;
   height:7px;
-  background:var(--green);
   border-radius:50%;
-  box-shadow:0 0 12px var(--green);
-  margin-right:5px;
+  background:var(--red);
+  margin-right:6px;
+  box-shadow:0 0 12px rgba(255,92,103,.7);
 }
 
+/* MATCH CARDS */
+
 .match-card{
-  background:linear-gradient(145deg,var(--card2),#0d131b);
+  padding:18px;
   border:1px solid var(--border);
+  background:var(--card);
   border-radius:17px;
-  padding:17px;
-  position:relative;
   transition:.2s;
+  cursor:pointer;
 }
 
 .match-card:hover{
   transform:translateY(-2px);
-  border-color:#334355;
+  border-color:#344557;
+  background:var(--card2);
 }
 
 .match-top{
   display:flex;
   justify-content:space-between;
   color:var(--muted);
-  font-size:11px;
-  margin-bottom:15px;
+  font-size:12px;
+  margin-bottom:17px;
 }
 
 .match-teams{
   display:grid;
-  grid-template-columns:1fr 65px 1fr;
+  grid-template-columns:1fr auto 1fr;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
-.team-side{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.team-side.away{
-  align-items:flex-end;
-  text-align:right;
-}
-
-.team-identity{
+.match-team{
   display:flex;
   align-items:center;
   gap:9px;
+  min-width:0;
 }
 
-.team-side.away .team-identity{
-  flex-direction:row-reverse;
+.match-team.away{
+  justify-content:flex-end;
+  text-align:right;
 }
 
-.flag{
-  width:29px;
-  height:21px;
+.team-flag{
+  width:27px;
+  height:20px;
   object-fit:cover;
   border-radius:4px;
-  background:#1d2632;
-  border:1px solid var(--border);
+  background:#202a35;
 }
 
 .team-name{
-  font-weight:850;
-  font-size:14px;
+  font-weight:700;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
-.score{
-  font-size:28px;
-  font-weight:950;
-  text-align:center;
-  letter-spacing:-1px;
+.match-score{
+  font-size:25px;
+  font-weight:900;
 }
 
 .match-status{
+  margin-top:15px;
   text-align:center;
   color:var(--muted);
-  font-size:10px;
-  margin-top:3px;
+  font-size:12px;
 }
 
-.status-live{color:var(--green)!important}
-.status-finished{color:#aab4c2}
-.status-scheduled{color:var(--blue)}
-
-.favorite{
-  border:0;
-  background:none;
-  color:#657181;
-  font-size:17px;
+.match-status.live{
+  color:var(--red);
+  font-weight:800;
 }
 
-.favorite.on{color:var(--yellow)}
+/* SCORE FILTER */
+
+.score-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
 
 .score-date-nav{
   display:flex;
   gap:8px;
-  margin-bottom:16px;
 }
 
 .date-nav-btn,
 .date-today-btn{
   border:1px solid var(--border);
   background:var(--card);
-  color:var(--text);
-  border-radius:9px;
-  padding:9px 14px;
-  font-weight:700;
+  color:white;
+  padding:10px 14px;
+  border-radius:11px;
 }
 
 .date-today-btn{
-  background:var(--green);
-  color:#031008;
-  border-color:var(--green);
+  border-color:rgba(85,227,138,.35);
+  color:var(--green);
 }
 
-.filters{
+.filter-bar{
   display:flex;
-  flex-wrap:wrap;
   gap:7px;
-  margin-bottom:17px;
+  flex-wrap:wrap;
 }
 
-.filter-btn{
+.filter-bar button{
   border:1px solid var(--border);
   background:var(--card);
   color:var(--muted);
-  border-radius:9px;
-  padding:8px 12px;
-  font-size:12px;
-  font-weight:750;
+  padding:9px 13px;
+  border-radius:10px;
 }
 
-.filter-btn.active{
-  color:var(--text);
+.filter-bar button.active{
+  color:white;
   border-color:var(--green);
-  background:rgba(41,229,124,.08);
+  background:rgba(85,227,138,.08);
+}
+
+/* NEWS */
+
+.news-grid{
+  display:grid;
+  grid-template-columns:1.35fr 1fr 1fr;
+  gap:16px;
 }
 
 .news-card{
-  cursor:pointer;
   overflow:hidden;
-  padding:0;
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:18px;
+  cursor:pointer;
 }
 
 .news-image{
-  height:150px;
-  background:linear-gradient(135deg,#182332,#0d131a);
+  height:180px;
+  background:
+    linear-gradient(135deg,rgba(85,227,138,.15),rgba(92,168,255,.08)),
+    #151d27;
   display:flex;
   align-items:center;
   justify-content:center;
   color:var(--muted);
-  overflow:hidden;
 }
 
-.news-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.news-content{
+  padding:18px;
 }
 
-.news-body{padding:16px}
-
-.news-date{
+.news-meta{
   color:var(--green);
-  font-size:10px;
-  font-weight:850;
+  font-size:11px;
+  font-weight:800;
   text-transform:uppercase;
   letter-spacing:1px;
 }
 
-.news-title{
-  font-size:17px;
-  font-weight:850;
-  margin-top:7px;
-  line-height:1.25;
+.news-content h3{
+  margin-top:8px;
+  font-size:19px;
 }
 
-.news-excerpt{
+.news-content p{
   color:var(--muted);
   margin-top:8px;
-  font-size:12px;
   line-height:1.5;
 }
 
-.article{
-  max-width:900px;
-  margin:auto;
-}
-
-.article h1{
-  font-size:clamp(32px,5vw,56px);
-  line-height:1;
-  letter-spacing:-2px;
-}
-
-.article-meta{
-  color:var(--muted);
-  margin:12px 0 25px;
-}
-
-.article-content{
-  color:#c5ced9;
-  line-height:1.8;
-  white-space:pre-wrap;
-}
-
-.competition-card,
-.team-card,
-.player-card{
-  cursor:pointer;
-}
-
-.competition-icon{
-  font-size:28px;
-  margin-bottom:14px;
-}
-
-.competition-card h3{
-  font-size:17px;
-}
-
-.competition-card p{
-  color:var(--muted);
-  margin-top:5px;
-  font-size:12px;
-}
-
-.table-wrap{
-  overflow:auto;
-  border:1px solid var(--border);
-  border-radius:15px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:600px;
-}
-
-th,td{
-  padding:12px 14px;
-  text-align:left;
-  border-bottom:1px solid var(--border);
-  font-size:12px;
-}
-
-th{
-  color:var(--muted);
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.8px;
-  background:#0d131b;
-}
-
-tr:last-child td{border-bottom:0}
-
-.rank{
-  color:var(--muted);
-  width:35px;
-}
-
-.team-link,
-.player-link{
-  color:var(--text);
-  font-weight:800;
-  border:0;
-  background:none;
-  padding:0;
-  text-align:left;
-}
-
-.team-link:hover,
-.player-link:hover{color:var(--green)}
-
-.profile{
-  background:linear-gradient(145deg,#121b26,#0c1219);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:25px;
-  margin-bottom:18px;
-}
-
-.profile-head{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-.profile-avatar{
-  width:76px;
-  height:76px;
-  border-radius:18px;
-  object-fit:cover;
-  background:var(--card3);
-  border:1px solid var(--border2);
-}
-
-.profile h1{
-  font-size:30px;
-  letter-spacing:-1px;
-}
-
-.profile-sub{
-  color:var(--muted);
-  margin-top:4px;
-}
-
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:12px;
-}
-
-.badge{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:#b7c1ce;
-  border-radius:7px;
-  padding:5px 8px;
-  font-size:10px;
-  font-weight:800;
-}
-
-.squad-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:10px;
-}
-
-.player-card{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:12px;
-  border-radius:13px;
-}
-
-.player-photo{
-  width:44px;
-  height:44px;
-  border-radius:10px;
-  object-fit:cover;
-  background:var(--card3);
-}
-
-.player-card strong{
-  display:block;
-  font-size:13px;
-}
-
-.player-card span{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  margin-top:3px;
-}
-
-.ovr{
-  margin-left:auto;
-  font-size:18px;
-  font-weight:950;
-}
+/* SEARCH */
 
 .search-box{
   display:flex;
-  gap:9px;
-  margin-bottom:17px;
+  gap:10px;
 }
 
 .search-box input,
 .admin-field input,
 .admin-field select,
-.search-input{
+.create-field input,
+.create-field select{
   width:100%;
-  background:#0c1219;
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:9px;
-  padding:11px 12px;
+  padding:12px 13px;
+  border-radius:11px;
+  border:1px solid var(--border2);
+  background:#0b1118;
+  color:white;
   outline:none;
 }
 
 .search-box input:focus,
 .admin-field input:focus,
-.admin-field select:focus{
+.admin-field select:focus,
+.create-field input:focus,
+.create-field select:focus{
   border-color:var(--green);
 }
 
-.search-box button{
-  border:1px solid var(--green);
-  background:var(--green);
-  color:#031008;
-  border-radius:9px;
-  padding:0 18px;
-  font-weight:900;
-}
-
 .search-results{
-  display:grid;
-  gap:9px;
+  margin-top:18px;
 }
 
-.result{
-  padding:14px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
+.search-result{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px;
+  border-bottom:1px solid var(--border);
   cursor:pointer;
 }
 
-.result:hover{border-color:var(--green)}
+.search-result:hover{
+  background:var(--card2);
+}
 
-.result-type{
+.result-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:var(--card3);
   color:var(--green);
-  font-size:9px;
-  text-transform:uppercase;
   font-weight:900;
-  letter-spacing:1px;
 }
 
-.result-title{
-  margin-top:4px;
-  font-weight:800;
+.result-main strong{
+  display:block;
 }
 
-.result-sub{
+.result-main span{
   color:var(--muted);
-  font-size:11px;
+  font-size:12px;
+}
+
+/* TEAMS */
+
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+}
+
+.team-card{
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  min-height:180px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:
+    linear-gradient(145deg,rgba(85,227,138,.05),transparent 55%),
+    var(--card);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.team-card:hover{
+  transform:translateY(-3px);
+  border-color:#3c5267;
+}
+
+.team-card-header{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.team-logo{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  object-fit:contain;
+  background:#0a0f15;
+  padding:7px;
+  border:1px solid var(--border);
+}
+
+.team-card h3{
+  font-size:18px;
+}
+
+.team-card p{
+  color:var(--muted);
+  font-size:12px;
   margin-top:3px;
 }
 
+.team-rating{
+  margin-top:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+}
+
+.team-rating strong{
+  font-size:32px;
+}
+
+.team-rating span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* TEAM PROFILE */
+
+.team-profile{
+  padding:28px;
+  border:1px solid var(--border);
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 90% 20%,rgba(85,227,138,.13),transparent 25%),
+    var(--card);
+}
+
+.profile-header{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.profile-logo{
+  width:85px;
+  height:85px;
+  padding:10px;
+  border-radius:20px;
+  background:#0a0f15;
+  border:1px solid var(--border);
+  object-fit:contain;
+}
+
+.profile-header h1{
+  font-size:35px;
+}
+
+.profile-header p{
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.profile-stats{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  margin-top:25px;
+}
+
+.profile-stat{
+  padding:15px;
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--border);
+  border-radius:13px;
+}
+
+.profile-stat strong{
+  display:block;
+  font-size:22px;
+}
+
+.profile-stat span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* PLAYERS */
+
+.player-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:13px;
+}
+
+.player-card{
+  padding:17px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  cursor:pointer;
+}
+
+.player-card:hover{
+  border-color:#405367;
+  background:var(--card2);
+}
+
+.player-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.player-avatar{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  object-fit:cover;
+  background:var(--card3);
+}
+
+.player-ovr{
+  font-size:23px;
+  font-weight:900;
+  color:var(--green);
+}
+
+.player-card h3{
+  margin-top:13px;
+}
+
+.player-card p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* PLAYER PROFILE */
+
+.player-profile{
+  display:grid;
+  grid-template-columns:170px 1fr;
+  gap:25px;
+  padding:28px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+}
+
+.player-profile-photo{
+  width:170px;
+  height:210px;
+  object-fit:cover;
+  border-radius:18px;
+  background:var(--card3);
+}
+
+.player-profile h1{
+  font-size:40px;
+  letter-spacing:-2px;
+}
+
+.player-profile .subtitle{
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.player-info-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.info-box{
+  padding:14px;
+  background:#0c1219;
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+
+.info-box span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+}
+
+.info-box strong{
+  display:block;
+  margin-top:5px;
+}
+
+/* TABLE */
+
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--border);
+  border-radius:17px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,
+td{
+  padding:13px 15px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+}
+
+th{
+  color:var(--muted);
+  font-size:11px;
+  text-transform:uppercase;
+}
+
+td{
+  font-size:14px;
+}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+/* MATCH CENTRE */
+
 .match-centre{
-  max-width:1000px;
+  max-width:1050px;
   margin:auto;
 }
 
 .match-hero{
-  background:linear-gradient(145deg,#131d29,#0b1118);
+  padding:32px;
+  text-align:center;
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:28px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 50% 0,rgba(85,227,138,.1),transparent 35%),
+    var(--card);
 }
 
-.match-hero-top{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
+.match-competition{
+  color:var(--green);
   font-size:11px;
+  text-transform:uppercase;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+
+.match-centre-teams{
+  display:grid;
+  grid-template-columns:1fr 180px 1fr;
+  align-items:center;
+  gap:20px;
+  margin-top:25px;
+}
+
+.mc-team{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+}
+
+.mc-team img{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  padding:8px;
+  background:#0a0f15;
+  border-radius:18px;
+}
+
+.mc-team strong{
+  font-size:20px;
 }
 
 .big-score{
-  display:grid;
-  grid-template-columns:1fr 140px 1fr;
-  align-items:center;
-  gap:20px;
-  margin:30px 0;
-}
-
-.big-team{
-  text-align:center;
-}
-
-.big-team img{
-  width:65px;
-  height:45px;
-  object-fit:cover;
-  border-radius:7px;
-  margin-bottom:10px;
-}
-
-.big-team h2{
-  font-size:22px;
-}
-
-.big-score-number{
-  text-align:center;
-  font-size:50px;
+  font-size:55px;
   font-weight:950;
-  letter-spacing:-3px;
+  letter-spacing:-4px;
 }
 
-.timeline{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+.match-timeline{
+  margin-top:18px;
 }
 
 .event{
   display:grid;
-  grid-template-columns:65px 32px 1fr;
-  gap:9px;
-  align-items:center;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:10px;
+  grid-template-columns:70px 1fr;
+  gap:15px;
+  padding:14px;
+  border-bottom:1px solid var(--border);
 }
 
 .event-minute{
   color:var(--green);
   font-weight:900;
-  font-size:11px;
 }
 
-.event-icon{text-align:center}
-
-.event-main strong{
+.event-content strong{
   display:block;
+}
+
+.event-content span{
+  color:var(--muted);
   font-size:12px;
 }
 
-.event-main span{
-  color:var(--muted);
-  font-size:10px;
-}
+/* ADMIN */
 
 .admin-grid{
   display:grid;
@@ -819,121 +928,128 @@ tr:last-child td{border-bottom:0}
   gap:12px;
 }
 
-.admin-field label{
+.admin-field label,
+.create-field label{
   display:block;
   color:var(--muted);
-  font-size:9px;
-  font-weight:900;
+  font-size:10px;
+  font-weight:800;
   letter-spacing:1px;
-  margin-bottom:5px;
+  margin-bottom:7px;
 }
 
 .admin-controls,
 .admin-event-buttons{
   display:flex;
-  flex-wrap:wrap;
   gap:8px;
-  margin:14px 0;
+  flex-wrap:wrap;
+  margin:18px 0;
 }
 
 .admin-btn{
   border:1px solid var(--border2);
   background:var(--card2);
-  color:var(--text);
-  padding:10px 14px;
-  border-radius:9px;
-  font-weight:800;
+  color:white;
+  padding:11px 15px;
+  border-radius:11px;
 }
-
-.admin-btn.green{border-color:var(--green);background:rgba(41,229,124,.1)}
-.admin-btn.red{border-color:var(--red);background:rgba(255,77,93,.08)}
-.admin-btn.gold{border-color:var(--yellow);background:rgba(247,201,72,.08)}
-.admin-btn.blue{border-color:var(--blue);background:rgba(78,161,255,.08)}
 
 .admin-btn:hover{
-  filter:brightness(1.2);
+  border-color:#50647a;
 }
 
-.admin-log{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
+.admin-btn.green{
+  background:rgba(85,227,138,.1);
+  border-color:rgba(85,227,138,.35);
+  color:var(--green);
+}
+
+.admin-btn.gold{
+  color:var(--yellow);
+}
+
+.admin-btn.blue{
+  color:var(--blue);
+}
+
+.admin-btn.red{
+  color:var(--red);
+}
+
+.create-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
 }
 
 .admin-log-item{
-  padding:9px 11px;
-  border-radius:8px;
-  background:#0c1219;
-  border:1px solid var(--border);
-  color:#9da9b8;
-  font-size:10px;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  color:#b9c4d1;
+  font-size:12px;
 }
+
+/* NOTIFICATIONS */
 
 .notification-status{
-  padding:10px;
-  border-radius:9px;
-  font-size:11px;
+  padding:13px;
+  border-radius:12px;
   margin-top:10px;
+  font-size:13px;
 }
 
-.notification-status.success{background:rgba(41,229,124,.1);color:var(--green)}
-.notification-status.error{background:rgba(255,77,93,.1);color:var(--red)}
-.notification-status.warning{background:rgba(247,201,72,.1);color:var(--yellow)}
+.notification-status.success{
+  background:rgba(85,227,138,.08);
+  color:var(--green);
+}
 
-.db-status{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  border:1px solid var(--border);
-  padding:6px 9px;
-  border-radius:8px;
-  background:var(--card);
+.notification-status.error{
+  background:rgba(255,92,103,.08);
+  color:var(--red);
+}
+
+.notification-status.warning{
+  background:rgba(255,209,102,.08);
+  color:var(--yellow);
+}
+
+/* ARTICLE */
+
+.article{
+  max-width:900px;
+  margin:auto;
+}
+
+.article h1{
+  font-size:45px;
+  letter-spacing:-2px;
+}
+
+.article-meta{
   color:var(--muted);
-  font-size:10px;
+  margin:10px 0 25px;
 }
 
-.db-status.ok{color:var(--green)}
-.db-status.error{color:var(--red)}
-
-.empty{
-  padding:35px;
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed var(--border);
-  border-radius:13px;
+.article-body{
+  color:#c8d1dc;
+  line-height:1.8;
+  font-size:16px;
 }
 
-.loading{
-  padding:30px;
-  text-align:center;
-  color:var(--muted);
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+  .team-grid,
+  .player-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .news-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
-.back-btn{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  border-radius:9px;
-  padding:9px 13px;
-  margin-bottom:15px;
-}
-
-.form-actions{
-  margin-top:14px;
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-footer{
-  border-top:1px solid var(--border);
-  padding:25px 28px;
-  color:var(--muted);
-  text-align:center;
-  font-size:11px;
-}
-
-@media(max-width:900px){
+@media(max-width:800px){
   header{
     align-items:flex-start;
     flex-direction:column;
@@ -945,58 +1061,83 @@ footer{
     align-items:stretch;
   }
 
-  nav{width:100%}
-
-  .notification-button{width:max-content}
-
-  .grid-3,
-  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
-
-  .big-score{
-    grid-template-columns:1fr 100px 1fr;
+  nav{
+    overflow:auto;
+    flex-wrap:nowrap;
   }
-}
 
-@media(max-width:650px){
-  .page{padding:20px 14px 50px}
-
-  header{padding:12px 14px}
-
-  .grid-2,
-  .grid-3,
+  .home-stat-strip,
   .grid-4,
-  .admin-grid{
+  .profile-stats,
+  .player-info-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .team-grid,
+  .player-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .news-grid{
     grid-template-columns:1fr;
   }
 
+  .match-centre-teams{
+    grid-template-columns:1fr;
+  }
+
+  .big-score{
+    order:-1;
+  }
+
+  .player-profile{
+    grid-template-columns:1fr;
+  }
+
+  .player-profile-photo{
+    width:130px;
+    height:160px;
+  }
+}
+
+@media(max-width:550px){
+  .page{
+    width:min(100% - 20px,1400px);
+    padding-top:22px;
+  }
+
   .hero{
-    min-height:390px;
-    padding:23px;
+    padding:25px;
   }
 
   .hero h1{
     letter-spacing:-2px;
   }
 
-  .big-score{
+  .team-grid,
+  .player-grid,
+  .home-stat-strip,
+  .grid-2,
+  .grid-3,
+  .admin-grid,
+  .create-grid,
+  .profile-stats,
+  .player-info-grid{
     grid-template-columns:1fr;
-    gap:13px;
   }
 
-  .big-score-number{order:-1}
-
-  .big-team img{
-    width:50px;
-    height:34px;
+  .page-title h1{
+    font-size:28px;
   }
-
-  .match-hero{padding:18px}
-
-  .profile-head{align-items:flex-start}
 }
 
 @media(prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important;transition:none!important}
+  *,
+  *:before,
+  *:after{
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
 }
 </style>
 </head>
@@ -1004,11 +1145,13 @@ footer{
 <body>
 
 <header>
+
   <button class="logo" onclick="showPage('home',this)">
     MEFCO <span>WATCH</span>
   </button>
 
   <div>
+
     <nav>
       <button class="active" onclick="showPage('home',this)">Home</button>
       <button onclick="showPage('scores',this)">Scores</button>
@@ -1019,160 +1162,203 @@ footer{
       <button onclick="showPage('admin',this)">Admin</button>
     </nav>
 
-    <button id="notificationButton"
-            class="notification-button"
-            onclick="enableNotifications()">
+    <button
+      id="notificationButton"
+      class="notification-button"
+      onclick="enableNotifications()">
       Enable Notifications
     </button>
+
   </div>
+
 </header>
 
-<!-- HOME -->
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
 <section id="home" class="page active">
 
   <div class="hero">
+
     <div class="hero-content">
-      <div class="eyebrow">MEFCO Watch</div>
-      <h1>Football.<br>Watched live.</h1>
+
+      <div class="hero-kicker">
+        MEFCO FOOTBALL NETWORK
+      </div>
+
+      <h1>
+        WATCH<br>
+        THE GAME.
+      </h1>
+
       <p>
-        Scores, match events, national teams, players, competitions,
-        statistics and MEFCO news — all in one place.
+        Live scores, match events, national teams, players,
+        competitions, statistics and breaking MEFCO news.
       </p>
 
-      <div class="hero-actions">
-        <button class="primary-btn" onclick="showPage('scores')">
-          View Scores
-        </button>
-        <button class="secondary-btn" onclick="showPage('competitions')">
-          Explore Competitions
-        </button>
+    </div>
+
+  </div>
+
+
+  <div class="live-ticker">
+    <div id="liveTicker" class="ticker-inner">
+      <span class="ticker-item">Loading MEFCO...</span>
+    </div>
+  </div>
+
+
+  <div class="home-stat-strip">
+
+    <div class="home-stat">
+      <strong id="homeMatchesCount">0</strong>
+      <span>Matches</span>
+    </div>
+
+    <div class="home-stat">
+      <strong id="homeTeamsCount">0</strong>
+      <span>National Teams</span>
+    </div>
+
+    <div class="home-stat">
+      <strong id="homePlayersCount">0</strong>
+      <span>Players</span>
+    </div>
+
+    <div class="home-stat">
+      <strong id="homeLiveCount">0</strong>
+      <span>Live Now</span>
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="page-title">
+      <div>
+        <h1>Today's Football</h1>
+        <p>Every MEFCO match in one place.</p>
       </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-head">
-      <h2>Live Now</h2>
-      <span id="dbStatus" class="db-status">
-        Connecting...
-      </span>
-    </div>
-
-    <div id="liveTicker" class="live-ticker"></div>
-  </div>
-
-  <div class="section">
-    <div class="section-head">
-      <h2>Today's Matches</h2>
-      <button class="secondary-btn" onclick="showPage('scores')">
-        All Scores
-      </button>
     </div>
 
     <div id="homeMatches" class="grid grid-3"></div>
+
   </div>
+
 
   <div class="section">
-    <div class="section-head">
-      <h2>Latest News</h2>
-      <button class="secondary-btn" onclick="showPage('news')">
-        More News
-      </button>
-    </div>
 
-    <div id="homeNews" class="grid grid-3"></div>
-  </div>
-
-  <div class="section">
-    <div class="grid grid-4">
-      <div class="card stat-card">
-        <span>Teams</span>
-        <strong id="homeTeamCount">0</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Players</span>
-        <strong id="homePlayerCount">0</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Matches</span>
-        <strong id="homeMatchCount">0</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Live</span>
-        <strong id="homeLiveCount">0</strong>
+    <div class="page-title">
+      <div>
+        <h1>Latest News</h1>
+        <p>What's happening around MEFCO.</p>
       </div>
     </div>
+
+    <div id="homeNews" class="news-grid"></div>
+
   </div>
+
 </section>
 
-<!-- SCORES -->
+
+<!-- =====================================================
+     SCORES
+===================================================== -->
+
 <section id="scores" class="page">
 
   <div class="page-title">
     <div>
       <h1>Scores</h1>
-      <p>Every MEFCO match, organized by day.</p>
+      <p id="scoreDateLabel"></p>
     </div>
   </div>
 
-  <div class="score-date-nav">
-    <button class="date-nav-btn" onclick="changeScoreDate(-1)">
-      ← Previous
-    </button>
-    <button class="date-today-btn" onclick="goToToday()">
-      Today
-    </button>
-    <button class="date-nav-btn" onclick="changeScoreDate(1)">
-      Next →
-    </button>
+  <div class="score-toolbar">
+
+    <div class="score-date-nav">
+      <button class="date-nav-btn" onclick="changeScoreDate(-1)">
+        ← Previous
+      </button>
+
+      <button class="date-today-btn" onclick="goToToday()">
+        Today
+      </button>
+
+      <button class="date-nav-btn" onclick="changeScoreDate(1)">
+        Next →
+      </button>
+    </div>
+
+    <div class="filter-bar">
+
+      <button class="active"
+              data-filter="all"
+              onclick="setScoreFilter('all')">
+        All
+      </button>
+
+      <button data-filter="favorite"
+              onclick="setScoreFilter('favorite')">
+        Favorites
+      </button>
+
+      <button data-filter="live"
+              onclick="setScoreFilter('live')">
+        Live
+      </button>
+
+    </div>
+
   </div>
 
-  <div id="scoreDateLabel" class="section-head"></div>
+  <div id="scoresList" class="grid grid-3"></div>
 
-  <div class="filters">
-    <button class="filter-btn active" onclick="setScoreFilter('all',this)">
-      All
-    </button>
-    <button class="filter-btn" onclick="setScoreFilter('favorites',this)">
-      Favorites
-    </button>
-    <button class="filter-btn" onclick="setScoreFilter('live',this)">
-      Live
-    </button>
-    <button class="filter-btn" onclick="setScoreFilter('finished',this)">
-      Finished
-    </button>
-    <button class="filter-btn" onclick="setScoreFilter('scheduled',this)">
-      Upcoming
-    </button>
-  </div>
-
-  <div id="scoresGrid" class="grid grid-3"></div>
 </section>
 
-<!-- NEWS -->
+
+<!-- =====================================================
+     NEWS
+===================================================== -->
+
 <section id="news" class="page">
 
   <div class="page-title">
     <div>
       <h1>News</h1>
-      <p>Everything happening around MEFCO.</p>
+      <p>MEFCO's latest stories.</p>
     </div>
   </div>
 
-  <div id="newsGrid" class="grid grid-3"></div>
+  <div id="newsGrid" class="news-grid"></div>
+
 </section>
 
-<!-- ARTICLE -->
+
 <section id="article-page" class="page">
-  <button class="back-btn" onclick="backToNews()">← Back to News</button>
-  <article id="articleContent" class="article"></article>
+
+  <div class="article">
+
+    <button class="admin-btn"
+            onclick="backToNews()">
+      ← Back to News
+    </button>
+
+    <div id="articleContent" style="margin-top:25px"></div>
+
+  </div>
+
 </section>
 
-<!-- COMPETITIONS -->
+
+<!-- =====================================================
+     COMPETITIONS
+===================================================== -->
+
 <section id="competitions" class="page">
 
   <div class="page-title">
@@ -1182,229 +1368,384 @@ footer{
     </div>
   </div>
 
-  <div id="competitionsGrid" class="grid grid-3"></div>
+  <div id="competitionGrid" class="grid grid-3"></div>
+
 </section>
 
-<!-- COMPETITION DETAIL -->
+
 <section id="competition-page" class="page">
 
-  <button class="back-btn" onclick="showPage('competitions')">
+  <button class="admin-btn"
+          onclick="showPage('competitions')">
     ← Competitions
   </button>
 
-  <div id="competitionContent"></div>
+  <div id="competitionContent" style="margin-top:20px"></div>
+
 </section>
 
-<!-- STATS -->
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
 <section id="stats" class="page">
 
   <div class="page-title">
     <div>
-      <h1>Stats</h1>
+      <h1>Statistics</h1>
       <p>Goals, assists and MEFCO records.</p>
     </div>
   </div>
 
-  <div id="statsContent"></div>
+  <div class="section">
+
+    <h2>Top Scorers</h2>
+
+    <div class="table-wrap">
+      <table>
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Goals</th>
+            <th>Assists</th>
+          </tr>
+        </thead>
+
+        <tbody id="topScorers"></tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <h2>Records</h2>
+
+    <div id="recordsGrid" class="grid grid-3"></div>
+
+  </div>
+
 </section>
 
-<!-- SEARCH -->
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
 <section id="search" class="page">
 
   <div class="page-title">
     <div>
       <h1>Search</h1>
-      <p>Find teams, players, matches and news.</p>
+      <p>Find teams, players, matches and competitions.</p>
     </div>
   </div>
 
   <div class="search-box">
+
     <input
       id="searchInput"
-      placeholder="Search teams, players, matches or news..."
-      onkeydown="if(event.key==='Enter')performSearch()"
-    >
-    <button onclick="performSearch()">Search</button>
+      placeholder="Search MEFCO..."
+      oninput="performSearch()">
+
   </div>
 
-  <div class="filters">
-    <button class="filter-btn active" onclick="setSearchType('all',this)">All</button>
-    <button class="filter-btn" onclick="setSearchType('teams',this)">Teams</button>
-    <button class="filter-btn" onclick="setSearchType('players',this)">Players</button>
-    <button class="filter-btn" onclick="setSearchType('matches',this)">Matches</button>
-    <button class="filter-btn" onclick="setSearchType('news',this)">News</button>
-  </div>
+  <div id="searchResults"
+       class="card search-results"></div>
 
-  <div id="searchResults" class="search-results"></div>
 </section>
 
-<!-- TEAM -->
+
+<!-- =====================================================
+     TEAM LIST
+===================================================== -->
+
+<section id="teams-page" class="page">
+
+  <div class="page-title">
+    <div>
+      <h1>National Teams</h1>
+      <p>Every MEFCO national team connected to its squad.</p>
+    </div>
+  </div>
+
+  <div id="teamsGrid" class="team-grid"></div>
+
+</section>
+
+
+<!-- =====================================================
+     TEAM PROFILE
+===================================================== -->
+
 <section id="team-page" class="page">
 
-  <button class="back-btn" onclick="showPage('search')">
-    ← Back
+  <button class="admin-btn"
+          onclick="showPage('teams-page')">
+    ← National Teams
   </button>
 
-  <div id="teamContent"></div>
+  <div id="teamContent" style="margin-top:20px"></div>
+
 </section>
 
-<!-- PLAYER -->
+
+<!-- =====================================================
+     PLAYER PROFILE
+===================================================== -->
+
 <section id="player-page" class="page">
 
-  <button class="back-btn" onclick="showPage('search')">
+  <button class="admin-btn"
+          onclick="goBackFromPlayer()">
     ← Back
   </button>
 
-  <div id="playerContent"></div>
+  <div id="playerContent" style="margin-top:20px"></div>
+
 </section>
 
-<!-- MATCH -->
+
+<!-- =====================================================
+     MATCH CENTRE
+===================================================== -->
+
 <section id="match-page" class="page">
 
-  <button class="back-btn" onclick="showPage('scores')">
-    ← Back to Scores
+  <button class="admin-btn"
+          onclick="showPage('scores')">
+    ← Scores
   </button>
 
-  <div id="matchContent" class="match-centre"></div>
+  <div id="matchContent"
+       class="match-centre"
+       style="margin-top:20px"></div>
+
 </section>
 
-<!-- ADMIN -->
+
+<!-- =====================================================
+     ADMIN
+===================================================== -->
+
 <section id="admin" class="page">
 
   <div class="page-title">
     <div>
-      <h1>Admin</h1>
-      <p>Control MEFCO Watch matches and live events.</p>
-    </div>
-
-    <button class="secondary-btn" onclick="refreshDatabase()">
-      Refresh Database
-    </button>
-  </div>
-
-  <div class="section">
-    <h2>Manage Match</h2>
-
-    <div class="card">
-      <div class="admin-field">
-        <label>MATCH</label>
-        <select id="adminMatchSelect"
-                onchange="selectAdminMatch()">
-          <option value="">Select a match...</option>
-        </select>
-      </div>
-
-      <div id="adminPanelContent" style="margin-top:15px">
-        <div class="empty">Select a match to manage it.</div>
-      </div>
+      <h1>Admin Control</h1>
+      <p>Control matches and publish live events.</p>
     </div>
   </div>
 
-  <div class="section">
+
+  <div class="card card-pad">
+
+    <h2>Match Control</h2>
+
+    <div class="admin-field" style="margin-top:15px">
+
+      <label>MATCH</label>
+
+      <select id="adminMatchSelect"
+              onchange="selectAdminMatch()">
+
+        <option value="">
+          Select a match...
+        </option>
+
+      </select>
+
+    </div>
+
+    <div id="adminPanelContent"
+         style="margin-top:20px">
+
+      <div class="empty">
+        Select a match to manage it.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card card-pad section">
+
     <h2>Create Match</h2>
 
-    <div class="card">
+    <div class="create-grid"
+         style="margin-top:18px">
 
-      <div class="admin-grid">
+      <div class="create-field">
 
-        <div class="admin-field">
-          <label>COMPETITION</label>
-          <input id="createCompetition" placeholder="Competition">
-        </div>
+        <label>COMPETITION</label>
 
-        <div class="admin-field">
-          <label>DATE</label>
-          <input id="createDate" type="date">
-        </div>
-
-        <div class="admin-field">
-          <label>KICKOFF</label>
-          <input id="createKickoff" type="time">
-        </div>
-
-        <div class="admin-field">
-          <label>HOME TEAM</label>
-          <select id="createHome"
-                  onchange="syncCreateTeam('home')">
-            <option value="">Select national team...</option>
-          </select>
-        </div>
-
-        <div class="admin-field">
-          <label>AWAY TEAM</label>
-          <select id="createAway"
-                  onchange="syncCreateTeam('away')">
-            <option value="">Select national team...</option>
-          </select>
-        </div>
-
-        <div class="admin-field">
-          <label>HOME FLAG</label>
-          <input id="createHomeFlag" readonly>
-        </div>
-
-        <div class="admin-field">
-          <label>AWAY FLAG</label>
-          <input id="createAwayFlag" readonly>
-        </div>
+        <input id="createCompetition"
+               placeholder="Competition">
 
       </div>
 
-      <div class="form-actions">
-        <button class="admin-btn green" onclick="createMatch()">
-          Create Match
-        </button>
+
+      <div class="create-field">
+
+        <label>DATE</label>
+
+        <input id="createDate"
+               type="date">
+
       </div>
+
+
+      <div class="create-field">
+
+        <label>KICKOFF</label>
+
+        <input id="createKickoff"
+               type="time">
+
+      </div>
+
+
+      <div class="create-field">
+
+        <label>HOME TEAM</label>
+
+        <select id="createHome"
+                onchange="syncCreateTeam('home')">
+
+          <option value="">
+            Select home team...
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="create-field">
+
+        <label>AWAY TEAM</label>
+
+        <select id="createAway"
+                onchange="syncCreateTeam('away')">
+
+          <option value="">
+            Select away team...
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <input id="createHomeFlag" type="hidden">
+      <input id="createAwayFlag" type="hidden">
+
     </div>
+
+
+    <div id="createTeamPreview"
+         style="margin-top:15px"></div>
+
+
+    <button class="admin-btn green"
+            style="margin-top:18px"
+            onclick="createMatch()">
+      Create Match
+    </button>
+
   </div>
 
-  <div class="section">
+
+  <div class="card card-pad section">
+
     <h2>Notifications</h2>
 
-    <div class="card">
+    <div class="create-grid"
+         style="margin-top:18px">
 
-      <div class="admin-grid">
+      <div class="create-field">
 
-        <div class="admin-field">
-          <label>TITLE</label>
-          <input id="notificationTitle" placeholder="Notification title">
-        </div>
+        <label>TITLE</label>
 
-        <div class="admin-field">
-          <label>URL</label>
-          <input id="notificationUrl" placeholder="https://...">
-        </div>
-
-        <div class="admin-field" style="grid-column:1/-1">
-          <label>MESSAGE</label>
-          <input id="notificationBody" placeholder="Notification message">
-        </div>
+        <input id="notificationTitle"
+               placeholder="MEFCO Watch">
 
       </div>
 
-      <div class="form-actions">
-        <button class="admin-btn blue" onclick="sendNotification()">
-          Send Notification
-        </button>
+      <div class="create-field">
+
+        <label>URL</label>
+
+        <input id="notificationUrl"
+               placeholder="/">
+
       </div>
 
-      <div id="notificationStatus"></div>
     </div>
+
+
+    <div class="create-field"
+         style="margin-top:12px">
+
+      <label>MESSAGE</label>
+
+      <input id="notificationBody"
+             placeholder="New MEFCO update">
+
+    </div>
+
+
+    <button class="admin-btn blue"
+            style="margin-top:15px"
+            onclick="sendNotification()">
+      Send Notification
+    </button>
+
+    <div id="notificationStatus"></div>
+
   </div>
 
-  <div class="section">
+
+  <div class="card card-pad section">
+
     <h2>Admin Log</h2>
-    <div id="adminLog" class="admin-log"></div>
+
+    <div id="adminLog"
+         style="margin-top:12px">
+
+      <div class="empty">
+        No admin actions yet.
+      </div>
+
+    </div>
+
   </div>
+
 </section>
 
-<footer>
-  MEFCO Watch · Football, watched live.
+
+<footer style="
+  border-top:1px solid var(--border);
+  padding:25px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+">
+  MEFCO WATCH · Football, connected.
 </footer>
 
+
 <script>
+
 /* =========================================================
-   DATABASE
+   SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
@@ -1429,37 +1770,6 @@ const PLAYERS_URL =
   SUPABASE_URL + "/rest/v1/players";
 
 
-async function supabaseFetch(url,options={}){
-
-  const response=
-    await fetch(url,{
-      ...options,
-      headers:{
-        apikey:SUPABASE_KEY,
-        Authorization:"Bearer "+SUPABASE_KEY,
-        "Content-Type":"application/json",
-        ...(options.headers||{})
-      }
-    });
-
-  if(!response.ok){
-
-    const text=await response.text();
-
-    const error=
-      new Error(text||response.statusText);
-
-    error.status=response.status;
-
-    throw error;
-  }
-
-  const text=await response.text();
-
-  return text?JSON.parse(text):null;
-}
-
-
 /* =========================================================
    STATE
 ========================================================= */
@@ -1475,111 +1785,57 @@ let playerMap=new Map();
 let selectedMatchId=null;
 let selectedArticleId=null;
 let selectedCompetition=null;
+let selectedPlayerBackPage="search";
 
 let scoreFilter="all";
 let scoreDate=todayISO();
-
-let searchType="all";
 
 let adminLog=[];
 let timer=null;
 
 
 /* =========================================================
-   TEAM / PLAYER HELPERS
+   SUPABASE FETCH
 ========================================================= */
 
-function getTeam(id){
+async function supabaseFetch(url,options={}){
 
-  return teamMap.get(String(id))||null;
-}
+  const response=await fetch(url,{
 
+    ...options,
 
-function getPlayer(id){
+    headers:{
+      apikey:SUPABASE_KEY,
+      Authorization:"Bearer "+SUPABASE_KEY,
+      "Content-Type":"application/json",
+      ...(options.headers||{})
+    }
 
-  return playerMap.get(String(id))||null;
-}
+  });
 
+  if(!response.ok){
 
-function playerDisplayName(player){
+    const text=await response.text();
 
-  return player?.short_name||
-         player?.name||
-         "";
-}
+    const error=new Error(
+      text||response.statusText
+    );
 
+    error.status=response.status;
 
-function resolveTeam(ref){
+    throw error;
 
-  if(!ref)return null;
+  }
 
-  const direct=
-    getTeam(ref);
+  const text=await response.text();
 
-  if(direct)return direct;
+  return text?JSON.parse(text):null;
 
-  const value=
-    String(ref).trim().toLowerCase();
-
-  return teams.find(t=>
-    String(t.name||"").toLowerCase()===value||
-    String(t.short_name||"").toLowerCase()===value||
-    String(t.country||"").toLowerCase()===value||
-    String(t.abbreviation||"").toLowerCase()===value
-  )||null;
-}
-
-
-function resolvePlayer(ref){
-
-  if(!ref)return null;
-
-  const direct=
-    getPlayer(ref);
-
-  if(direct)return direct;
-
-  const value=
-    String(ref).trim().toLowerCase();
-
-  return players.find(p=>
-    String(p.name||"").toLowerCase()===value||
-    String(p.short_name||"").toLowerCase()===value
-  )||null;
-}
-
-
-function resolveMatchTeam(match,side){
-
-  const id=
-    side==="home"
-      ? (match.home_team_id||match.home_id)
-      : (match.away_team_id||match.away_id);
-
-  const byId=
-    resolveTeam(id);
-
-  if(byId)return byId;
-
-  return resolveTeam(
-    side==="home"
-      ? match.home
-      : match.away
-  );
-}
-
-
-function teamFlag(team,fallback=""){
-
-  return team?.flag_url||
-         team?.logo_url||
-         fallback||
-         "";
 }
 
 
 /* =========================================================
-   LOADING
+   TEAMS
 ========================================================= */
 
 async function loadTeams(){
@@ -1594,15 +1850,19 @@ async function loadTeams(){
 
     teams=
       Array.isArray(data)
-        ? data
-        : [];
+        ?data
+        :[];
 
     teamMap=
       new Map(
-        teams.map(team=>
-          [String(team.id),team]
-        )
+        teams.map(t=>[
+          String(t.id),
+          t
+        ])
       );
+
+    renderTeams();
+    renderCreateTeamOptions();
 
   }catch(error){
 
@@ -1610,9 +1870,86 @@ async function loadTeams(){
 
     teams=[];
     teamMap.clear();
+
   }
+
 }
 
+
+function getTeam(id){
+
+  if(id===null||id===undefined||id===""){
+    return null;
+  }
+
+  return teamMap.get(String(id))||null;
+
+}
+
+
+function resolveTeam(ref){
+
+  if(ref===null||ref===undefined){
+    return null;
+  }
+
+  const byId=
+    getTeam(ref);
+
+  if(byId)return byId;
+
+  const needle=
+    String(ref)
+      .trim()
+      .toLowerCase();
+
+  return teams.find(t=>
+    [
+      t.name,
+      t.short_name,
+      t.country,
+      t.abbreviation
+    ]
+    .filter(Boolean)
+    .some(value=>
+      String(value)
+        .toLowerCase()===needle
+    )
+  )||null;
+
+}
+
+
+function resolveMatchTeam(match,side){
+
+  const id=
+    side==="home"
+      ?(
+        match.home_team_id ??
+        match.home_id
+      )
+      :(
+        match.away_team_id ??
+        match.away_id
+      );
+
+  const byId=
+    getTeam(id);
+
+  if(byId)return byId;
+
+  return resolveTeam(
+    side==="home"
+      ?match.home
+      :match.away
+  );
+
+}
+
+
+/* =========================================================
+   PLAYERS
+========================================================= */
 
 async function loadPlayers(){
 
@@ -1626,14 +1963,15 @@ async function loadPlayers(){
 
     players=
       Array.isArray(data)
-        ? data
-        : [];
+        ?data
+        :[];
 
     playerMap=
       new Map(
-        players.map(player=>
-          [String(player.id),player]
-        )
+        players.map(p=>[
+          String(p.id),
+          p
+        ])
       );
 
   }catch(error){
@@ -1642,9 +1980,66 @@ async function loadPlayers(){
 
     players=[];
     playerMap.clear();
+
   }
+
 }
 
+
+function getPlayer(id){
+
+  if(id===null||id===undefined||id===""){
+    return null;
+  }
+
+  return playerMap.get(String(id))||null;
+
+}
+
+
+function resolvePlayer(ref){
+
+  if(!ref)return null;
+
+  const byId=
+    getPlayer(ref);
+
+  if(byId)return byId;
+
+  const needle=
+    String(ref)
+      .trim()
+      .toLowerCase();
+
+  return players.find(p=>
+    [
+      p.name,
+      p.short_name
+    ]
+    .filter(Boolean)
+    .some(value=>
+      String(value)
+        .toLowerCase()===needle
+    )
+  )||null;
+
+}
+
+
+function playerDisplayName(player){
+
+  return (
+    player?.short_name||
+    player?.name||
+    "Unknown Player"
+  );
+
+}
+
+
+/* =========================================================
+   MATCHES
+========================================================= */
 
 async function loadMatches(){
 
@@ -1658,21 +2053,29 @@ async function loadMatches(){
 
     matches=
       Array.isArray(data)
-        ? data
-        : [];
+        ?data
+        :[];
 
     await loadAllEvents();
+
+    renderAll();
 
   }catch(error){
 
     console.error("Matches:",error);
 
     matches=[];
+
+    renderAll();
+
   }
+
 }
 
 
 async function loadAllEvents(){
+
+  if(!matches.length)return;
 
   try{
 
@@ -1684,8 +2087,8 @@ async function loadAllEvents(){
 
     const events=
       Array.isArray(data)
-        ? data
-        : [];
+        ?data
+        :[];
 
     matches.forEach(match=>{
 
@@ -1702,13 +2105,17 @@ async function loadAllEvents(){
     console.error("Events:",error);
 
     matches.forEach(match=>{
-      if(!Array.isArray(match.events)){
-        match.events=[];
-      }
+      match.events=[];
     });
+
   }
+
 }
 
+
+/* =========================================================
+   NEWS
+========================================================= */
 
 async function loadNews(){
 
@@ -1722,46 +2129,21 @@ async function loadNews(){
 
     news=
       Array.isArray(data)
-        ? data
-        : [];
+        ?data
+        :[];
+
+    renderNews();
 
   }catch(error){
 
     console.error("News:",error);
 
     news=[];
-  }
-}
 
+    renderNews();
 
-async function refreshDatabase(){
-
-  const status=
-    document.getElementById("dbStatus");
-
-  if(status){
-
-    status.textContent="Refreshing...";
-    status.className="db-status";
   }
 
-  await Promise.all([
-    loadTeams(),
-    loadPlayers(),
-    loadMatches(),
-    loadNews()
-  ]);
-
-  renderAll();
-  renderAdmin();
-
-  if(status){
-
-    status.textContent="Database connected";
-    status.className="db-status ok";
-  }
-
-  addLog("Database refreshed.");
 }
 
 
@@ -1777,55 +2159,100 @@ function escapeHTML(value){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
 }
 
 
 function todayISO(){
 
+  const d=new Date();
+
+  const offset=
+    d.getTimezoneOffset();
+
+  const local=
+    new Date(
+      d.getTime()-
+      offset*60000
+    );
+
+  return local
+    .toISOString()
+    .slice(0,10);
+
+}
+
+
+function formatMatchTime(value){
+
+  if(!value)return"";
+
+  const parts=
+    String(value).split(":");
+
+  let hour=
+    Number(parts[0])||0;
+
+  const minute=
+    parts[1]||"00";
+
+  const suffix=
+    hour>=12?"PM":"AM";
+
+  hour=
+    hour%12||12;
+
+  return `${hour}:${minute} ${suffix}`;
+
+}
+
+
+function formatNewsDate(value){
+
+  if(!value)return"";
+
   const date=
-    new Date();
+    new Date(value);
 
-  const y=
-    date.getFullYear();
+  if(Number.isNaN(date.getTime())){
+    return value;
+  }
 
-  const m=
-    String(date.getMonth()+1)
-      .padStart(2,"0");
+  return date.toLocaleDateString(
+    undefined,
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric"
+    }
+  );
 
-  const d=
-    String(date.getDate())
-      .padStart(2,"0");
-
-  return `${y}-${m}-${d}`;
 }
 
 
 function formatLongDate(value){
 
-  if(!value)return "";
+  if(!value)return"";
 
   const date=
     new Date(value+"T00:00:00");
-
-  if(Number.isNaN(date.getTime()))
-    return value;
 
   return date.toLocaleDateString(
     undefined,
     {
       weekday:"long",
-      month:"long",
       day:"numeric",
+      month:"long",
       year:"numeric"
     }
   );
+
 }
 
 
 function formatDateLabel(value){
 
-  if(value===todayISO())
-    return "Today";
+  if(value===todayISO())return"Today";
 
   const date=
     new Date(value+"T00:00:00");
@@ -1834,106 +2261,59 @@ function formatDateLabel(value){
     undefined,
     {
       weekday:"short",
-      month:"short",
-      day:"numeric"
-    }
-  );
-}
-
-
-function formatNewsDate(value){
-
-  if(!value)return "";
-
-  const date=
-    new Date(value);
-
-  if(Number.isNaN(date.getTime()))
-    return value;
-
-  return date.toLocaleDateString(
-    undefined,
-    {
-      month:"short",
       day:"numeric",
-      year:"numeric"
+      month:"short"
     }
   );
+
 }
 
 
 function matchDate(match){
 
-  return match.match_date||
-         match.date||
-         "";
+  return match.match_date||"";
+
 }
 
 
 function matchTime(match){
 
-  return match.match_time||
-         match.time||
-         "";
-}
+  return match.match_time||"";
 
-
-function formatMatchTime(match){
-
-  const time=
-    matchTime(match);
-
-  if(!time)return "TBD";
-
-  return time.slice(0,5);
 }
 
 
 function isLive(match){
 
-  return String(match.status||"")
+  return String(match.status)
     .toLowerCase()==="live";
+
 }
 
 
 function isFinished(match){
 
-  return [
-    "finished",
-    "complete",
-    "completed"
-  ].includes(
-    String(match.status||"").toLowerCase()
-  );
-}
+  return String(match.status)
+    .toLowerCase()==="finished";
 
-
-function scoreOf(match,side){
-
-  const key=
-    side==="home"
-      ? "score_home"
-      : "score_away";
-
-  return Number(match[key])||0;
 }
 
 
 function matchLabel(match){
 
-  return `${match.home||"Home"} vs ${match.away||"Away"}`;
+  return `${match.home} vs ${match.away}`;
+
 }
 
 
-function sortMatches(a,b){
+function scoreOf(match){
 
-  const ad=
-    `${matchDate(a)}T${matchTime(a)}`;
+  return `
+    ${Number(match.score_home)||0}
+    -
+    ${Number(match.score_away)||0}
+  `;
 
-  const bd=
-    `${matchDate(b)}T${matchTime(b)}`;
-
-  return ad.localeCompare(bd);
 }
 
 
@@ -1943,7 +2323,8 @@ function sortMatches(a,b){
 
 function showPage(id,button=null){
 
-  document.querySelectorAll(".page")
+  document
+    .querySelectorAll(".page")
     .forEach(page=>
       page.classList.remove("active")
     );
@@ -1951,16 +2332,19 @@ function showPage(id,button=null){
   const page=
     document.getElementById(id);
 
-  if(page)
+  if(page){
     page.classList.add("active");
+  }
 
-  document.querySelectorAll("nav button")
-    .forEach(btn=>
-      btn.classList.remove("active")
+  document
+    .querySelectorAll("nav button")
+    .forEach(b=>
+      b.classList.remove("active")
     );
 
-  if(button)
+  if(button){
     button.classList.add("active");
+  }
 
   window.scrollTo({
     top:0,
@@ -1972,151 +2356,10 @@ function showPage(id,button=null){
   if(id==="news")renderNews();
   if(id==="competitions")renderCompetitions();
   if(id==="stats")renderStats();
+  if(id==="search")performSearch();
+  if(id==="teams-page")renderTeams();
   if(id==="admin")renderAdmin();
-}
 
-
-/* =========================================================
-   MATCH CARD
-========================================================= */
-
-function cardHTML(match){
-
-  const homeTeam=
-    resolveMatchTeam(match,"home");
-
-  const awayTeam=
-    resolveMatchTeam(match,"away");
-
-  const homeFlag=
-    teamFlag(homeTeam,match.home_flag);
-
-  const awayFlag=
-    teamFlag(awayTeam,match.away_flag);
-
-  const live=
-    isLive(match);
-
-  const finished=
-    isFinished(match);
-
-  let status=
-    "Scheduled";
-
-  if(live)
-    status="LIVE";
-
-  if(finished)
-    status="Full Time";
-
-  return `
-
-    <div class="match-card"
-         onclick="openMatch('${escapeHTML(match.id)}')">
-
-      <div class="match-top">
-
-        <span>
-          ${escapeHTML(match.competition||"MEFCO")}
-        </span>
-
-        <button
-          class="favorite ${match.favorite?"on":""}"
-          onclick="event.stopPropagation();toggleFavorite('${escapeHTML(match.id)}')">
-          ${match.favorite?"★":"☆"}
-        </button>
-
-      </div>
-
-      <div class="match-teams">
-
-        <div class="team-side">
-
-          <div class="team-identity">
-
-            ${
-              homeFlag
-                ? `<img class="flag"
-                        src="${escapeHTML(homeFlag)}"
-                        alt="">`
-                : ""
-            }
-
-            <span class="team-name">
-              ${escapeHTML(
-                homeTeam?.short_name||
-                match.home||
-                "Home"
-              )}
-            </span>
-
-          </div>
-
-          <small>
-            ${escapeHTML(matchDate(match))}
-          </small>
-
-        </div>
-
-        <div>
-
-          <div class="score">
-            ${scoreOf(match,"home")}
-            -
-            ${scoreOf(match,"away")}
-          </div>
-
-          <div class="match-status ${
-            live
-              ?"status-live"
-              :finished
-                ?"status-finished"
-                :"status-scheduled"
-          }">
-
-            ${
-              live
-                ? `<span class="live-dot"></span>LIVE ${Number(match.minute)||0}'`
-                : status
-            }
-
-          </div>
-
-        </div>
-
-        <div class="team-side away">
-
-          <div class="team-identity">
-
-            ${
-              awayFlag
-                ? `<img class="flag"
-                        src="${escapeHTML(awayFlag)}"
-                        alt="">`
-                : ""
-            }
-
-            <span class="team-name">
-              ${escapeHTML(
-                awayTeam?.short_name||
-                match.away||
-                "Away"
-              )}
-            </span>
-
-          </div>
-
-          <small>
-            ${escapeHTML(formatMatchTime(match))}
-          </small>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
 }
 
 
@@ -2126,51 +2369,69 @@ function cardHTML(match){
 
 function renderHome(){
 
-  const homeMatches=
+  const today=
+    matches.filter(m=>
+      matchDate(m)===todayISO()
+    );
+
+  const box=
     document.getElementById("homeMatches");
 
-  if(homeMatches){
+  if(box){
 
-    const today=
-      matches
-        .filter(m=>matchDate(m)===todayISO())
-        .sort(sortMatches);
-
-    homeMatches.innerHTML=
+    box.innerHTML=
       today.length
-        ? today.slice(0,6)
-            .map(cardHTML)
-            .join("")
-        : `<div class="empty">No matches today.</div>`;
+        ?sortMatches(today)
+          .map(cardHTML)
+          .join("")
+        :`<div class="empty">
+            No matches today.
+          </div>`;
+
   }
 
-  const teamCount=
-    document.getElementById("homeTeamCount");
+  document.getElementById(
+    "homeMatchesCount"
+  ).textContent=
+    matches.length;
 
-  const playerCount=
-    document.getElementById("homePlayerCount");
+  document.getElementById(
+    "homeTeamsCount"
+  ).textContent=
+    teams.length;
 
-  const matchCount=
-    document.getElementById("homeMatchCount");
+  document.getElementById(
+    "homePlayersCount"
+  ).textContent=
+    players.length;
 
-  const liveCount=
-    document.getElementById("homeLiveCount");
-
-  if(teamCount)
-    teamCount.textContent=teams.length;
-
-  if(playerCount)
-    playerCount.textContent=players.length;
-
-  if(matchCount)
-    matchCount.textContent=matches.length;
-
-  if(liveCount)
-    liveCount.textContent=
-      matches.filter(isLive).length;
+  document.getElementById(
+    "homeLiveCount"
+  ).textContent=
+    matches.filter(isLive).length;
 
   renderHomeNews();
-  renderLiveTicker();
+
+}
+
+
+function renderHomeNews(){
+
+  const box=
+    document.getElementById("homeNews");
+
+  if(!box)return;
+
+  const items=
+    news.slice(0,3);
+
+  box.innerHTML=
+    items.length
+      ?items.map(newsCardHTML).join("")
+      :`<div class="empty">
+          No news available.
+        </div>`;
+
 }
 
 
@@ -2186,47 +2447,148 @@ function renderLiveTicker(){
 
   box.innerHTML=
     live.length
-      ? live.map(m=>`
+      ?live.map(m=>`
 
-        <div class="ticker-item"
-             onclick="openMatch('${escapeHTML(m.id)}')">
+        <span
+          class="ticker-item"
+          onclick="openMatch('${escapeHTML(m.id)}')">
 
-          <div class="eyebrow">
-            <span class="live-dot"></span>
-            LIVE · ${Number(m.minute)||0}'
-          </div>
+          <span class="live-dot"></span>
 
-          <strong>
-            ${escapeHTML(m.home)}
-            ${scoreOf(m,"home")}
-            -
-            ${scoreOf(m,"away")}
-            ${escapeHTML(m.away)}
-          </strong>
+          ${escapeHTML(m.home)}
+          ${scoreOf(m)}
+          ${escapeHTML(m.away)}
+          · ${Number(m.minute)||0}'
 
-        </div>
+        </span>
 
       `).join("")
-      : `<div class="empty" style="width:100%">
-          No matches are live right now.
-         </div>`;
+      :`
+        <span class="ticker-item">
+          No matches currently live.
+        </span>
+      `;
+
 }
 
 
-function renderHomeNews(){
+/* =========================================================
+   MATCH CARDS
+========================================================= */
 
-  const box=
-    document.getElementById("homeNews");
+function cardHTML(match){
 
-  if(!box)return;
+  const homeTeam=
+    resolveMatchTeam(match,"home");
 
-  const list=
-    news.slice(0,3);
+  const awayTeam=
+    resolveMatchTeam(match,"away");
 
-  box.innerHTML=
-    list.length
-      ? list.map(newsCardHTML).join("")
-      : `<div class="empty">No news available.</div>`;
+  const homeFlag=
+    match.home_flag||
+    homeTeam?.flag_url||
+    "";
+
+  const awayFlag=
+    match.away_flag||
+    awayTeam?.flag_url||
+    "";
+
+  const status=
+    isLive(match)
+      ?`${Number(match.minute)||0}'`
+      :isFinished(match)
+        ?"FT"
+        :formatMatchTime(matchTime(match));
+
+  return `
+
+    <div
+      class="match-card"
+      onclick="openMatch('${escapeHTML(match.id)}')">
+
+      <div class="match-top">
+
+        <span>
+          ${escapeHTML(match.competition||"MEFCO")}
+        </span>
+
+        <span>
+          ${escapeHTML(formatDateLabel(matchDate(match)))}
+        </span>
+
+      </div>
+
+      <div class="match-teams">
+
+        <div class="match-team">
+
+          ${
+            homeFlag
+              ?`
+                <img
+                  class="team-flag"
+                  src="${escapeHTML(homeFlag)}">
+              `
+              :""
+          }
+
+          <span class="team-name">
+            ${escapeHTML(match.home)}
+          </span>
+
+        </div>
+
+        <div class="match-score">
+          ${scoreOf(match)}
+        </div>
+
+        <div class="match-team away">
+
+          <span class="team-name">
+            ${escapeHTML(match.away)}
+          </span>
+
+          ${
+            awayFlag
+              ?`
+                <img
+                  class="team-flag"
+                  src="${escapeHTML(awayFlag)}">
+              `
+              :""
+          }
+
+        </div>
+
+      </div>
+
+      <div class="match-status ${isLive(match)?"live":""}">
+
+        ${
+          isLive(match)
+            ?"LIVE · "+escapeHTML(status)
+            :escapeHTML(status)
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function sortMatches(list){
+
+  return [...list].sort((a,b)=>
+    `${matchDate(a)} ${matchTime(a)}`
+      .localeCompare(
+        `${matchDate(b)} ${matchTime(b)}`
+      )
+  );
+
 }
 
 
@@ -2237,7 +2599,9 @@ function renderHomeNews(){
 function changeScoreDate(days){
 
   const date=
-    new Date(scoreDate+"T00:00:00");
+    new Date(
+      scoreDate+"T00:00:00"
+    );
 
   date.setDate(
     date.getDate()+days
@@ -2247,6 +2611,7 @@ function changeScoreDate(days){
     date.toISOString().slice(0,10);
 
   renderScores();
+
 }
 
 
@@ -2255,1452 +2620,77 @@ function goToToday(){
   scoreDate=todayISO();
 
   renderScores();
+
 }
 
 
-function setScoreFilter(filter,button){
+function setScoreFilter(filter){
 
   scoreFilter=filter;
 
-  document.querySelectorAll("#scores .filter-btn")
-    .forEach(btn=>
-      btn.classList.remove("active")
-    );
+  document
+    .querySelectorAll(
+      ".filter-bar button"
+    )
+    .forEach(button=>{
 
-  if(button)
-    button.classList.add("active");
+      button.classList.toggle(
+        "active",
+        button.dataset.filter===filter
+      );
+
+    });
 
   renderScores();
+
 }
 
 
 function renderScores(){
 
   const label=
-    document.getElementById("scoreDateLabel");
-
-  const grid=
-    document.getElementById("scoresGrid");
+    document.getElementById(
+      "scoreDateLabel"
+    );
 
   if(label){
 
-    label.innerHTML=`
-      <h2>${escapeHTML(formatDateLabel(scoreDate))}</h2>
-      <span>${escapeHTML(formatLongDate(scoreDate))}</span>
-    `;
-  }
+    label.textContent=
+      formatLongDate(scoreDate);
 
-  if(!grid)return;
+  }
 
   let list=
     matches.filter(m=>
       matchDate(m)===scoreDate
     );
 
-  if(scoreFilter==="favorites")
-    list=list.filter(m=>m.favorite);
-
-  if(scoreFilter==="live")
+  if(scoreFilter==="live"){
     list=list.filter(isLive);
-
-  if(scoreFilter==="finished")
-    list=list.filter(isFinished);
-
-  if(scoreFilter==="scheduled")
-    list=list.filter(m=>
-      !isLive(m)&&!isFinished(m)
-    );
-
-  list.sort(sortMatches);
-
-  grid.innerHTML=
-    list.length
-      ? list.map(cardHTML).join("")
-      : `<div class="empty">No matches for this filter.</div>`;
-}
-
-
-async function toggleFavorite(id){
-
-  const match=
-    matches.find(m=>
-      String(m.id)===String(id)
-    );
-
-  if(!match)return;
-
-  const favorite=
-    !Boolean(match.favorite);
-
-  try{
-
-    await updateMatch(
-      match.id,
-      {favorite}
-    );
-
-    match.favorite=favorite;
-
-    renderScores();
-    renderHome();
-
-  }catch(error){
-
-    addLog(
-      "Favorite update failed: "+
-      error.message
-    );
   }
-}
 
-
-/* =========================================================
-   NEWS
-========================================================= */
-
-function newsCardHTML(item){
-
-  const image=
-    item.image_url||
-    item.image||
-    "";
-
-  return `
-
-    <div class="card news-card"
-         onclick="openArticle('${escapeHTML(item.id)}')">
-
-      <div class="news-image">
-
-        ${
-          image
-            ? `<img src="${escapeHTML(image)}" alt="">`
-            : `<span>MEFCO NEWS</span>`
-        }
-
-      </div>
-
-      <div class="news-body">
-
-        <div class="news-date">
-          ${escapeHTML(
-            formatNewsDate(
-              item.created_at||
-              item.date
-            )
-          )}
-        </div>
-
-        <div class="news-title">
-          ${escapeHTML(
-            item.title||
-            "Untitled"
-          )}
-        </div>
-
-        <div class="news-excerpt">
-          ${escapeHTML(
-            item.excerpt||
-            item.summary||
-            ""
-          )}
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
-}
-
-
-function renderNews(){
+  if(scoreFilter==="favorite"){
+    list=list.filter(m=>m.favorite);
+  }
 
   const box=
-    document.getElementById("newsGrid");
-
-  if(!box)return;
-
-  box.innerHTML=
-    news.length
-      ? news.map(newsCardHTML).join("")
-      : `<div class="empty">No news available.</div>`;
-}
-
-
-function openArticle(id){
-
-  selectedArticleId=id;
-
-  const article=
-    news.find(item=>
-      String(item.id)===String(id)
+    document.getElementById(
+      "scoresList"
     );
 
-  if(!article)return;
-
-  showPage("article-page");
-
-  renderArticle(article);
-}
-
-
-function renderArticle(article){
-
-  const box=
-    document.getElementById("articleContent");
-
   if(!box)return;
-
-  box.innerHTML=`
-
-    <div class="eyebrow">MEFCO NEWS</div>
-
-    <h1>
-      ${escapeHTML(article.title||"Untitled")}
-    </h1>
-
-    <div class="article-meta">
-      ${escapeHTML(
-        formatNewsDate(
-          article.created_at||
-          article.date
-        )
-      )}
-    </div>
-
-    ${
-      article.image_url
-        ? `<div class="news-image"
-                style="height:320px;border-radius:15px;margin-bottom:25px">
-              <img src="${escapeHTML(article.image_url)}" alt="">
-           </div>`
-        : ""
-    }
-
-    <div class="article-content">
-      ${escapeHTML(
-        article.content||
-        article.body||
-        article.excerpt||
-        ""
-      )}
-    </div>
-
-  `;
-}
-
-
-function backToNews(){
-
-  showPage("news");
-}
-
-
-/* =========================================================
-   COMPETITIONS
-========================================================= */
-
-function getCompetitions(){
-
-  const names=
-    matches
-      .map(m=>m.competition)
-      .filter(Boolean);
-
-  const unique=
-    [...new Set(names)];
-
-  return unique.length
-    ? unique
-    : [
-        "MEFCO IPL",
-        "Global Cup",
-        "Continental Cup",
-        "Leagues Cup"
-      ];
-}
-
-
-function competitionIcon(name){
-
-  const value=
-    String(name).toLowerCase();
-
-  if(value.includes("global"))
-    return "🌍";
-
-  if(value.includes("continental"))
-    return "🏆";
-
-  if(value.includes("league"))
-    return "⚽";
-
-  return "🏟️";
-}
-
-
-function renderCompetitions(){
-
-  const box=
-    document.getElementById("competitionsGrid");
-
-  if(!box)return;
-
-  const competitions=
-    getCompetitions();
 
   box.innerHTML=
-    competitions.map(name=>{
-
-      const count=
-        matches.filter(m=>
-          m.competition===name
-        ).length;
-
-      return `
-
-        <div class="card competition-card"
-             onclick="openCompetition('${escapeHTML(name)}')">
-
-          <div class="competition-icon">
-            ${competitionIcon(name)}
-          </div>
-
-          <h3>${escapeHTML(name)}</h3>
-
-          <p>
-            ${count}
-            match${count===1?"":"es"}
-          </p>
-
+    list.length
+      ?sortMatches(list)
+        .map(cardHTML)
+        .join("")
+      :`
+        <div class="empty">
+          No matches for this date.
         </div>
-
       `;
 
-    }).join("");
-}
-
-
-function openCompetition(name){
-
-  selectedCompetition=name;
-
-  showPage("competition-page");
-
-  renderCompetition();
-}
-
-
-function renderCompetition(){
-
-  const box=
-    document.getElementById("competitionContent");
-
-  if(!box)return;
-
-  const list=
-    matches
-      .filter(m=>
-        m.competition===selectedCompetition
-      )
-      .sort(sortMatches);
-
-  const teamsInCompetition=
-    new Map();
-
-  list.forEach(match=>{
-
-    const home=
-      resolveMatchTeam(match,"home");
-
-    const away=
-      resolveMatchTeam(match,"away");
-
-    if(home)
-      teamsInCompetition.set(
-        String(home.id),
-        home
-      );
-
-    if(away)
-      teamsInCompetition.set(
-        String(away.id),
-        away
-      );
-  });
-
-  box.innerHTML=`
-
-    <div class="page-title">
-      <div>
-        <div class="eyebrow">
-          Competition
-        </div>
-
-        <h1>
-          ${escapeHTML(selectedCompetition)}
-        </h1>
-
-        <p>
-          ${list.length} matches
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
-
-      <h2>Standings</h2>
-
-      ${renderCompetitionTable(list)}
-
-    </div>
-
-    <div class="section">
-
-      <h2>Matches</h2>
-
-      <div class="grid grid-3">
-
-        ${
-          list.length
-            ? list.map(cardHTML).join("")
-            : `<div class="empty">No matches.</div>`
-        }
-
-      </div>
-
-    </div>
-
-  `;
-}
-
-
-function renderCompetitionTable(list){
-
-  const table={};
-
-  list.forEach(match=>{
-
-    const home=
-      resolveMatchTeam(match,"home");
-
-    const away=
-      resolveMatchTeam(match,"away");
-
-    const homeName=
-      home?.name||
-      match.home||
-      "Home";
-
-    const awayName=
-      away?.name||
-      match.away||
-      "Away";
-
-    if(!table[homeName])
-      table[homeName]=blankTeam(homeName);
-
-    if(!table[awayName])
-      table[awayName]=blankTeam(awayName);
-
-    if(isFinished(match)){
-
-      const hs=
-        scoreOf(match,"home");
-
-      const as=
-        scoreOf(match,"away");
-
-      table[homeName].played++;
-      table[awayName].played++;
-
-      table[homeName].gf+=hs;
-      table[homeName].ga+=as;
-
-      table[awayName].gf+=as;
-      table[awayName].ga+=hs;
-
-      if(hs>as){
-
-        table[homeName].wins++;
-        table[homeName].points+=3;
-        table[awayName].losses++;
-
-      }else if(as>hs){
-
-        table[awayName].wins++;
-        table[awayName].points+=3;
-        table[homeName].losses++;
-
-      }else{
-
-        table[homeName].draws++;
-        table[awayName].draws++;
-        table[homeName].points++;
-        table[awayName].points++;
-      }
-    }
-  });
-
-  const rows=
-    Object.values(table)
-      .sort((a,b)=>
-        b.points-a.points||
-        (b.gf-b.ga)-(a.gf-a.ga)||
-        b.gf-a.gf
-      );
-
-  return `
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Team</th>
-            <th>P</th>
-            <th>W</th>
-            <th>D</th>
-            <th>L</th>
-            <th>GD</th>
-            <th>Pts</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          ${
-            rows.map((row,index)=>`
-
-              <tr>
-
-                <td class="rank">
-                  ${index+1}
-                </td>
-
-                <td>
-                  <button
-                    class="team-link"
-                    onclick="openTeam('${escapeHTML(row.name)}')">
-                    ${escapeHTML(row.name)}
-                  </button>
-                </td>
-
-                <td>${row.played}</td>
-                <td>${row.wins}</td>
-                <td>${row.draws}</td>
-                <td>${row.losses}</td>
-                <td>${row.gf-row.ga}</td>
-                <td><strong>${row.points}</strong></td>
-
-              </tr>
-
-            `).join("")
-          }
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  `;
-}
-
-
-function blankTeam(name){
-
-  return {
-    name,
-    played:0,
-    wins:0,
-    draws:0,
-    losses:0,
-    gf:0,
-    ga:0,
-    points:0
-  };
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-function collectPlayerStats(){
-
-  const map=
-    new Map();
-
-  matches.forEach(match=>{
-
-    (match.events||[]).forEach(event=>{
-
-      const player=
-        event.player_id
-          ? getPlayer(event.player_id)
-          : resolvePlayer(event.player);
-
-      const name=
-        player?.name||
-        event.player||
-        event.player_name||
-        "";
-
-      if(!name)return;
-
-      const key=
-        player
-          ? "player:"+player.id
-          : "legacy:"+name.toLowerCase();
-
-      if(!map.has(key)){
-
-        map.set(key,{
-          id:player?.id||null,
-          name,
-          short_name:
-            playerDisplayName(player)||
-            name,
-          team:
-            player
-              ? getTeam(player.team_id)?.name||""
-              : event.team||"",
-          goals:0,
-          assists:0
-        });
-
-      }
-
-      const row=
-        map.get(key);
-
-      const type=
-        String(
-          event.type||
-          event.event_type||
-          ""
-        ).toLowerCase();
-
-      if(type.includes("goal"))
-        row.goals++;
-
-      if(type.includes("assist"))
-        row.assists++;
-
-    });
-
-  });
-
-  return [...map.values()];
-}
-
-
-function renderStats(){
-
-  const box=
-    document.getElementById("statsContent");
-
-  if(!box)return;
-
-  const stats=
-    collectPlayerStats();
-
-  const topScorers=
-    [...stats]
-      .sort((a,b)=>
-        b.goals-a.goals||
-        b.assists-a.assists
-      )
-      .slice(0,20);
-
-  const topAssists=
-    [...stats]
-      .sort((a,b)=>
-        b.assists-a.assists||
-        b.goals-a.goals
-      )
-      .slice(0,10);
-
-  box.innerHTML=`
-
-    <div class="section">
-
-      <h2>Top Scorers</h2>
-
-      <div class="table-wrap">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Player</th>
-              <th>Team</th>
-              <th>Goals</th>
-              <th>Assists</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            ${
-              topScorers.length
-                ? topScorers.map((p,i)=>`
-
-                  <tr>
-
-                    <td class="rank">
-                      ${i+1}
-                    </td>
-
-                    <td>
-                      <button
-                        class="player-link"
-                        onclick="openPlayer('${escapeHTML(p.id||p.name)}')">
-                        ${escapeHTML(p.short_name)}
-                      </button>
-                    </td>
-
-                    <td>
-                      ${escapeHTML(p.team)}
-                    </td>
-
-                    <td>
-                      <strong>${p.goals}</strong>
-                    </td>
-
-                    <td>${p.assists}</td>
-
-                  </tr>
-
-                `).join("")
-                : `<tr>
-                    <td colspan="5">
-                      No player events yet.
-                    </td>
-                   </tr>`
-            }
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <h2>Assist Leaders</h2>
-
-      <div class="grid grid-3">
-
-        ${
-          topAssists.map(p=>`
-
-            <div class="card">
-
-              <div class="eyebrow">
-                ${escapeHTML(p.team)}
-              </div>
-
-              <h3>
-                ${escapeHTML(p.short_name)}
-              </h3>
-
-              <strong style="font-size:28px">
-                ${p.assists}
-              </strong>
-
-              <div style="color:var(--muted);font-size:11px">
-                assists
-              </div>
-
-            </div>
-
-          `).join("")
-        }
-
-      </div>
-
-    </div>
-
-  `;
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function setSearchType(type,button){
-
-  searchType=type;
-
-  document.querySelectorAll("#search .filter-btn")
-    .forEach(btn=>
-      btn.classList.remove("active")
-    );
-
-  if(button)
-    button.classList.add("active");
-
-  performSearch();
-}
-
-
-function performSearch(){
-
-  const input=
-    document.getElementById("searchInput");
-
-  const box=
-    document.getElementById("searchResults");
-
-  if(!input||!box)return;
-
-  const query=
-    input.value.trim().toLowerCase();
-
-  if(!query){
-
-    box.innerHTML=
-      `<div class="empty">
-        Search the MEFCO database.
-       </div>`;
-
-    return;
-  }
-
-  const results=[];
-
-  if(searchType==="all"||searchType==="teams"){
-
-    teams.forEach(team=>{
-
-      const text=
-        [
-          team.name,
-          team.short_name,
-          team.country,
-          team.abbreviation
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      if(text.includes(query)){
-
-        results.push({
-          type:"Team",
-          title:team.name,
-          sub:
-            `${team.country||""} · ${team.confederation||""}`,
-          action:
-            `openTeam('${escapeHTML(team.id)}')`
-        });
-
-      }
-
-    });
-
-  }
-
-  if(searchType==="all"||searchType==="players"){
-
-    players.forEach(player=>{
-
-      const team=
-        getTeam(player.team_id);
-
-      const text=
-        [
-          player.name,
-          player.short_name,
-          player.nationality,
-          player.position,
-          team?.name
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      if(text.includes(query)){
-
-        results.push({
-          type:"Player",
-          title:
-            playerDisplayName(player),
-          sub:
-            `${team?.name||"No team"} · ${player.position||""}`,
-          action:
-            `openPlayer('${escapeHTML(player.id)}')`
-        });
-
-      }
-
-    });
-
-  }
-
-  if(searchType==="all"||searchType==="matches"){
-
-    matches.forEach(match=>{
-
-      const text=
-        [
-          match.home,
-          match.away,
-          match.competition
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      if(text.includes(query)){
-
-        results.push({
-          type:"Match",
-          title:matchLabel(match),
-          sub:
-            `${match.competition||""} · ${matchDate(match)}`,
-          action:
-            `openMatch('${escapeHTML(match.id)}')`
-        });
-
-      }
-
-    });
-
-  }
-
-  if(searchType==="all"||searchType==="news"){
-
-    news.forEach(item=>{
-
-      const text=
-        [
-          item.title,
-          item.excerpt,
-          item.content
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      if(text.includes(query)){
-
-        results.push({
-          type:"News",
-          title:item.title,
-          sub:
-            formatNewsDate(
-              item.created_at||
-              item.date
-            ),
-          action:
-            `openArticle('${escapeHTML(item.id)}')`
-        });
-
-      }
-
-    });
-
-  }
-
-  box.innerHTML=
-    results.length
-      ? results.slice(0,60).map(result=>`
-
-        <div class="result"
-             onclick="${result.action}">
-
-          <div class="result-type">
-            ${escapeHTML(result.type)}
-          </div>
-
-          <div class="result-title">
-            ${escapeHTML(result.title)}
-          </div>
-
-          <div class="result-sub">
-            ${escapeHTML(result.sub)}
-          </div>
-
-        </div>
-
-      `).join("")
-      : `<div class="empty">No results found.</div>`;
-}
-
-
-/* =========================================================
-   TEAM PAGE
-========================================================= */
-
-function openTeam(ref){
-
-  const team=
-    resolveTeam(ref);
-
-  const teamName=
-    team?.name||
-    String(ref);
-
-  showPage("team-page");
-
-  const box=
-    document.getElementById("teamContent");
-
-  if(!box)return;
-
-  const squad=
-    team
-      ? players.filter(p=>
-          String(p.team_id)===
-          String(team.id)
-        )
-      : [];
-
-  const teamMatches=
-    matches
-      .filter(match=>{
-
-        const home=
-          resolveMatchTeam(match,"home");
-
-        const away=
-          resolveMatchTeam(match,"away");
-
-        return (
-          String(home?.id)===
-          String(team?.id)
-        )||
-        (
-          String(away?.id)===
-          String(team?.id)
-        )||
-        String(match.home).toLowerCase()===
-          teamName.toLowerCase()||
-        String(match.away).toLowerCase()===
-          teamName.toLowerCase();
-      })
-      .sort(sortMatches);
-
-  const teamStats=
-    team
-      ? {
-          played:Number(team.matches_played)||0,
-          wins:Number(team.wins)||0,
-          draws:Number(team.draws)||0,
-          losses:Number(team.losses)||0,
-          gf:Number(team.goals_for)||0,
-          ga:Number(team.goals_against)||0,
-          points:Number(team.points)||0
-        }
-      : blankTeam(teamName);
-
-  const flag=
-    teamFlag(team);
-
-  box.innerHTML=`
-
-    <div class="profile">
-
-      <div class="profile-head">
-
-        ${
-          flag
-            ? `<img
-                class="profile-avatar"
-                src="${escapeHTML(flag)}"
-                alt="">`
-            : `<div class="profile-avatar"></div>`
-        }
-
-        <div>
-
-          <div class="eyebrow">
-            National Team
-          </div>
-
-          <h1>
-            ${escapeHTML(teamName)}
-          </h1>
-
-          <div class="profile-sub">
-            ${escapeHTML(
-              team?.country||
-              team?.confederation||
-              ""
-            )}
-          </div>
-
-          <div class="badges">
-
-            ${
-              team?.abbreviation
-                ? `<span class="badge">
-                    ${escapeHTML(team.abbreviation)}
-                   </span>`
-                : ""
-            }
-
-            ${
-              team?.manager
-                ? `<span class="badge">
-                    Manager: ${escapeHTML(team.manager)}
-                   </span>`
-                : ""
-            }
-
-            ${
-              team?.world_ranking
-                ? `<span class="badge">
-                    World #${escapeHTML(team.world_ranking)}
-                   </span>`
-                : ""
-            }
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="grid grid-4">
-
-      <div class="card stat-card">
-        <span>Matches</span>
-        <strong>${teamStats.played}</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Wins</span>
-        <strong>${teamStats.wins}</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Goals</span>
-        <strong>${teamStats.gf}</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Points</span>
-        <strong>${teamStats.points}</strong>
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <div class="section-head">
-        <h2>Squad</h2>
-        <span style="color:var(--muted);font-size:11px">
-          ${squad.length} players
-        </span>
-      </div>
-
-      <div class="squad-grid">
-
-        ${
-          squad.length
-            ? squad.map(playerCardHTML).join("")
-            : `<div class="empty">
-                No players are currently assigned to this team.
-               </div>`
-        }
-
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <h2>Fixtures & Results</h2>
-
-      <div class="grid grid-3"
-           style="margin-top:13px">
-
-        ${
-          teamMatches.length
-            ? teamMatches.map(cardHTML).join("")
-            : `<div class="empty">
-                No matches found.
-               </div>`
-        }
-
-      </div>
-
-    </div>
-
-  `;
-}
-
-
-function playerCardHTML(player){
-
-  const team=
-    getTeam(player.team_id);
-
-  return `
-
-    <div class="player-card"
-         onclick="openPlayer('${escapeHTML(player.id)}')">
-
-      ${
-        player.photo_url
-          ? `<img class="player-photo"
-                  src="${escapeHTML(player.photo_url)}"
-                  alt="">`
-          : `<div class="player-photo"></div>`
-      }
-
-      <div>
-
-        <strong>
-          ${escapeHTML(
-            playerDisplayName(player)
-          )}
-        </strong>
-
-        <span>
-          ${escapeHTML(player.position||"Player")}
-          ${
-            team
-              ? ` · ${escapeHTML(team.short_name||team.name)}`
-              : ""
-          }
-        </span>
-
-      </div>
-
-      ${
-        player.overall
-          ? `<div class="ovr">
-              ${escapeHTML(player.overall)}
-             </div>`
-          : ""
-      }
-
-    </div>
-
-  `;
-}
-
-
-/* =========================================================
-   PLAYER PAGE
-========================================================= */
-
-function openPlayer(ref){
-
-  const player=
-    resolvePlayer(ref);
-
-  showPage("player-page");
-
-  const box=
-    document.getElementById("playerContent");
-
-  if(!box)return;
-
-  if(!player){
-
-    box.innerHTML=
-      `<div class="empty">Player not found.</div>`;
-
-    return;
-  }
-
-  const team=
-    getTeam(player.team_id);
-
-  const eventStats=
-    collectPlayerStats()
-      .find(stat=>
-        String(stat.id)===
-        String(player.id)
-      );
-
-  const goals=
-    eventStats?.goals||
-    Number(player.goals)||
-    0;
-
-  const assists=
-    eventStats?.assists||
-    Number(player.assists)||
-    0;
-
-  box.innerHTML=`
-
-    <div class="profile">
-
-      <div class="profile-head">
-
-        ${
-          player.photo_url
-            ? `<img
-                class="profile-avatar"
-                src="${escapeHTML(player.photo_url)}"
-                alt="">`
-            : `<div class="profile-avatar"></div>`
-        }
-
-        <div>
-
-          <div class="eyebrow">
-            Player
-          </div>
-
-          <h1>
-            ${escapeHTML(player.name)}
-          </h1>
-
-          <div class="profile-sub">
-            ${escapeHTML(
-              team?.name||
-              "No national team"
-            )}
-          </div>
-
-          <div class="badges">
-
-            ${
-              player.short_name
-                ? `<span class="badge">
-                    ${escapeHTML(player.short_name)}
-                   </span>`
-                : ""
-            }
-
-            ${
-              player.position
-                ? `<span class="badge">
-                    ${escapeHTML(player.position)}
-                   </span>`
-                : ""
-            }
-
-            ${
-              player.overall
-                ? `<span class="badge">
-                    OVR ${escapeHTML(player.overall)}
-                   </span>`
-                : ""
-            }
-
-            ${
-              player.nationality
-                ? `<span class="badge">
-                    ${escapeHTML(player.nationality)}
-                   </span>`
-                : ""
-            }
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="grid grid-4">
-
-      <div class="card stat-card">
-        <span>Goals</span>
-        <strong>${goals}</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Assists</span>
-        <strong>${assists}</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Appearances</span>
-        <strong>${Number(player.appearances)||0}</strong>
-      </div>
-
-      <div class="card stat-card">
-        <span>Form</span>
-        <strong>${Number(player.form)||50}</strong>
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <div class="card">
-
-        <h2>Player Information</h2>
-
-        <div class="grid grid-2"
-             style="margin-top:15px">
-
-          <div>
-            <span style="color:var(--muted);font-size:11px">
-              Nationality
-            </span>
-            <strong style="display:block;margin-top:4px">
-              ${escapeHTML(player.nationality||"—")}
-            </strong>
-          </div>
-
-          <div>
-            <span style="color:var(--muted);font-size:11px">
-              Second Nationality
-            </span>
-            <strong style="display:block;margin-top:4px">
-              ${escapeHTML(player.second_nationality||"—")}
-            </strong>
-          </div>
-
-          <div>
-            <span style="color:var(--muted);font-size:11px">
-              Position
-            </span>
-            <strong style="display:block;margin-top:4px">
-              ${escapeHTML(player.position||"—")}
-            </strong>
-          </div>
-
-          <div>
-            <span style="color:var(--muted);font-size:11px">
-              Preferred Foot
-            </span>
-            <strong style="display:block;margin-top:4px">
-              ${escapeHTML(player.preferred_foot||"—")}
-            </strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <h2>About</h2>
-
-      <div class="card"
-           style="margin-top:13px;color:#aeb8c5;line-height:1.7">
-
-        ${escapeHTML(
-          player.bio||
-          "No player biography has been added yet."
-        )}
-
-      </div>
-
-    </div>
-
-  `;
 }
 
 
@@ -3715,114 +2705,16 @@ function openMatch(id){
   showPage("match-page");
 
   renderMatch();
-}
 
-
-function eventIcon(type){
-
-  const value=
-    String(type||"").toLowerCase();
-
-  if(value.includes("goal"))return "⚽";
-  if(value.includes("yellow"))return "🟨";
-  if(value.includes("red"))return "🟥";
-  if(value.includes("sub"))return "🔄";
-  if(value.includes("shot"))return "◉";
-
-  return "•";
-}
-
-
-function eventHTML(event){
-
-  const player=
-    event.player_id
-      ? getPlayer(event.player_id)
-      : resolvePlayer(
-          event.player||
-          event.player_name
-        );
-
-  const team=
-    event.team_id
-      ? getTeam(event.team_id)
-      : resolveTeam(event.team);
-
-  const minute=
-    Number(event.minute)||0;
-
-  const stoppage=
-    Number(event.stoppage)||0;
-
-  const minuteLabel=
-    stoppage
-      ? `${minute}+${stoppage}'`
-      : `${minute}'`;
-
-  return `
-
-    <div class="event">
-
-      <div class="event-minute">
-        ${escapeHTML(minuteLabel)}
-      </div>
-
-      <div class="event-icon">
-        ${eventIcon(
-          event.type||
-          event.event_type
-        )}
-      </div>
-
-      <div class="event-main">
-
-        <strong>
-          ${escapeHTML(
-            event.type||
-            event.event_type||
-            "Event"
-          )}
-
-          ${
-            player
-              ? ` · ${escapeHTML(
-                    playerDisplayName(player)
-                  )}`
-              : ""
-          }
-
-        </strong>
-
-        <span>
-
-          ${
-            team
-              ? escapeHTML(team.short_name||team.name)
-              : escapeHTML(event.team||"")
-          }
-
-          ${
-            event.detail
-              ? ` · ${escapeHTML(event.detail)}`
-              : ""
-          }
-
-        </span>
-
-      </div>
-
-    </div>
-
-  `;
 }
 
 
 function renderMatch(){
 
   const box=
-    document.getElementById("matchContent");
-
-  if(!box)return;
+    document.getElementById(
+      "matchContent"
+    );
 
   const match=
     matches.find(m=>
@@ -3830,13 +2722,7 @@ function renderMatch(){
       String(selectedMatchId)
     );
 
-  if(!match){
-
-    box.innerHTML=
-      `<div class="empty">Match not found.</div>`;
-
-    return;
-  }
+  if(!box||!match)return;
 
   const homeTeam=
     resolveMatchTeam(match,"home");
@@ -3845,237 +2731,1546 @@ function renderMatch(){
     resolveMatchTeam(match,"away");
 
   const events=
-    [...(match.events||[])]
-      .sort((a,b)=>
-        Number(a.minute||0)-
-        Number(b.minute||0)
-      );
+    Array.isArray(match.events)
+      ?[...match.events]
+      :[];
+
+  events.sort((a,b)=>
+    (
+      Number(a.minute)||0
+    )-
+    (
+      Number(b.minute)||0
+    )
+  );
 
   box.innerHTML=`
 
     <div class="match-hero">
 
-      <div class="match-hero-top">
-
-        <span>
-          ${escapeHTML(
-            match.competition||
-            "MEFCO"
-          )}
-        </span>
-
-        <span class="${
-          isLive(match)
-            ?"status-live"
-            :""
-        }">
-
-          ${
-            isLive(match)
-              ? `<span class="live-dot"></span>LIVE`
-              : escapeHTML(
-                  match.status||
-                  "Scheduled"
-                )
-          }
-
-        </span>
-
+      <div class="match-competition">
+        ${escapeHTML(match.competition||"MEFCO")}
       </div>
 
-      <div class="big-score">
+      <div class="match-centre-teams">
 
-        <div class="big-team">
+        <div
+          class="mc-team"
+          onclick="${
+            homeTeam
+              ?`openTeam('${escapeHTML(homeTeam.id)}')`
+              :""
+          }">
 
           ${
-            teamFlag(homeTeam,match.home_flag)
-              ? `<img src="${escapeHTML(
-                    teamFlag(homeTeam,match.home_flag)
-                  )}" alt="">`
-              : ""
+            homeTeam?.logo_url||
+            match.home_flag
+              ?`
+                <img src="${escapeHTML(
+                  homeTeam?.logo_url||
+                  match.home_flag||
+                  ""
+                )}">
+              `
+              :""
           }
 
-          <h2>
-            ${escapeHTML(
-              homeTeam?.name||
-              match.home||
-              "Home"
-            )}
-          </h2>
+          <strong>
+            ${escapeHTML(match.home)}
+          </strong>
 
         </div>
 
+
         <div>
 
-          <div class="big-score-number">
-            ${scoreOf(match,"home")}
-            -
-            ${scoreOf(match,"away")}
+          <div class="big-score">
+            ${scoreOf(match)}
           </div>
 
-          <div class="match-status">
+          <div class="match-status ${
+            isLive(match)?"live":""
+          }">
 
             ${
               isLive(match)
-                ? `${Number(match.minute)||0}'`
-                : escapeHTML(
-                    formatMatchTime(match)
-                  )
+                ?`LIVE · ${Number(match.minute)||0}'`
+                :isFinished(match)
+                  ?"FULL TIME"
+                  :formatMatchTime(match.match_time)
             }
 
           </div>
 
         </div>
 
-        <div class="big-team">
+
+        <div
+          class="mc-team"
+          onclick="${
+            awayTeam
+              ?`openTeam('${escapeHTML(awayTeam.id)}')`
+              :""
+          }">
 
           ${
-            teamFlag(awayTeam,match.away_flag)
-              ? `<img src="${escapeHTML(
-                    teamFlag(awayTeam,match.away_flag)
-                  )}" alt="">`
-              : ""
+            awayTeam?.logo_url||
+            match.away_flag
+              ?`
+                <img src="${escapeHTML(
+                  awayTeam?.logo_url||
+                  match.away_flag||
+                  ""
+                )}">
+              `
+              :""
           }
 
-          <h2>
-            ${escapeHTML(
-              awayTeam?.name||
-              match.away||
-              "Away"
-            )}
-          </h2>
+          <strong>
+            ${escapeHTML(match.away)}
+          </strong>
 
         </div>
 
       </div>
 
-      <div style="
-        text-align:center;
-        color:var(--muted);
-        font-size:11px
-      ">
-
-        ${escapeHTML(formatLongDate(matchDate(match)))}
-
-      </div>
-
     </div>
 
-    <div class="section">
 
-      <div class="section-head">
-        <h2>Match Timeline</h2>
+    <div class="card card-pad section">
 
-        ${
-          isLive(match)
-            ? `<span class="db-status ok">
-                 Live Feed
-               </span>`
-            : ""
-        }
+      <h2>Match Timeline</h2>
 
-      </div>
-
-      <div class="timeline">
+      <div class="match-timeline">
 
         ${
           events.length
-            ? events.map(eventHTML).join("")
-            : `<div class="empty">
+            ?events.map(eventHTML).join("")
+            :`
+              <div class="empty">
                 No events recorded.
-               </div>`
+              </div>
+            `
         }
 
       </div>
-
-    </div>
-
-    <div class="section">
-
-      ${renderMatchStats(match)}
 
     </div>
 
   `;
+
 }
 
 
-function renderMatchStats(match){
+function eventHTML(event){
 
-  const events=
-    match.events||[];
+  const player=
+    getPlayer(event.player_id);
 
-  let homeGoals=0;
-  let awayGoals=0;
-  let homeCards=0;
-  let awayCards=0;
+  const team=
+    getTeam(event.team_id);
 
-  events.forEach(event=>{
+  const playerName=
+    player
+      ?playerDisplayName(player)
+      :(event.player||event.player_name||"");
 
-    const type=
-      String(
-        event.type||
-        event.event_type||
-        ""
-      ).toLowerCase();
+  const teamName=
+    team?.name||
+    event.team||
+    "";
 
-    const team=
-      event.team_id
-        ? getTeam(event.team_id)
-        : resolveTeam(event.team);
+  const type=
+    event.type||
+    event.event_type||
+    "Event";
 
-    const isHome=
-      team &&
-      (
-        String(team.id)===
-        String(resolveMatchTeam(match,"home")?.id)
+  const minute=
+    Number(event.minute)||0;
+
+  const stoppage=
+    Number(event.stoppage)||0;
+
+  return `
+
+    <div class="event">
+
+      <div class="event-minute">
+
+        ${minute}'
+        ${stoppage?`+${stoppage}`:""}
+
+      </div>
+
+      <div class="event-content">
+
+        <strong>
+          ${escapeHTML(type)}
+          ${
+            playerName
+              ?` · ${escapeHTML(playerName)}`
+              :""
+          }
+        </strong>
+
+        <span>
+          ${
+            teamName
+              ?escapeHTML(teamName)+" · "
+              :""
+          }
+
+          ${escapeHTML(event.detail||"")}
+        </span>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+function newsCardHTML(item){
+
+  return `
+
+    <div
+      class="news-card"
+      onclick="openArticle('${escapeHTML(item.id)}')">
+
+      <div class="news-image">
+        ${
+          item.image_url
+            ?`
+              <img
+                src="${escapeHTML(item.image_url)}"
+                style="
+                  width:100%;
+                  height:100%;
+                  object-fit:cover;
+                ">
+            `
+            :"MEFCO"
+        }
+      </div>
+
+      <div class="news-content">
+
+        <div class="news-meta">
+          ${escapeHTML(item.category||"NEWS")}
+        </div>
+
+        <h3>
+          ${escapeHTML(item.title||"Untitled")}
+        </h3>
+
+        <p>
+          ${escapeHTML(
+            item.excerpt||
+            item.summary||
+            ""
+          )}
+        </p>
+
+        <p style="margin-top:12px;font-size:11px">
+          ${escapeHTML(
+            formatNewsDate(item.created_at)
+          )}
+        </p>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function renderNews(){
+
+  const box=
+    document.getElementById(
+      "newsGrid"
+    );
+
+  if(!box)return;
+
+  box.innerHTML=
+    news.length
+      ?news.map(newsCardHTML).join("")
+      :`
+        <div class="empty">
+          No news available.
+        </div>
+      `;
+
+  renderHomeNews();
+
+}
+
+
+function openArticle(id){
+
+  selectedArticleId=id;
+
+  showPage("article-page");
+
+  renderArticle();
+
+}
+
+
+function renderArticle(){
+
+  const item=
+    news.find(n=>
+      String(n.id)===
+      String(selectedArticleId)
+    );
+
+  const box=
+    document.getElementById(
+      "articleContent"
+    );
+
+  if(!box||!item)return;
+
+  box.innerHTML=`
+
+    <div class="article-meta">
+      ${escapeHTML(item.category||"NEWS")}
+      ·
+      ${escapeHTML(formatNewsDate(item.created_at))}
+    </div>
+
+    <h1>
+      ${escapeHTML(item.title||"")}
+    </h1>
+
+    <div class="article-body"
+         style="margin-top:25px">
+
+      ${
+        escapeHTML(
+          item.body||
+          item.content||
+          item.excerpt||
+          ""
+        ).replace(/\n/g,"<br><br>")
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+function backToNews(){
+
+  showPage("news");
+
+}
+
+
+/* =========================================================
+   TEAMS
+========================================================= */
+
+function renderTeams(){
+
+  const box=
+    document.getElementById(
+      "teamsGrid"
+    );
+
+  if(!box)return;
+
+  if(!teams.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        No national teams found in Supabase.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  box.innerHTML=
+    teams.map(team=>`
+
+      <div
+        class="team-card"
+        onclick="openTeam('${escapeHTML(team.id)}')">
+
+        <div class="team-card-header">
+
+          ${
+            team.logo_url||team.flag_url
+              ?`
+                <img
+                  class="team-logo"
+                  src="${escapeHTML(
+                    team.logo_url||
+                    team.flag_url
+                  )}">
+              `
+              :`
+                <div class="team-logo"
+                     style="
+                       display:grid;
+                       place-items:center;
+                       color:var(--green);
+                       font-weight:900;
+                     ">
+                  ${escapeHTML(
+                    team.abbreviation||
+                    team.short_name||
+                    "?"
+                  )}
+                </div>
+              `
+          }
+
+          <div>
+
+            <h3>
+              ${escapeHTML(team.name)}
+            </h3>
+
+            <p>
+              ${escapeHTML(
+                team.confederation||
+                team.country||
+                "National Team"
+              )}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="team-rating">
+
+          <strong>
+            ${team.overall??"—"}
+          </strong>
+
+          <span>
+            OVR
+          </span>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function openTeam(ref){
+
+  const team=
+    resolveTeam(ref);
+
+  if(!team){
+
+    console.warn(
+      "Team not found:",
+      ref
+    );
+
+    return;
+
+  }
+
+  showPage("team-page");
+
+  const box=
+    document.getElementById(
+      "teamContent"
+    );
+
+  const squad=
+    players.filter(p=>
+      String(p.team_id)===
+      String(team.id)
+    );
+
+  const teamMatches=
+    matches.filter(m=>{
+
+      const home=
+        resolveMatchTeam(m,"home");
+
+      const away=
+        resolveMatchTeam(m,"away");
+
+      return (
+        String(home?.id)===
+        String(team.id)
+      )||(
+        String(away?.id)===
+        String(team.id)
       );
 
-    if(type.includes("goal")){
+    });
 
-      if(isHome)homeGoals++;
-      else awayGoals++;
+  box.innerHTML=`
+
+    <div class="team-profile">
+
+      <div class="profile-header">
+
+        ${
+          team.logo_url||team.flag_url
+            ?`
+              <img
+                class="profile-logo"
+                src="${escapeHTML(
+                  team.logo_url||
+                  team.flag_url
+                )}">
+            `
+            :""
+        }
+
+        <div>
+
+          <h1>
+            ${escapeHTML(team.name)}
+          </h1>
+
+          <p>
+            ${
+              escapeHTML(
+                team.country||
+                team.short_name||
+                ""
+              )
+            }
+
+            ${
+              team.confederation
+                ?" · "+escapeHTML(team.confederation)
+                :""
+            }
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="profile-stats">
+
+        <div class="profile-stat">
+          <strong>${team.overall??"—"}</strong>
+          <span>Overall</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>${team.attack??"—"}</strong>
+          <span>Attack</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>${team.midfield??"—"}</strong>
+          <span>Midfield</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>${team.defence??"—"}</strong>
+          <span>Defence</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>${squad.length}</strong>
+          <span>Players</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section">
+
+      <div class="page-title">
+
+        <div>
+          <h2>Squad</h2>
+          <p>
+            ${squad.length}
+            registered players
+          </p>
+        </div>
+
+      </div>
+
+      ${
+        squad.length
+          ?`
+            <div class="player-grid">
+              ${squad.map(playerCardHTML).join("")}
+            </div>
+          `
+          :`
+            <div class="empty">
+              No players are currently linked
+              to this national team.
+            </div>
+          `
+      }
+
+    </div>
+
+
+    <div class="section">
+
+      <h2>Matches</h2>
+
+      <div class="grid grid-2">
+
+        ${
+          sortMatches(teamMatches)
+            .slice(0,8)
+            .map(cardHTML)
+            .join("")
+          ||
+          `
+            <div class="empty">
+              No matches found.
+            </div>
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PLAYER CARDS / PROFILES
+========================================================= */
+
+function playerCardHTML(player){
+
+  const team=
+    getTeam(player.team_id);
+
+  return `
+
+    <div
+      class="player-card"
+      onclick="openPlayer('${escapeHTML(player.id)}')">
+
+      <div class="player-top">
+
+        ${
+          player.photo_url
+            ?`
+              <img
+                class="player-avatar"
+                src="${escapeHTML(player.photo_url)}">
+            `
+            :`
+              <div class="player-avatar"
+                   style="
+                     display:grid;
+                     place-items:center;
+                     font-weight:900;
+                     color:var(--green);
+                   ">
+                ${escapeHTML(
+                  player.short_name||
+                  player.name||
+                  "?"
+                ).charAt(0)}
+              </div>
+            `
+        }
+
+        <div class="player-ovr">
+          ${player.overall??"—"}
+        </div>
+
+      </div>
+
+      <h3>
+        ${escapeHTML(player.short_name||player.name)}
+      </h3>
+
+      <p>
+        ${escapeHTML(
+          player.position||
+          "Player"
+        )}
+
+        ${
+          team
+            ?" · "+escapeHTML(team.short_name||team.name)
+            :""
+        }
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+function openPlayer(ref){
+
+  const player=
+    resolvePlayer(ref);
+
+  if(!player)return;
+
+  selectedPlayerBackPage=
+    document.querySelector(
+      ".page.active"
+    )?.id||
+    "search";
+
+  showPage("player-page");
+
+  const box=
+    document.getElementById(
+      "playerContent"
+    );
+
+  const team=
+    getTeam(player.team_id);
+
+  box.innerHTML=`
+
+    <div class="player-profile">
+
+      ${
+        player.photo_url
+          ?`
+            <img
+              class="player-profile-photo"
+              src="${escapeHTML(player.photo_url)}">
+          `
+          :`
+            <div
+              class="player-profile-photo"
+              style="
+                display:grid;
+                place-items:center;
+                font-size:60px;
+                font-weight:900;
+                color:var(--green);
+              ">
+              ${escapeHTML(
+                player.name||
+                "?"
+              ).charAt(0)}
+            </div>
+          `
+      }
+
+
+      <div>
+
+        <div style="
+          color:var(--green);
+          font-size:11px;
+          font-weight:800;
+          letter-spacing:1.5px;
+          text-transform:uppercase;
+        ">
+          ${escapeHTML(
+            player.position||
+            "Player"
+          )}
+        </div>
+
+        <h1>
+          ${escapeHTML(
+            player.name||
+            ""
+          )}
+        </h1>
+
+        <div class="subtitle">
+          ${
+            team
+              ?`
+                <span
+                  style="cursor:pointer"
+                  onclick="openTeam('${escapeHTML(team.id)}')">
+                  ${escapeHTML(team.name)}
+                </span>
+              `
+              :"No national team linked"
+          }
+        </div>
+
+
+        <div class="player-info-grid">
+
+          <div class="info-box">
+            <span>OVR</span>
+            <strong>${player.overall??"—"}</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Potential</span>
+            <strong>${player.potential??"—"}</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Nationality</span>
+            <strong>${escapeHTML(
+              player.nationality||
+              "—"
+            )}</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Foot</span>
+            <strong>${escapeHTML(
+              player.preferred_foot||
+              "—"
+            )}</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Goals</span>
+            <strong>${player.goals??0}</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Assists</span>
+            <strong>${player.assists??0}</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Form</span>
+            <strong>${player.form??"—"}</strong>
+          </div>
+
+          <div class="info-box">
+            <span>Morale</span>
+            <strong>${player.morale??"—"}</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    ${
+      player.bio
+        ?`
+          <div class="card card-pad section">
+
+            <h2>Player Profile</h2>
+
+            <p style="
+              color:#b8c4d1;
+              line-height:1.7;
+              margin-top:10px;
+            ">
+              ${escapeHTML(player.bio)}
+            </p>
+
+          </div>
+        `
+        :""
     }
 
-    if(type.includes("card")){
+  `;
 
-      if(isHome)homeCards++;
-      else awayCards++;
+}
+
+
+function goBackFromPlayer(){
+
+  showPage(
+    selectedPlayerBackPage||
+    "search"
+  );
+
+}
+
+
+/* =========================================================
+   PLAYER STATS
+========================================================= */
+
+function collectPlayerStats(){
+
+  const map=new Map();
+
+  matches.forEach(match=>{
+
+    (match.events||[]).forEach(event=>{
+
+      const player=
+        getPlayer(event.player_id);
+
+      const name=
+        player?.name||
+        event.player||
+        event.player_name;
+
+      if(!name)return;
+
+      const key=
+        player
+          ?`id:${player.id}`
+          :`name:${name.toLowerCase()}`;
+
+      if(!map.has(key)){
+
+        const team=
+          player
+            ?getTeam(player.team_id)
+            :null;
+
+        map.set(key,{
+
+          id:player?.id||null,
+
+          name:
+
+            player?.name||
+            name,
+
+          short_name:
+
+            player?.short_name||
+            name,
+
+          team:
+
+            team?.name||
+            event.team||
+            "",
+
+          goals:0,
+          assists:0
+
+        });
+
+      }
+
+      const row=
+        map.get(key);
+
+      const type=
+        String(
+          event.type||
+          event.event_type||
+          ""
+        ).toLowerCase();
+
+      if(type.includes("goal")){
+        row.goals++;
+      }
+
+      if(type.includes("assist")){
+        row.assists++;
+      }
+
+    });
+
+  });
+
+  return [...map.values()]
+    .sort((a,b)=>
+      b.goals-a.goals||
+      b.assists-a.assists
+    );
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+function renderStats(){
+
+  const rows=
+    collectPlayerStats();
+
+  const box=
+    document.getElementById(
+      "topScorers"
+    );
+
+  if(box){
+
+    box.innerHTML=
+      rows.slice(0,25)
+        .map((player,index)=>`
+
+          <tr>
+
+            <td>
+              ${index+1}
+            </td>
+
+            <td
+              style="cursor:pointer"
+              onclick="${
+                player.id
+                  ?`openPlayer('${escapeHTML(player.id)}')`
+                  :""
+              }">
+
+              <strong>
+                ${escapeHTML(
+                  player.short_name||
+                  player.name
+                )}
+              </strong>
+
+            </td>
+
+            <td>
+              ${escapeHTML(
+                player.team||
+                "—"
+              )}
+            </td>
+
+            <td>
+              ${player.goals}
+            </td>
+
+            <td>
+              ${player.assists}
+            </td>
+
+          </tr>
+
+        `).join("")
+      ||
+      `
+        <tr>
+          <td colspan="5">
+            No player statistics yet.
+          </td>
+        </tr>
+      `;
+
+  }
+
+
+  const records=
+    document.getElementById(
+      "recordsGrid"
+    );
+
+  if(records){
+
+    const top=
+      rows[0];
+
+    const mostAssists=
+      [...rows].sort(
+        (a,b)=>
+          b.assists-a.assists
+      )[0];
+
+    records.innerHTML=`
+
+      <div class="card card-pad">
+
+        <span style="color:var(--muted)">
+          TOP SCORER
+        </span>
+
+        <h2 style="margin-top:8px">
+          ${
+            top
+              ?escapeHTML(
+                top.short_name||
+                top.name
+              )
+              :"—"
+          }
+        </h2>
+
+        <p style="color:var(--green);margin-top:5px">
+          ${top?.goals||0} goals
+        </p>
+
+      </div>
+
+
+      <div class="card card-pad">
+
+        <span style="color:var(--muted)">
+          ASSIST LEADER
+        </span>
+
+        <h2 style="margin-top:8px">
+          ${
+            mostAssists
+              ?escapeHTML(
+                mostAssists.short_name||
+                mostAssists.name
+              )
+              :"—"
+          }
+        </h2>
+
+        <p style="color:var(--blue);margin-top:5px">
+          ${mostAssists?.assists||0} assists
+        </p>
+
+      </div>
+
+
+      <div class="card card-pad">
+
+        <span style="color:var(--muted)">
+          MATCHES
+        </span>
+
+        <h2 style="margin-top:8px">
+          ${matches.length}
+        </h2>
+
+        <p style="color:var(--purple);margin-top:5px">
+          Across MEFCO
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function performSearch(){
+
+  const input=
+    document.getElementById(
+      "searchInput"
+    );
+
+  const box=
+    document.getElementById(
+      "searchResults"
+    );
+
+  if(!input||!box)return;
+
+  const query=
+    input.value
+      .trim()
+      .toLowerCase();
+
+  if(!query){
+
+    box.innerHTML=`
+      <div class="empty">
+        Start typing to search MEFCO.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  const results=[];
+
+
+  teams.forEach(team=>{
+
+    const haystack=[
+      team.name,
+      team.short_name,
+      team.country,
+      team.abbreviation,
+      team.confederation
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    if(haystack.includes(query)){
+
+      results.push({
+
+        type:"TEAM",
+        title:team.name,
+        subtitle:
+          team.confederation||
+          team.country||
+          "National Team",
+
+        action:()=>openTeam(team.id)
+
+      });
+
     }
 
   });
 
-  return `
 
-    <div class="grid grid-4">
+  players.forEach(player=>{
 
-      <div class="card stat-card">
-        <span>Goals</span>
-        <strong>
-          ${homeGoals} - ${awayGoals}
-        </strong>
-      </div>
+    const team=
+      getTeam(player.team_id);
 
-      <div class="card stat-card">
-        <span>Cards</span>
-        <strong>
-          ${homeCards} - ${awayCards}
-        </strong>
-      </div>
+    const haystack=[
+      player.name,
+      player.short_name,
+      player.nationality,
+      player.position,
+      team?.name
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
 
-      <div class="card stat-card">
-        <span>Events</span>
-        <strong>${events.length}</strong>
-      </div>
+    if(haystack.includes(query)){
 
-      <div class="card stat-card">
-        <span>Minute</span>
-        <strong>${Number(match.minute)||0}'</strong>
+      results.push({
+
+        type:"PLAYER",
+        title:
+          playerDisplayName(player),
+
+        subtitle:
+          [
+            player.position,
+            team?.name
+          ]
+          .filter(Boolean)
+          .join(" · ")||
+          "Player",
+
+        action:()=>openPlayer(player.id)
+
+      });
+
+    }
+
+  });
+
+
+  matches.forEach(match=>{
+
+    const haystack=[
+      match.home,
+      match.away,
+      match.competition
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    if(haystack.includes(query)){
+
+      results.push({
+
+        type:"MATCH",
+        title:
+          `${match.home} vs ${match.away}`,
+
+        subtitle:
+          match.competition||
+          formatDateLabel(match.match_date),
+
+        action:()=>openMatch(match.id)
+
+      });
+
+    }
+
+  });
+
+
+  news.forEach(item=>{
+
+    const haystack=[
+      item.title,
+      item.category,
+      item.excerpt,
+      item.body
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    if(haystack.includes(query)){
+
+      results.push({
+
+        type:"NEWS",
+        title:item.title,
+
+        subtitle:
+          item.category||
+          "News",
+
+        action:()=>openArticle(item.id)
+
+      });
+
+    }
+
+  });
+
+
+  box.innerHTML=
+    results.length
+      ?results.slice(0,40)
+        .map((result,index)=>`
+
+          <div
+            class="search-result"
+            onclick="runSearchResult(${index})">
+
+            <div class="result-icon">
+              ${escapeHTML(
+                result.type.charAt(0)
+              )}
+            </div>
+
+            <div class="result-main">
+
+              <strong>
+                ${escapeHTML(result.title)}
+              </strong>
+
+              <span>
+                ${escapeHTML(result.type)}
+                ·
+                ${escapeHTML(result.subtitle)}
+              </span>
+
+            </div>
+
+          </div>
+
+        `).join("")
+      :`
+        <div class="empty">
+          No results found.
+        </div>
+      `;
+
+  window.__searchResults=results;
+
+}
+
+
+function runSearchResult(index){
+
+  const result=
+    window.__searchResults?.[index];
+
+  if(result){
+    result.action();
+  }
+
+}
+
+
+/* =========================================================
+   COMPETITIONS
+========================================================= */
+
+function getCompetitions(){
+
+  const names=
+    matches
+      .map(m=>m.competition)
+      .filter(Boolean);
+
+  return [
+    ...new Set(names)
+  ];
+
+}
+
+
+function competitionIcon(name){
+
+  const value=
+    String(name||"")
+      .toLowerCase();
+
+  if(value.includes("global")){
+    return"GC";
+  }
+
+  if(value.includes("continental")){
+    return"CC";
+  }
+
+  if(value.includes("league")){
+    return"LC";
+  }
+
+  return"ME";
+
+}
+
+
+function renderCompetitions(){
+
+  const box=
+    document.getElementById(
+      "competitionGrid"
+    );
+
+  if(!box)return;
+
+  const competitions=
+    getCompetitions();
+
+  box.innerHTML=
+    competitions.length
+      ?competitions.map(name=>`
+
+        <div
+          class="card card-pad"
+          style="cursor:pointer"
+          onclick="openCompetition('${escapeHTML(name)}')">
+
+          <div style="
+            width:55px;
+            height:55px;
+            display:grid;
+            place-items:center;
+            background:var(--card3);
+            border-radius:15px;
+            color:var(--green);
+            font-weight:900;
+          ">
+            ${escapeHTML(
+              competitionIcon(name)
+            )}
+          </div>
+
+          <h2 style="margin-top:17px">
+            ${escapeHTML(name)}
+          </h2>
+
+          <p style="
+            color:var(--muted);
+            margin-top:5px;
+          ">
+            ${
+              matches.filter(
+                m=>m.competition===name
+              ).length
+            }
+            matches
+          </p>
+
+        </div>
+
+      `).join("")
+      :`
+        <div class="empty">
+          No competitions found.
+        </div>
+      `;
+
+}
+
+
+function openCompetition(name){
+
+  selectedCompetition=name;
+
+  showPage("competition-page");
+
+  renderCompetition();
+
+}
+
+
+function renderCompetition(){
+
+  const box=
+    document.getElementById(
+      "competitionContent"
+    );
+
+  const list=
+    matches.filter(m=>
+      m.competition===
+      selectedCompetition
+    );
+
+  box.innerHTML=`
+
+    <div class="page-title">
+
+      <div>
+
+        <h1>
+          ${escapeHTML(
+            selectedCompetition
+          )}
+        </h1>
+
+        <p>
+          ${list.length}
+          matches
+        </p>
+
       </div>
 
     </div>
 
+
+    <div class="grid grid-2">
+
+      ${
+        sortMatches(list)
+          .map(cardHTML)
+          .join("")
+        ||
+        `
+          <div class="empty">
+            No matches.
+          </div>
+        `
+      }
+
+    </div>
+
   `;
+
 }
 
 
@@ -4086,7 +4281,9 @@ function renderMatchStats(match){
 function renderAdmin(){
 
   const select=
-    document.getElementById("adminMatchSelect");
+    document.getElementById(
+      "adminMatchSelect"
+    );
 
   if(!select)return;
 
@@ -4096,132 +4293,57 @@ function renderAdmin(){
       Select a match...
     </option>
 
-    ${
-      matches
-        .slice()
-        .sort(sortMatches)
-        .map(m=>`
+    ${sortMatches(matches).map(m=>`
 
-          <option value="${escapeHTML(m.id)}">
+      <option value="${escapeHTML(m.id)}">
 
-            ${escapeHTML(m.home)}
-            vs
-            ${escapeHTML(m.away)}
-            ·
-            ${escapeHTML(matchDate(m))}
-
-          </option>
-
-        `)
-        .join("")
-    }
-
-  `;
-
-  if(selectedMatchId)
-    select.value=selectedMatchId;
-
-  renderAdminPanel();
-  renderAdminLog();
-  renderCreateTeamOptions();
-}
-
-
-function renderCreateTeamOptions(){
-
-  const home=
-    document.getElementById("createHome");
-
-  const away=
-    document.getElementById("createAway");
-
-  if(!home||!away)return;
-
-  const options=
-    teams.map(team=>`
-
-      <option value="${escapeHTML(team.id)}">
-
-        ${escapeHTML(
-          team.name
-        )}
-
-        ${
-          team.abbreviation
-            ? ` · ${escapeHTML(team.abbreviation)}`
-            : ""
-        }
+        ${escapeHTML(m.home)}
+        vs
+        ${escapeHTML(m.away)}
+        ·
+        ${escapeHTML(matchDate(m))}
 
       </option>
 
-    `).join("");
+    `).join("")}
 
-  const currentHome=home.value;
-  const currentAway=away.value;
+  `;
 
-  home.innerHTML=
-    `<option value="">
-       Select national team...
-     </option>`+
-    options;
+  if(selectedMatchId){
 
-  away.innerHTML=
-    `<option value="">
-       Select national team...
-     </option>`+
-    options;
+    select.value=
+      selectedMatchId;
 
-  if(currentHome)
-    home.value=currentHome;
+  }
 
-  if(currentAway)
-    away.value=currentAway;
-}
+  renderAdminPanel();
+  renderAdminLog();
 
-
-function syncCreateTeam(side){
-
-  const select=
-    document.getElementById(
-      side==="home"
-        ?"createHome"
-        :"createAway"
-    );
-
-  const flag=
-    document.getElementById(
-      side==="home"
-        ?"createHomeFlag"
-        :"createAwayFlag"
-    );
-
-  if(!select||!flag)return;
-
-  const team=
-    getTeam(select.value);
-
-  flag.value=
-    teamFlag(team)||"";
 }
 
 
 function selectAdminMatch(){
 
   const select=
-    document.getElementById("adminMatchSelect");
+    document.getElementById(
+      "adminMatchSelect"
+    );
 
   selectedMatchId=
     select.value||
     null;
 
   renderAdminPanel();
+
 }
 
 
 function renderAdminPanel(){
 
   const box=
-    document.getElementById("adminPanelContent");
+    document.getElementById(
+      "adminPanelContent"
+    );
 
   if(!box)return;
 
@@ -4233,12 +4355,14 @@ function renderAdminPanel(){
 
   if(!match){
 
-    box.innerHTML=
-      `<div class="empty">
+    box.innerHTML=`
+      <div class="empty">
         Select a match to manage it.
-       </div>`;
+      </div>
+    `;
 
     return;
+
   }
 
   const homeTeam=
@@ -4251,6 +4375,7 @@ function renderAdminPanel(){
     [homeTeam,awayTeam]
       .filter(Boolean);
 
+
   box.innerHTML=`
 
     <h2>
@@ -4259,81 +4384,111 @@ function renderAdminPanel(){
       ${escapeHTML(match.away)}
     </h2>
 
+
     <div class="admin-controls">
 
-      <button class="admin-btn green"
-              onclick="startSelected()">
+      <button
+        class="admin-btn green"
+        onclick="startSelected()">
         Start
       </button>
 
-      <button class="admin-btn gold"
-              onclick="pauseSelected()">
+      <button
+        class="admin-btn gold"
+        onclick="pauseSelected()">
         Pause
       </button>
 
-      <button class="admin-btn blue"
-              onclick="addMinute(1)">
+      <button
+        class="admin-btn blue"
+        onclick="addMinute(1)">
         +1'
       </button>
 
-      <button class="admin-btn blue"
-              onclick="addMinute(5)">
+      <button
+        class="admin-btn blue"
+        onclick="addMinute(5)">
         +5'
       </button>
 
-      <button class="admin-btn blue"
-              onclick="addMinute(10)">
+      <button
+        class="admin-btn blue"
+        onclick="addMinute(10)">
         +10'
       </button>
 
-      <button class="admin-btn red"
-              onclick="finishSelected()">
+      <button
+        class="admin-btn red"
+        onclick="finishSelected()">
         Finish
       </button>
 
     </div>
 
+
     <div class="admin-grid">
 
       <div class="admin-field">
+
         <label>HOME SCORE</label>
-        <input id="adminHomeScore"
-               type="number"
-               min="0"
-               value="${scoreOf(match,"home")}">
+
+        <input
+          id="adminHomeScore"
+          type="number"
+          min="0"
+          value="${Number(match.score_home)||0}">
+
       </div>
 
+
       <div class="admin-field">
+
         <label>AWAY SCORE</label>
-        <input id="adminAwayScore"
-               type="number"
-               min="0"
-               value="${scoreOf(match,"away")}">
+
+        <input
+          id="adminAwayScore"
+          type="number"
+          min="0"
+          value="${Number(match.score_away)||0}">
+
       </div>
 
+
       <div class="admin-field">
+
         <label>MINUTE</label>
-        <input id="adminMinute"
-               type="number"
-               min="0"
-               value="${Number(match.minute)||0}">
+
+        <input
+          id="adminMinute"
+          type="number"
+          min="0"
+          value="${Number(match.minute)||0}">
+
       </div>
 
+
       <div class="admin-field">
+
         <label>STOPPAGE</label>
-        <input id="adminStoppage"
-               type="number"
-               min="0"
-               value="${Number(match.stoppage)||0}">
+
+        <input
+          id="adminStoppage"
+          type="number"
+          min="0"
+          value="${Number(match.stoppage)||0}">
+
       </div>
 
     </div>
 
-    <button class="admin-btn green"
-            style="margin-top:13px"
-            onclick="saveAdminMatch()">
+
+    <button
+      class="admin-btn green"
+      style="margin-top:15px"
+      onclick="saveAdminMatch()">
       Save Match
     </button>
+
 
     <div class="section">
 
@@ -4342,43 +4497,77 @@ function renderAdminPanel(){
       <div class="admin-grid">
 
         <div class="admin-field">
+
           <label>MINUTE</label>
-          <input id="eventMinute"
-                 type="number"
-                 min="0"
-                 value="${Number(match.minute)||0}">
+
+          <input
+            id="eventMinute"
+            type="number"
+            min="0"
+            value="${Number(match.minute)||0}">
+
         </div>
 
+
         <div class="admin-field">
+
           <label>STOPPAGE</label>
-          <input id="eventStoppage"
-                 type="number"
-                 min="0">
+
+          <input
+            id="eventStoppage"
+            type="number"
+            min="0"
+            value="0">
+
         </div>
 
+
         <div class="admin-field">
+
           <label>TYPE</label>
 
           <select id="eventType">
 
-            <option value="Goal">Goal</option>
-            <option value="Assist">Assist</option>
-            <option value="Yellow Card">Yellow Card</option>
-            <option value="Red Card">Red Card</option>
-            <option value="Substitution">Substitution</option>
-            <option value="Shot">Shot</option>
-            <option value="Other">Other</option>
+            <option value="Goal">
+              Goal
+            </option>
+
+            <option value="Assist">
+              Assist
+            </option>
+
+            <option value="Yellow Card">
+              Yellow Card
+            </option>
+
+            <option value="Red Card">
+              Red Card
+            </option>
+
+            <option value="Substitution">
+              Substitution
+            </option>
+
+            <option value="Shot">
+              Shot
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
 
           </select>
 
         </div>
 
+
         <div class="admin-field">
 
           <label>TEAM</label>
 
-          <select id="eventTeam"
-                  onchange="updateEventPlayers()">
+          <select
+            id="eventTeam"
+            onchange="updateEventPlayers()">
 
             <option value="">
               Select team...
@@ -4387,9 +4576,13 @@ function renderAdminPanel(){
             ${
               matchTeams.map(team=>`
 
-                <option value="${escapeHTML(team.id)}">
+                <option
+                  value="${escapeHTML(team.id)}">
 
-                  ${escapeHTML(team.name)}
+                  ${escapeHTML(
+                    team.short_name||
+                    team.name
+                  )}
 
                 </option>
 
@@ -4400,6 +4593,7 @@ function renderAdminPanel(){
 
         </div>
 
+
         <div class="admin-field">
 
           <label>PLAYER</label>
@@ -4407,31 +4601,35 @@ function renderAdminPanel(){
           <select id="eventPlayer">
 
             <option value="">
-              Select player...
+              Select team first...
             </option>
 
           </select>
 
         </div>
 
+
         <div class="admin-field">
 
           <label>DETAIL</label>
 
-          <input id="eventDetail"
-                 placeholder="Optional detail">
+          <input
+            id="eventDetail"
+            placeholder="Optional detail">
 
         </div>
 
       </div>
 
-      <button class="admin-btn blue"
-              style="margin-top:12px"
-              onclick="addEvent()">
+
+      <button
+        class="admin-btn blue"
+        onclick="addEvent()">
         Add Event
       </button>
 
     </div>
+
 
     <div class="section">
 
@@ -4439,64 +4637,29 @@ function renderAdminPanel(){
 
       <div class="admin-event-buttons">
 
-        <button class="admin-btn"
-                onclick="quickEvent('Goal')">
+        <button
+          class="admin-btn"
+          onclick="quickEvent('Goal')">
           Goal
         </button>
 
-        <button class="admin-btn"
-                onclick="quickEvent('Assist')">
-          Assist
-        </button>
-
-        <button class="admin-btn"
-                onclick="quickEvent('Yellow Card')">
+        <button
+          class="admin-btn"
+          onclick="quickEvent('Yellow Card')">
           Yellow Card
         </button>
 
-        <button class="admin-btn"
-                onclick="quickEvent('Red Card')">
+        <button
+          class="admin-btn"
+          onclick="quickEvent('Red Card')">
           Red Card
         </button>
 
-        <button class="admin-btn"
-                onclick="quickEvent('Substitution')">
+        <button
+          class="admin-btn"
+          onclick="quickEvent('Substitution')">
           Substitution
         </button>
-
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <div class="section-head">
-
-        <h3>Recent Events</h3>
-
-        <button class="admin-btn"
-                onclick="undoLastEvent()">
-          Undo Last
-        </button>
-
-      </div>
-
-      <div class="timeline">
-
-        ${
-          (match.events||[])
-            .slice()
-            .sort((a,b)=>
-              Number(b.minute||0)-
-              Number(a.minute||0)
-            )
-            .slice(0,8)
-            .map(eventHTML)
-            .join("")||
-          `<div class="empty">
-            No events yet.
-           </div>`
-        }
 
       </div>
 
@@ -4507,30 +4670,103 @@ function renderAdminPanel(){
 }
 
 
-/* =========================================================
-   MATCH DATABASE UPDATE
-========================================================= */
+function updateEventPlayers(){
+
+  const teamSelect=
+    document.getElementById(
+      "eventTeam"
+    );
+
+  const playerSelect=
+    document.getElementById(
+      "eventPlayer"
+    );
+
+  if(!teamSelect||!playerSelect)return;
+
+  const teamId=
+    teamSelect.value;
+
+  if(!teamId){
+
+    playerSelect.innerHTML=`
+      <option value="">
+        Select team first...
+      </option>
+    `;
+
+    return;
+
+  }
+
+  const squad=
+    players
+      .filter(p=>
+        String(p.team_id)===
+        String(teamId)
+      )
+      .sort((a,b)=>
+        String(a.name||"")
+          .localeCompare(
+            String(b.name||"")
+          )
+      );
+
+  playerSelect.innerHTML=`
+
+    <option value="">
+      Select player...
+    </option>
+
+    ${
+      squad.map(player=>`
+
+        <option
+          value="${escapeHTML(player.id)}">
+
+          ${escapeHTML(
+            playerDisplayName(player)
+          )}
+
+          ${
+            player.position
+              ?" · "+escapeHTML(player.position)
+              :""
+          }
+
+        </option>
+
+      `).join("")
+    }
+
+  `;
+
+}
+
 
 async function updateMatch(id,changes){
 
   return await supabaseFetch(
+
     MATCHES_URL+
     "?id=eq."+
     encodeURIComponent(id),
+
     {
       method:"PATCH",
+
       headers:{
         Prefer:"return=representation"
       },
+
       body:JSON.stringify(changes)
+
     }
+
   );
+
 }
 
-
-/* =========================================================
-   SAVE MATCH
-========================================================= */
 
 async function saveAdminMatch(){
 
@@ -4586,7 +4822,9 @@ async function saveAdminMatch(){
       changes
     );
 
-    addLog("Match updated.");
+    addLog(
+      "Match updated."
+    );
 
     renderAll();
     renderAdmin();
@@ -4597,13 +4835,11 @@ async function saveAdminMatch(){
       "Update failed: "+
       error.message
     );
+
   }
+
 }
 
-
-/* =========================================================
-   MATCH STATUS
-========================================================= */
 
 async function startSelected(){
 
@@ -4619,12 +4855,16 @@ async function startSelected(){
 
     await updateMatch(
       match.id,
-      {status:"live"}
+      {
+        status:"live"
+      }
     );
 
     match.status="live";
 
-    addLog("Match started.");
+    addLog(
+      "Match started."
+    );
 
     renderAll();
     renderAdmin();
@@ -4634,7 +4874,9 @@ async function startSelected(){
   }catch(error){
 
     addLog(error.message);
+
   }
+
 }
 
 
@@ -4650,21 +4892,20 @@ async function pauseSelected(){
 
   try{
 
-    /*
-      Keep the existing MEFCO behavior:
-      paused matches return to scheduled.
-    */
-
     await updateMatch(
       match.id,
-      {status:"scheduled"}
+      {
+        status:"scheduled"
+      }
     );
 
     match.status="scheduled";
 
     stopTimer();
 
-    addLog("Match paused.");
+    addLog(
+      "Match paused."
+    );
 
     renderAll();
     renderAdmin();
@@ -4672,7 +4913,9 @@ async function pauseSelected(){
   }catch(error){
 
     addLog(error.message);
+
   }
+
 }
 
 
@@ -4690,14 +4933,18 @@ async function finishSelected(){
 
     await updateMatch(
       match.id,
-      {status:"finished"}
+      {
+        status:"finished"
+      }
     );
 
     match.status="finished";
 
     stopTimer();
 
-    addLog("Match finished.");
+    addLog(
+      "Match finished."
+    );
 
     renderAll();
     renderAdmin();
@@ -4705,13 +4952,11 @@ async function finishSelected(){
   }catch(error){
 
     addLog(error.message);
+
   }
+
 }
 
-
-/* =========================================================
-   TIMER
-========================================================= */
 
 async function addMinute(amount){
 
@@ -4731,7 +4976,8 @@ async function addMinute(amount){
     await updateMatch(
       match.id,
       {
-        minute:minute+amount
+        minute:
+          minute+amount
       }
     );
 
@@ -4744,7 +4990,9 @@ async function addMinute(amount){
   }catch(error){
 
     addLog(error.message);
+
   }
+
 }
 
 
@@ -4761,8 +5009,12 @@ function startTimer(){
           String(selectedMatchId)
         );
 
-      if(!match||!isLive(match))
+      if(
+        !match||
+        !isLive(match)
+      ){
         return;
+      }
 
       const minute=
         Number(match.minute)||0;
@@ -4772,7 +5024,8 @@ function startTimer(){
         await updateMatch(
           match.id,
           {
-            minute:minute+1
+            minute:
+              minute+1
           }
         );
 
@@ -4781,19 +5034,14 @@ function startTimer(){
 
         renderAll();
 
-        if(
-          document.getElementById("admin")
-            ?.classList.contains("active")
-        ){
-          renderAdmin();
-        }
-
       }catch(error){
 
         console.error(error);
+
       }
 
     },60000);
+
 }
 
 
@@ -4802,63 +5050,11 @@ function stopTimer(){
   if(timer){
 
     clearInterval(timer);
+
     timer=null;
+
   }
-}
 
-
-/* =========================================================
-   EVENT PLAYER FILTER
-========================================================= */
-
-function updateEventPlayers(){
-
-  const teamSelect=
-    document.getElementById("eventTeam");
-
-  const playerSelect=
-    document.getElementById("eventPlayer");
-
-  if(!teamSelect||!playerSelect)
-    return;
-
-  const teamId=
-    teamSelect.value;
-
-  const list=
-    players
-      .filter(player=>
-        String(player.team_id)===
-        String(teamId)
-      )
-      .sort((a,b)=>
-        String(a.name||"")
-          .localeCompare(
-            String(b.name||"")
-          )
-      );
-
-  playerSelect.innerHTML=
-    `<option value="">
-       Select player...
-     </option>`+
-    list.map(player=>`
-
-      <option value="${escapeHTML(player.id)}">
-
-        ${escapeHTML(
-          playerDisplayName(player)
-        )}
-
-        ${
-          player.position
-            ? ` · ${escapeHTML(player.position)}`
-            : ""
-        }
-
-      </option>
-
-    `).join("");
 }
 
 
@@ -4874,20 +5070,23 @@ async function insertEvent(event){
       EVENTS_URL,
       {
         method:"POST",
+
         headers:{
           Prefer:"return=representation"
         },
+
         body:JSON.stringify(event)
+
       }
     );
 
   }catch(error){
 
     /*
-      Compatibility fallback:
-      if player_id/team_id columns have not
-      been added yet, the event still works
-      using the legacy text fields.
+      Backwards compatibility:
+      if player_id/team_id have not yet
+      been added to matches-events,
+      retry using the old text fields.
     */
 
     if(
@@ -4910,16 +5109,22 @@ async function insertEvent(event){
         EVENTS_URL,
         {
           method:"POST",
+
           headers:{
             Prefer:"return=representation"
           },
+
           body:JSON.stringify(legacy)
+
         }
       );
+
     }
 
     throw error;
+
   }
+
 }
 
 
@@ -4933,15 +5138,16 @@ async function addEvent(){
 
   if(!match)return;
 
+
   const teamId=
     document.getElementById(
       "eventTeam"
-    )?.value||"";
+    ).value;
 
   const playerId=
     document.getElementById(
       "eventPlayer"
-    )?.value||"";
+    ).value;
 
   const team=
     getTeam(teamId);
@@ -4949,52 +5155,36 @@ async function addEvent(){
   const player=
     getPlayer(playerId);
 
-  if(teamId){
 
-    const home=
-      resolveMatchTeam(match,"home");
+  /*
+    Prevent accidental events for
+    teams not playing in the match.
+  */
 
-    const away=
-      resolveMatchTeam(match,"away");
+  const homeTeam=
+    resolveMatchTeam(match,"home");
 
-    const allowed=[
-      home?.id,
-      away?.id
-    ]
-    .filter(Boolean)
-    .map(String);
-
-    if(
-      !allowed.includes(
-        String(teamId)
-      )
-    ){
-
-      addLog(
-        "Event team is not part of this match."
-      );
-
-      return;
-    }
-  }
-
-  const type=
-    document.getElementById(
-      "eventType"
-    ).value;
+  const awayTeam=
+    resolveMatchTeam(match,"away");
 
   if(
-    (type==="Goal"||
-     type==="Assist")&&
-    !playerId
+    teamId&&
+    ![
+      homeTeam?.id,
+      awayTeam?.id
+    ]
+    .map(String)
+    .includes(String(teamId))
   ){
 
     addLog(
-      "Select a player for this event."
+      "Event rejected: team is not playing this match."
     );
 
     return;
+
   }
+
 
   const event={
 
@@ -5014,10 +5204,12 @@ async function addEvent(){
         document.getElementById(
           "eventStoppage"
         ).value
-      )||
-      0,
+      )||0,
 
-    type,
+    type:
+      document.getElementById(
+        "eventType"
+      ).value,
 
     player_id:
       playerId||
@@ -5042,87 +5234,27 @@ async function addEvent(){
 
   };
 
+
   try{
 
     const result=
       await insertEvent(event);
 
-    const saved=
-      Array.isArray(result)
-        ? result[0]
-        : event;
-
-    if(!Array.isArray(match.events))
+    if(!Array.isArray(match.events)){
       match.events=[];
-
-    match.events.push(saved);
-
-    /*
-      A Goal event automatically updates
-      the match score.
-    */
-
-    if(
-      type.toLowerCase()==="goal"&&
-      team
-    ){
-
-      const home=
-        resolveMatchTeam(match,"home");
-
-      const away=
-        resolveMatchTeam(match,"away");
-
-      const changes={};
-
-      if(
-        home&&
-        String(home.id)===
-        String(team.id)
-      ){
-
-        changes.score_home=
-          scoreOf(match,"home")+1;
-
-      }else if(
-        away&&
-        String(away.id)===
-        String(team.id)
-      ){
-
-        changes.score_away=
-          scoreOf(match,"away")+1;
-      }
-
-      if(Object.keys(changes).length){
-
-        try{
-
-          await updateMatch(
-            match.id,
-            changes
-          );
-
-          Object.assign(
-            match,
-            changes
-          );
-
-        }catch(error){
-
-          console.error(
-            "Score update:",
-            error
-          );
-        }
-      }
     }
 
-    addLog(
-      `${type} event added.`
+    match.events.push(
+      Array.isArray(result)
+        ?result[0]
+        :event
     );
 
-    renderAll();
+    addLog(
+      "Event added."
+    );
+
+    renderMatch();
     renderAdmin();
 
   }catch(error){
@@ -5131,160 +5263,27 @@ async function addEvent(){
       "Event failed: "+
       error.message
     );
+
   }
+
 }
 
 
 function quickEvent(type){
 
-  const select=
+  const typeBox=
     document.getElementById(
       "eventType"
     );
 
-  if(select)
-    select.value=type;
+  if(typeBox){
+
+    typeBox.value=type;
+
+  }
 
   addEvent();
-}
 
-
-/* =========================================================
-   UNDO EVENT
-========================================================= */
-
-async function undoLastEvent(){
-
-  const match=
-    matches.find(m=>
-      String(m.id)===
-      String(selectedMatchId)
-    );
-
-  if(!match||!match.events?.length)
-    return;
-
-  const events=
-    match.events
-      .slice()
-      .sort((a,b)=>
-        new Date(
-          b.created_at||0
-        )-
-        new Date(
-          a.created_at||0
-        )
-      );
-
-  const last=
-    events[0];
-
-  if(!last?.id){
-
-    addLog(
-      "Cannot undo an event without an event ID."
-    );
-
-    return;
-  }
-
-  try{
-
-    await supabaseFetch(
-      EVENTS_URL+
-      "?id=eq."+
-      encodeURIComponent(last.id),
-      {
-        method:"DELETE"
-      }
-    );
-
-    match.events=
-      match.events.filter(event=>
-        String(event.id)!==
-        String(last.id)
-      );
-
-    /*
-      If the removed event was a goal,
-      reverse its score change.
-    */
-
-    const type=
-      String(
-        last.type||
-        last.event_type||
-        ""
-      ).toLowerCase();
-
-    if(type.includes("goal")){
-
-      const team=
-        last.team_id
-          ? getTeam(last.team_id)
-          : resolveTeam(last.team);
-
-      const home=
-        resolveMatchTeam(match,"home");
-
-      const away=
-        resolveMatchTeam(match,"away");
-
-      const changes={};
-
-      if(
-        team&&
-        home&&
-        String(team.id)===
-        String(home.id)
-      ){
-
-        changes.score_home=
-          Math.max(
-            0,
-            scoreOf(match,"home")-1
-          );
-
-      }else if(
-        team&&
-        away&&
-        String(team.id)===
-        String(away.id)
-      ){
-
-        changes.score_away=
-          Math.max(
-            0,
-            scoreOf(match,"away")-1
-          );
-      }
-
-      if(Object.keys(changes).length){
-
-        await updateMatch(
-          match.id,
-          changes
-        );
-
-        Object.assign(
-          match,
-          changes
-        );
-      }
-    }
-
-    addLog("Last event undone.");
-
-    renderAll();
-    renderAdmin();
-
-  }catch(error){
-
-    addLog(
-      "Undo failed: "+
-      error.message
-    );
-  }
 }
 
 
@@ -5292,23 +5291,179 @@ async function undoLastEvent(){
    CREATE MATCH
 ========================================================= */
 
-async function createMatch(){
+function renderCreateTeamOptions(){
 
-  const homeId=
+  const home=
     document.getElementById(
       "createHome"
-    ).value;
+    );
 
-  const awayId=
+  const away=
     document.getElementById(
       "createAway"
-    ).value;
+    );
 
-  const homeTeam=
-    getTeam(homeId);
+  if(!home||!away)return;
 
-  const awayTeam=
-    getTeam(awayId);
+  const options=`
+
+    <option value="">
+      Select team...
+    </option>
+
+    ${teams.map(team=>`
+
+      <option
+        value="${escapeHTML(team.id)}">
+
+        ${escapeHTML(
+          team.short_name||
+          team.name
+        )}
+
+        ${
+          team.country
+            ?" · "+escapeHTML(team.country)
+            :""
+        }
+
+      </option>
+
+    `).join("")}
+
+  `;
+
+  home.innerHTML=options;
+  away.innerHTML=options;
+
+}
+
+
+function syncCreateTeam(side){
+
+  const select=
+    document.getElementById(
+      side==="home"
+        ?"createHome"
+        :"createAway"
+    );
+
+  const flagInput=
+    document.getElementById(
+      side==="home"
+        ?"createHomeFlag"
+        :"createAwayFlag"
+    );
+
+  const team=
+    getTeam(select?.value);
+
+  if(flagInput){
+
+    flagInput.value=
+      team?.flag_url||
+      "";
+
+  }
+
+  const preview=
+    document.getElementById(
+      "createTeamPreview"
+    );
+
+  if(!preview)return;
+
+  const home=
+    getTeam(
+      document.getElementById(
+        "createHome"
+      )?.value
+    );
+
+  const away=
+    getTeam(
+      document.getElementById(
+        "createAway"
+      )?.value
+    );
+
+  preview.innerHTML=`
+
+    <div style="
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    ">
+
+      ${
+        home
+          ?`
+            <div class="admin-btn">
+              ${
+                home.flag_url
+                  ?`<img
+                      src="${escapeHTML(home.flag_url)}"
+                      style="
+                        width:24px;
+                        height:16px;
+                        object-fit:cover;
+                        vertical-align:middle;
+                        margin-right:7px;
+                      ">`
+                  :""
+              }
+              ${escapeHTML(home.name)}
+            </div>
+          `
+          :""
+      }
+
+      ${
+        away
+          ?`
+            <div class="admin-btn">
+              ${
+                away.flag_url
+                  ?`<img
+                      src="${escapeHTML(away.flag_url)}"
+                      style="
+                        width:24px;
+                        height:16px;
+                        object-fit:cover;
+                        vertical-align:middle;
+                        margin-right:7px;
+                      ">`
+                  :""
+              }
+              ${escapeHTML(away.name)}
+            </div>
+          `
+          :""
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+async function createMatch(){
+
+  const home=
+    getTeam(
+      document.getElementById(
+        "createHome"
+      ).value
+    );
+
+  const away=
+    getTeam(
+      document.getElementById(
+        "createAway"
+      ).value
+    );
+
 
   const match={
 
@@ -5318,12 +5473,18 @@ async function createMatch(){
       ).value.trim(),
 
     home:
-      homeTeam?.name||
-      "",
+      home?.name||"",
 
     away:
-      awayTeam?.name||
-      "",
+      away?.name||"",
+
+    home_team_id:
+      home?.id||
+      null,
+
+    away_team_id:
+      away?.id||
+      null,
 
     match_date:
       document.getElementById(
@@ -5336,10 +5497,12 @@ async function createMatch(){
       ).value,
 
     home_flag:
-      teamFlag(homeTeam)||"",
+      home?.flag_url||
+      "",
 
     away_flag:
-      teamFlag(awayTeam)||"",
+      away?.flag_url||
+      "",
 
     status:"scheduled",
 
@@ -5351,17 +5514,10 @@ async function createMatch(){
 
     stoppage:0,
 
-    favorite:false,
-
-    home_team_id:
-      homeTeam?.id||
-      null,
-
-    away_team_id:
-      awayTeam?.id||
-      null
+    favorite:false
 
   };
+
 
   if(
     !match.home||
@@ -5375,11 +5531,15 @@ async function createMatch(){
     );
 
     return;
+
   }
 
+
   if(
-    String(homeId)===
-    String(awayId)
+    home?.id&&
+    away?.id&&
+    String(home.id)===
+    String(away.id)
   ){
 
     addLog(
@@ -5387,7 +5547,9 @@ async function createMatch(){
     );
 
     return;
+
   }
+
 
   try{
 
@@ -5400,18 +5562,23 @@ async function createMatch(){
           MATCHES_URL,
           {
             method:"POST",
+
             headers:{
               Prefer:"return=representation"
             },
+
             body:JSON.stringify(match)
+
           }
         );
 
     }catch(error){
 
       /*
-        Compatibility with an existing matches
-        table that doesn't yet have team ID columns.
+        Same backwards-compatible idea
+        for matches if home_team_id /
+        away_team_id are not in the
+        current database yet.
       */
 
       if(
@@ -5431,27 +5598,37 @@ async function createMatch(){
             MATCHES_URL,
             {
               method:"POST",
+
               headers:{
                 Prefer:"return=representation"
               },
+
               body:JSON.stringify(legacy)
+
             }
           );
 
       }else{
 
         throw error;
+
       }
+
     }
+
 
     if(Array.isArray(result)){
 
-      matches.push(result[0]);
+      matches.push(
+        result[0]
+      );
 
     }else{
 
       matches.push(match);
+
     }
+
 
     addLog(
       `Created ${match.home} vs ${match.away}.`
@@ -5466,7 +5643,9 @@ async function createMatch(){
       "Create match failed: "+
       error.message
     );
+
   }
+
 }
 
 
@@ -5490,6 +5669,7 @@ function addLog(message){
     adminLog.slice(0,50);
 
   renderAdminLog();
+
 }
 
 
@@ -5504,20 +5684,65 @@ function renderAdminLog(){
 
   box.innerHTML=
     adminLog.length
-      ? adminLog.map(item=>`
+      ?adminLog.map(item=>`
 
-          <div class="admin-log-item">
+        <div class="admin-log-item">
 
-            ${escapeHTML(item.time)}
-            ·
-            ${escapeHTML(item.message)}
+          ${escapeHTML(item.time)}
+          ·
+          ${escapeHTML(item.message)}
 
-          </div>
+        </div>
 
-        `).join("")
-      : `<div class="empty">
+      `).join("")
+      :`
+        <div class="empty">
           No admin actions yet.
-         </div>`;
+        </div>
+      `;
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+async function toggleFavorite(id){
+
+  const match=
+    matches.find(m=>
+      String(m.id)===
+      String(id)
+    );
+
+  if(!match)return;
+
+  const favorite=
+    !Boolean(match.favorite);
+
+  try{
+
+    await updateMatch(
+      match.id,
+      {
+        favorite
+      }
+    );
+
+    match.favorite=favorite;
+
+    renderAll();
+
+  }catch(error){
+
+    console.error(
+      "Favorite:",
+      error
+    );
+
+  }
+
 }
 
 
@@ -5539,6 +5764,7 @@ async function enableNotifications(){
     );
 
     return;
+
   }
 
   const permission=
@@ -5562,7 +5788,9 @@ async function enableNotifications(){
       "warning",
       "Notification permission was not granted."
     );
+
   }
+
 }
 
 
@@ -5571,27 +5799,18 @@ async function sendNotification(){
   const title=
     document.getElementById(
       "notificationTitle"
-    ).value.trim();
+    ).value;
 
   const body=
     document.getElementById(
       "notificationBody"
-    ).value.trim();
+    ).value;
 
   const url=
     document.getElementById(
       "notificationUrl"
-    ).value.trim();
+    ).value;
 
-  if(!title||!body){
-
-    showNotificationStatus(
-      "warning",
-      "Title and message are required."
-    );
-
-    return;
-  }
 
   try{
 
@@ -5601,30 +5820,33 @@ async function sendNotification(){
         "/api/notify",
         {
           method:"POST",
+
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":
+              "application/json"
           },
+
           body:JSON.stringify({
             title,
             body,
             url
           })
+
         }
       );
+
 
     if(!response.ok){
 
       throw new Error(
         await response.text()
       );
+
     }
+
 
     showNotificationStatus(
       "success",
-      "Notification sent."
-    );
-
-    addLog(
       "Notification sent."
     );
 
@@ -5635,7 +5857,9 @@ async function sendNotification(){
       "Notification failed: "+
       error.message
     );
+
   }
+
 }
 
 
@@ -5649,12 +5873,15 @@ async function checkNotificationStatus(){
       );
 
     showNotificationStatus(
+
       response.ok
         ?"success"
         :"warning",
+
       response.ok
         ?"Notification service is online."
         :"Notification service responded with an error."
+
     );
 
   }catch(error){
@@ -5663,7 +5890,9 @@ async function checkNotificationStatus(){
       "error",
       "Notification service could not be reached."
     );
+
   }
+
 }
 
 
@@ -5684,6 +5913,7 @@ function showNotificationStatus(
     type;
 
   box.textContent=message;
+
 }
 
 
@@ -5695,12 +5925,16 @@ function renderAll(){
 
   renderHome();
   renderScores();
+  renderNews();
   renderCompetitions();
   renderStats();
+  renderTeams();
   renderLiveTicker();
 
-  if(selectedMatchId)
+  if(selectedMatchId){
     renderMatch();
+  }
+
 }
 
 
@@ -5710,60 +5944,24 @@ function renderAll(){
 
 async function boot(){
 
-  const status=
-    document.getElementById(
-      "dbStatus"
-    );
+  await Promise.all([
+    loadTeams(),
+    loadPlayers(),
+    loadMatches(),
+    loadNews()
+  ]);
 
-  try{
+  renderAll();
 
-    if(status){
-
-      status.textContent=
-        "Connecting...";
-
-      status.className=
-        "db-status";
-    }
-
-    await Promise.all([
-      loadTeams(),
-      loadPlayers(),
-      loadMatches(),
-      loadNews()
-    ]);
-
-    renderAll();
-    renderAdmin();
-
-    if(status){
-
-      status.textContent=
-        `Database connected · ${teams.length} teams · ${players.length} players`;
-
-      status.className=
-        "db-status ok";
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    if(status){
-
-      status.textContent=
-        "Database connection error";
-
-      status.className=
-        "db-status error";
-    }
-  }
+  renderAdmin();
 
   checkNotificationStatus();
+
 }
 
 
 boot();
+
 </script>
 
 </body>
