@@ -14,951 +14,555 @@
   --card2:#141c26;
   --card3:#1a2430;
   --text:#f8fafc;
-  --muted:#94a3b8;
-  --border:#243140;
-  --border2:#334155;
-  --green:#16a34a;
-  --green2:#15803d;
-  --red:#ef4444;
-  --yellow:#f59e0b;
-  --blue:#3b82f6;
-  --purple:#8b5cf6;
+  --muted:#8b98a8;
+  --border:#263241;
+  --green:#19d47b;
+  --green2:#0fa968;
+  --red:#ff5364;
+  --yellow:#f5c542;
+  --blue:#4d9cff;
+  --purple:#a879ff;
 }
-html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
   font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   min-height:100vh;
 }
-button,input,select,textarea{font:inherit}
+button,input,select{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.5;cursor:not-allowed}
-img{max-width:100%}
-
 header{
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:50;
+  min-height:76px;
+  padding:12px 22px;
   background:rgba(7,10,15,.94);
   backdrop-filter:blur(18px);
   border-bottom:1px solid var(--border);
-  padding:12px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  gap:20px;
 }
-
 .logo{
   border:0;
   background:none;
-  color:#fff;
-  font-size:20px;
+  color:white;
+  font-size:22px;
   font-weight:900;
   letter-spacing:-.5px;
 }
-.logo span{color:#22c55e}
-
-header>div{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
+.logo span{color:var(--green)}
 nav{
   display:flex;
   gap:4px;
   flex-wrap:wrap;
+  justify-content:flex-end;
 }
-
 nav button{
   border:0;
   background:transparent;
   color:var(--muted);
-  padding:9px 11px;
-  border-radius:8px;
-  font-size:13px;
-  font-weight:750;
+  padding:9px 12px;
+  border-radius:9px;
 }
 nav button:hover,
 nav button.active{
   background:var(--card2);
-  color:#fff;
+  color:white;
 }
-
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 .notification-button{
-  border:1px solid var(--border2);
-  background:var(--card2);
-  color:#fff;
-  border-radius:8px;
-  padding:8px 11px;
-  font-size:12px;
-  font-weight:750;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:white;
+  padding:9px 12px;
+  border-radius:9px;
 }
-
 .page{
   display:none;
-  max-width:1250px;
+  max-width:1400px;
   margin:auto;
-  padding:28px 18px 60px;
+  padding:30px 22px 70px;
 }
 .page.active{display:block}
-
 .page-title{
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 .page-title h1{
   font-size:32px;
   letter-spacing:-1px;
-  margin-bottom:6px;
 }
 .page-title p{
   color:var(--muted);
-  font-size:14px;
+  margin-top:5px;
 }
-
-/* HOME */
-
 .hero{
-  min-height:330px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(25,212,123,.16),transparent 35%),
+    linear-gradient(135deg,var(--card2),var(--card));
   border:1px solid var(--border);
   border-radius:20px;
-  background:
-    radial-gradient(circle at 80% 30%,rgba(22,163,74,.18),transparent 35%),
-    linear-gradient(135deg,#101923,#080c12);
-  display:flex;
-  align-items:center;
-  padding:42px;
-  margin-bottom:24px;
-  overflow:hidden;
-}
-.hero-content{max-width:650px}
-.hero-kicker{
-  color:#4ade80;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1.5px;
-  margin-bottom:12px;
+  padding:34px;
+  margin-bottom:22px;
 }
 .hero h1{
-  font-size:48px;
-  line-height:1;
+  font-size:42px;
   letter-spacing:-2px;
-  margin-bottom:14px;
 }
 .hero p{
   color:var(--muted);
-  font-size:16px;
-  line-height:1.6;
-  max-width:560px;
+  margin-top:8px;
 }
-
-.hero-actions{
-  display:flex;
-  gap:10px;
-  margin-top:22px;
-  flex-wrap:wrap;
-}
-
-.primary-btn,
-.secondary-btn{
-  border-radius:9px;
-  padding:11px 16px;
-  font-weight:800;
-  border:1px solid var(--border2);
-}
-.primary-btn{
-  background:var(--green2);
-  color:#fff;
-  border-color:#16a34a;
-}
-.secondary-btn{
-  background:var(--card2);
-  color:#fff;
-}
-
-.section{
-  margin-top:28px;
-}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:13px;
-}
-.section-head h2{
-  font-size:19px;
-}
-.section-head button{
-  border:0;
-  background:none;
-  color:#4ade80;
-  font-size:12px;
-  font-weight:800;
-}
-
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px;
+  gap:16px;
 }
-
-.feature-card,
-.home-card,
-.match-card,
-.team-card,
-.player-card,
-.news-card,
-.competition-card,
-.record-card,
-.table-card{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:14px;
-}
-
-.feature-card{
-  padding:22px;
-}
-.feature-card h2{
-  font-size:22px;
-  margin:8px 0;
-}
-.feature-card p{
-  color:var(--muted);
-  line-height:1.5;
-}
-.feature-card .tag{
-  color:#4ade80;
-  font-size:11px;
-  font-weight:900;
-  text-transform:uppercase;
-}
-
-.home-card{
-  padding:20px;
-  transition:.2s;
-}
-.home-card:hover,
-.team-card:hover,
-.player-card:hover,
-.news-card:hover,
-.competition-card:hover{
-  transform:translateY(-2px);
-  border-color:#3b4b5e;
-}
-.home-card h3{margin-bottom:7px}
-.home-card p{color:var(--muted);font-size:13px}
-
-.live-ticker{
-  border:1px solid rgba(239,68,68,.3);
-  background:rgba(127,29,29,.15);
-  border-radius:12px;
-  padding:13px 15px;
-  margin-bottom:20px;
-}
-.live-ticker-title{
-  color:#f87171;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:.8px;
-  margin-bottom:8px;
-}
-.live-ticker-list{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-}
-.live-chip{
-  white-space:nowrap;
-  background:#121923;
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:8px 10px;
-  font-size:12px;
-}
-
-/* SCORES */
-
-.score-date-nav{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-  margin:-8px 0 20px;
-}
-
-.date-nav-btn,
-.date-today-btn{
-  border:1px solid var(--border2);
-  background:#121b25;
-  color:#fff;
-  border-radius:9px;
-  padding:9px 14px;
-  font-weight:750;
-}
-.date-today-btn{
-  background:var(--green2);
-  border-color:#16a34a;
-}
-
-.filters{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  margin-bottom:18px;
-}
-
-.filter{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--muted);
-  border-radius:8px;
-  padding:8px 12px;
-  font-size:12px;
-  font-weight:750;
-}
-.filter.active{
-  color:#fff;
-  background:var(--green2);
-  border-color:#16a34a;
-}
-
-.match-list{
+.grid-2{
   display:grid;
-  gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
 }
-
-.match-card{
-  padding:15px;
-  transition:.2s;
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
 }
-.match-card:hover{
-  border-color:#3b4b5e;
+.card h3{margin-bottom:12px}
+.section{
+  margin-top:26px;
 }
-
-.match-top{
+.section-title{
   display:flex;
+  align-items:center;
   justify-content:space-between;
   gap:10px;
+  margin-bottom:14px;
+}
+.section-title h2{font-size:21px}
+.muted{color:var(--muted)}
+.empty{
+  padding:35px 20px;
+  text-align:center;
   color:var(--muted);
-  font-size:11px;
-  margin-bottom:13px;
+  border:1px dashed var(--border);
+  border-radius:14px;
 }
-
-.match-main{
-  display:grid;
-  grid-template-columns:1fr 90px 1fr;
+.ticker{
+  overflow:hidden;
+  white-space:nowrap;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 14px;
+  margin-bottom:20px;
+}
+.ticker span{color:var(--green);font-weight:700}
+.match-card{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:17px;
+  transition:.15s;
+}
+.match-card:hover{
+  border-color:#3a4a5d;
+  transform:translateY(-1px);
+}
+.match-top{
+  display:flex;
   align-items:center;
-  gap:10px;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:15px;
 }
-
-.team{
+.match-teams{
+  display:grid;
+  grid-template-columns:1fr 70px 1fr;
+  align-items:center;
+  gap:8px;
+}
+.match-team{
   display:flex;
   align-items:center;
   gap:9px;
   min-width:0;
 }
-.team.away{
+.match-team.away{
   justify-content:flex-end;
   text-align:right;
 }
-.team-name{
-  font-weight:800;
-  font-size:14px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
 .flag{
-  width:25px;
-  height:25px;
+  width:30px;
+  height:22px;
   object-fit:cover;
-  border-radius:50%;
-  background:#202a36;
+  border-radius:4px;
+  background:#202b38;
+  border:1px solid var(--border);
 }
-
-.match-result{
+.match-score{
   text-align:center;
+  font-size:22px;
   font-weight:900;
-  font-size:18px;
 }
 .match-status{
+  text-align:center;
+  font-size:11px;
   color:var(--muted);
-  font-size:10px;
-  margin-top:3px;
+  margin-top:4px;
 }
-.match-status.live{color:#f87171}
-
-.favorite-star{
+.live{
+  color:var(--red)!important;
+  font-weight:800;
+}
+.favorite{
   border:0;
   background:none;
-  color:#64748b;
-  font-size:18px;
+  color:#526170;
+  font-size:20px;
 }
-.favorite-star.active{color:#facc15}
-
-.empty{
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed var(--border2);
-  border-radius:12px;
-  padding:35px 20px;
+.favorite.on{color:var(--yellow)}
+.date-nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:18px;
 }
-
-/* NEWS */
-
-.featured-news{
-  border:1px solid var(--border);
-  background:linear-gradient(135deg,#121b25,#0c1118);
-  border-radius:17px;
-  padding:25px;
-  margin-bottom:20px;
-}
-.featured-news .tag,
-.news-card .tag{
-  color:#4ade80;
-  font-size:10px;
-  font-weight:900;
-  text-transform:uppercase;
-}
-.featured-news h2{
-  font-size:28px;
-  margin:10px 0;
-}
-.featured-news p{
-  color:var(--muted);
-  line-height:1.6;
-}
-.news-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-.news-card{
-  padding:18px;
-  cursor:pointer;
-}
-.news-card h3{
-  margin:9px 0;
-  font-size:17px;
-}
-.news-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-}
-.news-date{
-  color:#64748b;
-  font-size:11px;
-  margin-top:12px;
-}
-
-.back-button{
+.date-nav button,
+.filter-btn{
   border:1px solid var(--border);
   background:var(--card);
-  color:#fff;
-  border-radius:8px;
-  padding:9px 12px;
-  margin-bottom:20px;
+  color:white;
+  padding:9px 13px;
+  border-radius:9px;
 }
-
+.filter-btn.active{
+  border-color:var(--green);
+  color:var(--green);
+}
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.news-card{
+  cursor:pointer;
+}
+.news-card h3{margin-bottom:8px}
+.news-card p{
+  color:var(--muted);
+  line-height:1.5;
+}
+.news-meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:12px;
+}
 .article{
-  max-width:850px;
+  max-width:900px;
   margin:auto;
-}
-.article-meta{
-  color:#4ade80;
-  font-size:11px;
-  font-weight:900;
-  text-transform:uppercase;
 }
 .article h1{
   font-size:42px;
-  line-height:1.08;
-  margin:12px 0;
-}
-.article-date{
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:25px;
+  margin-bottom:12px;
 }
 .article-body{
-  color:#d7dee8;
+  color:#cbd5e1;
   line-height:1.8;
   white-space:pre-wrap;
+  margin-top:25px;
 }
-
-/* SEARCH */
-
-.search-box{
-  display:flex;
-  gap:8px;
+.back{
+  border:0;
+  background:none;
+  color:var(--green);
   margin-bottom:20px;
 }
-.search-box input{
-  flex:1;
+.team-header,
+.player-header,
+.match-header{
   background:var(--card);
-  color:#fff;
   border:1px solid var(--border);
-  border-radius:9px;
-  padding:12px;
-  outline:none;
-}
-.search-box input:focus{
-  border-color:#3b82f6;
-}
-.search-results{
-  display:grid;
-  gap:9px;
-}
-.search-result{
-  padding:15px;
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:11px;
-  cursor:pointer;
-}
-.search-result small{
-  color:#4ade80;
-  font-weight:800;
-}
-.search-result strong{
-  display:block;
-  margin-top:4px;
-}
-
-/* COMPETITIONS */
-
-.competition-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-.competition-card{
-  padding:20px;
-  cursor:pointer;
-}
-.competition-icon{
-  width:44px;
-  height:44px;
-  display:grid;
-  place-items:center;
-  border-radius:10px;
-  background:var(--card3);
-  margin-bottom:14px;
-  font-size:20px;
-}
-.competition-card h3{
-  margin-bottom:6px;
-}
-.competition-card p{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.competition-header{
-  padding:22px;
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:15px;
-  margin-bottom:18px;
-}
-.competition-header h2{font-size:26px}
-.competition-header p{
-  color:var(--muted);
-  margin-top:5px;
-}
-
-/* TABLE */
-
-.table-wrap{
-  overflow-x:auto;
-  border:1px solid var(--border);
-  border-radius:12px;
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:650px;
-}
-th,td{
-  padding:12px;
-  border-bottom:1px solid var(--border);
-  text-align:center;
-  font-size:12px;
-}
-th{
-  background:var(--card2);
-  color:var(--muted);
-  font-size:10px;
-  text-transform:uppercase;
-}
-td:first-child,
-th:first-child{text-align:left}
-tr:last-child td{border-bottom:0}
-.position{
-  width:35px;
-  color:var(--muted);
-}
-.club-cell{
-  font-weight:800;
-}
-
-/* TEAM / PLAYER */
-
-.entity-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
-}
-.team-card,
-.player-card{
-  padding:17px;
-  cursor:pointer;
-}
-.team-card-top,
-.player-card-top{
-  display:flex;
-  align-items:center;
-  gap:11px;
-}
-.entity-avatar{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:var(--card3);
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-}
-.entity-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.entity-sub{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:4px;
-}
-
-.profile{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:16px;
+  border-radius:18px;
   padding:25px;
 }
-.profile-head{
+.team-identity,
+.player-identity{
   display:flex;
   align-items:center;
-  gap:15px;
-  margin-bottom:20px;
+  gap:18px;
 }
-.profile-avatar{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  background:var(--card3);
-  display:grid;
-  place-items:center;
-  font-size:28px;
+.big-flag{
+  width:80px;
+  height:55px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid var(--border);
 }
-.profile h2{font-size:27px}
-.profile p{color:var(--muted);margin-top:4px}
-
+.rating{
+  margin-left:auto;
+  font-size:35px;
+  font-weight:900;
+  color:var(--green);
+}
 .stat-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  gap:12px;
   margin-top:18px;
 }
 .stat-box{
   background:var(--card2);
   border:1px solid var(--border);
-  border-radius:10px;
+  border-radius:12px;
   padding:15px;
 }
 .stat-box strong{
   display:block;
-  font-size:23px;
+  font-size:24px;
 }
 .stat-box span{
   color:var(--muted);
-  font-size:10px;
+  font-size:11px;
+}
+.table-wrap{
+  overflow-x:auto;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+th,td{
+  padding:13px 14px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+}
+th{
+  color:var(--muted);
+  font-size:12px;
   text-transform:uppercase;
 }
-
-/* RECORDS */
-
-.record-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
-}
-.record-card{
-  padding:18px;
-}
-.record-card small{
-  color:#4ade80;
-  font-weight:850;
-}
-.record-card h3{
-  margin:7px 0;
-}
-.record-card p{
-  color:var(--muted);
-  font-size:12px;
-}
-
-/* STATS */
-
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
+tr:last-child td{border-bottom:0}
+.search-box{
+  display:flex;
+  gap:10px;
   margin-bottom:20px;
 }
-.stat-highlight{
+.search-box input{
+  flex:1;
+}
+input,select{
+  width:100%;
   border:1px solid var(--border);
-  background:var(--card);
-  border-radius:13px;
-  padding:20px;
-}
-.stat-highlight strong{
-  display:block;
-  font-size:28px;
-}
-.stat-highlight span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* MATCH CENTRE */
-
-.match-centre{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:16px;
-  overflow:hidden;
-}
-.mc-header{
-  padding:24px;
-  text-align:center;
-  background:linear-gradient(135deg,#111a24,#0b1016);
-}
-.mc-competition{
-  color:#4ade80;
-  font-size:11px;
-  font-weight:900;
-}
-.mc-teams{
-  display:grid;
-  grid-template-columns:1fr 120px 1fr;
-  align-items:center;
-  gap:15px;
-  margin-top:18px;
-}
-.mc-team{
-  font-size:20px;
-  font-weight:900;
-}
-.mc-score{
-  font-size:35px;
-  font-weight:950;
-}
-.mc-status{
-  color:var(--muted);
-  font-size:11px;
-}
-.mc-body{padding:20px}
-.mc-section{
-  margin-bottom:22px;
-}
-.mc-section h3{
-  font-size:14px;
-  margin-bottom:10px;
-}
-.timeline{
-  display:grid;
-  gap:7px;
-}
-.timeline-event{
-  padding:10px;
-  border:1px solid var(--border);
-  border-radius:8px;
   background:var(--card2);
-  font-size:12px;
+  color:white;
+  border-radius:9px;
+  padding:11px 12px;
+  outline:none;
 }
-.timeline-event b{color:#4ade80}
-
-/* ADMIN */
-
-.admin-panel{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:14px;
-  padding:20px;
+input:focus,select:focus{border-color:var(--green)}
+label{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:6px;
 }
 .admin-controls{
   display:flex;
-  flex-wrap:wrap;
   gap:8px;
-  margin:15px 0;
+  flex-wrap:wrap;
+  margin:18px 0;
 }
 .admin-btn{
-  border:1px solid var(--border2);
-  background:var(--card2);
-  color:#fff;
-  border-radius:8px;
-  padding:9px 12px;
-  font-size:12px;
-  font-weight:800;
-}
-.admin-btn.green{background:#14532d;border-color:#166534}
-.admin-btn.red{background:#7f1d1d;border-color:#991b1b}
-.admin-btn.blue{background:#1e3a8a;border-color:#1d4ed8}
-.admin-btn.gold{background:#78350f;border-color:#92400e}
-
-.admin-field{
-  display:grid;
-  gap:6px;
-  margin-bottom:12px;
-}
-.admin-field label{
-  color:var(--muted);
-  font-size:11px;
-  font-weight:800;
-}
-.admin-field input,
-.admin-field select,
-.admin-field textarea{
-  width:100%;
-  background:#0b1118;
-  color:#fff;
   border:1px solid var(--border);
-  border-radius:8px;
-  padding:10px;
-  outline:none;
+  background:var(--card2);
+  color:white;
+  border-radius:9px;
+  padding:10px 14px;
 }
-.admin-field textarea{min-height:90px;resize:vertical}
-.admin-field input:focus,
-.admin-field select:focus,
-.admin-field textarea:focus{
-  border-color:#3b82f6;
-}
+.admin-btn.green{background:var(--green2);border-color:var(--green2)}
+.admin-btn.red{background:#9d2635;border-color:#b93646}
+.admin-btn.gold{background:#856915;border-color:#a9891d}
+.admin-btn.blue{background:#245fa7;border-color:#3173c4}
 .admin-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:12px;
+  margin:15px 0;
 }
+.admin-field{min-width:0}
 .admin-event-buttons{
   display:flex;
+  gap:8px;
   flex-wrap:wrap;
-  gap:7px;
-}
-.admin-log{
-  display:grid;
-  gap:6px;
-  margin-top:15px;
 }
 .admin-log-item{
-  padding:9px;
+  padding:10px;
+  border-bottom:1px solid var(--border);
+  color:#cbd5e1;
+  font-size:13px;
+}
+.notification-status{
+  margin-top:12px;
+  padding:11px;
+  border-radius:9px;
+  display:none;
+}
+.notification-status.success{
+  display:block;
+  background:rgba(25,212,123,.1);
+  color:var(--green);
+}
+.notification-status.error{
+  display:block;
+  background:rgba(255,83,100,.1);
+  color:var(--red);
+}
+.notification-status.warning{
+  display:block;
+  background:rgba(245,197,66,.1);
+  color:var(--yellow);
+}
+.match-scoreboard{
+  text-align:center;
+}
+.score-big{
+  font-size:54px;
+  font-weight:950;
+  letter-spacing:-3px;
+}
+.match-teams-big{
+  display:grid;
+  grid-template-columns:1fr 150px 1fr;
+  align-items:center;
+  gap:20px;
+}
+.big-team{
+  text-align:center;
+}
+.big-team img{
+  width:65px;
+  height:46px;
+  object-fit:cover;
+  border-radius:7px;
+  margin-bottom:9px;
+}
+.big-team h2{font-size:23px}
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.timeline-event{
+  display:grid;
+  grid-template-columns:55px 130px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:13px;
   background:var(--card2);
   border:1px solid var(--border);
-  border-radius:7px;
+  border-radius:10px;
+}
+.timeline-minute{
+  color:var(--green);
+  font-weight:900;
+}
+.event-type{font-weight:700}
+.event-team{color:var(--muted);font-size:12px}
+.squad{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.player-row{
+  cursor:pointer;
+  padding:13px;
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:10px;
+}
+.player-row:hover{border-color:var(--green)}
+.badge{
+  display:inline-block;
+  padding:4px 7px;
+  border-radius:6px;
+  background:var(--card3);
+  color:var(--muted);
+  font-size:11px;
+}
+footer{
+  padding:30px 20px;
+  text-align:center;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+}
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:100;
+  background:var(--card2);
+  border:1px solid var(--border);
+  padding:13px 16px;
+  border-radius:10px;
+  box-shadow:0 10px 30px #0008;
+  display:none;
+}
+.toast.show{display:block}
+.connection{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
   font-size:11px;
   color:var(--muted);
 }
-
-/* NOTIFICATIONS */
-
-.notification-box{
-  margin-top:20px;
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:14px;
-  padding:20px;
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--yellow);
 }
-.notification-status{
-  padding:10px;
-  border-radius:8px;
-  font-size:12px;
-  margin-bottom:12px;
+.dot.ok{background:var(--green)}
+.dot.bad{background:var(--red)}
+
+@media(max-width:900px){
+  header{align-items:flex-start;flex-direction:column}
+  nav{justify-content:flex-start}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .admin-grid{grid-template-columns:repeat(2,1fr)}
+  .match-teams-big{grid-template-columns:1fr 110px 1fr}
 }
-.notification-status.success{background:#052e16;color:#86efac}
-.notification-status.error{background:#450a0a;color:#fca5a5}
-.notification-status.warning{background:#451a03;color:#fcd34d}
-
-/* FOOTER */
-
-footer{
-  border-top:1px solid var(--border);
-  color:#64748b;
-  text-align:center;
-  padding:25px 15px;
-  font-size:11px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1000px){
-  .grid,
-  .news-grid,
-  .competition-grid,
-  .entity-grid,
-  .record-grid{grid-template-columns:repeat(2,1fr)}
-}
-
-@media(max-width:700px){
-  header{
-    flex-direction:column;
-    align-items:stretch;
-  }
-  header>div{
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-  nav{justify-content:center}
-  .hero{
-    min-height:280px;
-    padding:28px;
-  }
-  .hero h1{font-size:37px}
-  .grid,
-  .news-grid,
-  .competition-grid,
-  .entity-grid,
-  .record-grid,
-  .stats-grid{grid-template-columns:1fr}
+@media(max-width:650px){
+  .page{padding:20px 13px 50px}
+  .hero{padding:23px}
+  .hero h1{font-size:31px}
+  .grid,.grid-2{grid-template-columns:1fr}
   .stat-grid{grid-template-columns:repeat(2,1fr)}
   .admin-grid{grid-template-columns:1fr}
-  .mc-teams{grid-template-columns:1fr}
-  .mc-team{font-size:17px}
+  .squad{grid-template-columns:1fr}
+  .match-teams-big{grid-template-columns:1fr}
+  .score-big{font-size:43px}
+  .timeline-event{grid-template-columns:45px 1fr}
+  .timeline-event .event-team{grid-column:2}
 }
-
-@media(max-width:430px){
-  .page{padding:22px 12px 45px}
-  .page-title h1{font-size:27px}
-  .hero{padding:23px}
-  .hero h1{font-size:32px}
-  .match-main{grid-template-columns:1fr 70px 1fr}
-  .team-name{font-size:12px}
-  .date-nav-btn,
-  .date-today-btn{
-    padding:8px 9px;
-    font-size:11px;
-  }
-}
-
-/* REDUCED MOTION */
-
 @media(prefers-reduced-motion:reduce){
-  *{
-    scroll-behavior:auto!important;
-    transition:none!important;
-  }
+  *{scroll-behavior:auto!important;transition:none!important}
 }
 </style>
 </head>
@@ -970,7 +574,7 @@ footer{
     MEFCO <span>WATCH</span>
   </button>
 
-  <div>
+  <div class="header-right">
     <nav>
       <button class="active" onclick="showPage('home',this)">Home</button>
       <button onclick="showPage('scores',this)">Scores</button>
@@ -989,419 +593,357 @@ footer{
   </div>
 </header>
 
-<!-- HOME -->
 
+<!-- HOME -->
 <section id="home" class="page active">
 
-  <div id="liveTicker"></div>
+  <div class="ticker" id="liveTicker">
+    <span>MEFCO WATCH</span> · Loading live football...
+  </div>
 
   <div class="hero">
-    <div class="hero-content">
-      <div class="hero-kicker">MEFCO WATCH</div>
-      <h1>Follow the MEFCO football world.</h1>
-      <p>
-        Scores, live matches, competitions, statistics, news,
-        records and everything happening across MEFCO.
-      </p>
+    <h1>MEFCO WATCH</h1>
+    <p>Scores, matches, national teams, players, statistics and live football.</p>
 
-      <div class="hero-actions">
-        <button class="primary-btn" onclick="showPage('scores')">
-          View Scores
-        </button>
-
-        <button class="secondary-btn" onclick="showPage('competitions')">
-          Explore Competitions
-        </button>
-      </div>
+    <div class="connection" style="margin-top:15px">
+      <span id="connectionDot" class="dot"></span>
+      <span id="connectionText">Connecting to MEFCO...</span>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-head">
+    <div class="section-title">
       <h2>Today's Matches</h2>
-      <button onclick="showPage('scores')">View all</button>
+      <button class="filter-btn" onclick="showPage('scores')">
+        View Scores
+      </button>
     </div>
 
-    <div id="homeMatches" class="match-list"></div>
+    <div id="homeMatches" class="grid"></div>
   </div>
 
   <div class="section">
-    <div class="section-head">
-      <h2>Latest MEFCO News</h2>
-      <button onclick="showPage('news')">All news</button>
+    <div class="section-title">
+      <h2>Latest News</h2>
+      <button class="filter-btn" onclick="showPage('news')">
+        All News
+      </button>
     </div>
 
     <div id="homeNews" class="grid"></div>
-  </div>
-
-  <div class="section">
-    <div class="grid">
-
-      <div class="home-card" onclick="showPage('scores')">
-        <h3>Scores</h3>
-        <p>Browse previous, current and upcoming matchdays.</p>
-      </div>
-
-      <div class="home-card" onclick="showPage('competitions')">
-        <h3>Competitions</h3>
-        <p>Follow leagues, cups, tables and fixtures.</p>
-      </div>
-
-      <div class="home-card" onclick="showPage('stats')">
-        <h3>Stats & Records</h3>
-        <p>Goals, assists, records and competition statistics.</p>
-      </div>
-
-    </div>
   </div>
 
 </section>
 
 
 <!-- SCORES -->
-
 <section id="scores" class="page">
 
   <div class="page-title">
     <h1>Scores</h1>
-    <p id="scoresDate"></p>
+    <p>Every MEFCO match in one place.</p>
   </div>
 
-  <div class="score-date-nav">
-    <button class="date-nav-btn" onclick="changeScoreDate(-1)">
-      ← Previous
-    </button>
+  <div class="date-nav">
+    <button onclick="changeScoreDate(-1)">← Previous</button>
+    <button onclick="goToToday()">Today</button>
+    <button onclick="changeScoreDate(1)">Next →</button>
+  </div>
 
-    <button class="date-today-btn" onclick="goToToday()">
-      Today
-    </button>
-
-    <button class="date-nav-btn" onclick="changeScoreDate(1)">
-      Next →
-    </button>
+  <div id="scoreDateLabel"
+       style="text-align:center;margin-bottom:18px;font-weight:800">
   </div>
 
   <div class="filters">
-    <button class="filter active"
-            onclick="setScoreFilter('all',this)">
+    <button class="filter-btn active"
+            data-filter="all"
+            onclick="setScoreFilter('all')">
       All
     </button>
 
-    <button class="filter"
-            onclick="setScoreFilter('favorites',this)">
+    <button class="filter-btn"
+            data-filter="favorites"
+            onclick="setScoreFilter('favorites')">
       Favorites
     </button>
 
-    <button class="filter"
-            onclick="setScoreFilter('live',this)">
+    <button class="filter-btn"
+            data-filter="live"
+            onclick="setScoreFilter('live')">
       Live
     </button>
   </div>
 
-  <div id="scoreList" class="match-list"></div>
+  <div id="scoresList" class="grid"></div>
 
 </section>
 
 
 <!-- NEWS -->
-
 <section id="news" class="page">
 
   <div class="page-title">
-    <h1>MEFCO News</h1>
-    <p>The latest stories, match reports and updates from across MEFCO.</p>
+    <h1>News</h1>
+    <p>Latest MEFCO football news.</p>
   </div>
 
-  <div id="newsContainer">
-    <div class="empty">Loading MEFCO News...</div>
-  </div>
+  <div id="newsList" class="grid"></div>
 
 </section>
 
 
 <!-- ARTICLE -->
-
 <section id="article-page" class="page">
 
-  <button class="back-button" onclick="backToNews()">
-    ← Back to News
-  </button>
-
-  <div id="articleContainer"></div>
+  <div class="article">
+    <button class="back" onclick="backToNews()">← Back to News</button>
+    <div id="articleContent"></div>
+  </div>
 
 </section>
 
 
 <!-- COMPETITIONS -->
-
 <section id="competitions" class="page">
 
   <div class="page-title">
     <h1>Competitions</h1>
-    <p>Follow every MEFCO competition, league and cup.</p>
+    <p>MEFCO competitions and standings.</p>
   </div>
 
-  <div id="competitionGrid" class="competition-grid"></div>
+  <div id="competitionList" class="grid"></div>
 
 </section>
 
 
 <!-- COMPETITION DETAIL -->
-
 <section id="competition-page" class="page">
 
-  <button class="back-button" onclick="showPage('competitions')">
-    ← Back to Competitions
+  <button class="back" onclick="showPage('competitions')">
+    ← Competitions
   </button>
 
-  <div id="competitionContainer"></div>
+  <div id="competitionContent"></div>
 
 </section>
 
 
 <!-- STATS -->
-
 <section id="stats" class="page">
 
   <div class="page-title">
     <h1>Stats</h1>
-    <p>Explore MEFCO records and competition statistics.</p>
+    <p>Player and match statistics.</p>
   </div>
 
-  <div id="statsHighlights" class="stats-grid"></div>
-
-  <div class="section">
-    <div class="section-head">
-      <h2>Top Scorers</h2>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Player</th>
-            <th>Team</th>
-            <th>Goals</th>
-            <th>Assists</th>
-          </tr>
-        </thead>
-
-        <tbody id="statsTableBody">
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-
-    <div class="section-head">
-      <h2>Records</h2>
-    </div>
-
-    <div id="recordsGrid" class="record-grid"></div>
-
-  </div>
+  <div id="statsContent"></div>
 
 </section>
 
 
 <!-- SEARCH -->
-
 <section id="search" class="page">
 
   <div class="page-title">
-    <h1>Search MEFCO</h1>
-    <p>Find teams, players, matches, competitions and news.</p>
+    <h1>Search</h1>
+    <p>Search teams, players, matches, competitions and news.</p>
   </div>
 
   <div class="search-box">
-    <input
-      id="searchInput"
-      type="search"
-      placeholder="Search MEFCO..."
-      oninput="performSearch()"
-    >
+    <input id="searchInput"
+           type="search"
+           placeholder="Search MEFCO..."
+           oninput="performSearch()">
   </div>
 
-  <div id="searchResults" class="search-results">
-    <div class="empty">
-      Start typing to search MEFCO.
-    </div>
-  </div>
+  <div id="searchResults"></div>
 
 </section>
 
 
 <!-- TEAM -->
-
 <section id="team-page" class="page">
 
-  <button class="back-button" onclick="showPage('search')">
+  <button class="back" onclick="showPage('search')">
     ← Back
   </button>
 
-  <div id="teamContainer"></div>
+  <div id="teamContent"></div>
 
 </section>
 
 
 <!-- PLAYER -->
-
 <section id="player-page" class="page">
 
-  <button class="back-button" onclick="showPage('search')">
+  <button class="back" onclick="showPage('search')">
     ← Back
   </button>
 
-  <div id="playerContainer"></div>
+  <div id="playerContent"></div>
 
 </section>
 
 
 <!-- MATCH -->
-
 <section id="match-page" class="page">
 
-  <button class="back-button" onclick="showPage('scores')">
-    ← Back to Scores
+  <button class="back" onclick="showPage('scores')">
+    ← Scores
   </button>
 
-  <div id="matchCentre"></div>
+  <div id="matchContent"></div>
 
 </section>
 
 
 <!-- ADMIN -->
-
 <section id="admin" class="page">
 
   <div class="page-title">
-    <h1>Admin</h1>
-    <p>Manage MEFCO Watch matches, events, statistics, news and notifications.</p>
+    <h1>Admin Control Room</h1>
+    <p>Control MEFCO matches and publish live events.</p>
   </div>
 
-  <div class="admin-panel">
+  <div class="card">
+    <label>MANAGE MATCH</label>
 
-    <div class="admin-field">
-      <label>SELECT MATCH</label>
+    <select id="adminMatchSelect"
+            onchange="selectAdminMatch()">
 
-      <select id="adminMatchSelect"
-              onchange="selectAdminMatch()">
-        <option value="">Select a match...</option>
-      </select>
-    </div>
+      <option value="">
+        Select a match...
+      </option>
 
-    <div id="adminPanelContent">
-      <div class="empty">
-        Select a match to manage it.
-      </div>
-    </div>
-
+    </select>
   </div>
 
+  <div id="adminPanelContent" class="section"></div>
 
-  <div class="admin-panel section">
 
-    <div class="section-head">
-      <h2>Create Match</h2>
-    </div>
+  <div class="section grid-2">
 
-    <div class="admin-grid">
+    <div class="card">
 
-      <div class="admin-field">
-        <label>COMPETITION</label>
-        <input id="createCompetition" placeholder="MEFCO IPL">
+      <h3>Create Match</h3>
+
+      <div class="admin-grid">
+
+        <div class="admin-field">
+          <label>COMPETITION</label>
+          <input id="createCompetition">
+        </div>
+
+        <div class="admin-field">
+          <label>DATE</label>
+          <input id="createDate" type="date">
+        </div>
+
+        <div class="admin-field">
+          <label>KICKOFF</label>
+          <input id="createKickoff" type="time">
+        </div>
+
+        <div class="admin-field">
+          <label>HOME TEAM</label>
+          <select id="createHome"
+                  onchange="updateCreateHome()">
+            <option value="">Select team...</option>
+          </select>
+        </div>
+
+        <div class="admin-field">
+          <label>AWAY TEAM</label>
+          <select id="createAway"
+                  onchange="updateCreateAway()">
+            <option value="">Select team...</option>
+          </select>
+        </div>
+
+        <div class="admin-field">
+          <label>HOME FLAG</label>
+          <input id="createHomeFlag"
+                 placeholder="Auto-filled from team">
+        </div>
+
+        <div class="admin-field">
+          <label>AWAY FLAG</label>
+          <input id="createAwayFlag"
+                 placeholder="Auto-filled from team">
+        </div>
+
       </div>
-
-      <div class="admin-field">
-        <label>HOME TEAM</label>
-        <input id="createHome" placeholder="England">
-      </div>
-
-      <div class="admin-field">
-        <label>AWAY TEAM</label>
-        <input id="createAway" placeholder="Nigeria">
-      </div>
-
-      <div class="admin-field">
-        <label>DATE</label>
-        <input id="createDate" type="date">
-      </div>
-
-      <div class="admin-field">
-        <label>KICKOFF</label>
-        <input id="createKickoff" type="time">
-      </div>
-
-      <div class="admin-field">
-        <label>HOME FLAG URL</label>
-        <input id="createHomeFlag" placeholder="https://...">
-      </div>
-
-      <div class="admin-field">
-        <label>AWAY FLAG URL</label>
-        <input id="createAwayFlag" placeholder="https://...">
-      </div>
-
-    </div>
-
-    <button class="admin-btn green"
-            onclick="createMatch()">
-      Create Match
-    </button>
-
-  </div>
-
-
-  <div class="notification-box">
-
-    <div class="section-head">
-      <h2>Send Notification</h2>
-    </div>
-
-    <div id="notificationStatus"></div>
-
-    <div class="admin-field">
-      <label>TITLE</label>
-      <input id="notificationTitle" placeholder="MEFCO Watch">
-    </div>
-
-    <div class="admin-field">
-      <label>BODY</label>
-      <textarea id="notificationBody"
-                placeholder="New MEFCO update"></textarea>
-    </div>
-
-    <div class="admin-field">
-      <label>URL</label>
-      <input id="notificationUrl" placeholder="/">
-    </div>
-
-    <div class="admin-controls">
 
       <button class="admin-btn green"
-              onclick="sendNotification()">
-        Send Notification
+              onclick="createMatch()">
+        Create Match
       </button>
 
-      <button class="admin-btn blue"
-              onclick="checkNotificationStatus()">
-        Check Status
-      </button>
+    </div>
+
+
+    <div class="card">
+
+      <h3>Notifications</h3>
+
+      <div class="admin-field">
+        <label>TITLE</label>
+        <input id="notificationTitle"
+               value="MEFCO Watch">
+      </div>
+
+      <br>
+
+      <div class="admin-field">
+        <label>BODY</label>
+        <input id="notificationBody">
+      </div>
+
+      <br>
+
+      <div class="admin-field">
+        <label>URL</label>
+        <input id="notificationUrl"
+               placeholder="https://...">
+      </div>
+
+      <br>
+
+      <div class="admin-controls">
+
+        <button class="admin-btn green"
+                onclick="sendNotification()">
+          Send Notification
+        </button>
+
+        <button class="admin-btn"
+                onclick="checkNotificationStatus()">
+          Check Status
+        </button>
+
+      </div>
+
+      <div id="notificationStatus"
+           class="notification-status">
+      </div>
 
     </div>
 
   </div>
 
 
-  <div class="admin-panel section">
+  <div class="section card">
 
-    <div class="section-head">
-      <h2>Admin Log</h2>
+    <div class="section-title">
+      <h3>Admin Activity</h3>
+
+      <button class="filter-btn"
+              onclick="adminLog=[];renderAdminLog()">
+        Clear
+      </button>
     </div>
 
-    <div id="adminLog" class="admin-log"></div>
+    <div id="adminLog"></div>
 
   </div>
 
@@ -1409,14 +951,16 @@ footer{
 
 
 <footer>
-  MEFCO Watch · The MEFCO football world
+  MEFCO Watch · International Football
 </footer>
+
+<div id="toast" class="toast"></div>
 
 
 <script>
 
 /* =========================================================
-   DATABASE
+   SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
@@ -1434,6 +978,16 @@ const EVENTS_URL =
 const NEWS_URL =
   SUPABASE_URL + "/rest/v1/news";
 
+const TEAMS_URL =
+  SUPABASE_URL + "/rest/v1/teams";
+
+const PLAYERS_URL =
+  SUPABASE_URL + "/rest/v1/players";
+
+
+const NOTIFICATION_API =
+  "https://mefco-notifications.drtwelveyt.workers.dev";
+
 
 /* =========================================================
    STATE
@@ -1441,6 +995,9 @@ const NEWS_URL =
 
 let matches=[];
 let news=[];
+let teams=[];
+let players=[];
+
 let selectedMatchId=null;
 let selectedArticleId=null;
 let selectedCompetition=null;
@@ -1453,48 +1010,124 @@ let timer=null;
 
 
 /* =========================================================
-   SUPABASE
+   SUPABASE FETCH
 ========================================================= */
 
 async function supabaseFetch(url,options={}){
-  const response=await fetch(url,{
-    ...options,
-    headers:{
-      apikey:SUPABASE_KEY,
-      Authorization:"Bearer "+SUPABASE_KEY,
-      "Content-Type":"application/json",
-      Accept:"application/json",
-      ...(options.headers||{})
-    }
-  });
+
+  const response=
+    await fetch(
+      url,
+      {
+        ...options,
+        headers:{
+          apikey:SUPABASE_KEY,
+          Authorization:"Bearer "+SUPABASE_KEY,
+          "Content-Type":"application/json",
+          ...(options.headers||{})
+        }
+      }
+    );
 
   if(!response.ok){
-    const text=await response.text();
-    throw new Error(text||("HTTP "+response.status));
+
+    throw new Error(
+      await response.text()
+    );
+
   }
 
   const text=await response.text();
 
-  return text ? JSON.parse(text) : null;
+  return text?JSON.parse(text):null;
+
 }
 
 
 /* =========================================================
-   LOAD DATA
+   DATABASE LOADERS
 ========================================================= */
+
+async function loadTeams(){
+
+  try{
+
+    const data=
+      await supabaseFetch(
+        TEAMS_URL+
+        "?select=*&order=name.asc"
+      );
+
+    teams=
+      Array.isArray(data)
+        ? data
+        : [];
+
+  }catch(error){
+
+    console.error("Teams:",error);
+
+    teams=[];
+
+  }
+
+}
+
+
+async function loadPlayers(){
+
+  try{
+
+    const data=
+      await supabaseFetch(
+        PLAYERS_URL+
+        "?select=*&order=name.asc"
+      );
+
+    players=
+      Array.isArray(data)
+        ? data
+        : [];
+
+  }catch(error){
+
+    console.error("Players:",error);
+
+    players=[];
+
+  }
+
+}
+
+
+async function loadTeamsAndPlayers(){
+
+  await Promise.all([
+    loadTeams(),
+    loadPlayers()
+  ]);
+
+}
+
 
 async function loadMatches(){
 
   try{
 
-    const data=await supabaseFetch(
-      MATCHES_URL+
-      "?select=*&order=match_date.asc,match_time.asc"
-    );
+    const data=
+      await supabaseFetch(
+        MATCHES_URL+
+        "?select=*&order=match_date.asc,match_time.asc"
+      );
 
-    matches=Array.isArray(data)?data:[];
+    matches=
+      Array.isArray(data)
+        ? data
+        : [];
 
     await loadAllEvents();
+
+    setConnection(true);
 
     renderAll();
 
@@ -1503,6 +1136,8 @@ async function loadMatches(){
     console.error("Matches:",error);
 
     matches=[];
+
+    setConnection(false);
 
     renderAll();
 
@@ -1515,18 +1150,21 @@ async function loadAllEvents(){
 
   try{
 
-    const data=await supabaseFetch(
-      EVENTS_URL+
-      "?select=*&order=minute.asc,created_at.asc"
-    );
-
-    const events=Array.isArray(data)?data:[];
-
-    matches.forEach(match=>{
-
-      match.events=events.filter(event=>
-        String(event.match_id)===String(match.id)
+    const data=
+      await supabaseFetch(
+        EVENTS_URL+
+        "?select=*&order=minute.asc,created_at.asc"
       );
+
+    matches.forEach(m=>{
+
+      m.events=
+        Array.isArray(data)
+          ? data.filter(e =>
+              String(e.match_id)===
+              String(m.id)
+            )
+          : [];
 
     });
 
@@ -1534,9 +1172,7 @@ async function loadAllEvents(){
 
     console.error("Events:",error);
 
-    matches.forEach(match=>{
-      match.events=[];
-    });
+    matches.forEach(m=>m.events=[]);
 
   }
 
@@ -1547,12 +1183,16 @@ async function loadNews(){
 
   try{
 
-    const data=await supabaseFetch(
-      NEWS_URL+
-      "?select=*&order=featured.desc,created_at.desc"
-    );
+    const data=
+      await supabaseFetch(
+        NEWS_URL+
+        "?select=*&order=featured.desc,created_at.desc"
+      );
 
-    news=Array.isArray(data)?data:[];
+    news=
+      Array.isArray(data)
+        ? data
+        : [];
 
     renderNews();
     renderHomeNews();
@@ -1567,6 +1207,94 @@ async function loadNews(){
     renderHomeNews();
 
   }
+
+}
+
+
+/* =========================================================
+   DATABASE HELPERS
+========================================================= */
+
+function getTeamById(id){
+
+  if(id===null||id===undefined||id==="")
+    return null;
+
+  return teams.find(t =>
+    String(t.id)===String(id)
+  )||null;
+
+}
+
+
+function getPlayerById(id){
+
+  if(id===null||id===undefined||id==="")
+    return null;
+
+  return players.find(p =>
+    String(p.id)===String(id)
+  )||null;
+
+}
+
+
+function getTeamPlayers(teamId){
+
+  return players.filter(p =>
+    String(p.team_id)===String(teamId)
+  );
+
+}
+
+
+function getTeamName(teamId,fallback=""){
+
+  return getTeamById(teamId)?.name||
+         fallback;
+
+}
+
+
+function getTeamFlag(teamId,fallback=""){
+
+  return getTeamById(teamId)?.flag_url||
+         fallback;
+
+}
+
+
+function getMatchTeamId(m,side){
+
+  const field=
+    side==="home"
+      ? "home_team_id"
+      : "away_team_id";
+
+  if(m[field])
+    return m[field];
+
+  const name=
+    side==="home"
+      ? m.home
+      : m.away;
+
+  const found=
+    teams.find(t =>
+      String(t.name).toLowerCase()===
+      String(name||"").toLowerCase()
+    );
+
+  return found?.id||null;
+
+}
+
+
+function getMatchTeam(m,side){
+
+  return getTeamById(
+    getMatchTeamId(m,side)
+  );
 
 }
 
@@ -1591,166 +1319,129 @@ function todayISO(){
 
   const d=new Date();
 
-  const y=d.getFullYear();
-
-  const m=String(d.getMonth()+1).padStart(2,"0");
-
-  const day=String(d.getDate()).padStart(2,"0");
-
-  return `${y}-${m}-${day}`;
+  return d.toISOString().slice(0,10);
 
 }
 
 
-function formatMatchTime(value){
+function formatMatchTime(time){
 
-  if(!value)return "";
+  if(!time)return "TBD";
 
-  const text=String(value);
+  const parts=String(time).split(":");
 
-  if(/^\d{2}:\d{2}(:\d{2})?$/.test(text)){
-    return text.slice(0,5);
-  }
+  let h=Number(parts[0]);
+  const m=parts[1]||"00";
 
-  const date=new Date(value);
+  const ap=h>=12?"PM":"AM";
 
-  if(!Number.isNaN(date.getTime())){
+  h=h%12||12;
 
-    return date.toLocaleTimeString([],{
-      hour:"2-digit",
-      minute:"2-digit",
-      hour12:false
-    });
-
-  }
-
-  return text;
+  return `${h}:${m} ${ap}`;
 
 }
 
 
-function formatNewsDate(value){
+function formatDateLabel(date){
 
-  if(!value)return "";
+  if(!date)return "";
 
-  const d=new Date(value);
-
-  if(Number.isNaN(d.getTime()))return value;
-
-  return d.toLocaleDateString(undefined,{
-    year:"numeric",
-    month:"long",
-    day:"numeric"
-  });
-
-}
-
-
-function formatLongDate(value){
-
-  if(!value)return "";
-
-  const d=new Date(value+"T00:00:00");
-
-  if(Number.isNaN(d.getTime()))return value;
-
-  return d.toLocaleDateString(undefined,{
-    weekday:"long",
-    month:"long",
-    day:"numeric",
-    year:"numeric"
-  });
+  return new Date(date+"T00:00:00")
+    .toLocaleDateString(
+      undefined,
+      {
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      }
+    );
 
 }
 
 
-function formatDateLabel(value){
+function formatNewsDate(date){
 
-  if(value===todayISO())return "Today";
+  if(!date)return "";
 
-  const d=new Date(value+"T00:00:00");
-
-  const yesterday=new Date();
-
-  yesterday.setDate(yesterday.getDate()-1);
-
-  const y=yesterday.toISOString().slice(0,10);
-
-  if(value===y)return "Yesterday";
-
-  return d.toLocaleDateString(undefined,{
-    weekday:"long",
-    month:"short",
-    day:"numeric"
-  });
+  return new Date(date)
+    .toLocaleDateString(
+      undefined,
+      {
+        day:"numeric",
+        month:"short",
+        year:"numeric"
+      }
+    );
 
 }
 
 
 function matchDate(m){
 
-  return m.match_date || m.date || "";
+  return m.match_date||
+         m.date||
+         "";
 
 }
 
 
 function matchTime(m){
 
-  return m.match_time || m.time || "";
+  return m.match_time||
+         m.time||
+         "";
 
 }
 
 
 function isLive(m){
 
-  return String(m.status||"").toLowerCase()==="live";
+  return String(m.status||"")
+    .toLowerCase()==="live";
 
 }
 
 
 function isFinished(m){
 
-  return String(m.status||"").toLowerCase()==="finished";
-
-}
-
-
-function matchLabel(m){
-
-  if(isLive(m)){
-
-    return `● ${m.minute||0}'${m.stoppage?"+":""}${m.stoppage||""}`;
-
-  }
-
-  if(String(m.status).toLowerCase()==="halftime"){
-    return "● HT";
-  }
-
-  if(isFinished(m)){
-    return "FT";
-  }
-
-  return formatMatchTime(matchTime(m));
-
-}
-
-
-function sortMatches(a,b){
-
-  return String(matchTime(a)).localeCompare(
-    String(matchTime(b))
-  );
+  return String(m.status||"")
+    .toLowerCase()==="finished";
 
 }
 
 
 function scoreOf(m){
 
-  const home=m.score_home??m.home_score??0;
-  const away=m.score_away??m.away_score??0;
+  return `${Number(m.score_home)||0} - ${Number(m.score_away)||0}`;
 
-  return `${home} - ${away}`;
+}
+
+
+function matchLabel(m){
+
+  return `${m.home||"Home"} vs ${m.away||"Away"}`;
+
+}
+
+
+function setConnection(ok){
+
+  const dot=
+    document.getElementById("connectionDot");
+
+  const text=
+    document.getElementById("connectionText");
+
+  if(!dot||!text)return;
+
+  dot.className=
+    "dot "+(ok?"ok":"bad");
+
+  text.textContent=
+    ok
+      ? "MEFCO database connected"
+      : "Database connection failed";
 
 }
 
@@ -1761,17 +1452,26 @@ function scoreOf(m){
 
 function showPage(id,button=null){
 
-  document.querySelectorAll(".page")
-    .forEach(page=>page.classList.remove("active"));
+  document
+    .querySelectorAll(".page")
+    .forEach(page =>
+      page.classList.remove("active")
+    );
 
-  const page=document.getElementById(id);
+  const page=
+    document.getElementById(id);
 
-  if(page)page.classList.add("active");
+  if(page)
+    page.classList.add("active");
 
-  document.querySelectorAll("nav button")
-    .forEach(b=>b.classList.remove("active"));
+  document
+    .querySelectorAll("nav button")
+    .forEach(b =>
+      b.classList.remove("active")
+    );
 
-  if(button)button.classList.add("active");
+  if(button)
+    button.classList.add("active");
 
   window.scrollTo({
     top:0,
@@ -1779,43 +1479,32 @@ function showPage(id,button=null){
   });
 
   if(id==="home")renderHome();
-
   if(id==="scores")renderScores();
-
-  if(id==="news")loadNews();
-
+  if(id==="news")renderNews();
   if(id==="competitions")renderCompetitions();
-
   if(id==="stats")renderStats();
-
   if(id==="admin")renderAdmin();
 
 }
 
 
 /* =========================================================
-   SCORE DATE NAVIGATION
+   DATE / SCORE FILTERS
 ========================================================= */
 
 function changeScoreDate(days){
 
-  const date=new Date(
-    scoreDate+"T00:00:00"
+  const d=
+    new Date(
+      scoreDate+"T00:00:00"
+    );
+
+  d.setDate(
+    d.getDate()+days
   );
 
-  date.setDate(date.getDate()+days);
-
-  const y=date.getFullYear();
-
-  const m=String(
-    date.getMonth()+1
-  ).padStart(2,"0");
-
-  const d=String(
-    date.getDate()
-  ).padStart(2,"0");
-
-  scoreDate=`${y}-${m}-${d}`;
+  scoreDate=
+    d.toISOString().slice(0,10);
 
   renderScores();
 
@@ -1831,34 +1520,57 @@ function goToToday(){
 }
 
 
+function setScoreFilter(filter){
+
+  scoreFilter=filter;
+
+  document
+    .querySelectorAll("[data-filter]")
+    .forEach(button =>
+      button.classList.toggle(
+        "active",
+        button.dataset.filter===filter
+      )
+    );
+
+  renderScores();
+
+}
+
+
 /* =========================================================
    MATCH CARD
 ========================================================= */
 
 function cardHTML(m){
 
-  const favorite=m.favorite===true;
+  const homeTeam=
+    getMatchTeam(m,"home");
 
-  const home=escapeHTML(m.home||"Home");
+  const awayTeam=
+    getMatchTeam(m,"away");
 
-  const away=escapeHTML(m.away||"Away");
+  const homeName=
+    homeTeam?.name||
+    m.home||
+    "Home";
 
-  const competition=
-    escapeHTML(m.competition||"MEFCO");
+  const awayName=
+    awayTeam?.name||
+    m.away||
+    "Away";
 
   const homeFlag=
-    m.home_flag
-      ? `<img class="flag" src="${escapeHTML(m.home_flag)}">`
-      : "";
+    homeTeam?.flag_url||
+    m.home_flag||
+    "";
 
   const awayFlag=
-    m.away_flag
-      ? `<img class="flag" src="${escapeHTML(m.away_flag)}">`
-      : "";
+    awayTeam?.flag_url||
+    m.away_flag||
+    "";
 
-  const scheduled=
-    !isLive(m)&&!isFinished(m)&&
-    String(m.status||"").toLowerCase()!=="halftime";
+  const live=isLive(m);
 
   return `
 
@@ -1868,50 +1580,69 @@ function cardHTML(m){
       <div class="match-top">
 
         <span>
-          ${competition}
+          ${escapeHTML(
+            m.competition||
+            "MEFCO"
+          )}
         </span>
 
         <button
-          class="favorite-star ${favorite?"active":""}"
+          class="favorite ${m.favorite?"on":""}"
           onclick="event.stopPropagation();toggleFavorite('${escapeHTML(m.id)}')">
-          ${favorite?"★":"☆"}
+          ${m.favorite?"★":"☆"}
         </button>
 
       </div>
 
-      <div class="match-main">
+      <div class="match-teams">
 
-        <div class="team">
+        <div class="match-team">
 
-          ${homeFlag}
+          ${
+            homeFlag
+              ? `<img class="flag"
+                      src="${escapeHTML(homeFlag)}"
+                      alt="">`
+              : ""
+          }
 
-          <span class="team-name">
-            ${home}
-          </span>
+          <strong>
+            ${escapeHTML(homeName)}
+          </strong>
 
         </div>
 
-        <div class="match-result">
+        <div>
 
-          ${
-            scheduled
-              ? escapeHTML(formatMatchTime(matchTime(m)))
-              : escapeHTML(scoreOf(m))
-          }
+          <div class="match-score">
+            ${scoreOf(m)}
+          </div>
 
-          <div class="match-status ${isLive(m)?"live":""}">
-            ${escapeHTML(matchLabel(m))}
+          <div class="match-status ${live?"live":""}">
+            ${
+              live
+                ? `${Number(m.minute)||0}'`
+                : isFinished(m)
+                  ? "FT"
+                  : formatMatchTime(matchTime(m))
+            }
           </div>
 
         </div>
 
-        <div class="team away">
+        <div class="match-team away">
 
-          <span class="team-name">
-            ${away}
-          </span>
+          <strong>
+            ${escapeHTML(awayName)}
+          </strong>
 
-          ${awayFlag}
+          ${
+            awayFlag
+              ? `<img class="flag"
+                      src="${escapeHTML(awayFlag)}"
+                      alt="">`
+              : ""
+          }
 
         </div>
 
@@ -1930,31 +1661,29 @@ function cardHTML(m){
 
 function renderHome(){
 
-  const container=
+  const today=
+    matches.filter(m =>
+      matchDate(m)===todayISO()
+    );
+
+  const box=
     document.getElementById("homeMatches");
 
-  if(!container)return;
+  if(box){
 
-  const today=
-    matches
-      .filter(m=>matchDate(m)===todayISO())
-      .sort(sortMatches);
-
-  if(!today.length){
-
-    container.innerHTML=
-      `<div class="empty">No matches today.</div>`;
-
-  }else{
-
-    container.innerHTML=
-      today.slice(0,6)
-        .map(cardHTML)
-        .join("");
+    box.innerHTML=
+      today.length
+        ? today.slice(0,6)
+            .map(cardHTML)
+            .join("")
+        : `<div class="empty">
+             No matches today.
+           </div>`;
 
   }
 
   renderLiveTicker();
+  renderHomeNews();
 
 }
 
@@ -1966,46 +1695,26 @@ function renderLiveTicker(){
 
   if(!box)return;
 
-  const live=matches.filter(isLive);
+  const live=
+    matches.filter(isLive);
 
   if(!live.length){
 
-    box.innerHTML="";
+    box.innerHTML=
+      `<span>MEFCO WATCH</span>
+       · No live matches right now.`;
 
     return;
 
   }
 
-  box.innerHTML=`
-
-    <div class="live-ticker">
-
-      <div class="live-ticker-title">
-        ● LIVE NOW
-      </div>
-
-      <div class="live-ticker-list">
-
-        ${live.map(m=>`
-
-          <div
-            class="live-chip"
-            onclick="openMatch('${escapeHTML(m.id)}')">
-
-            ${escapeHTML(m.home)}
-            ${escapeHTML(scoreOf(m))}
-            ${escapeHTML(m.away)}
-            · ${escapeHTML(matchLabel(m))}
-
-          </div>
-
-        `).join("")}
-
-      </div>
-
-    </div>
-
-  `;
+  box.innerHTML=
+    live.map(m =>
+      `<span>LIVE</span>
+       · ${escapeHTML(matchLabel(m))}
+       · ${scoreOf(m)}
+       · ${Number(m.minute)||0}'`
+    ).join(" &nbsp;&nbsp; ");
 
 }
 
@@ -2017,37 +1726,15 @@ function renderHomeNews(){
 
   if(!box)return;
 
-  const latest=news.slice(0,3);
+  const items=
+    news.slice(0,3);
 
-  if(!latest.length){
-
-    box.innerHTML=
-      `<div class="empty">No news available.</div>`;
-
-    return;
-
-  }
-
-  box.innerHTML=latest.map(article=>`
-
-    <div class="feature-card"
-         onclick="openArticle('${escapeHTML(article.id)}')">
-
-      <div class="tag">
-        ${escapeHTML(article.category||"MEFCO News")}
-      </div>
-
-      <h2>
-        ${escapeHTML(article.title||"Untitled")}
-      </h2>
-
-      <p>
-        ${escapeHTML(article.excerpt||article.summary||"")}
-      </p>
-
-    </div>
-
-  `).join("");
+  box.innerHTML=
+    items.length
+      ? items.map(newsCardHTML).join("")
+      : `<div class="empty">
+           No news available.
+         </div>`;
 
 }
 
@@ -2056,79 +1743,80 @@ function renderHomeNews(){
    SCORES
 ========================================================= */
 
-function setScoreFilter(filter,button){
-
-  scoreFilter=filter;
-
-  document.querySelectorAll(".filter")
-    .forEach(b=>b.classList.remove("active"));
-
-  if(button)button.classList.add("active");
-
-  renderScores();
-
-}
-
-
 function renderScores(){
 
-  const list=
-    document.getElementById("scoreList");
+  const label=
+    document.getElementById("scoreDateLabel");
 
-  const dateText=
-    document.getElementById("scoresDate");
+  if(label)
+    label.textContent=
+      formatDateLabel(scoreDate);
 
-  if(!list)return;
+  let list=
+    matches.filter(m =>
+      matchDate(m)===scoreDate
+    );
 
-  if(dateText){
-    dateText.textContent=
-      formatLongDate(scoreDate);
-  }
+  if(scoreFilter==="favorites")
+    list=list.filter(m=>m.favorite);
 
-  let filtered=
-    matches
-      .filter(m=>matchDate(m)===scoreDate);
+  if(scoreFilter==="live")
+    list=list.filter(isLive);
 
-  if(scoreFilter==="favorites"){
+  const box=
+    document.getElementById("scoresList");
 
-    filtered=
-      filtered.filter(m=>m.favorite===true);
+  if(!box)return;
 
-  }
-
-  if(scoreFilter==="live"){
-
-    filtered=
-      filtered.filter(isLive);
-
-  }
-
-  filtered.sort(sortMatches);
-
-  if(!filtered.length){
-
-    list.innerHTML=`
-
-      <div class="empty">
-
-        No matches on this date.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-  list.innerHTML=
-    filtered.map(cardHTML).join("");
+  box.innerHTML=
+    list.length
+      ? list.map(cardHTML).join("")
+      : `<div class="empty">
+           No matches for this date.
+         </div>`;
 
 }
 
 
 /* =========================================================
-   MATCH
+   FAVORITES
+========================================================= */
+
+async function toggleFavorite(id){
+
+  const m=
+    matches.find(x =>
+      String(x.id)===String(id)
+    );
+
+  if(!m)return;
+
+  const value=!m.favorite;
+
+  try{
+
+    await updateMatch(
+      m.id,
+      {favorite:value}
+    );
+
+    m.favorite=value;
+
+    renderAll();
+
+  }catch(error){
+
+    showToast(
+      "Could not update favorite."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   MATCH CENTRE
 ========================================================= */
 
 function openMatch(id){
@@ -2145,126 +1833,177 @@ function openMatch(id){
 function renderMatch(){
 
   const box=
-    document.getElementById("matchCentre");
+    document.getElementById("matchContent");
 
   if(!box)return;
 
   const m=
-    matches.find(x=>String(x.id)===String(selectedMatchId));
+    matches.find(x =>
+      String(x.id)===String(selectedMatchId)
+    );
 
   if(!m){
 
     box.innerHTML=
-      `<div class="empty">Match not found.</div>`;
+      `<div class="empty">
+        Match not found.
+       </div>`;
 
     return;
 
   }
 
+  const home=
+    getMatchTeam(m,"home");
+
+  const away=
+    getMatchTeam(m,"away");
+
+  const homeName=
+    home?.name||m.home||"Home";
+
+  const awayName=
+    away?.name||m.away||"Away";
+
+  const homeFlag=
+    home?.flag_url||m.home_flag||"";
+
+  const awayFlag=
+    away?.flag_url||m.away_flag||"";
+
   const events=
     Array.isArray(m.events)
-      ? m.events
+      ? [...m.events].sort(
+          (a,b)=>
+            Number(a.minute||0)-
+            Number(b.minute||0)
+        )
       : [];
 
   box.innerHTML=`
 
-    <div class="match-centre">
+    <div class="match-header">
 
-      <div class="mc-header">
+      <div style="text-align:center;color:var(--muted)">
+        ${escapeHTML(m.competition||"MEFCO")}
+        ·
+        ${escapeHTML(formatDateLabel(matchDate(m)))}
+      </div>
 
-        <div class="mc-competition">
-          ${escapeHTML(m.competition||"MEFCO")}
+      <div class="match-teams-big"
+           style="margin-top:22px">
+
+        <div class="big-team">
+
+          ${
+            homeFlag
+              ? `<img src="${escapeHTML(homeFlag)}">`
+              : ""
+          }
+
+          <h2>
+            ${escapeHTML(homeName)}
+          </h2>
+
         </div>
 
-        <div class="mc-teams">
+        <div class="match-scoreboard">
 
-          <div class="mc-team">
-            ${escapeHTML(m.home||"Home")}
+          <div class="score-big">
+            ${scoreOf(m)}
           </div>
 
-          <div>
-
-            <div class="mc-score">
-              ${escapeHTML(scoreOf(m))}
-            </div>
-
-            <div class="mc-status ${isLive(m)?"live":""}">
-              ${escapeHTML(matchLabel(m))}
-            </div>
-
+          <div class="${isLive(m)?"live":""}">
+            ${
+              isLive(m)
+                ? `${Number(m.minute)||0}'`
+                : isFinished(m)
+                  ? "FULL TIME"
+                  : formatMatchTime(matchTime(m))
+            }
           </div>
 
-          <div class="mc-team">
-            ${escapeHTML(m.away||"Away")}
-          </div>
+        </div>
+
+        <div class="big-team">
+
+          ${
+            awayFlag
+              ? `<img src="${escapeHTML(awayFlag)}">`
+              : ""
+          }
+
+          <h2>
+            ${escapeHTML(awayName)}
+          </h2>
 
         </div>
 
       </div>
 
-      <div class="mc-body">
+    </div>
 
-        <div class="mc-section">
 
-          <h3>Match Information</h3>
+    <div class="section grid-2">
 
-          <div class="stat-grid">
+      <div class="card">
 
-            <div class="stat-box">
-              <strong>
-                ${escapeHTML(formatMatchTime(matchTime(m)))}
-              </strong>
-              <span>Kickoff</span>
-            </div>
+        <div class="section-title">
+          <h2>Timeline</h2>
 
-            <div class="stat-box">
-              <strong>
-                ${escapeHTML(matchDate(m))}
-              </strong>
-              <span>Date</span>
-            </div>
-
-            <div class="stat-box">
-              <strong>
-                ${escapeHTML(m.minute??"—")}
-              </strong>
-              <span>Minute</span>
-            </div>
-
-            <div class="stat-box">
-              <strong>
-                ${escapeHTML(String(events.length))}
-              </strong>
-              <span>Events</span>
-            </div>
-
-          </div>
-
+          <span class="badge">
+            ${events.length} events
+          </span>
         </div>
 
+        <div class="timeline">
 
-        <div class="mc-section">
-
-          <h3>Match Timeline</h3>
-
-          <div class="timeline">
-
-            ${
-              events.length
+          ${
+            events.length
               ? events.map(eventHTML).join("")
-              : `<div class="empty">No events recorded.</div>`
-            }
-
-          </div>
+              : `<div class="empty">
+                   No events yet.
+                 </div>`
+          }
 
         </div>
 
+      </div>
 
-        <div class="mc-section">
 
-          <h3>Match Statistics</h3>
+      <div class="card">
 
-          ${renderMatchStats(m)}
+        <h2>Match Information</h2>
+
+        <div class="stat-grid">
+
+          <div class="stat-box">
+            <strong>
+              ${Number(m.score_home)||0}
+            </strong>
+            <span>${escapeHTML(homeName)}</span>
+          </div>
+
+          <div class="stat-box">
+            <strong>
+              ${Number(m.score_away)||0}
+            </strong>
+            <span>${escapeHTML(awayName)}</span>
+          </div>
+
+          <div class="stat-box">
+            <strong>
+              ${Number(m.minute)||0}'
+            </strong>
+            <span>MINUTE</span>
+          </div>
+
+          <div class="stat-box">
+            <strong>
+              ${events.length}
+            </strong>
+            <span>EVENTS</span>
+          </div>
 
         </div>
 
@@ -2279,116 +2018,87 @@ function renderMatch(){
 
 function eventHTML(e){
 
+  const player=
+    getPlayerById(e.player_id);
+
+  const team=
+    getTeamById(e.team_id);
+
+  const playerName=
+    player?.short_name||
+    player?.name||
+    e.player||
+    "";
+
+  const teamName=
+    team?.name||
+    e.team||
+    "";
+
+  const type=
+    e.type||
+    e.event_type||
+    "Event";
+
+  let icon="";
+
+  if(type.toLowerCase().includes("goal"))
+    icon="⚽";
+
+  else if(type.toLowerCase().includes("yellow"))
+    icon="🟨";
+
+  else if(type.toLowerCase().includes("red"))
+    icon="🟥";
+
+  else if(type.toLowerCase().includes("sub"))
+    icon="🔄";
+
+  else if(type.toLowerCase().includes("assist"))
+    icon="🅰️";
+
+  else
+    icon="•";
+
   return `
 
     <div class="timeline-event">
 
-      <b>
-        ${escapeHTML(e.minute??"")}
-        ${e.stoppage?"+":""}
-        ${escapeHTML(e.stoppage??"")}'
-      </b>
+      <div class="timeline-minute">
+        ${Number(e.minute)||0}'
+        ${
+          e.stoppage
+            ? "+"+Number(e.stoppage)
+            : ""
+        }
+      </div>
 
-      &nbsp;
+      <div class="event-type">
+        ${icon}
+        ${escapeHTML(type)}
+      </div>
 
-      ${escapeHTML(e.type||e.event_type||"Event")}
+      <div>
+        <strong>
+          ${escapeHTML(playerName)}
+        </strong>
 
-      ${e.player
-        ? " · "+escapeHTML(e.player)
-        : ""}
+        ${
+          e.detail
+            ? `<div class="muted">
+                 ${escapeHTML(e.detail)}
+               </div>`
+            : ""
+        }
+      </div>
 
-      ${e.detail
-        ? " · "+escapeHTML(e.detail)
-        : ""}
+      <div class="event-team">
+        ${escapeHTML(teamName)}
+      </div>
 
     </div>
 
   `;
-
-}
-
-
-function renderMatchStats(m){
-
-  const stats=m.stats;
-
-  if(!stats){
-
-    return `
-      <div class="empty">
-        Match statistics have not been entered yet.
-      </div>
-    `;
-
-  }
-
-  let rows=[];
-
-  if(typeof stats==="object"){
-
-    Object.entries(stats).forEach(([key,value])=>{
-
-      if(typeof value==="object"&&value!==null){
-
-        rows.push(`
-
-          <div class="stat-box">
-
-            <strong>
-              ${escapeHTML(value.home??"—")}
-              -
-              ${escapeHTML(value.away??"—")}
-            </strong>
-
-            <span>
-              ${escapeHTML(key)}
-            </span>
-
-          </div>
-
-        `);
-
-      }
-
-    });
-
-  }
-
-  return rows.length
-    ? `<div class="stat-grid">${rows.join("")}</div>`
-    : `<div class="empty">No statistics recorded.</div>`;
-
-}
-
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-async function toggleFavorite(id){
-
-  const match=
-    matches.find(m=>String(m.id)===String(id));
-
-  if(!match)return;
-
-  const value=!Boolean(match.favorite);
-
-  try{
-
-    await updateMatch(id,{
-      favorite:value
-    });
-
-    match.favorite=value;
-
-    renderAll();
-
-  }catch(error){
-
-    console.error(error);
-
-  }
 
 }
 
@@ -2397,86 +2107,46 @@ async function toggleFavorite(id){
    NEWS
 ========================================================= */
 
-function renderNews(){
+function newsCardHTML(item){
 
-  const box=
-    document.getElementById("newsContainer");
+  const title=
+    item.title||
+    item.headline||
+    "Untitled";
 
-  if(!box)return;
+  const body=
+    item.body||
+    item.content||
+    item.description||
+    "";
 
-  if(!news.length){
+  return `
 
-    box.innerHTML=
-      `<div class="empty">No MEFCO News available.</div>`;
+    <div class="card news-card"
+         onclick="openArticle('${escapeHTML(item.id)}')">
 
-    return;
-
-  }
-
-  const featured=
-    news.find(a=>a.featured) || news[0];
-
-  const latest=
-    news.filter(a=>String(a.id)!==String(featured.id));
-
-  box.innerHTML=`
-
-    <div class="featured-news"
-         onclick="openArticle('${escapeHTML(featured.id)}')">
-
-      <div class="tag">
-        ${escapeHTML(featured.category||"MEFCO News")}
-      </div>
-
-      <h2>
-        ${escapeHTML(featured.title||"Untitled")}
-      </h2>
+      <h3>
+        ${escapeHTML(title)}
+      </h3>
 
       <p>
         ${escapeHTML(
-          featured.excerpt||
-          featured.summary||
-          featured.body||
-          ""
+          String(body).slice(0,180)
         )}
+        ${
+          String(body).length>180
+            ? "..."
+            : ""
+        }
       </p>
 
-      <div class="news-date">
-        ${escapeHTML(formatNewsDate(featured.created_at))}
+      <div class="news-meta">
+        ${escapeHTML(
+          formatNewsDate(
+            item.created_at
+          )
+        )}
       </div>
-
-    </div>
-
-    <div class="news-grid">
-
-      ${latest.map(article=>`
-
-        <div class="news-card"
-             onclick="openArticle('${escapeHTML(article.id)}')">
-
-          <div class="tag">
-            ${escapeHTML(article.category||"MEFCO")}
-          </div>
-
-          <h3>
-            ${escapeHTML(article.title||"Untitled")}
-          </h3>
-
-          <p>
-            ${escapeHTML(
-              article.excerpt||
-              article.summary||
-              ""
-            )}
-          </p>
-
-          <div class="news-date">
-            ${escapeHTML(formatNewsDate(article.created_at))}
-          </div>
-
-        </div>
-
-      `).join("")}
 
     </div>
 
@@ -2485,87 +2155,74 @@ function renderNews(){
 }
 
 
-async function openArticle(id){
+function renderNews(){
+
+  const box=
+    document.getElementById("newsList");
+
+  if(!box)return;
+
+  box.innerHTML=
+    news.length
+      ? news.map(newsCardHTML).join("")
+      : `<div class="empty">
+           No news available.
+         </div>`;
+
+}
+
+
+function openArticle(id){
 
   selectedArticleId=id;
 
   showPage("article-page");
 
+  const item=
+    news.find(x =>
+      String(x.id)===String(id)
+    );
+
   const box=
-    document.getElementById("articleContainer");
+    document.getElementById("articleContent");
 
-  box.innerHTML=
-    `<div class="empty">Loading article...</div>`;
+  if(!box)return;
 
-  try{
-
-    const data=
-      await supabaseFetch(
-        NEWS_URL+
-        "?id=eq."+
-        encodeURIComponent(id)+
-        "&select=*"
-      );
-
-    const article=
-      Array.isArray(data)
-        ? data[0]
-        : null;
-
-    if(!article){
-
-      box.innerHTML=
-        `<div class="empty">Article not found.</div>`;
-
-      return;
-
-    }
-
-    renderArticle(article);
-
-  }catch(error){
-
-    console.error(error);
+  if(!item){
 
     box.innerHTML=
-      `<div class="empty">Could not load article.</div>`;
+      `<div class="empty">
+        Article not found.
+       </div>`;
+
+    return;
 
   }
 
-}
-
-
-function renderArticle(article){
-
-  const box=
-    document.getElementById("articleContainer");
-
   box.innerHTML=`
 
-    <article class="article">
+    <div class="news-meta">
+      ${escapeHTML(
+        formatNewsDate(item.created_at)
+      )}
+    </div>
 
-      <div class="article-meta">
-        ${escapeHTML(article.category||"MEFCO NEWS")}
-      </div>
+    <h1>
+      ${escapeHTML(
+        item.title||
+        item.headline||
+        "Untitled"
+      )}
+    </h1>
 
-      <h1>
-        ${escapeHTML(article.title||"Untitled")}
-      </h1>
-
-      <div class="article-date">
-        ${escapeHTML(formatNewsDate(article.created_at))}
-      </div>
-
-      <div class="article-body">
-        ${escapeHTML(
-          article.body||
-          article.content||
-          article.excerpt||
-          ""
-        )}
-      </div>
-
-    </article>
+    <div class="article-body">
+      ${escapeHTML(
+        item.body||
+        item.content||
+        item.description||
+        ""
+      )}
+    </div>
 
   `;
 
@@ -2585,43 +2242,33 @@ function backToNews(){
 
 function getCompetitions(){
 
-  const names=new Set();
+  const names=[];
 
   matches.forEach(m=>{
 
-    if(m.competition){
-      names.add(m.competition);
-    }
+    if(
+      m.competition &&
+      !names.includes(m.competition)
+    )
+      names.push(m.competition);
 
   });
 
-  const defaults=[
-    "MEFCO IPL",
-    "Global Cup",
-    "Continental Cup",
-    "Leagues Cup"
-  ];
-
-  defaults.forEach(x=>names.add(x));
-
-  return [...names];
+  return names;
 
 }
 
 
 function competitionIcon(name){
 
-  const n=name.toLowerCase();
+  const n=
+    String(name||"").toLowerCase();
 
-  if(n.includes("global"))return "🌐";
-
+  if(n.includes("global"))return "🌍";
   if(n.includes("continental"))return "🏆";
+  if(n.includes("league"))return "🏟️";
 
-  if(n.includes("league"))return "🏟";
-
-  if(n.includes("ipl"))return "⚽";
-
-  return "🏆";
+  return "⚽";
 
 }
 
@@ -2629,7 +2276,7 @@ function competitionIcon(name){
 function renderCompetitions(){
 
   const box=
-    document.getElementById("competitionGrid");
+    document.getElementById("competitionList");
 
   if(!box)return;
 
@@ -2637,27 +2284,35 @@ function renderCompetitions(){
     getCompetitions();
 
   box.innerHTML=
-    competitions.map(name=>`
+    competitions.length
+      ? competitions.map(name=>`
 
-      <div class="competition-card"
-           onclick="openCompetition('${escapeHTML(name)}')">
+        <div class="card"
+             style="cursor:pointer"
+             onclick="openCompetition('${escapeHTML(name)}')">
 
-        <div class="competition-icon">
-          ${competitionIcon(name)}
+          <div style="font-size:30px">
+            ${competitionIcon(name)}
+          </div>
+
+          <h3 style="margin-top:10px">
+            ${escapeHTML(name)}
+          </h3>
+
+          <p class="muted">
+            ${
+              matches.filter(m =>
+                m.competition===name
+              ).length
+            } matches
+          </p>
+
         </div>
 
-        <h3>
-          ${escapeHTML(name)}
-        </h3>
-
-        <p>
-          ${matches.filter(m=>m.competition===name).length}
-          recorded matches
-        </p>
-
-      </div>
-
-    `).join("");
+      `).join("")
+      : `<div class="empty">
+           No competitions found.
+         </div>`;
 
 }
 
@@ -2676,51 +2331,55 @@ function openCompetition(name){
 function renderCompetition(){
 
   const box=
-    document.getElementById("competitionContainer");
+    document.getElementById(
+      "competitionContent"
+    );
 
   if(!box)return;
 
-  const games=
-    matches
-      .filter(m=>m.competition===selectedCompetition)
-      .sort((a,b)=>{
+  const list=
+    matches.filter(m =>
+      m.competition===selectedCompetition
+    );
 
-        const d=
-          String(matchDate(a))
-          .localeCompare(String(matchDate(b)));
+  const teamNames=[];
 
-        return d||sortMatches(a,b);
+  list.forEach(m=>{
 
-      });
+    [m.home,m.away].forEach(name=>{
+
+      if(name&&!teamNames.includes(name))
+        teamNames.push(name);
+
+    });
+
+  });
 
   box.innerHTML=`
 
-    <div class="competition-header">
-
-      <h2>
-        ${escapeHTML(selectedCompetition)}
-      </h2>
-
+    <div class="page-title">
+      <h1>
+        ${escapeHTML(selectedCompetition||"Competition")}
+      </h1>
       <p>
-        Fixtures, results and competition data.
+        ${list.length} matches
       </p>
-
     </div>
 
     <div class="section">
 
-      <div class="section-head">
-        <h2>Fixtures & Results</h2>
+      <div class="section-title">
+        <h2>Matches</h2>
       </div>
 
-      <div class="match-list">
+      <div class="grid">
 
         ${
-          games.length
-          ? games.map(cardHTML).join("")
-          : `<div class="empty">
-              No matches recorded yet.
-             </div>`
+          list.length
+            ? list.map(cardHTML).join("")
+            : `<div class="empty">
+                 No matches.
+               </div>`
         }
 
       </div>
@@ -2729,11 +2388,29 @@ function renderCompetition(){
 
     <div class="section">
 
-      <div class="section-head">
-        <h2>Competition Table</h2>
+      <div class="section-title">
+        <h2>Teams</h2>
       </div>
 
-      ${renderCompetitionTable(games)}
+      <div class="grid">
+
+        ${
+          teamNames.map(name=>`
+
+            <div class="card"
+                 style="cursor:pointer"
+                 onclick="openTeam('${escapeHTML(name)}')">
+
+              <h3>
+                ${escapeHTML(name)}
+              </h3>
+
+            </div>
+
+          `).join("")
+        }
+
+      </div>
 
     </div>
 
@@ -2743,196 +2420,87 @@ function renderCompetition(){
 
 
 /* =========================================================
-   TABLE GENERATOR
-========================================================= */
-
-function renderCompetitionTable(games){
-
-  const teams={};
-
-  games.forEach(m=>{
-
-    const home=m.home;
-    const away=m.away;
-
-    if(!home||!away)return;
-
-    if(!teams[home])teams[home]=blankTeam(home);
-
-    if(!teams[away])teams[away]=blankTeam(away);
-
-    const hs=Number(m.score_home);
-    const as=Number(m.score_away);
-
-    if(!isFinished(m))return;
-
-    teams[home].played++;
-    teams[away].played++;
-
-    teams[home].gf+=Number.isFinite(hs)?hs:0;
-    teams[home].ga+=Number.isFinite(as)?as:0;
-
-    teams[away].gf+=Number.isFinite(as)?as:0;
-    teams[away].ga+=Number.isFinite(hs)?hs:0;
-
-    if(hs>as){
-
-      teams[home].wins++;
-      teams[home].points+=3;
-
-      teams[away].losses++;
-
-    }else if(as>hs){
-
-      teams[away].wins++;
-      teams[away].points+=3;
-
-      teams[home].losses++;
-
-    }else{
-
-      teams[home].draws++;
-      teams[away].draws++;
-
-      teams[home].points++;
-      teams[away].points++;
-
-    }
-
-  });
-
-  const rows=
-    Object.values(teams)
-      .map(t=>{
-
-        t.gd=t.gf-t.ga;
-
-        return t;
-
-      })
-      .sort((a,b)=>
-        b.points-a.points||
-        b.gd-a.gd||
-        b.gf-a.gf
-      );
-
-  if(!rows.length){
-
-    return `
-      <div class="empty">
-        Not enough completed matches for a table.
-      </div>
-    `;
-
-  }
-
-  return `
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-
-          <tr>
-            <th>#</th>
-            <th>Team</th>
-            <th>P</th>
-            <th>W</th>
-            <th>D</th>
-            <th>L</th>
-            <th>GF</th>
-            <th>GA</th>
-            <th>GD</th>
-            <th>Pts</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          ${rows.map((t,i)=>`
-
-            <tr>
-
-              <td class="position">
-                ${i+1}
-              </td>
-
-              <td class="club-cell">
-                ${escapeHTML(t.name)}
-              </td>
-
-              <td>${t.played}</td>
-              <td>${t.wins}</td>
-              <td>${t.draws}</td>
-              <td>${t.losses}</td>
-              <td>${t.gf}</td>
-              <td>${t.ga}</td>
-              <td>${t.gd}</td>
-              <td><b>${t.points}</b></td>
-
-            </tr>
-
-          `).join("")}
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  `;
-
-}
-
-
-function blankTeam(name){
-
-  return {
-    name,
-    played:0,
-    wins:0,
-    draws:0,
-    losses:0,
-    gf:0,
-    ga:0,
-    points:0
-  };
-
-}
-
-
-/* =========================================================
-   STATS
+   PLAYER STATS
 ========================================================= */
 
 function collectPlayerStats(){
 
-  const players={};
+  const stats={};
 
-  matches.forEach(m=>{
+  players.forEach(player=>{
 
-    const events=
-      Array.isArray(m.events)
-        ? m.events
-        : [];
+    stats[player.id]={
 
-    events.forEach(e=>{
+      id:player.id,
+      name:player.name,
+      short_name:
+        player.short_name||
+        player.name,
 
-      const name=
-        e.player||
-        e.player_name;
+      team_id:player.team_id,
 
-      if(!name)return;
+      team:
+        getTeamName(
+          player.team_id,
+          player.nationality||""
+        ),
 
-      if(!players[name]){
+      goals:0,
+      assists:0,
+      yellow_cards:0,
+      red_cards:0,
+      appearances:
+        Number(player.appearances)||0
 
-        players[name]={
-          name,
-          team:e.team||"",
+    };
+
+  });
+
+
+  matches.forEach(match=>{
+
+    if(!Array.isArray(match.events))
+      return;
+
+    match.events.forEach(e=>{
+
+      let player=
+        e.player_id
+          ? getPlayerById(e.player_id)
+          : null;
+
+      if(!player&&e.player){
+
+        player=
+          players.find(p =>
+            String(p.name).toLowerCase()===
+            String(e.player).toLowerCase()
+          );
+
+      }
+
+      if(!player)return;
+
+      if(!stats[player.id]){
+
+        stats[player.id]={
+
+          id:player.id,
+          name:player.name,
+          short_name:
+            player.short_name||
+            player.name,
+          team_id:player.team_id,
+          team:getTeamName(
+            player.team_id,
+            player.nationality||""
+          ),
           goals:0,
-          assists:0
+          assists:0,
+          yellow_cards:0,
+          red_cards:0,
+          appearances:0
+
         };
 
       }
@@ -2944,240 +2512,230 @@ function collectPlayerStats(){
           ""
         ).toLowerCase();
 
-      if(type.includes("goal")){
-        players[name].goals++;
-      }
+      if(type.includes("goal"))
+        stats[player.id].goals++;
 
-      if(type.includes("assist")){
-        players[name].assists++;
-      }
+      if(type.includes("assist"))
+        stats[player.id].assists++;
+
+      if(type.includes("yellow"))
+        stats[player.id].yellow_cards++;
+
+      if(type.includes("red"))
+        stats[player.id].red_cards++;
 
     });
 
   });
 
-  return Object.values(players)
-    .sort((a,b)=>
-      b.goals-a.goals||
-      b.assists-a.assists
-    );
+  return Object.values(stats);
 
 }
 
+
+/* =========================================================
+   STATS
+========================================================= */
 
 function renderStats(){
 
-  const players=
-    collectPlayerStats();
-
-  const highlights=
-    document.getElementById("statsHighlights");
-
-  const body=
-    document.getElementById("statsTableBody");
-
-  const records=
-    document.getElementById("recordsGrid");
-
-  if(!highlights)return;
-
-  const totalGoals=
-    players.reduce(
-      (sum,p)=>sum+p.goals,
-      0
-    );
-
-  const totalAssists=
-    players.reduce(
-      (sum,p)=>sum+p.assists,
-      0
-    );
-
-  const matchesPlayed=
-    matches.filter(isFinished).length;
-
-  highlights.innerHTML=`
-
-    <div class="stat-highlight">
-      <strong>${matchesPlayed}</strong>
-      <span>Completed Matches</span>
-    </div>
-
-    <div class="stat-highlight">
-      <strong>${totalGoals}</strong>
-      <span>Recorded Goals</span>
-    </div>
-
-    <div class="stat-highlight">
-      <strong>${totalAssists}</strong>
-      <span>Recorded Assists</span>
-    </div>
-
-  `;
-
-  if(!players.length){
-
-    body.innerHTML=`
-
-      <tr>
-        <td colspan="5">
-          Stats will be added as MEFCO data is entered.
-        </td>
-      </tr>
-
-    `;
-
-  }else{
-
-    body.innerHTML=
-      players.slice(0,20)
-        .map((p,i)=>`
-
-          <tr>
-
-            <td>${i+1}</td>
-
-            <td>
-              <b>${escapeHTML(p.name)}</b>
-            </td>
-
-            <td>
-              ${escapeHTML(p.team||"—")}
-            </td>
-
-            <td>${p.goals}</td>
-
-            <td>${p.assists}</td>
-
-          </tr>
-
-        `)
-        .join("");
-
-  }
-
-  renderRecords(players,records);
-
-}
-
-
-function renderRecords(players,box){
+  const box=
+    document.getElementById("statsContent");
 
   if(!box)return;
 
-  const topScorer=
-    players[0];
+  const stats=
+    collectPlayerStats();
 
-  let highestScoreMatch=null;
-  let biggestWin=null;
+  const scorers=
+    [...stats]
+      .sort((a,b)=>b.goals-a.goals)
+      .slice(0,15);
 
-  matches
-    .filter(isFinished)
-    .forEach(m=>{
+  const assists=
+    [...stats]
+      .sort((a,b)=>b.assists-a.assists)
+      .slice(0,15);
 
-      const hs=Number(m.score_home)||0;
-      const as=Number(m.score_away)||0;
+  box.innerHTML=`
 
-      const total=hs+as;
+    <div class="grid-2">
 
-      if(
-        !highestScoreMatch||
-        total>
-        (
-          Number(highestScoreMatch.score_home)||0
-        )+
-        (
-          Number(highestScoreMatch.score_away)||0
-        )
-      ){
+      <div>
 
-        highestScoreMatch=m;
+        <div class="section-title">
+          <h2>Top Scorers</h2>
+        </div>
 
-      }
+        <div class="table-wrap">
 
-      const diff=Math.abs(hs-as);
+          <table>
 
-      if(
-        !biggestWin||
-        diff>
-        Math.abs(
-          (Number(biggestWin.score_home)||0)-
-          (Number(biggestWin.score_away)||0)
-        )
-      ){
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Team</th>
+                <th>Goals</th>
+              </tr>
+            </thead>
 
-        biggestWin=m;
+            <tbody>
 
-      }
+              ${
+                scorers.map((p,i)=>`
 
-    });
+                  <tr
+                    style="cursor:pointer"
+                    onclick="openPlayerById('${p.id}')">
 
-  const records=[];
+                    <td>${i+1}</td>
 
-  if(topScorer){
+                    <td>
+                      <strong>
+                        ${escapeHTML(
+                          p.short_name
+                        )}
+                      </strong>
+                    </td>
 
-    records.push({
+                    <td>
+                      ${escapeHTML(p.team)}
+                    </td>
 
-      label:"Top Scorer",
-      title:topScorer.name,
-      text:`${topScorer.goals} recorded goals`
+                    <td>
+                      <strong>
+                        ${p.goals}
+                      </strong>
+                    </td>
 
-    });
+                  </tr>
 
-  }
+                `).join("")
+              }
 
-  if(highestScoreMatch){
+            </tbody>
 
-    records.push({
+          </table>
 
-      label:"Highest Scoring Match",
-      title:
-        `${highestScoreMatch.home} ${scoreOf(highestScoreMatch)} ${highestScoreMatch.away}`,
-      text:
-        `${(
-          Number(highestScoreMatch.score_home)||0
-        )+
-        (
-          Number(highestScoreMatch.score_away)||0
-        )} total goals`
+        </div>
 
-    });
+      </div>
 
-  }
 
-  if(biggestWin){
+      <div>
 
-    records.push({
+        <div class="section-title">
+          <h2>Top Assists</h2>
+        </div>
 
-      label:"Biggest Recorded Win",
-      title:
-        `${biggestWin.home} ${scoreOf(biggestWin)} ${biggestWin.away}`,
-      text:"Largest goal difference currently recorded"
+        <div class="table-wrap">
 
-    });
+          <table>
 
-  }
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Team</th>
+                <th>Assists</th>
+              </tr>
+            </thead>
 
-  box.innerHTML=
-    records.length
-    ? records.map(r=>`
+            <tbody>
 
-      <div class="record-card">
+              ${
+                assists.map((p,i)=>`
 
-        <small>${escapeHTML(r.label)}</small>
+                  <tr
+                    style="cursor:pointer"
+                    onclick="openPlayerById('${p.id}')">
 
-        <h3>
-          ${escapeHTML(r.title)}
-        </h3>
+                    <td>${i+1}</td>
 
-        <p>
-          ${escapeHTML(r.text)}
+                    <td>
+                      <strong>
+                        ${escapeHTML(
+                          p.short_name
+                        )}
+                      </strong>
+                    </td>
+
+                    <td>
+                      ${escapeHTML(p.team)}
+                    </td>
+
+                    <td>
+                      <strong>
+                        ${p.assists}
+                      </strong>
+                    </td>
+
+                  </tr>
+
+                `).join("")
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="section grid">
+
+      <div class="card">
+
+        <h3>Most Goals</h3>
+
+        <strong style="font-size:30px">
+          ${scorers[0]?.goals||0}
+        </strong>
+
+        <p class="muted">
+          ${escapeHTML(
+            scorers[0]?.name||
+            "No player data"
+          )}
         </p>
 
       </div>
 
-    `).join("")
-    : `<div class="empty">Records will appear as data is added.</div>`;
+      <div class="card">
+
+        <h3>Total Players</h3>
+
+        <strong style="font-size:30px">
+          ${players.length}
+        </strong>
+
+        <p class="muted">
+          In the MEFCO database
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Total Teams</h3>
+
+        <strong style="font-size:30px">
+          ${teams.length}
+        </strong>
+
+        <p class="muted">
+          National teams
+        </p>
+
+      </div>
+
+    </div>
+
+  `;
 
 }
 
@@ -3189,10 +2747,14 @@ function renderRecords(players,box){
 function performSearch(){
 
   const input=
-    document.getElementById("searchInput");
+    document.getElementById(
+      "searchInput"
+    );
 
   const box=
-    document.getElementById("searchResults");
+    document.getElementById(
+      "searchResults"
+    );
 
   if(!input||!box)return;
 
@@ -3202,7 +2764,9 @@ function performSearch(){
   if(!query){
 
     box.innerHTML=
-      `<div class="empty">Start typing to search MEFCO.</div>`;
+      `<div class="empty">
+        Start typing to search MEFCO.
+       </div>`;
 
     return;
 
@@ -3210,27 +2774,36 @@ function performSearch(){
 
   const results=[];
 
-  /* Teams */
 
-  const teamNames=new Set();
+  teams.forEach(team=>{
 
-  matches.forEach(m=>{
-
-    if(m.home)teamNames.add(m.home);
-
-    if(m.away)teamNames.add(m.away);
-
-  });
-
-  teamNames.forEach(team=>{
-
-    if(team.toLowerCase().includes(query)){
+    if(
+      String(team.name||"")
+        .toLowerCase()
+        .includes(query)||
+      String(team.short_name||"")
+        .toLowerCase()
+        .includes(query)||
+      String(team.abbreviation||"")
+        .toLowerCase()
+        .includes(query)||
+      String(team.country||"")
+        .toLowerCase()
+        .includes(query)
+    ){
 
       results.push({
 
         type:"Team",
-        title:team,
-        action:()=>openTeam(team)
+        title:team.name,
+
+        subtitle:
+          team.country+
+          " · "+
+          (team.abbreviation||""),
+
+        action:
+          `openTeamById('${team.id}')`
 
       });
 
@@ -3239,17 +2812,38 @@ function performSearch(){
   });
 
 
-  /* Competitions */
+  players.forEach(player=>{
 
-  getCompetitions().forEach(comp=>{
-
-    if(comp.toLowerCase().includes(query)){
+    if(
+      String(player.name||"")
+        .toLowerCase()
+        .includes(query)||
+      String(player.short_name||"")
+        .toLowerCase()
+        .includes(query)||
+      String(player.nationality||"")
+        .toLowerCase()
+        .includes(query)
+    ){
 
       results.push({
 
-        type:"Competition",
-        title:comp,
-        action:()=>openCompetition(comp)
+        type:"Player",
+
+        title:
+          player.short_name||
+          player.name,
+
+        subtitle:
+          player.name+
+          " · "+
+          getTeamName(
+            player.team_id,
+            player.nationality||""
+          ),
+
+        action:
+          `openPlayerById('${player.id}')`
 
       });
 
@@ -3258,22 +2852,34 @@ function performSearch(){
   });
 
 
-  /* Matches */
+  matches.forEach(match=>{
 
-  matches.forEach(m=>{
-
-    const text=
-      `${m.home} ${m.away} ${m.competition}`
-      .toLowerCase();
-
-    if(text.includes(query)){
+    if(
+      String(match.home||"")
+        .toLowerCase()
+        .includes(query)||
+      String(match.away||"")
+        .toLowerCase()
+        .includes(query)||
+      String(match.competition||"")
+        .toLowerCase()
+        .includes(query)
+    ){
 
       results.push({
 
         type:"Match",
+
         title:
-          `${m.home} ${scoreOf(m)} ${m.away}`,
-        action:()=>openMatch(m.id)
+          matchLabel(match),
+
+        subtitle:
+          (match.competition||"MEFCO")+
+          " · "+
+          matchDate(match),
+
+        action:
+          `openMatch('${match.id}')`
 
       });
 
@@ -3282,21 +2888,29 @@ function performSearch(){
   });
 
 
-  /* News */
+  news.forEach(item=>{
 
-  news.forEach(article=>{
+    const title=
+      item.title||
+      item.headline||
+      "";
 
-    const text=
-      `${article.title} ${article.category} ${article.excerpt}`
-      .toLowerCase();
-
-    if(text.includes(query)){
+    if(
+      title.toLowerCase().includes(query)
+    ){
 
       results.push({
 
         type:"News",
-        title:article.title,
-        action:()=>openArticle(article.id)
+        title:title,
+
+        subtitle:
+          formatNewsDate(
+            item.created_at
+          ),
+
+        action:
+          `openArticle('${item.id}')`
 
       });
 
@@ -3305,44 +2919,32 @@ function performSearch(){
   });
 
 
-  if(!results.length){
-
-    box.innerHTML=
-      `<div class="empty">No results found.</div>`;
-
-    return;
-
-  }
-
   box.innerHTML=
-    results.slice(0,40).map((r,i)=>`
+    results.length
+      ? results.slice(0,50).map(r=>`
 
-      <div class="search-result"
-           onclick="searchOpen(${i})">
+          <div class="card"
+               style="margin-bottom:10px;cursor:pointer"
+               onclick="${r.action}">
 
-        <small>
-          ${escapeHTML(r.type)}
-        </small>
+            <span class="badge">
+              ${escapeHTML(r.type)}
+            </span>
 
-        <strong>
-          ${escapeHTML(r.title)}
-        </strong>
+            <h3 style="margin-top:9px">
+              ${escapeHTML(r.title)}
+            </h3>
 
-      </div>
+            <p class="muted">
+              ${escapeHTML(r.subtitle)}
+            </p>
 
-    `).join("");
+          </div>
 
-  window._searchResults=results;
-
-}
-
-
-function searchOpen(index){
-
-  const result=
-    window._searchResults?.[index];
-
-  if(result)result.action();
+        `).join("")
+      : `<div class="empty">
+           No results found.
+         </div>`;
 
 }
 
@@ -3351,107 +2953,219 @@ function searchOpen(index){
    TEAM PAGE
 ========================================================= */
 
-function openTeam(team){
+function openTeam(teamName){
+
+  const team=
+    teams.find(t =>
+      String(t.name).toLowerCase()===
+      String(teamName).toLowerCase()
+    );
 
   showPage("team-page");
 
-  const box=
-    document.getElementById("teamContainer");
+  renderTeam(team,teamName);
 
-  const teamMatches=
-    matches.filter(m=>
-      m.home===team||
-      m.away===team
+}
+
+
+function openTeamById(id){
+
+  const team=
+    getTeamById(id);
+
+  if(!team)return;
+
+  showPage("team-page");
+
+  renderTeam(team,team.name);
+
+}
+
+
+function renderTeam(team,fallbackName){
+
+  const box=
+    document.getElementById(
+      "teamContent"
     );
 
-  const wins=
-    teamMatches.filter(m=>
-      isFinished(m)&&
-      (
-        (m.home===team&&Number(m.score_home)>Number(m.score_away))||
-        (m.away===team&&Number(m.score_away)>Number(m.score_home))
-      )
-    ).length;
+  if(!box)return;
 
-  const draws=
-    teamMatches.filter(m=>
-      isFinished(m)&&
-      Number(m.score_home)===Number(m.score_away)
-    ).length;
+  const name=
+    team?.name||
+    fallbackName||
+    "Unknown Team";
 
-  const losses=
-    teamMatches.filter(m=>
-      isFinished(m)&&
-      (
-        (m.home===team&&Number(m.score_home)<Number(m.score_away))||
-        (m.away===team&&Number(m.score_away)<Number(m.score_home))
+  const squad=
+    team
+      ? getTeamPlayers(team.id)
+      : players.filter(p =>
+          String(p.nationality||"")
+            .toLowerCase()===
+          String(name).toLowerCase()
+        );
+
+  const fixtures=
+    matches
+      .filter(m =>
+        String(m.home).toLowerCase()===
+          String(name).toLowerCase()||
+        String(m.away).toLowerCase()===
+          String(name).toLowerCase()
       )
-    ).length;
+      .slice(0,10);
 
   box.innerHTML=`
 
-    <div class="profile">
+    <div class="team-header">
 
-      <div class="profile-head">
+      <div class="team-identity">
 
-        <div class="profile-avatar">
-          ⚽
-        </div>
+        ${
+          team?.flag_url
+            ? `<img
+                class="big-flag"
+                src="${escapeHTML(team.flag_url)}"
+                alt="">`
+            : ""
+        }
 
         <div>
 
-          <h2>${escapeHTML(team)}</h2>
+          <h1>
+            ${escapeHTML(name)}
+          </h1>
 
-          <p>MEFCO Team</p>
+          <p class="muted">
+            ${escapeHTML(
+              team?.country||
+              name
+            )}
+            ${
+              team?.abbreviation
+                ? " · "+
+                  escapeHTML(
+                    team.abbreviation
+                  )
+                : ""
+            }
+          </p>
 
         </div>
+
+        ${
+          team?.overall
+            ? `
+              <div class="rating">
+                ${team.overall}
+              </div>
+            `
+            : ""
+        }
 
       </div>
 
-      <div class="stat-grid">
 
-        <div class="stat-box">
-          <strong>${teamMatches.length}</strong>
-          <span>Matches</span>
-        </div>
+      ${
+        team
+          ? `
+            <div class="stat-grid">
 
-        <div class="stat-box">
-          <strong>${wins}</strong>
-          <span>Wins</span>
-        </div>
+              <div class="stat-box">
+                <strong>${team.attack||"-"}</strong>
+                <span>ATTACK</span>
+              </div>
 
-        <div class="stat-box">
-          <strong>${draws}</strong>
-          <span>Draws</span>
-        </div>
+              <div class="stat-box">
+                <strong>${team.midfield||"-"}</strong>
+                <span>MIDFIELD</span>
+              </div>
 
-        <div class="stat-box">
-          <strong>${losses}</strong>
-          <span>Losses</span>
-        </div>
+              <div class="stat-box">
+                <strong>${team.defence||"-"}</strong>
+                <span>DEFENCE</span>
+              </div>
+
+              <div class="stat-box">
+                <strong>${team.points||0}</strong>
+                <span>POINTS</span>
+              </div>
+
+            </div>
+          `
+          : ""
+      }
+
+    </div>
+
+
+    <div class="section">
+
+      <div class="section-title">
+        <h2>Squad</h2>
+
+        <span class="badge">
+          ${squad.length} players
+        </span>
+      </div>
+
+      <div class="squad">
+
+        ${
+          squad.length
+            ? squad.map(player=>`
+
+                <div class="player-row"
+                     onclick="openPlayerById('${player.id}')">
+
+                  <strong>
+                    ${escapeHTML(
+                      player.short_name||
+                      player.name
+                    )}
+                  </strong>
+
+                  <div class="muted">
+                    ${escapeHTML(
+                      player.position||
+                      "Player"
+                    )}
+
+                    ${
+                      player.overall
+                        ? " · OVR "+
+                          player.overall
+                        : ""
+                    }
+                  </div>
+
+                </div>
+
+              `).join("")
+            : `<div class="empty">
+                 No players registered.
+               </div>`
+        }
 
       </div>
 
     </div>
 
+
     <div class="section">
 
-      <div class="section-head">
-        <h2>Fixtures & Results</h2>
+      <div class="section-title">
+        <h2>Fixtures</h2>
       </div>
 
-      <div class="match-list">
+      <div class="grid">
 
         ${
-          teamMatches.length
-          ? teamMatches
-              .sort((a,b)=>
-                String(matchDate(b))
-                .localeCompare(String(matchDate(a)))
-              )
-              .map(cardHTML)
-              .join("")
-          : `<div class="empty">No matches recorded.</div>`
+          fixtures.length
+            ? fixtures.map(cardHTML).join("")
+            : `<div class="empty">
+                 No fixtures found.
+               </div>`
         }
 
       </div>
@@ -3470,67 +3184,214 @@ function openTeam(team){
 function openPlayer(name){
 
   const player=
-    collectPlayerStats()
-      .find(p=>p.name===name);
+    players.find(p =>
+      String(p.name).toLowerCase()===
+      String(name).toLowerCase()||
+      String(p.short_name||"").toLowerCase()===
+      String(name).toLowerCase()
+    );
 
   showPage("player-page");
 
+  if(player)
+    renderPlayerDatabaseProfile(player);
+
+}
+
+
+function openPlayerById(id){
+
+  const player=
+    getPlayerById(id);
+
+  if(!player)return;
+
+  showPage("player-page");
+
+  renderPlayerDatabaseProfile(player);
+
+}
+
+
+function renderPlayerDatabaseProfile(player){
+
   const box=
-    document.getElementById("playerContainer");
+    document.getElementById(
+      "playerContent"
+    );
 
-  if(!player){
+  if(!box)return;
 
-    box.innerHTML=
-      `<div class="empty">Player not found.</div>`;
+  const team=
+    getTeamById(player.team_id);
 
-    return;
-
-  }
+  const stats=
+    collectPlayerStats()
+      .find(x =>
+        String(x.id)===
+        String(player.id)
+      );
 
   box.innerHTML=`
 
-    <div class="profile">
+    <div class="team-header">
 
-      <div class="profile-head">
+      <div class="player-identity">
 
-        <div class="profile-avatar">
-          👤
-        </div>
+        ${
+          player.photo_url
+            ? `<img
+                class="big-flag"
+                src="${escapeHTML(player.photo_url)}"
+                alt="">`
+            : ""
+        }
 
         <div>
 
-          <h2>
+          <h1>
             ${escapeHTML(player.name)}
-          </h2>
+          </h1>
 
-          <p>
-            ${escapeHTML(player.team||"MEFCO Player")}
+          <p class="muted">
+            ${escapeHTML(
+              player.short_name||
+              player.name
+            )}
+          </p>
+
+          <p class="muted">
+            ${escapeHTML(
+              team?.name||
+              player.nationality||
+              "No team"
+            )}
           </p>
 
         </div>
 
+        ${
+          player.overall
+            ? `
+              <div class="rating">
+                ${player.overall}
+              </div>
+            `
+            : ""
+        }
+
       </div>
+
 
       <div class="stat-grid">
 
         <div class="stat-box">
-          <strong>${player.goals}</strong>
-          <span>Goals</span>
+          <strong>
+            ${player.goals||
+              stats?.goals||
+              0}
+          </strong>
+          <span>GOALS</span>
         </div>
 
         <div class="stat-box">
-          <strong>${player.assists}</strong>
-          <span>Assists</span>
+          <strong>
+            ${player.assists||
+              stats?.assists||
+              0}
+          </strong>
+          <span>ASSISTS</span>
         </div>
 
         <div class="stat-box">
-          <strong>—</strong>
-          <span>Appearances</span>
+          <strong>
+            ${player.appearances||0}
+          </strong>
+          <span>APPEARANCES</span>
         </div>
 
         <div class="stat-box">
-          <strong>—</strong>
-          <span>Competition</span>
+          <strong>
+            ${player.form||"-"}
+          </strong>
+          <span>FORM</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section grid-2">
+
+      <div class="card">
+
+        <h3>Player Information</h3>
+
+        <p class="muted">
+          Position
+        </p>
+
+        <strong>
+          ${escapeHTML(
+            player.position||
+            "Unknown"
+          )}
+        </strong>
+
+        <br><br>
+
+        <p class="muted">
+          Nationality
+        </p>
+
+        <strong>
+          ${escapeHTML(
+            player.nationality||
+            "Unknown"
+          )}
+        </strong>
+
+        ${
+          player.second_nationality
+            ? `
+              <br>
+              <br>
+              <p class="muted">
+                Second Nationality
+              </p>
+              <strong>
+                ${escapeHTML(
+                  player.second_nationality
+                )}
+              </strong>
+            `
+            : ""
+        }
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>Discipline</h3>
+
+        <div class="stat-grid">
+
+          <div class="stat-box">
+            <strong>
+              ${stats?.yellow_cards||0}
+            </strong>
+            <span>YELLOW</span>
+          </div>
+
+          <div class="stat-box">
+            <strong>
+              ${stats?.red_cards||0}
+            </strong>
+            <span>RED</span>
+          </div>
+
         </div>
 
       </div>
@@ -3549,7 +3410,9 @@ function openPlayer(name){
 function renderAdmin(){
 
   const select=
-    document.getElementById("adminMatchSelect");
+    document.getElementById(
+      "adminMatchSelect"
+    );
 
   if(!select)return;
 
@@ -3575,15 +3438,13 @@ function renderAdmin(){
 
   `;
 
-  if(selectedMatchId){
-
+  if(selectedMatchId)
     select.value=selectedMatchId;
 
-  }
-
   renderAdminPanel();
-
   renderAdminLog();
+
+  populateCreateTeamSelects();
 
 }
 
@@ -3591,10 +3452,13 @@ function renderAdmin(){
 function selectAdminMatch(){
 
   const select=
-    document.getElementById("adminMatchSelect");
+    document.getElementById(
+      "adminMatchSelect"
+    );
 
   selectedMatchId=
-    select.value||null;
+    select.value||
+    null;
 
   renderAdminPanel();
 
@@ -3604,185 +3468,312 @@ function selectAdminMatch(){
 function renderAdminPanel(){
 
   const box=
-    document.getElementById("adminPanelContent");
+    document.getElementById(
+      "adminPanelContent"
+    );
 
   if(!box)return;
 
   const m=
-    matches.find(x=>
-      String(x.id)===String(selectedMatchId)
+    matches.find(x =>
+      String(x.id)===
+      String(selectedMatchId)
     );
 
   if(!m){
 
     box.innerHTML=
-      `<div class="empty">Select a match to manage it.</div>`;
+      `<div class="empty">
+        Select a match to manage it.
+       </div>`;
 
     return;
 
   }
 
+  const homeTeam=
+    getMatchTeam(m,"home");
+
+  const awayTeam=
+    getMatchTeam(m,"away");
+
   box.innerHTML=`
 
-    <h2>
-      ${escapeHTML(m.home)}
-      vs
-      ${escapeHTML(m.away)}
-    </h2>
+    <div class="card">
 
-    <div class="admin-controls">
+      <div class="section-title">
 
-      <button class="admin-btn green"
-              onclick="startSelected()">
-        Start
-      </button>
+        <div>
+          <h2>
+            ${escapeHTML(
+              homeTeam?.name||
+              m.home
+            )}
+            vs
+            ${escapeHTML(
+              awayTeam?.name||
+              m.away
+            )}
+          </h2>
 
-      <button class="admin-btn gold"
-              onclick="pauseSelected()">
-        Pause
-      </button>
+          <p class="muted">
+            ${escapeHTML(
+              m.competition||
+              "MEFCO"
+            )}
+          </p>
+        </div>
 
-      <button class="admin-btn blue"
-              onclick="addMinute(1)">
-        +1'
-      </button>
+        <span class="badge">
+          ${escapeHTML(
+            m.status||
+            "scheduled"
+          )}
+        </span>
 
-      <button class="admin-btn blue"
-              onclick="addMinute(5)">
-        +5'
-      </button>
-
-      <button class="admin-btn blue"
-              onclick="addMinute(10)">
-        +10'
-      </button>
-
-      <button class="admin-btn red"
-              onclick="finishSelected()">
-        Finish
-      </button>
-
-    </div>
-
-
-    <div class="admin-grid">
-
-      <div class="admin-field">
-        <label>HOME SCORE</label>
-        <input id="adminHomeScore"
-               type="number"
-               value="${Number(m.score_home)||0}">
       </div>
 
-      <div class="admin-field">
-        <label>AWAY SCORE</label>
-        <input id="adminAwayScore"
-               type="number"
-               value="${Number(m.score_away)||0}">
+
+      <div class="admin-controls">
+
+        <button class="admin-btn green"
+                onclick="startSelected()">
+          Start
+        </button>
+
+        <button class="admin-btn gold"
+                onclick="pauseSelected()">
+          Pause
+        </button>
+
+        <button class="admin-btn blue"
+                onclick="addMinute(1)">
+          +1'
+        </button>
+
+        <button class="admin-btn blue"
+                onclick="addMinute(5)">
+          +5'
+        </button>
+
+        <button class="admin-btn blue"
+                onclick="addMinute(10)">
+          +10'
+        </button>
+
+        <button class="admin-btn red"
+                onclick="finishSelected()">
+          Finish
+        </button>
+
       </div>
 
-      <div class="admin-field">
-        <label>MINUTE</label>
-        <input id="adminMinute"
-               type="number"
-               value="${Number(m.minute)||0}">
-      </div>
-
-      <div class="admin-field">
-        <label>STOPPAGE</label>
-        <input id="adminStoppage"
-               type="number"
-               value="${Number(m.stoppage)||0}">
-      </div>
-
-    </div>
-
-
-    <button class="admin-btn green"
-            onclick="saveAdminMatch()">
-      Save Match
-    </button>
-
-
-    <div class="section">
-
-      <h3>Match Event</h3>
 
       <div class="admin-grid">
 
         <div class="admin-field">
+          <label>HOME SCORE</label>
+          <input id="adminHomeScore"
+                 type="number"
+                 min="0"
+                 value="${Number(m.score_home)||0}">
+        </div>
+
+        <div class="admin-field">
+          <label>AWAY SCORE</label>
+          <input id="adminAwayScore"
+                 type="number"
+                 min="0"
+                 value="${Number(m.score_away)||0}">
+        </div>
+
+        <div class="admin-field">
           <label>MINUTE</label>
-          <input id="eventMinute" type="number">
+          <input id="adminMinute"
+                 type="number"
+                 min="0"
+                 value="${Number(m.minute)||0}">
         </div>
 
         <div class="admin-field">
           <label>STOPPAGE</label>
-          <input id="eventStoppage" type="number">
-        </div>
-
-        <div class="admin-field">
-          <label>TYPE</label>
-          <select id="eventType">
-            <option value="Goal">Goal</option>
-            <option value="Assist">Assist</option>
-            <option value="Yellow Card">Yellow Card</option>
-            <option value="Red Card">Red Card</option>
-            <option value="Substitution">Substitution</option>
-            <option value="Shot">Shot</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div class="admin-field">
-          <label>PLAYER</label>
-          <input id="eventPlayer">
-        </div>
-
-        <div class="admin-field">
-          <label>TEAM</label>
-          <input id="eventTeam">
-        </div>
-
-        <div class="admin-field">
-          <label>DETAIL</label>
-          <input id="eventDetail">
+          <input id="adminStoppage"
+                 type="number"
+                 min="0"
+                 value="${Number(m.stoppage)||0}">
         </div>
 
       </div>
 
-      <button class="admin-btn blue"
-              onclick="addEvent()">
-        Add Event
+
+      <button class="admin-btn green"
+              onclick="saveAdminMatch()">
+        Save Match
       </button>
 
-    </div>
+
+      <div class="section">
+
+        <h3>Match Event</h3>
+
+        <div class="admin-grid">
+
+          <div class="admin-field">
+            <label>MINUTE</label>
+
+            <input id="eventMinute"
+                   type="number"
+                   min="0"
+                   value="${Number(m.minute)||0}">
+          </div>
+
+          <div class="admin-field">
+            <label>STOPPAGE</label>
+
+            <input id="eventStoppage"
+                   type="number"
+                   min="0"
+                   value="0">
+          </div>
+
+          <div class="admin-field">
+            <label>TYPE</label>
+
+            <select id="eventType">
+
+              <option value="Goal">
+                Goal
+              </option>
+
+              <option value="Assist">
+                Assist
+              </option>
+
+              <option value="Yellow Card">
+                Yellow Card
+              </option>
+
+              <option value="Red Card">
+                Red Card
+              </option>
+
+              <option value="Substitution">
+                Substitution
+              </option>
+
+              <option value="Shot">
+                Shot
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
+
+            </select>
+          </div>
+
+          <div class="admin-field">
+            <label>TEAM</label>
+
+            <select id="eventTeam"
+                    onchange="updateEventPlayers()">
+
+              <option value="">
+                Select team...
+              </option>
+
+              ${
+                homeTeam
+                  ? `
+                    <option value="${homeTeam.id}">
+                      ${escapeHTML(homeTeam.name)}
+                    </option>
+                  `
+                  : ""
+              }
+
+              ${
+                awayTeam &&
+                String(awayTeam.id)!==
+                String(homeTeam?.id)
+                  ? `
+                    <option value="${awayTeam.id}">
+                      ${escapeHTML(awayTeam.name)}
+                    </option>
+                  `
+                  : ""
+              }
+
+            </select>
+
+          </div>
+
+          <div class="admin-field">
+
+            <label>PLAYER</label>
+
+            <select id="eventPlayer">
+
+              <option value="">
+                Select team first...
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="admin-field">
+
+            <label>DETAIL</label>
+
+            <input id="eventDetail">
+
+          </div>
+
+        </div>
 
 
-    <div class="section">
-
-      <h3>Quick Events</h3>
-
-      <div class="admin-event-buttons">
-
-        <button class="admin-btn"
-                onclick="quickEvent('Goal')">
-          Goal
+        <button class="admin-btn blue"
+                onclick="addEvent()">
+          Add Event
         </button>
 
-        <button class="admin-btn"
-                onclick="quickEvent('Yellow Card')">
-          Yellow Card
-        </button>
+      </div>
 
-        <button class="admin-btn"
-                onclick="quickEvent('Red Card')">
-          Red Card
-        </button>
 
-        <button class="admin-btn"
-                onclick="quickEvent('Substitution')">
-          Substitution
-        </button>
+      <div class="section">
+
+        <div class="section-title">
+          <h3>Quick Events</h3>
+
+          <span class="badge">
+            Select team + player first
+          </span>
+        </div>
+
+        <div class="admin-event-buttons">
+
+          <button class="admin-btn"
+                  onclick="quickEvent('Goal')">
+            ⚽ Goal
+          </button>
+
+          <button class="admin-btn"
+                  onclick="quickEvent('Yellow Card')">
+            🟨 Yellow
+          </button>
+
+          <button class="admin-btn"
+                  onclick="quickEvent('Red Card')">
+            🟥 Red
+          </button>
+
+          <button class="admin-btn"
+                  onclick="quickEvent('Substitution')">
+            🔄 Substitution
+          </button>
+
+        </div>
 
       </div>
 
@@ -3793,23 +3784,178 @@ function renderAdminPanel(){
 }
 
 
-async function updateMatch(id,changes){
+function updateEventPlayers(){
 
-  const result=
-    await supabaseFetch(
-      MATCHES_URL+
-      "?id=eq."+
-      encodeURIComponent(id),
-      {
-        method:"PATCH",
-        headers:{
-          Prefer:"return=representation"
-        },
-        body:JSON.stringify(changes)
-      }
+  const teamSelect=
+    document.getElementById(
+      "eventTeam"
     );
 
-  return result;
+  const playerSelect=
+    document.getElementById(
+      "eventPlayer"
+    );
+
+  if(!teamSelect||!playerSelect)
+    return;
+
+  const teamId=
+    teamSelect.value;
+
+  if(!teamId){
+
+    playerSelect.innerHTML=
+      `<option value="">
+        Select team first...
+       </option>`;
+
+    return;
+
+  }
+
+  const teamPlayers=
+    getTeamPlayers(teamId);
+
+  playerSelect.innerHTML=`
+
+    <option value="">
+      Select player...
+    </option>
+
+    ${
+      teamPlayers.map(player=>`
+
+        <option value="${player.id}">
+
+          ${escapeHTML(
+            player.short_name||
+            player.name
+          )}
+
+        </option>
+
+      `).join("")
+    }
+
+  `;
+
+}
+
+
+function populateCreateTeamSelects(){
+
+  const home=
+    document.getElementById(
+      "createHome"
+    );
+
+  const away=
+    document.getElementById(
+      "createAway"
+    );
+
+  if(!home||!away)return;
+
+  const currentHome=home.value;
+  const currentAway=away.value;
+
+  const options=`
+
+    <option value="">
+      Select team...
+    </option>
+
+    ${
+      teams.map(team=>`
+
+        <option value="${team.id}">
+
+          ${escapeHTML(team.name)}
+
+        </option>
+
+      `).join("")
+    }
+
+  `;
+
+  home.innerHTML=options;
+  away.innerHTML=options;
+
+  if(currentHome)
+    home.value=currentHome;
+
+  if(currentAway)
+    away.value=currentAway;
+
+}
+
+
+function updateCreateHome(){
+
+  const select=
+    document.getElementById(
+      "createHome"
+    );
+
+  const flag=
+    document.getElementById(
+      "createHomeFlag"
+    );
+
+  const team=
+    getTeamById(select.value);
+
+  if(team&&flag)
+    flag.value=
+      team.flag_url||"";
+
+}
+
+
+function updateCreateAway(){
+
+  const select=
+    document.getElementById(
+      "createAway"
+    );
+
+  const flag=
+    document.getElementById(
+      "createAwayFlag"
+    );
+
+  const team=
+    getTeamById(select.value);
+
+  if(team&&flag)
+    flag.value=
+      team.flag_url||"";
+
+}
+
+
+/* =========================================================
+   MATCH UPDATE
+========================================================= */
+
+async function updateMatch(id,changes){
+
+  return await supabaseFetch(
+    MATCHES_URL+
+    "?id=eq."+
+    encodeURIComponent(id),
+    {
+      method:"PATCH",
+
+      headers:{
+        Prefer:"return=representation"
+      },
+
+      body:JSON.stringify(changes)
+
+    }
+  );
 
 }
 
@@ -3817,8 +3963,9 @@ async function updateMatch(id,changes){
 async function saveAdminMatch(){
 
   const m=
-    matches.find(x=>
-      String(x.id)===String(selectedMatchId)
+    matches.find(x =>
+      String(x.id)===
+      String(selectedMatchId)
     );
 
   if(!m)return;
@@ -3827,31 +3974,45 @@ async function saveAdminMatch(){
 
     score_home:
       Number(
-        document.getElementById("adminHomeScore").value
+        document.getElementById(
+          "adminHomeScore"
+        ).value
       )||0,
 
     score_away:
       Number(
-        document.getElementById("adminAwayScore").value
+        document.getElementById(
+          "adminAwayScore"
+        ).value
       )||0,
 
     minute:
       Number(
-        document.getElementById("adminMinute").value
+        document.getElementById(
+          "adminMinute"
+        ).value
       )||0,
 
     stoppage:
       Number(
-        document.getElementById("adminStoppage").value
+        document.getElementById(
+          "adminStoppage"
+        ).value
       )||0
 
   };
 
   try{
 
-    await updateMatch(m.id,changes);
+    await updateMatch(
+      m.id,
+      changes
+    );
 
-    Object.assign(m,changes);
+    Object.assign(
+      m,
+      changes
+    );
 
     addLog("Match updated.");
 
@@ -3860,7 +4021,10 @@ async function saveAdminMatch(){
 
   }catch(error){
 
-    addLog("Update failed: "+error.message);
+    addLog(
+      "Update failed: "+
+      error.message
+    );
 
   }
 
@@ -3870,17 +4034,19 @@ async function saveAdminMatch(){
 async function startSelected(){
 
   const m=
-    matches.find(x=>
-      String(x.id)===String(selectedMatchId)
+    matches.find(x =>
+      String(x.id)===
+      String(selectedMatchId)
     );
 
   if(!m)return;
 
   try{
 
-    await updateMatch(m.id,{
-      status:"live"
-    });
+    await updateMatch(
+      m.id,
+      {status:"live"}
+    );
 
     m.status="live";
 
@@ -3903,17 +4069,25 @@ async function startSelected(){
 async function pauseSelected(){
 
   const m=
-    matches.find(x=>
-      String(x.id)===String(selectedMatchId)
+    matches.find(x =>
+      String(x.id)===
+      String(selectedMatchId)
     );
 
   if(!m)return;
 
   try{
 
-    await updateMatch(m.id,{
-      status:"scheduled"
-    });
+    /*
+      Keep the existing MEFCO behaviour
+      so this remains compatible with
+      your current matches table.
+    */
+
+    await updateMatch(
+      m.id,
+      {status:"scheduled"}
+    );
 
     m.status="scheduled";
 
@@ -3936,17 +4110,19 @@ async function pauseSelected(){
 async function finishSelected(){
 
   const m=
-    matches.find(x=>
-      String(x.id)===String(selectedMatchId)
+    matches.find(x =>
+      String(x.id)===
+      String(selectedMatchId)
     );
 
   if(!m)return;
 
   try{
 
-    await updateMatch(m.id,{
-      status:"finished"
-    });
+    await updateMatch(
+      m.id,
+      {status:"finished"}
+    );
 
     m.status="finished";
 
@@ -3969,8 +4145,9 @@ async function finishSelected(){
 async function addMinute(amount){
 
   const m=
-    matches.find(x=>
-      String(x.id)===String(selectedMatchId)
+    matches.find(x =>
+      String(x.id)===
+      String(selectedMatchId)
     );
 
   if(!m)return;
@@ -3980,11 +4157,16 @@ async function addMinute(amount){
 
   try{
 
-    await updateMatch(m.id,{
-      minute:minute+amount
-    });
+    await updateMatch(
+      m.id,
+      {
+        minute:
+          minute+amount
+      }
+    );
 
-    m.minute=minute+amount;
+    m.minute=
+      minute+amount;
 
     renderMatch();
     renderAdmin();
@@ -3998,39 +4180,54 @@ async function addMinute(amount){
 }
 
 
+/* =========================================================
+   LIVE TIMER
+========================================================= */
+
 function startTimer(){
 
   stopTimer();
 
-  timer=setInterval(async()=>{
+  timer=
+    setInterval(
+      async()=>{
 
-    const m=
-      matches.find(x=>
-        String(x.id)===String(selectedMatchId)
-      );
+        const m=
+          matches.find(x =>
+            String(x.id)===
+            String(selectedMatchId)
+          );
 
-    if(!m||!isLive(m))return;
+        if(!m||!isLive(m))
+          return;
 
-    const minute=
-      Number(m.minute)||0;
+        const minute=
+          Number(m.minute)||0;
 
-    try{
+        try{
 
-      await updateMatch(m.id,{
-        minute:minute+1
-      });
+          await updateMatch(
+            m.id,
+            {
+              minute:
+                minute+1
+            }
+          );
 
-      m.minute=minute+1;
+          m.minute=
+            minute+1;
 
-      renderAll();
+          renderAll();
 
-    }catch(error){
+        }catch(error){
 
-      console.error(error);
+          console.error(error);
 
-    }
+        }
 
-  },60000);
+      },
+      60000
+    );
 
 }
 
@@ -4055,11 +4252,49 @@ function stopTimer(){
 async function addEvent(){
 
   const m=
-    matches.find(x=>
-      String(x.id)===String(selectedMatchId)
+    matches.find(x =>
+      String(x.id)===
+      String(selectedMatchId)
     );
 
   if(!m)return;
+
+  const teamId=
+    document.getElementById(
+      "eventTeam"
+    ).value;
+
+  const playerId=
+    document.getElementById(
+      "eventPlayer"
+    ).value;
+
+  const selectedTeam=
+    getTeamById(teamId);
+
+  const selectedPlayer=
+    getPlayerById(playerId);
+
+  if(!selectedTeam){
+
+    addLog(
+      "Select a team."
+    );
+
+    return;
+
+  }
+
+  if(!selectedPlayer){
+
+    addLog(
+      "Select a player."
+    );
+
+    return;
+
+  }
+
 
   const event={
 
@@ -4067,60 +4302,189 @@ async function addEvent(){
 
     minute:
       Number(
-        document.getElementById("eventMinute").value
-      )||Number(m.minute)||0,
+        document.getElementById(
+          "eventMinute"
+        ).value
+      )||
+      Number(m.minute)||
+      0,
 
     stoppage:
       Number(
-        document.getElementById("eventStoppage").value
+        document.getElementById(
+          "eventStoppage"
+        ).value
       )||0,
 
     type:
-      document.getElementById("eventType").value,
+      document.getElementById(
+        "eventType"
+      ).value,
+
+    player_id:
+      selectedPlayer.id,
+
+    team_id:
+      selectedTeam.id,
+
+    /*
+      Keep text fields for
+      backwards compatibility.
+    */
 
     player:
-      document.getElementById("eventPlayer").value.trim(),
+      selectedPlayer.name,
 
     team:
-      document.getElementById("eventTeam").value.trim(),
+      selectedTeam.name,
 
     detail:
-      document.getElementById("eventDetail").value.trim()
+      document.getElementById(
+        "eventDetail"
+      ).value.trim()
 
   };
 
+
   try{
 
-    const result=
-      await supabaseFetch(
-        EVENTS_URL,
+    let result;
+
+    try{
+
+      result=
+        await supabaseFetch(
+          EVENTS_URL,
+          {
+            method:"POST",
+
+            headers:{
+              Prefer:
+                "return=representation"
+            },
+
+            body:
+              JSON.stringify(event)
+          }
+        );
+
+    }catch(error){
+
+      /*
+        If player_id/team_id aren't
+        installed yet, fall back to
+        the old event structure.
+      */
+
+      result=
+        await supabaseFetch(
+          EVENTS_URL,
+          {
+            method:"POST",
+
+            headers:{
+              Prefer:
+                "return=representation"
+            },
+
+            body:
+              JSON.stringify({
+
+                match_id:
+                  event.match_id,
+
+                minute:
+                  event.minute,
+
+                stoppage:
+                  event.stoppage,
+
+                type:
+                  event.type,
+
+                player:
+                  event.player,
+
+                team:
+                  event.team,
+
+                detail:
+                  event.detail
+
+              })
+          }
+        );
+
+    }
+
+
+    if(!Array.isArray(m.events))
+      m.events=[];
+
+    const saved=
+      Array.isArray(result)
+        ? result[0]
+        : event;
+
+    m.events.push(saved);
+
+    /*
+      Automatically update score
+      when a Goal event is created.
+    */
+
+    if(
+      event.type.toLowerCase()==="goal"
+    ){
+
+      const homeId=
+        getMatchTeamId(
+          m,
+          "home"
+        );
+
+      if(
+        String(homeId)===
+        String(selectedTeam.id)
+      ){
+
+        m.score_home=
+          Number(m.score_home||0)+1;
+
+      }else{
+
+        m.score_away=
+          Number(m.score_away||0)+1;
+
+      }
+
+      await updateMatch(
+        m.id,
         {
-          method:"POST",
-          headers:{
-            Prefer:"return=representation"
-          },
-          body:JSON.stringify(event)
+          score_home:
+            m.score_home,
+
+          score_away:
+            m.score_away
         }
       );
 
-    if(!Array.isArray(m.events)){
-      m.events=[];
     }
 
-    m.events.push(
-      Array.isArray(result)
-        ? result[0]
-        : event
+
+    addLog(
+      `${event.type} added — ${event.player}.`
     );
 
-    addLog("Event added.");
-
-    renderMatch();
+    renderAll();
     renderAdmin();
 
   }catch(error){
 
-    addLog("Event failed: "+error.message);
+    addLog(
+      "Event failed: "+
+      error.message
+    );
 
   }
 
@@ -4129,7 +4493,39 @@ async function addEvent(){
 
 function quickEvent(type){
 
-  document.getElementById("eventType").value=type;
+  const team=
+    document.getElementById(
+      "eventTeam"
+    );
+
+  const player=
+    document.getElementById(
+      "eventPlayer"
+    );
+
+  if(!team?.value){
+
+    addLog(
+      "Select a team first."
+    );
+
+    return;
+
+  }
+
+  if(!player?.value){
+
+    addLog(
+      "Select a player first."
+    );
+
+    return;
+
+  }
+
+  document.getElementById(
+    "eventType"
+  ).value=type;
 
   addEvent();
 
@@ -4142,28 +4538,60 @@ function quickEvent(type){
 
 async function createMatch(){
 
+  const homeSelect=
+    document.getElementById(
+      "createHome"
+    );
+
+  const awaySelect=
+    document.getElementById(
+      "createAway"
+    );
+
+  const homeTeam=
+    getTeamById(
+      homeSelect.value
+    );
+
+  const awayTeam=
+    getTeamById(
+      awaySelect.value
+    );
+
   const match={
 
     competition:
-      document.getElementById("createCompetition").value.trim(),
+      document.getElementById(
+        "createCompetition"
+      ).value.trim(),
 
     home:
-      document.getElementById("createHome").value.trim(),
+      homeTeam?.name||"",
 
     away:
-      document.getElementById("createAway").value.trim(),
+      awayTeam?.name||"",
 
     match_date:
-      document.getElementById("createDate").value,
+      document.getElementById(
+        "createDate"
+      ).value,
 
     match_time:
-      document.getElementById("createKickoff").value,
+      document.getElementById(
+        "createKickoff"
+      ).value,
 
     home_flag:
-      document.getElementById("createHomeFlag").value.trim(),
+      homeTeam?.flag_url||
+      document.getElementById(
+        "createHomeFlag"
+      ).value.trim(),
 
     away_flag:
-      document.getElementById("createAwayFlag").value.trim(),
+      awayTeam?.flag_url||
+      document.getElementById(
+        "createAwayFlag"
+      ).value.trim(),
 
     status:"scheduled",
 
@@ -4179,18 +4607,36 @@ async function createMatch(){
 
   };
 
+
   if(
-    !match.home||
-    !match.away||
+    !homeTeam||
+    !awayTeam||
     !match.match_date||
     !match.match_time
   ){
 
-    addLog("Home, away, date and kickoff are required.");
+    addLog(
+      "Home, away, date and kickoff are required."
+    );
 
     return;
 
   }
+
+
+  if(
+    String(homeTeam.id)===
+    String(awayTeam.id)
+  ){
+
+    addLog(
+      "Home and away teams must be different."
+    );
+
+    return;
+
+  }
+
 
   try{
 
@@ -4199,18 +4645,23 @@ async function createMatch(){
         MATCHES_URL,
         {
           method:"POST",
+
           headers:{
-            Prefer:"return=representation"
+            Prefer:
+              "return=representation"
           },
-          body:JSON.stringify(match)
+
+          body:
+            JSON.stringify(match)
         }
       );
 
-    if(Array.isArray(result)){
-      matches.push(result[0]);
-    }else{
-      matches.push(match);
-    }
+    const saved=
+      Array.isArray(result)
+        ? result[0]
+        : match;
+
+    matches.push(saved);
 
     addLog(
       `Created ${match.home} vs ${match.away}.`
@@ -4240,11 +4691,15 @@ function addLog(message){
   adminLog.unshift({
 
     message,
-    time:new Date().toLocaleTimeString()
+
+    time:
+      new Date()
+        .toLocaleTimeString()
 
   });
 
-  adminLog=adminLog.slice(0,50);
+  adminLog=
+    adminLog.slice(0,50);
 
   renderAdminLog();
 
@@ -4254,24 +4709,28 @@ function addLog(message){
 function renderAdminLog(){
 
   const box=
-    document.getElementById("adminLog");
+    document.getElementById(
+      "adminLog"
+    );
 
   if(!box)return;
 
   box.innerHTML=
     adminLog.length
-    ? adminLog.map(item=>`
+      ? adminLog.map(item=>`
 
-      <div class="admin-log-item">
+          <div class="admin-log-item">
 
-        ${escapeHTML(item.time)}
-        ·
-        ${escapeHTML(item.message)}
+            ${escapeHTML(item.time)}
+            ·
+            ${escapeHTML(item.message)}
 
-      </div>
+          </div>
 
-    `).join("")
-    : `<div class="empty">No admin actions yet.</div>`;
+        `).join("")
+      : `<div class="empty">
+           No admin actions yet.
+         </div>`;
 
 }
 
@@ -4279,10 +4738,6 @@ function renderAdminLog(){
 /* =========================================================
    NOTIFICATIONS
 ========================================================= */
-
-const NOTIFICATION_API=
-  "https://mefco-notifications.drtwelveyt.workers.dev";
-
 
 async function enableNotifications(){
 
@@ -4304,7 +4759,8 @@ async function enableNotifications(){
 
     document.getElementById(
       "notificationButton"
-    ).textContent="Notifications Enabled";
+    ).textContent=
+      "Notifications Enabled";
 
     showNotificationStatus(
       "success",
@@ -4326,29 +4782,40 @@ async function enableNotifications(){
 async function sendNotification(){
 
   const title=
-    document.getElementById("notificationTitle").value;
+    document.getElementById(
+      "notificationTitle"
+    ).value;
 
   const body=
-    document.getElementById("notificationBody").value;
+    document.getElementById(
+      "notificationBody"
+    ).value;
 
   const url=
-    document.getElementById("notificationUrl").value;
+    document.getElementById(
+      "notificationUrl"
+    ).value;
 
   try{
 
     const response=
       await fetch(
-        NOTIFICATION_API+"/api/notify",
+        NOTIFICATION_API+
+        "/api/notify",
         {
           method:"POST",
+
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":
+              "application/json"
           },
-          body:JSON.stringify({
-            title,
-            body,
-            url
-          })
+
+          body:
+            JSON.stringify({
+              title,
+              body,
+              url
+            })
         }
       );
 
@@ -4388,7 +4855,10 @@ async function checkNotificationStatus(){
       );
 
     showNotificationStatus(
-      response.ok?"success":"warning",
+      response.ok
+        ? "success"
+        : "warning",
+
       response.ok
         ? "Notification service is online."
         : "Notification service responded with an error."
@@ -4406,42 +4876,202 @@ async function checkNotificationStatus(){
 }
 
 
-function showNotificationStatus(type,message){
+function showNotificationStatus(
+  type,
+  message
+){
 
   const box=
-    document.getElementById("notificationStatus");
+    document.getElementById(
+      "notificationStatus"
+    );
 
   if(!box)return;
 
   box.className=
-    "notification-status "+type;
+    "notification-status "+
+    type;
 
-  box.textContent=message;
+  box.textContent=
+    message;
 
 }
 
 
 /* =========================================================
-   RENDER ALL
+   GLOBAL RENDER
 ========================================================= */
 
 function renderAll(){
 
   renderHome();
-
   renderScores();
-
   renderCompetitions();
-
   renderStats();
-
   renderLiveTicker();
 
-  if(selectedMatchId){
-
+  if(selectedMatchId)
     renderMatch();
 
+  if(
+    document.getElementById("admin")
+      ?.classList.contains("active")
+  ){
+
+    renderAdmin();
+
   }
+
+}
+
+
+/* =========================================================
+   AUTO REFRESH
+========================================================= */
+
+let refreshBusy=false;
+
+async function refreshLiveData(){
+
+  if(refreshBusy)return;
+
+  refreshBusy=true;
+
+  try{
+
+    await loadMatches();
+
+    if(
+      document.getElementById("admin")
+        ?.classList.contains("active")
+    )
+      renderAdmin();
+
+  }finally{
+
+    refreshBusy=false;
+
+  }
+
+}
+
+
+/*
+  Refresh every 15 seconds.
+
+  This means Match Centre and live
+  scores update without manually
+  refreshing the browser.
+*/
+
+setInterval(
+  refreshLiveData,
+  15000
+);
+
+
+/* =========================================================
+   KEYBOARD SHORTCUTS
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    /*
+      Don't trigger shortcuts while
+      typing into inputs.
+    */
+
+    const tag=
+      document.activeElement?.tagName;
+
+    if(
+      tag==="INPUT"||
+      tag==="SELECT"||
+      tag==="TEXTAREA"
+    )
+      return;
+
+    /*
+      Space = start/pause
+    */
+
+    if(event.code==="Space"){
+
+      event.preventDefault();
+
+      const m=
+        matches.find(x =>
+          String(x.id)===
+          String(selectedMatchId)
+        );
+
+      if(!m)return;
+
+      if(isLive(m))
+        pauseSelected();
+      else
+        startSelected();
+
+    }
+
+    /*
+      F = finish
+    */
+
+    if(event.key.toLowerCase()==="f"){
+
+      if(selectedMatchId)
+        finishSelected();
+
+    }
+
+    /*
+      + = add minute
+    */
+
+    if(
+      event.key==="+"||
+      event.key==="="
+    ){
+
+      if(selectedMatchId)
+        addMinute(1);
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer=null;
+
+function showToast(message){
+
+  const toast=
+    document.getElementById(
+      "toast"
+    );
+
+  if(!toast)return;
+
+  toast.textContent=message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=
+    setTimeout(
+      ()=>
+        toast.classList.remove("show"),
+      2500
+    );
 
 }
 
@@ -4450,11 +5080,36 @@ function renderAll(){
    STARTUP
 ========================================================= */
 
-loadMatches();
+async function startMEFCOWatch(){
 
-loadNews();
+  try{
 
-checkNotificationStatus();
+    await loadTeamsAndPlayers();
+
+    await Promise.all([
+      loadMatches(),
+      loadNews()
+    ]);
+
+    populateCreateTeamSelects();
+
+    checkNotificationStatus();
+
+    renderAll();
+
+  }catch(error){
+
+    console.error(
+      "MEFCO Watch startup:",
+      error
+    );
+
+  }
+
+}
+
+
+startMEFCOWatch();
 
 </script>
 
